@@ -12,14 +12,6 @@ const Footer = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  const services = [
-    "Custom Web Development",
-    "WordPress Design",
-    "E-commerce Solutions",
-    "SEO Services",
-    "Graphic Design",
-  ];
-
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -75,11 +67,46 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Services</h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service} className="text-primary-foreground/80 text-sm">
-                  {service}
-                </li>
-              ))}
+              <li>
+                <Link
+                  to="/services/web-development"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                >
+                  Custom Web Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/wordpress-design"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                >
+                  WordPress Design
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/ecommerce-solutions"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                >
+                  E-commerce Solutions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/seo-services"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                >
+                  SEO Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services/graphic-design"
+                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
+                >
+                  Graphic Design
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -11,6 +11,11 @@ import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import WebDevelopment from "./pages/services/WebDevelopment";
+import WordPressDesign from "./pages/services/WordPressDesign";
+import EcommerceSolutions from "./pages/services/EcommerceSolutions";
+import SEOServices from "./pages/services/SEOServices";
+import GraphicDesign from "./pages/services/GraphicDesign";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +29,11 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="services" element={<Services />} />
+            <Route path="services/web-development" element={<WebDevelopment />} />
+            <Route path="services/wordpress-design" element={<WordPressDesign />} />
+            <Route path="services/ecommerce-solutions" element={<EcommerceSolutions />} />
+            <Route path="services/seo-services" element={<SEOServices />} />
+            <Route path="services/graphic-design" element={<GraphicDesign />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
