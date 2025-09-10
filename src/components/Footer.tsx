@@ -146,12 +146,12 @@ const Footer = () => {
             © {currentYear} Waks Digital Solutions. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
-            <a href="/privacy" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
+            <Link to="/privacy" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
               Privacy Policy
-            </a>
-            <a href="/terms" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
+            </Link>
+            <Link to="/terms" className="text-primary-foreground/60 hover:text-accent text-sm transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>
