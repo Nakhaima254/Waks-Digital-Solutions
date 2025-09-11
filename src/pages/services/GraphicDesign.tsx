@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Palette, Image, FileText, Package, Shirt, Camera } from "lucide-react";
 import { Link } from "react-router-dom";
+import graphicDesignImage from "@/assets/service-graphic-design.jpg";
 
 const GraphicDesign = () => {
   const services = [
@@ -104,8 +105,15 @@ const GraphicDesign = () => {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-subtle">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={graphicDesignImage} 
+            alt="Graphic Design" 
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4">Graphic Design</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
