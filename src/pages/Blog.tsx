@@ -3,6 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 
+// Import blog images
+import webDesignTrendsImage from "@/assets/blog-web-design-trends.jpg";
+import seoKenyaImage from "@/assets/blog-seo-kenya.jpg";
+import ecommerceKenyaImage from "@/assets/blog-ecommerce-kenya.jpg";
+import wordpressVsCustomImage from "@/assets/blog-wordpress-vs-custom.jpg";
+import mobileOptimizationImage from "@/assets/blog-mobile-optimization.jpg";
+import digitalMarketingSMEsImage from "@/assets/blog-digital-marketing-smes.jpg";
+
 const Blog = () => {
   const blogPosts = [
     {
@@ -13,7 +21,7 @@ const Blog = () => {
       date: "January 8, 2025",
       readTime: "8 min read",
       category: "Design",
-      image: "/api/placeholder/600/400"
+      image: webDesignTrendsImage
     },
     {
       id: "seo-guide-kenyan-businesses",
@@ -23,7 +31,7 @@ const Blog = () => {
       date: "January 5, 2025",
       readTime: "12 min read",
       category: "SEO",
-      image: "/api/placeholder/600/400"
+      image: seoKenyaImage
     },
     {
       id: "ecommerce-success-kenya",
@@ -33,7 +41,7 @@ const Blog = () => {
       date: "January 2, 2025",
       readTime: "15 min read",
       category: "E-commerce",
-      image: "/api/placeholder/600/400"
+      image: ecommerceKenyaImage
     },
     {
       id: "wordpress-vs-custom-development",
@@ -43,7 +51,7 @@ const Blog = () => {
       date: "December 28, 2024",
       readTime: "10 min read",
       category: "Development",
-      image: "/api/placeholder/600/400"
+      image: wordpressVsCustomImage
     },
     {
       id: "mobile-optimization-importance",
@@ -53,7 +61,7 @@ const Blog = () => {
       date: "December 25, 2024",
       readTime: "7 min read",
       category: "Mobile",
-      image: "/api/placeholder/600/400"
+      image: mobileOptimizationImage
     },
     {
       id: "digital-marketing-strategies-smes",
@@ -63,7 +71,7 @@ const Blog = () => {
       date: "December 20, 2024",
       readTime: "11 min read",
       category: "Marketing",
-      image: "/api/placeholder/600/400"
+      image: digitalMarketingSMEsImage
     }
   ];
 
@@ -103,9 +111,11 @@ const Blog = () => {
           {blogPosts.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
               <div className="aspect-video bg-muted overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-primary/30">{post.category}</span>
-                </div>
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
               
               <CardHeader className="space-y-3">
