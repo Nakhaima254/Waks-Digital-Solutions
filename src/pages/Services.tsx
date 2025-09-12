@@ -115,11 +115,11 @@ const Services = () => {
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Professional Web Solutions
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-white">
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground">
               Services That Grow
-              <span className="block gradient-text">Your Business</span>
+              <span className="block text-accent">Your Business</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               From custom websites to e-commerce solutions, we provide comprehensive digital services 
               to help your Kenyan business succeed online.
             </p>

@@ -86,15 +86,15 @@ const About = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-6">
+            <div className="text-foreground space-y-6">
               <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
                 About Waks Digital Solutions
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground">
                 Building Digital
-                <span className="block gradient-text">Success Stories</span>
+                <span className="block text-accent">Success Stories</span>
               </h1>
-              <p className="text-xl text-white/90 leading-relaxed">
+              <p className="text-xl text-muted-foreground leading-relaxed">
                 We're a Nairobi-based web development and design agency passionate about helping 
                 small to medium businesses thrive in the digital world. Every project we take on 
                 is an opportunity to create something meaningful.
