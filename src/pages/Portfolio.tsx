@@ -10,6 +10,7 @@ import {
   TrendingUp
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
 
 const Portfolio = () => {
   const projects = [
@@ -176,8 +177,15 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="py-20 section-hero">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={portfolioHeroImage} 
+            alt="Portfolio Projects" 
+            className="w-full h-full object-cover opacity-15"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Our Work

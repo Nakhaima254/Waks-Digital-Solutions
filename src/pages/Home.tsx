@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
+import safariLodgeImage from "@/assets/project-safari-lodge.jpg";
+import restaurantImage from "@/assets/project-restaurant.jpg";
+import fintechImage from "@/assets/project-fintech.jpg";
 
 const Home = () => {
   const services = [
@@ -44,21 +47,21 @@ const Home = () => {
       title: "Safari Lodge Booking",
       category: "Tourism",
       description: "Complete booking system for a Kenyan safari lodge with online payments and availability calendar.",
-      image: "/api/placeholder/400/300",
+      image: safariLodgeImage,
       technologies: ["WordPress", "WooCommerce", "Custom Design"]
     },
     {
       title: "Local Restaurant Chain",
       category: "Food & Beverage",  
       description: "Multi-location restaurant website with online ordering and delivery integration.",
-      image: "/api/placeholder/400/300",
+      image: restaurantImage,
       technologies: ["Custom Development", "Online Ordering", "Location Finder"]
     },
     {
       title: "Tech Startup",
       category: "Technology",
       description: "Modern SaaS landing page with subscription management and user dashboards.",
-      image: "/api/placeholder/400/300",
+      image: fintechImage,
       technologies: ["React", "Modern Design", "Payment Integration"]
     }
   ];
@@ -197,8 +200,13 @@ const Home = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioProjects.map((project, index) => (
               <Card key={index} className="card-elevated overflow-hidden group hover:scale-105 transition-all duration-300">
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
-                  <Globe className="h-16 w-16 text-accent/40" />
+                <div className="aspect-video overflow-hidden relative">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="space-y-2">

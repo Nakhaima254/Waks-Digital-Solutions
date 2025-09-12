@@ -15,6 +15,7 @@ import {
   Clock
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import servicesHeroImage from "@/assets/services-hero.jpg";
 
 const Services = () => {
   const mainServices = [
@@ -101,8 +102,15 @@ const Services = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="py-20 section-hero">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={servicesHeroImage} 
+            alt="Web Development Services" 
+            className="w-full h-full object-cover opacity-15"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Professional Web Solutions
