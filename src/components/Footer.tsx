@@ -100,14 +100,6 @@ const Footer = () => {
                   SEO Services
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/services/graphic-design"
-                  className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
-                >
-                  Graphic Design
-                </Link>
-              </li>
             </ul>
           </div>
 

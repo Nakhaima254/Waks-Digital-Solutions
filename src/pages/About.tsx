@@ -23,8 +23,7 @@ const About = () => {
     { name: "UI/UX Design", level: 90, icon: Palette },
     { name: "WordPress", level: 92, icon: Code },
     { name: "E-commerce", level: 88, icon: Code },
-    { name: "SEO Optimization", level: 85, icon: Target },
-    { name: "Graphic Design", level: 87, icon: Palette }
+    { name: "SEO Optimization", level: 85, icon: Target }
   ];
 
   const values = [
@@ -109,22 +108,22 @@ const About = () => {
                       <Users className="h-8 w-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-white">Client-First Philosophy</h3>
-                      <p className="text-white/80">Your success drives everything we do</p>
+                      <h3 className="text-xl font-semibold text-foreground">Client-First Philosophy</h3>
+                      <p className="text-muted-foreground">Your success drives everything we do</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-4 pt-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-accent">50+</div>
-                      <div className="text-sm text-white/80">Happy Clients</div>
+                      <div className="text-sm text-muted-foreground">Happy Clients</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-accent">3+</div>
-                      <div className="text-sm text-white/80">Years Experience</div>
+                      <div className="text-sm text-muted-foreground">Years Experience</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-accent">100%</div>
-                      <div className="text-sm text-white/80">Satisfaction Rate</div>
+                      <div className="text-sm text-muted-foreground">Satisfaction Rate</div>
                     </div>
                   </div>
                 </div>
@@ -150,13 +149,13 @@ const About = () => {
                 <p>
                   Hello! I'm the founder of Waks Digital Solutions, and I'm passionate about helping 
                   Kenyan businesses succeed online. With over 3 years of experience in web development 
-                  and graphic design, I've had the privilege of working with amazing businesses across 
+                  and design, I've had the privilege of working with amazing businesses across 
                   various industries.
                 </p>
                 <p>
-                  What started as a freelance graphic design service has evolved into a full-service 
+                  What started as a freelance web development service has evolved into a full-service 
                   digital agency. I realized that many Kenyan SMEs needed more than just beautiful 
-                  designs - they needed complete digital solutions that could drive real business growth.
+                  websites - they needed complete digital solutions that could drive real business growth.
                 </p>
                 <p>
                   Today, I'm proud to lead a team that shares my vision of making professional web 

@@ -44,7 +44,6 @@ const Terms = () => {
                 <li>WordPress website creation and maintenance</li>
                 <li>E-commerce solutions</li>
                 <li>SEO and digital marketing services</li>
-                <li>Graphic design and branding</li>
                 <li>Website hosting and maintenance</li>
               </ul>
             </div>

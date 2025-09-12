@@ -18,7 +18,6 @@ import WebDevelopment from "./pages/services/WebDevelopment";
 import WordPressDesign from "./pages/services/WordPressDesign";
 import EcommerceSolutions from "./pages/services/EcommerceSolutions";
 import SEOServices from "./pages/services/SEOServices";
-import GraphicDesign from "./pages/services/GraphicDesign";
 import WebDesignTrends2025 from "./pages/blog/WebDesignTrends2025";
 import SEOGuideKenyanBusinesses from "./pages/blog/SEOGuideKenyanBusinesses";
 import EcommerceSuccessKenya from "./pages/blog/EcommerceSuccessKenya";
@@ -42,7 +41,6 @@ const App = () => (
             <Route path="services/wordpress-design" element={<WordPressDesign />} />
             <Route path="services/ecommerce-solutions" element={<EcommerceSolutions />} />
             <Route path="services/seo-services" element={<SEOServices />} />
-            <Route path="services/graphic-design" element={<GraphicDesign />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
