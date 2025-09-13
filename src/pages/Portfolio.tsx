@@ -14,8 +14,6 @@ import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
 import projectSafariLodge from "@/assets/project-safari-lodge.jpg";
 import projectRestaurant from "@/assets/project-restaurant.jpg";
 import projectFintech from "@/assets/project-fintech.jpg";
-import projectEdtech from "@/assets/project-edtech.jpg";
-import projectHealthcare from "@/assets/project-healthcare.jpg";
 import projectNursery from "@/assets/project-nursery.jpg";
 import projectLawFirm from "@/assets/project-law-firm.jpg";
 import projectFashion from "@/assets/project-fashion.jpg";
@@ -183,64 +181,10 @@ const Portfolio = () => {
       client: "Mwangi Fashion House",
       website: "#",
       image: projectFashion
-    },
-    {
-      id: 7,
-      title: "LearnHub Kenya",
-      category: "EdTech & Learning",
-      description: "Comprehensive e-learning platform for Kenyan students with course management, progress tracking, and interactive content delivery.",
-      fullDescription: "Developed a modern e-learning platform for LearnHub Kenya that revolutionized online education delivery. The platform includes course management, student progress tracking, interactive quizzes, and mobile-responsive design optimized for various devices and internet speeds across Kenya.",
-      technologies: ["React", "Learning Management System", "Video Streaming", "Progress Tracking", "Mobile Optimization"],
-      features: [
-        "Course management system",
-        "Video streaming with adaptive quality",
-        "Interactive quizzes and assignments",
-        "Student progress analytics",
-        "Mobile-responsive design",
-        "Offline content download"
-      ],
-      results: [
-        "2,000+ students enrolled in first 3 months",
-        "95% course completion rate",
-        "Featured by Kenya Education Ministry",
-        "Expanded to 3 universities"
-      ],
-      timeline: "12 weeks",
-      year: "2024",
-      client: "LearnHub Kenya",
-      website: "#",
-      image: projectEdtech
-    },
-    {
-      id: 8,
-      title: "Nairobi Medical Center",
-      category: "Healthcare & Medical",
-      description: "Patient portal and appointment management system for a leading medical center with telemedicine integration and medical records.",
-      fullDescription: "Built a comprehensive healthcare platform for Nairobi Medical Center that streamlined patient care and appointment management. The system includes telemedicine capabilities, secure patient records, and integrated billing that improved patient satisfaction and operational efficiency.",
-      technologies: ["Healthcare Platform", "Telemedicine", "Secure Records", "Appointment System", "HIPAA Compliance"],
-      features: [
-        "Online appointment booking",
-        "Telemedicine video consultations",
-        "Secure patient record management",
-        "Prescription management",
-        "Insurance integration",
-        "SMS appointment reminders"
-      ],
-      results: [
-        "60% reduction in appointment no-shows",
-        "40% increase in patient satisfaction",
-        "Streamlined operations for 20+ doctors",
-        "HIPAA compliant implementation"
-      ],
-      timeline: "14 weeks",
-      year: "2023",
-      client: "Nairobi Medical Center",
-      website: "#",
-      image: projectHealthcare
     }
   ];
 
-  const categories = ["All", "Tourism & Hospitality", "Food & Beverage", "Fintech Startup", "Agriculture & Retail", "Legal Services", "Fashion & E-commerce", "EdTech & Learning", "Healthcare & Medical"];
+  const categories = ["All", "Tourism & Hospitality", "Food & Beverage", "Fintech Startup", "Agriculture & Retail", "Legal Services", "Fashion & E-commerce"];
 
   return (
     <div className="min-h-screen pt-16">
