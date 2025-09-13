@@ -11,6 +11,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
+import projectSafariLodge from "@/assets/project-safari-lodge.jpg";
+import projectRestaurant from "@/assets/project-restaurant.jpg";
+import projectFintech from "@/assets/project-fintech.jpg";
 
 const Portfolio = () => {
   const projects = [
@@ -38,7 +41,8 @@ const Portfolio = () => {
       timeline: "6 weeks",
       year: "2024",
       client: "Serengeti Safari Lodge",
-      website: "#"
+      website: "#",
+      image: projectSafariLodge
     },
     {
       id: 2,
@@ -64,7 +68,8 @@ const Portfolio = () => {
       timeline: "8 weeks",
       year: "2024",
       client: "Mama's Kitchen Ltd",
-      website: "#"
+      website: "#",
+      image: projectRestaurant
     },
     {
       id: 3,
@@ -90,7 +95,8 @@ const Portfolio = () => {
       timeline: "10 weeks",
       year: "2023",
       client: "TechPay Kenya",
-      website: "#"
+      website: "#",
+      image: projectFintech
     },
     {
       id: 4,
@@ -238,8 +244,18 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <Card key={project.id} className="card-elevated overflow-hidden group hover:scale-105 transition-all duration-300">
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
-                  <Globe className="h-16 w-16 text-accent/40" />
+                <div className="aspect-video relative overflow-hidden">
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                      <Globe className="h-16 w-16 text-accent/40" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-4">
                     <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                       {project.category}
