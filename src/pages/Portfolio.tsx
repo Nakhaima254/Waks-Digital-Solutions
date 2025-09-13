@@ -16,6 +16,9 @@ import projectRestaurant from "@/assets/project-restaurant.jpg";
 import projectFintech from "@/assets/project-fintech.jpg";
 import projectEdtech from "@/assets/project-edtech.jpg";
 import projectHealthcare from "@/assets/project-healthcare.jpg";
+import projectNursery from "@/assets/project-nursery.jpg";
+import projectLawFirm from "@/assets/project-law-firm.jpg";
+import projectFashion from "@/assets/project-fashion.jpg";
 
 const Portfolio = () => {
   const projects = [
@@ -124,7 +127,8 @@ const Portfolio = () => {
       timeline: "4 weeks",
       year: "2023",
       client: "Green Gardens Nursery",
-      website: "#"
+      website: "#",
+      image: projectNursery
     },
     {
       id: 5,
@@ -150,7 +154,8 @@ const Portfolio = () => {
       timeline: "5 weeks",
       year: "2023",
       client: "Ochieng & Associates",
-      website: "#"
+      website: "#",
+      image: projectLawFirm
     },
     {
       id: 6,
@@ -176,7 +181,8 @@ const Portfolio = () => {
       timeline: "7 weeks",
       year: "2024",
       client: "Mwangi Fashion House",
-      website: "#"
+      website: "#",
+      image: projectFashion
     },
     {
       id: 7,
