@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import Logo from "@/assets/Waks Tech-04.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,20 +19,27 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">W</span>
-              </div>
-              <div>
-                <span className="text-xl font-bold">Waks Digital</span>
-                <span className="text-sm text-primary-foreground/80 block -mt-1">Solutions</span>
-              </div>
+              <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <img
+                      src={Logo}
+                      alt="Waks Digital Partner Logo"
+                      className="h-20 w-auto"
+                      style={{ maxWidth: 350 }}
+                    />
+                  </div>
+                  <p className="text-primary-foreground/80 text-sm leading-relaxed">
+                    Your Digital Growth Partner. We build websites that grow your business and help Kenyan SMEs thrive in the digital space.
+                  </p>
+                  {/* ...social icons... */}
+                </div>
             </div>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Your Digital Growth Partner. We build websites that grow your business and help Kenyan SMEs thrive in the digital space.
             </p>
-            <div className="flex space-x-4 pt-2">
+            {/* <div className="flex space-x-4 pt-2">
               <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors">
                 <Facebook className="h-5 w-5" />
               </a>
@@ -44,7 +52,7 @@ const Footer = () => {
               <a href="#" className="text-primary-foreground/60 hover:text-accent transition-colors">
                 <Instagram className="h-5 w-5" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
@@ -123,10 +131,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-accent flex-shrink-0" />
                 <a 
-                  href="tel:+254700123456" 
+                  href="tel:+254718098165" 
                   className="text-primary-foreground/80 hover:text-accent transition-colors text-sm"
                 >
-                  +254 700 123 456
+                  +254 718 098 165
                 </a>
               </div>
             </div>

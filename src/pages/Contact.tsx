@@ -30,15 +30,15 @@ const Contact = () => {
       icon: Phone,
       title: "Call Us",
       description: "Speak with us directly",
-      contact: "+254 700 123 456",
-      action: "tel:+254700123456"
+      contact: "+254 718 098 165",
+      action: "tel:+254718098165"
     },
     {
       icon: MessageCircle,
       title: "WhatsApp",
       description: "Quick questions and updates",
-      contact: "+254 700 123 456",
-      action: "https://wa.me/254700123456"
+      contact: "+254 746 388 308",
+      action: "https://wa.me/254746388308"
     }
   ];
 

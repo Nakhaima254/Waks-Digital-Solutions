@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import Logo from "@/assets/Waks Tech-03.svg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,13 +25,12 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">W</span>
-            </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold text-primary">Waks Digital</span>
-              <span className="text-sm text-muted-foreground block -mt-1">Solutions</span>
-            </div>
+            <img
+              src={Logo}
+              alt="Waks Digital Partner Logo"
+              className="h-20 w-auto"
+              style={{ maxWidth: 350 }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
