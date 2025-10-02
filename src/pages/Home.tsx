@@ -68,21 +68,21 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Sarah Kimani",
-      role: "Founder, Green Gardens Nursery",
-      content: "Waks Digital transformed our online presence. Our website now attracts customers from all over Nairobi, and our sales have increased by 150%.",
+      name: "Aimo Travel",
+      role: "Director, Aimo Travel Agency",
+      content: "Waks Digital transformed our travel agency's online presence. Our website now handles visa applications, bookings, and inquiries seamlessly. Online inquiries increased by 300%!",
       rating: 5
     },
     {
-      name: "David Ochieng",
-      role: "Director, Ochieng & Associates",
-      content: "Professional, reliable, and delivered exactly what we needed. Our law firm's website now properly represents our expertise.",
+      name: "Remican SACCO",
+      role: "Management, Remican SACCO Society",
+      content: "Professional, reliable, and delivered exactly what we needed. Our members now enjoy seamless online banking and loan applications. Highly recommended!",
       rating: 5
     },
     {
-      name: "Grace Mwangi",
-      role: "Owner, Mwangi Fashion House",
-      content: "The e-commerce site they built for us is beautiful and so easy to manage. We're now selling across East Africa!",
+      name: "Truechoice Merchants",
+      role: "CEO, Truechoice Merchants Limited",
+      content: "The corporate website they built for us perfectly represents our logistics expertise. We've seen a 400% increase in service inquiries since launch!",
       rating: 5
     }
   ];
