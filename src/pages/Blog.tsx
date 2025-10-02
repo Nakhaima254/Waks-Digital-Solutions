@@ -10,6 +10,12 @@ import ecommerceKenyaImage from "@/assets/blog-ecommerce-kenya.jpg";
 import wordpressVsCustomImage from "@/assets/blog-wordpress-vs-custom.jpg";
 import mobileOptimizationImage from "@/assets/blog-mobile-optimization.jpg";
 import digitalMarketingSMEsImage from "@/assets/blog-digital-marketing-smes.jpg";
+import colorPsychologyImage from "@/assets/blog-color-psychology.jpg";
+import navigationDesignImage from "@/assets/blog-navigation-design.jpg";
+import typographyTrendsImage from "@/assets/blog-typography-trends.jpg";
+import minimalistMaximalistImage from "@/assets/blog-minimalist-maximalist.jpg";
+import accessibilityDesignImage from "@/assets/blog-accessibility-design.jpg";
+import visualHierarchyImage from "@/assets/blog-visual-hierarchy.jpg";
 
 const Blog = () => {
   const blogPosts = [
@@ -72,6 +78,66 @@ const Blog = () => {
       readTime: "11 min read",
       category: "Marketing",
       image: digitalMarketingSMEsImage
+    },
+    {
+      id: "color-psychology-web-design",
+      title: "The Psychology of Color in Web Design: A Guide for Kenyan Brands",
+      excerpt: "Discover how color choices influence emotions and drive conversions for Kenyan businesses online.",
+      author: "David Waks",
+      date: "January 12, 2025",
+      readTime: "10 min read",
+      category: "Design",
+      image: colorPsychologyImage
+    },
+    {
+      id: "navigation-design-best-practices",
+      title: "Creating User-Friendly Navigation: Best Practices for 2025",
+      excerpt: "Master the art of intuitive website navigation that keeps Kenyan visitors engaged and converts them into customers.",
+      author: "Sarah Mwangi",
+      date: "January 15, 2025",
+      readTime: "12 min read",
+      category: "Design",
+      image: navigationDesignImage
+    },
+    {
+      id: "typography-trends-kenya",
+      title: "Typography Trends That Make Kenyan Websites Stand Out",
+      excerpt: "Explore the latest typography trends and font pairings that elevate your brand and enhance readability.",
+      author: "Grace Wanjiku",
+      date: "January 18, 2025",
+      readTime: "9 min read",
+      category: "Design",
+      image: typographyTrendsImage
+    },
+    {
+      id: "minimalist-vs-maximalist",
+      title: "Minimalist vs Maximalist Design: Which Suits Your Business?",
+      excerpt: "Understand the pros and cons of both design approaches to choose the perfect style for your Kenyan brand.",
+      author: "Peter Otieno",
+      date: "January 20, 2025",
+      readTime: "11 min read",
+      category: "Design",
+      image: minimalistMaximalistImage
+    },
+    {
+      id: "accessibility-design-guide",
+      title: "Web Accessibility: Designing for Everyone in Kenya",
+      excerpt: "Learn how to create inclusive websites that reach wider audiences and comply with accessibility standards.",
+      author: "James Kiprotich",
+      date: "January 22, 2025",
+      readTime: "13 min read",
+      category: "Design",
+      image: accessibilityDesignImage
+    },
+    {
+      id: "visual-hierarchy-principles",
+      title: "Mastering Visual Hierarchy in Web Design",
+      excerpt: "Guide users naturally through your content with effective visual hierarchy principles and techniques.",
+      author: "David Waks",
+      date: "January 25, 2025",
+      readTime: "10 min read",
+      category: "Design",
+      image: visualHierarchyImage
     }
   ];
 

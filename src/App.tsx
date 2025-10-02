@@ -24,6 +24,12 @@ import EcommerceSuccessKenya from "./pages/blog/EcommerceSuccessKenya";
 import WordPressVsCustom from "./pages/blog/WordPressVsCustom";
 import MobileOptimizationImportance from "./pages/blog/MobileOptimizationImportance";
 import DigitalMarketingStrategiesSMEs from "./pages/blog/DigitalMarketingStrategiesSMEs";
+import ColorPsychologyWebDesign from "./pages/blog/ColorPsychologyWebDesign";
+import NavigationDesignBestPractices from "./pages/blog/NavigationDesignBestPractices";
+import TypographyTrendsKenya from "./pages/blog/TypographyTrendsKenya";
+import MinimalistVsMaximalist from "./pages/blog/MinimalistVsMaximalist";
+import AccessibilityDesignGuide from "./pages/blog/AccessibilityDesignGuide";
+import VisualHierarchyPrinciples from "./pages/blog/VisualHierarchyPrinciples";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +60,12 @@ const App = () => (
             <Route path="blog/wordpress-vs-custom-development" element={<WordPressVsCustom />} />
             <Route path="blog/mobile-optimization-importance" element={<MobileOptimizationImportance />} />
             <Route path="blog/digital-marketing-strategies-smes" element={<DigitalMarketingStrategiesSMEs />} />
+            <Route path="blog/color-psychology-web-design" element={<ColorPsychologyWebDesign />} />
+            <Route path="blog/navigation-design-best-practices" element={<NavigationDesignBestPractices />} />
+            <Route path="blog/typography-trends-kenya" element={<TypographyTrendsKenya />} />
+            <Route path="blog/minimalist-vs-maximalist" element={<MinimalistVsMaximalist />} />
+            <Route path="blog/accessibility-design-guide" element={<AccessibilityDesignGuide />} />
+            <Route path="blog/visual-hierarchy-principles" element={<VisualHierarchyPrinciples />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
