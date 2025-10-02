@@ -11,180 +11,152 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
-import projectSafariLodge from "@/assets/project-safari-lodge.jpg";
-import projectRestaurant from "@/assets/project-restaurant.jpg";
-import projectFintech from "@/assets/project-fintech.jpg";
-import projectNursery from "@/assets/project-nursery.jpg";
-import projectLawFirm from "@/assets/project-law-firm.jpg";
-import projectFashion from "@/assets/project-fashion.jpg";
+import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
+import projectJavinnaSafaris from "@/assets/project-safari-lodge.jpg";
+import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
+import projectQuietWaters from "@/assets/project-quiet-waters.jpg";
+import projectTruechoice from "@/assets/project-truechoice.jpg";
 
 const Portfolio = () => {
   const projects = [
     {
       id: 1,
-      title: "Serengeti Safari Lodge",
-      category: "Tourism & Hospitality",
-      description: "Complete online booking system for a luxury safari lodge in the Maasai Mara. Features real-time availability, secure payments, and guest management.",
-      fullDescription: "We developed a comprehensive booking platform for Serengeti Safari Lodge that streamlined their reservation process and increased direct bookings by 200%. The system includes automated email confirmations, payment processing through M-Pesa and international cards, and an admin dashboard for managing bookings and availability.",
-      technologies: ["WordPress", "WooCommerce", "Custom Booking System", "M-Pesa Integration", "Responsive Design"],
+      title: "Aimo Travel Agency",
+      category: "Travel & Tourism",
+      description: "Professional travel agency website offering visa applications, flight ticketing, hotel bookings, and tour packages with seamless user experience.",
+      fullDescription: "Developed a comprehensive travel services platform for Aimo Travel Agency that streamlined their visa application process and travel booking services. The website features detailed visa information for multiple countries, online appointment booking, and integrated payment solutions.",
+      technologies: ["WordPress", "Booking System", "Payment Integration", "Custom Design", "SEO Optimization"],
       features: [
-        "Real-time availability calendar",
-        "Secure online payments (M-Pesa & Cards)",
-        "Guest management system",
-        "Automated email confirmations",
-        "Mobile-responsive design",
-        "Multi-language support (English/Swahili)"
-      ],
-      results: [
-        "200% increase in direct bookings",
-        "50% reduction in booking admin time",
-        "95% customer satisfaction rate",
-        "Mobile bookings increased by 300%"
-      ],
-      timeline: "6 weeks",
-      year: "2024",
-      client: "Serengeti Safari Lodge",
-      website: "#",
-      image: projectSafariLodge
-    },
-    {
-      id: 2,
-      title: "Mama's Kitchen Chain",
-      category: "Food & Beverage",
-      description: "Multi-location restaurant website with online ordering, delivery integration, and location-based menu management.",
-      fullDescription: "Built a comprehensive restaurant chain website for Mama's Kitchen with locations across Nairobi. The platform allows customers to order from their nearest location, track deliveries, and manage loyalty points. Integrated with popular delivery services and included a custom admin panel for menu management.",
-      technologies: ["React", "Custom Backend", "Location APIs", "Payment Gateway", "Delivery Integration"],
-      features: [
-        "Location-based ordering",
-        "Real-time order tracking",
-        "Loyalty points system",
-        "Delivery integration (Uber Eats, Glovo)",
-        "Menu management per location",
-        "Customer reviews and ratings"
-      ],
-      results: [
-        "40% increase in online orders",
-        "Streamlined operations across 5 locations",
-        "15% increase in customer retention",
-        "Reduced order errors by 80%"
-      ],
-      timeline: "8 weeks",
-      year: "2024",
-      client: "Mama's Kitchen Ltd",
-      website: "#",
-      image: projectRestaurant
-    },
-    {
-      id: 3,
-      title: "TechPay Kenya",
-      category: "Fintech Startup",
-      description: "Modern SaaS landing page and dashboard for a Kenyan fintech startup offering digital payment solutions to small businesses.",
-      fullDescription: "Designed and developed a modern landing page and user dashboard for TechPay Kenya, a fintech startup providing payment solutions for small businesses. The project included user onboarding, payment processing interfaces, and comprehensive analytics dashboards.",
-      technologies: ["React", "TypeScript", "Modern UI/UX", "Payment APIs", "Analytics Dashboard"],
-      features: [
-        "Modern landing page with conversion optimization",
-        "User dashboard with analytics",
-        "Payment processing interface",
-        "Subscription management",
-        "Real-time transaction monitoring",
-        "Mobile-first design"
-      ],
-      results: [
-        "500+ business signups in first month",
-        "85% user onboarding completion rate",
-        "Featured in Kenyan tech publications",
-        "Secured seed funding after launch"
-      ],
-      timeline: "10 weeks",
-      year: "2023",
-      client: "TechPay Kenya",
-      website: "#",
-      image: projectFintech
-    },
-    {
-      id: 4,
-      title: "Green Gardens Nursery",
-      category: "Agriculture & Retail",
-      description: "E-commerce website for a plant nursery with inventory management, care guides, and delivery scheduling.",
-      fullDescription: "Created an e-commerce platform for Green Gardens Nursery that transformed their local business into an online success. The website features detailed plant care guides, inventory management, and a delivery scheduling system tailored for live plants.",
-      technologies: ["WordPress", "WooCommerce", "Custom Features", "Inventory System", "SEO Optimization"],
-      features: [
-        "Plant catalog with care instructions",
-        "Delivery scheduling for live plants",
-        "Inventory management system",
-        "Plant care blog and guides",
-        "Customer plant care reminders",
-        "Local SEO optimization"
-      ],
-      results: [
-        "150% increase in sales within 6 months",
-        "Expanded customer base beyond Nairobi",
-        "Featured in gardening publications",
-        "Won local business excellence award"
-      ],
-      timeline: "4 weeks",
-      year: "2023",
-      client: "Green Gardens Nursery",
-      website: "#",
-      image: projectNursery
-    },
-    {
-      id: 5,
-      title: "Ochieng & Associates Law Firm",
-      category: "Legal Services",
-      description: "Professional law firm website with case study showcases, attorney profiles, and client portal for document sharing.",
-      fullDescription: "Developed a professional website for Ochieng & Associates that enhanced their credibility and streamlined client communications. The site includes detailed attorney profiles, case studies, and a secure client portal for document sharing.",
-      technologies: ["Custom Development", "Secure Client Portal", "Professional Design", "SEO", "Security Features"],
-      features: [
-        "Attorney profiles and credentials",
-        "Case study showcases",
-        "Secure client document portal",
-        "Appointment scheduling system",
-        "Legal blog and resources",
-        "Contact forms with encryption"
+        "Visa application management (Business, Tourist, Student)",
+        "Online appointment scheduling",
+        "Flight and hotel booking integration",
+        "Tour package showcase",
+        "Country-specific travel information",
+        "WhatsApp and social media integration"
       ],
       results: [
         "300% increase in online inquiries",
-        "Improved professional credibility",
-        "Streamlined client onboarding",
-        "Higher-value client acquisition"
+        "Streamlined visa application process",
+        "Enhanced customer experience",
+        "Expanded service reach across East Africa"
       ],
-      timeline: "5 weeks",
-      year: "2023",
-      client: "Ochieng & Associates",
-      website: "#",
-      image: projectLawFirm
+      timeline: "6 weeks",
+      year: "2024",
+      client: "Aimo Travel Agency",
+      website: "https://aimotravelagency.com/",
+      image: projectAimoTravel
     },
     {
-      id: 6,
-      title: "Mwangi Fashion House",
-      category: "Fashion & E-commerce",
-      description: "Beautiful e-commerce platform for a fashion designer with custom sizing, lookbook galleries, and international shipping.",
-      fullDescription: "Built a stunning e-commerce platform for Mwangi Fashion House that showcases their unique African-inspired designs. The website features custom sizing options, beautiful lookbook galleries, and international shipping capabilities that helped them expand across East Africa.",
-      technologies: ["E-commerce Platform", "Custom Design", "International Shipping", "Size Calculator", "Gallery System"],
+      id: 2,
+      title: "Javinna Safaris",
+      category: "Safari & Adventure",
+      description: "Premium safari tour operator website showcasing unique safari experiences across Kenya and Tanzania with online booking capabilities.",
+      fullDescription: "Created a stunning visual platform for Javinna Safaris that captures the essence of African safari adventures. The website features interactive tour galleries, detailed itineraries, and a seamless booking experience for international and local tourists.",
+      technologies: ["WordPress", "Gallery System", "Booking Integration", "Responsive Design", "SEO"],
       features: [
-        "Custom sizing calculator",
-        "Lookbook photo galleries",
-        "International shipping integration",
-        "Fabric and color customization",
-        "Style consultation booking",
-        "Social media integration"
+        "Interactive safari tour galleries",
+        "Detailed itinerary presentations",
+        "Online booking and inquiry system",
+        "Wildlife photography showcase",
+        "Customer testimonials",
+        "Mobile-optimized experience"
       ],
       results: [
-        "Sales across 3 East African countries",
-        "Featured in fashion magazines",
-        "400% increase in online revenue",
-        "Celebrity customer acquisition"
+        "250% increase in safari bookings",
+        "Featured on travel platforms",
+        "Improved international client acquisition",
+        "Enhanced brand visibility"
       ],
-      timeline: "7 weeks",
+      timeline: "5 weeks",
       year: "2024",
-      client: "Mwangi Fashion House",
-      website: "#",
-      image: projectFashion
+      client: "Javinna Safaris",
+      website: "https://javinnasafaris.com/",
+      image: projectJavinnaSafaris
+    },
+    {
+      id: 3,
+      title: "Remican SACCO",
+      category: "Financial Services",
+      description: "Complete digital banking platform for a SACCO society with member portal, loan calculator, mobile app integration, and secure account management.",
+      fullDescription: "Built a comprehensive financial services platform for Remican SACCO that modernized their operations and improved member experience. The system includes a member portal, loan calculators, payment integrations, and mobile app connectivity for seamless banking.",
+      technologies: ["WordPress", "Member Portal", "Loan Calculator", "Mobile App Integration", "Secure Systems"],
+      features: [
+        "Member login and account management",
+        "Loan calculator and application system",
+        "Savings and loan product showcase",
+        "Mobile app integration (Android)",
+        "Multiple payment mode support",
+        "Document downloads and resources"
+      ],
+      results: [
+        "500+ new member registrations",
+        "60% reduction in manual processing",
+        "Improved transparency and trust",
+        "Increased member engagement"
+      ],
+      timeline: "8 weeks",
+      year: "2024",
+      client: "Remican SACCO Society",
+      website: "https://www.remicansacco.co.ke/",
+      image: projectRemicanSacco
+    },
+    {
+      id: 4,
+      title: "Quiet Waters Oasis",
+      category: "Counseling & Wellness",
+      description: "Marriage counseling and relationship services platform with appointment booking, resource library, and online consultation capabilities.",
+      fullDescription: "Designed a compassionate and professional platform for Quiet Waters Oasis, a marriage counseling organization with over 40 years of experience. The website provides marriage preparation resources, life enrichment tools, and easy appointment scheduling.",
+      technologies: ["WordPress", "Appointment System", "Resource Portal", "Custom Design", "Responsive Layout"],
+      features: [
+        "Online appointment scheduling",
+        "Marriage resources and tools",
+        "Service categorization (Getting Married, Married Life, Help)",
+        "Video content integration",
+        "Contact and inquiry system",
+        "Mobile-responsive design"
+      ],
+      results: [
+        "200% increase in consultation bookings",
+        "Enhanced accessibility to services",
+        "Improved couple engagement",
+        "Positive feedback from community"
+      ],
+      timeline: "4 weeks",
+      year: "2023",
+      client: "Quiet Waters Oasis",
+      website: "https://quietwatersoasis.org/",
+      image: projectQuietWaters
+    },
+    {
+      id: 5,
+      title: "Truechoice Merchants",
+      category: "Logistics & Freight",
+      description: "Professional freight forwarding and logistics company website with service showcase, quote system, and comprehensive cargo tracking information.",
+      fullDescription: "Developed a professional corporate website for Truechoice Merchants Limited, showcasing their expertise in international logistics. The platform highlights their sea freight, air freight, and customs clearance services with a modern, trust-building design.",
+      technologies: ["WordPress", "Corporate Design", "Service Portal", "SEO Optimization", "Contact Systems"],
+      features: [
+        "Comprehensive service showcase",
+        "Online quote request system",
+        "Company profile and credentials",
+        "Contact and inquiry management",
+        "Blog for industry insights",
+        "Professional corporate design"
+      ],
+      results: [
+        "400% increase in service inquiries",
+        "Enhanced professional credibility",
+        "Improved client acquisition",
+        "Strengthened market position"
+      ],
+      timeline: "6 weeks",
+      year: "2024",
+      client: "Truechoice Merchants Limited",
+      website: "https://truechoice.co.ke/",
+      image: projectTruechoice
     }
   ];
 
-  const categories = ["All", "Tourism & Hospitality", "Food & Beverage", "Fintech Startup", "Agriculture & Retail", "Legal Services", "Fashion & E-commerce"];
+  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight"];
 
   return (
     <div className="min-h-screen pt-16">
@@ -218,7 +190,7 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">50+</div>
+              <div className="text-3xl font-bold text-accent">5+</div>
               <div className="text-sm text-muted-foreground">Projects Completed</div>
             </div>
             <div className="space-y-2">
@@ -226,11 +198,11 @@ const Portfolio = () => {
               <div className="text-sm text-muted-foreground">Client Satisfaction</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">180%</div>
-              <div className="text-sm text-muted-foreground">Average ROI Increase</div>
+              <div className="text-3xl font-bold text-accent">300%</div>
+              <div className="text-sm text-muted-foreground">Average Inquiry Increase</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">6</div>
+              <div className="text-3xl font-bold text-accent">5</div>
               <div className="text-sm text-muted-foreground">Industries Served</div>
             </div>
           </div>
