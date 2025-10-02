@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
-import safariLodgeImage from "@/assets/project-safari-lodge.jpg";
-import restaurantImage from "@/assets/project-restaurant.jpg";
-import fintechImage from "@/assets/project-fintech.jpg";
+import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
+import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
+import projectTruechoice from "@/assets/project-truechoice.jpg";
 
 const Home = () => {
   const services = [
@@ -44,25 +44,25 @@ const Home = () => {
 
   const portfolioProjects = [
     {
-      title: "Safari Lodge Booking",
-      category: "Tourism",
-      description: "Complete booking system for a Kenyan safari lodge with online payments and availability calendar.",
-      image: safariLodgeImage,
-      technologies: ["WordPress", "WooCommerce", "Custom Design"]
+      title: "Aimo Travel Agency",
+      category: "Travel & Tourism",
+      description: "Professional travel agency website offering visa applications, flight ticketing, and tour packages with seamless booking experience.",
+      image: projectAimoTravel,
+      technologies: ["WordPress", "Booking System", "Payment Integration"]
     },
     {
-      title: "Local Restaurant Chain",
-      category: "Food & Beverage",  
-      description: "Multi-location restaurant website with online ordering and delivery integration.",
-      image: restaurantImage,
-      technologies: ["Custom Development", "Online Ordering", "Location Finder"]
+      title: "Remican SACCO",
+      category: "Financial Services",  
+      description: "Complete digital banking platform with member portal, loan calculator, and mobile app integration for secure account management.",
+      image: projectRemicanSacco,
+      technologies: ["Member Portal", "Loan Calculator", "Mobile App"]
     },
     {
-      title: "Tech Startup",
-      category: "Technology",
-      description: "Modern SaaS landing page with subscription management and user dashboards.",
-      image: fintechImage,
-      technologies: ["React", "Modern Design", "Payment Integration"]
+      title: "Truechoice Merchants",
+      category: "Logistics & Freight",
+      description: "Professional freight forwarding website showcasing international logistics services with comprehensive cargo tracking.",
+      image: projectTruechoice,
+      technologies: ["Corporate Design", "Service Portal", "SEO"]
     }
   ];
 
@@ -126,7 +126,7 @@ const Home = () => {
 
               <div className="flex items-center space-x-8 pt-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-accent">50+</div>
+                  <div className="text-2xl font-bold text-accent">5+</div>
                   <div className="text-sm text-white/80">Projects Completed</div>
                 </div>
                 <div className="text-center">
