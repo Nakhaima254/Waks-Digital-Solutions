@@ -100,11 +100,11 @@ const Contact = () => {
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Let's Start Building
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-white">
+            <h1 className="text-4xl md:text-6xl font-bold text-black/90 leading-tight">
               Ready to Grow
               <span className="block gradient-text">Your Business Online?</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-black max-w-3xl mx-auto leading-relaxed">
               Get in touch today for a free consultation. We'll discuss your goals, answer your questions, 
               and create a custom proposal for your digital success.
             </p>
