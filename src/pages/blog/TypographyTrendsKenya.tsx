@@ -32,7 +32,7 @@ const TypographyTrendsKenya = () => {
           <div className="flex flex-wrap gap-6 text-muted-foreground">
             <div className="flex items-center">
               <User className="h-4 w-4 mr-2" />
-              <span>Grace Wanjiku</span>
+              <span>Isaac N.</span>
             </div>
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />

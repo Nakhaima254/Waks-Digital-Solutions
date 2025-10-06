@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, User, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 // Import blog images
 import webDesignTrendsImage from "@/assets/blog-web-design-trends.jpg";
@@ -18,6 +20,10 @@ import accessibilityDesignImage from "@/assets/blog-accessibility-design.jpg";
 import visualHierarchyImage from "@/assets/blog-visual-hierarchy.jpg";
 
 const Blog = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 9;
+
   const blogPosts = [
     {
       id: "web-design-trends-2025",
@@ -33,7 +39,7 @@ const Blog = () => {
       id: "seo-guide-kenyan-businesses",
       title: "Complete SEO Guide for Kenyan Businesses in 2025",
       excerpt: "Learn how to optimize your website for local search and dominate Google results in Kenya with our comprehensive SEO strategies.",
-      author: "Sarah Mwangi",
+      author: "Isaac N.",
       date: "January 5, 2025",
       readTime: "12 min read",
       category: "SEO",
@@ -43,7 +49,7 @@ const Blog = () => {
       id: "ecommerce-success-kenya",
       title: "Building a Successful E-commerce Business in Kenya",
       excerpt: "From M-Pesa integration to local logistics - everything you need to know about starting an e-commerce business in Kenya.",
-      author: "James Kiprotich",
+      author: "Isaac N.",
       date: "January 2, 2025",
       readTime: "15 min read",
       category: "E-commerce",
@@ -63,7 +69,7 @@ const Blog = () => {
       id: "mobile-optimization-importance",
       title: "Why Mobile Optimization is Critical for Kenyan Businesses",
       excerpt: "With over 90% of Kenyans accessing the internet via mobile, learn why mobile optimization can make or break your online success.",
-      author: "Grace Wanjiku",
+      author: "Isaac N.",
       date: "December 25, 2024",
       readTime: "7 min read",
       category: "Mobile",
@@ -73,7 +79,7 @@ const Blog = () => {
       id: "digital-marketing-strategies-smes",
       title: "Digital Marketing Strategies That Work for Kenyan SMEs",
       excerpt: "Practical, budget-friendly digital marketing strategies that small and medium enterprises in Kenya can implement immediately.",
-      author: "Peter Otieno",
+      author: "Isaac N.",
       date: "December 20, 2024",
       readTime: "11 min read",
       category: "Marketing",
@@ -143,6 +149,23 @@ const Blog = () => {
 
   const categories = ["All", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing"];
 
+  // Filter blogs by category
+  const filteredBlogs = activeCategory === "All" 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === activeCategory);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const startIndex = (currentPage - 1) * blogsPerPage;
+  const endIndex = startIndex + blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(startIndex, endIndex);
+
+  // Reset to page 1 when category changes
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
       {/* Hero Section */}
@@ -162,8 +185,9 @@ const Blog = () => {
           {categories.map((category) => (
             <Badge 
               key={category}
-              variant={category === "All" ? "default" : "secondary"}
+              variant={activeCategory === category ? "default" : "secondary"}
               className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+              onClick={() => handleCategoryChange(category)}
             >
               {category}
             </Badge>
@@ -172,9 +196,9 @@ const Blog = () => {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
+          {currentBlogs.map((post) => (
             <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
               <div className="aspect-video bg-muted overflow-hidden">
                 <img 
@@ -229,6 +253,40 @@ const Blog = () => {
             </Card>
           ))}
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-12">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <Button
+                key={page}
+                variant={currentPage === page ? "default" : "outline"}
+                onClick={() => setCurrentPage(page)}
+                className="min-w-10"
+              >
+                {page}
+              </Button>
+            ))}
+            
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Newsletter Section */}

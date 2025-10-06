@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import colorPsychologyImage from "@/assets/blog-color-psychology.jpg";
+import colorTheoryImage from "@/assets/blog-color-theory.jpg";
 
 const ColorPsychologyWebDesign = () => {
   return (
@@ -32,7 +33,7 @@ const ColorPsychologyWebDesign = () => {
           <div className="flex flex-wrap gap-6 text-muted-foreground">
             <div className="flex items-center">
               <User className="h-4 w-4 mr-2" />
-              <span>David Waks</span>
+              <span>Isaac N.</span>
             </div>
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
@@ -60,6 +61,12 @@ const ColorPsychologyWebDesign = () => {
             </p>
 
             <h2 className="text-3xl font-bold text-primary mt-8">Understanding Color Psychology</h2>
+            
+            <img 
+              src={colorTheoryImage} 
+              alt="Color psychology wheel showing emotional associations with different colors" 
+              className="w-full h-auto rounded-lg my-6"
+            />
             
             <h3 className="text-2xl font-semibold text-primary mt-6">Red: Energy and Passion</h3>
             <p>

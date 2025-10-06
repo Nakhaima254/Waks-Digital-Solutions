@@ -16,7 +16,7 @@ const VisualHierarchyPrinciples = () => {
           <Badge variant="secondary" className="mb-4">Design</Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Mastering Visual Hierarchy in Web Design</h1>
           <div className="flex flex-wrap gap-6 text-muted-foreground">
-            <div className="flex items-center"><User className="h-4 w-4 mr-2" /><span>David Waks</span></div>
+            <div className="flex items-center"><User className="h-4 w-4 mr-2" /><span>Isaac N.</span></div>
             <div className="flex items-center"><Calendar className="h-4 w-4 mr-2" /><span>January 25, 2025</span></div>
             <div className="flex items-center"><Clock className="h-4 w-4 mr-2" /><span>10 min read</span></div>
           </div>

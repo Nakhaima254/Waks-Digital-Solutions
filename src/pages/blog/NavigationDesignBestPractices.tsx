@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import navigationDesignImage from "@/assets/blog-navigation-design.jpg";
+import navigationExamplesImage from "@/assets/blog-navigation-examples.jpg";
 
 const NavigationDesignBestPractices = () => {
   return (
@@ -32,7 +33,7 @@ const NavigationDesignBestPractices = () => {
           <div className="flex flex-wrap gap-6 text-muted-foreground">
             <div className="flex items-center">
               <User className="h-4 w-4 mr-2" />
-              <span>Sarah Mwangi</span>
+              <span>Isaac N.</span>
             </div>
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
@@ -72,6 +73,12 @@ const NavigationDesignBestPractices = () => {
             </p>
 
             <h2 className="text-3xl font-bold text-primary mt-8">Essential Navigation Best Practices</h2>
+
+            <img 
+              src={navigationExamplesImage} 
+              alt="Examples of user-friendly website navigation on desktop and mobile devices" 
+              className="w-full h-auto rounded-lg my-6"
+            />
 
             <h3 className="text-2xl font-semibold text-primary mt-6">1. Keep It Simple and Clear</h3>
             <p>

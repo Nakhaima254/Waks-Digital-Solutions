@@ -1,5 +1,8 @@
 import { ArrowLeft, Calendar, Clock, User, Share2, Search, MapPin, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import seoHeroImage from "@/assets/blog-seo-hero.jpg";
+import googleMyBusinessImage from "@/assets/blog-google-my-business.jpg";
+import technicalSeoImage from "@/assets/blog-technical-seo-image.jpg";
 
 const SEOGuideKenyanBusinesses = () => {
   return (
@@ -19,7 +22,7 @@ const SEOGuideKenyanBusinesses = () => {
             <div className="flex items-center space-x-4 text-sm text-primary-foreground/80">
               <div className="flex items-center space-x-1">
                 <User className="h-4 w-4" />
-                <span>Sarah Mwangi</span>
+                <span>Isaac N.</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />
@@ -48,6 +51,11 @@ const SEOGuideKenyanBusinesses = () => {
         <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
+            <img 
+              src={seoHeroImage} 
+              alt="SEO strategy and Google search optimization for Kenyan businesses" 
+              className="w-full h-auto rounded-lg mb-6"
+            />
             <p className="text-lg text-muted-foreground leading-relaxed">
               Search Engine Optimization (SEO) is crucial for Kenyan businesses looking to grow their 
               online presence. With over 22 million internet users in Kenya, the digital marketplace 
@@ -79,6 +87,12 @@ const SEOGuideKenyanBusinesses = () => {
               <span>Local SEO for Kenyan Businesses</span>
             </h2>
             
+            <img 
+              src={googleMyBusinessImage} 
+              alt="Google My Business dashboard with local listings and reviews" 
+              className="w-full h-auto rounded-lg mb-6"
+            />
+            
             <h3 className="text-xl font-semibold text-foreground mb-3">Google My Business Optimization</h3>
             <p className="text-muted-foreground mb-4">
               Your Google My Business listing is crucial for local visibility:
@@ -109,6 +123,12 @@ const SEOGuideKenyanBusinesses = () => {
               <TrendingUp className="h-6 w-6 text-primary" />
               <span>Technical SEO Fundamentals</span>
             </h2>
+            
+            <img 
+              src={technicalSeoImage} 
+              alt="Technical SEO metrics showing website speed and mobile optimization" 
+              className="w-full h-auto rounded-lg mb-6"
+            />
             
             <h3 className="text-xl font-semibold text-foreground mb-3">Mobile Optimization</h3>
             <p className="text-muted-foreground mb-4">
