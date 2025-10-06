@@ -18,6 +18,12 @@ import typographyTrendsImage from "@/assets/blog-typography-trends.jpg";
 import minimalistMaximalistImage from "@/assets/blog-minimalist-maximalist.jpg";
 import accessibilityDesignImage from "@/assets/blog-accessibility-design.jpg";
 import visualHierarchyImage from "@/assets/blog-visual-hierarchy.jpg";
+import keywordResearchImage from "@/assets/blog-keyword-research.jpg";
+import metaTagsImage from "@/assets/blog-meta-tags-seo.jpg";
+import ecommerceSeoImage from "@/assets/blog-ecommerce-seo.jpg";
+import seoAuditImage from "@/assets/blog-seo-audit.jpg";
+import mobileSeoImage from "@/assets/blog-mobile-seo.jpg";
+import internationalSeoImage from "@/assets/blog-international-seo.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -144,6 +150,66 @@ const Blog = () => {
       readTime: "10 min read",
       category: "Design",
       image: visualHierarchyImage
+    },
+    {
+      id: "keyword-research-guide",
+      title: "The Ultimate Guide to Keyword Research for Kenyan Websites",
+      excerpt: "Master keyword research to dominate search results and attract your target audience in Kenya.",
+      author: "Isaac N.",
+      date: "January 28, 2025",
+      readTime: "14 min read",
+      category: "SEO",
+      image: keywordResearchImage
+    },
+    {
+      id: "meta-tags-schema-markup",
+      title: "Meta Tags & Schema Markup: Complete Guide for Kenyan Websites",
+      excerpt: "Learn how to optimize meta tags and implement schema markup to boost your search visibility in Kenya.",
+      author: "Isaac N.",
+      date: "January 30, 2025",
+      readTime: "12 min read",
+      category: "SEO",
+      image: metaTagsImage
+    },
+    {
+      id: "ecommerce-seo-strategies",
+      title: "E-commerce SEO Strategies for Kenyan Online Stores",
+      excerpt: "Master e-commerce SEO to increase organic traffic and sales for your Kenyan online store.",
+      author: "Isaac N.",
+      date: "February 2, 2025",
+      readTime: "15 min read",
+      category: "SEO",
+      image: ecommerceSeoImage
+    },
+    {
+      id: "seo-audit-checklist",
+      title: "Complete SEO Audit Checklist for Kenyan Websites",
+      excerpt: "Identify and fix SEO issues holding your Kenyan website back with this comprehensive audit checklist.",
+      author: "Isaac N.",
+      date: "February 4, 2025",
+      readTime: "13 min read",
+      category: "SEO",
+      image: seoAuditImage
+    },
+    {
+      id: "mobile-first-indexing",
+      title: "Mobile-First Indexing: What Kenyan Websites Need to Know",
+      excerpt: "Optimize your website for mobile-first indexing to maintain rankings in Kenya's mobile-dominated market.",
+      author: "Isaac N.",
+      date: "February 6, 2025",
+      readTime: "11 min read",
+      category: "SEO",
+      image: mobileSeoImage
+    },
+    {
+      id: "international-seo",
+      title: "International SEO Guide for Kenyan Businesses Going Global",
+      excerpt: "Learn how to optimize your website for multiple countries and languages while maintaining your Kenyan presence.",
+      author: "Isaac N.",
+      date: "February 8, 2025",
+      readTime: "10 min read",
+      category: "SEO",
+      image: internationalSeoImage
     }
   ];
 
