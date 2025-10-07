@@ -116,10 +116,10 @@ const Home = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="hero" asChild>
+                <Button variant="hero" size="lg" className="sm:h-14 sm:px-8 sm:py-4 sm:text-lg" asChild>
                   <Link to="/contact">Start Your Project</Link>
                 </Button>
-                <Button variant="hero-outline" size="hero" asChild>
+                <Button variant="hero-outline" size="lg" className="sm:h-14 sm:px-8 sm:py-4 sm:text-lg" asChild>
                   <Link to="/portfolio">View Our Work</Link>
                 </Button>
               </div>
