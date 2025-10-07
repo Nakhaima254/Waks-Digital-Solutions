@@ -30,6 +30,18 @@ import TypographyTrendsKenya from "./pages/blog/TypographyTrendsKenya";
 import MinimalistVsMaximalist from "./pages/blog/MinimalistVsMaximalist";
 import AccessibilityDesignGuide from "./pages/blog/AccessibilityDesignGuide";
 import VisualHierarchyPrinciples from "./pages/blog/VisualHierarchyPrinciples";
+import KeywordResearchGuide from "./pages/blog/KeywordResearchGuide";
+import MetaTagsSchemaMarkup from "./pages/blog/MetaTagsSchemaMarkup";
+import EcommerceSEOStrategies from "./pages/blog/EcommerceSEOStrategies";
+import SEOAuditChecklist from "./pages/blog/SEOAuditChecklist";
+import MobileFirstIndexing from "./pages/blog/MobileFirstIndexing";
+import InternationalSEO from "./pages/blog/InternationalSEO";
+import PaymentGatewaysKenya from "./pages/blog/PaymentGatewaysKenya";
+import ProductPhotographyEcommerce from "./pages/blog/ProductPhotographyEcommerce";
+import ConversionRateOptimization from "./pages/blog/ConversionRateOptimization";
+import CustomerRetentionEcommerce from "./pages/blog/CustomerRetentionEcommerce";
+import EcommerceSecurityTrust from "./pages/blog/EcommerceSecurityTrust";
+import SocialCommerceWhatsApp from "./pages/blog/SocialCommerceWhatsApp";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +78,18 @@ const App = () => (
             <Route path="blog/minimalist-vs-maximalist" element={<MinimalistVsMaximalist />} />
             <Route path="blog/accessibility-design-guide" element={<AccessibilityDesignGuide />} />
             <Route path="blog/visual-hierarchy-principles" element={<VisualHierarchyPrinciples />} />
+            <Route path="blog/keyword-research-guide" element={<KeywordResearchGuide />} />
+            <Route path="blog/meta-tags-schema-markup" element={<MetaTagsSchemaMarkup />} />
+            <Route path="blog/ecommerce-seo-strategies" element={<EcommerceSEOStrategies />} />
+            <Route path="blog/seo-audit-checklist" element={<SEOAuditChecklist />} />
+            <Route path="blog/mobile-first-indexing" element={<MobileFirstIndexing />} />
+            <Route path="blog/international-seo" element={<InternationalSEO />} />
+            <Route path="blog/payment-gateways-kenya" element={<PaymentGatewaysKenya />} />
+            <Route path="blog/product-photography-ecommerce" element={<ProductPhotographyEcommerce />} />
+            <Route path="blog/conversion-rate-optimization" element={<ConversionRateOptimization />} />
+            <Route path="blog/customer-retention-ecommerce" element={<CustomerRetentionEcommerce />} />
+            <Route path="blog/ecommerce-security-trust" element={<EcommerceSecurityTrust />} />
+            <Route path="blog/social-commerce-whatsapp" element={<SocialCommerceWhatsApp />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
