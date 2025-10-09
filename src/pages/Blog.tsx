@@ -24,6 +24,12 @@ import ecommerceSeoImage from "@/assets/blog-ecommerce-seo.jpg";
 import seoAuditImage from "@/assets/blog-seo-audit.jpg";
 import mobileSeoImage from "@/assets/blog-mobile-seo.jpg";
 import internationalSeoImage from "@/assets/blog-international-seo.jpg";
+import abandonedCartImage from "@/assets/blog-abandoned-cart-hero.jpg";
+import ecommerceAnalyticsImage from "@/assets/blog-ecommerce-analytics-hero.jpg";
+import crossSellingImage from "@/assets/blog-cross-selling-hero.jpg";
+import siteArchitectureImage from "@/assets/blog-site-architecture-hero.jpg";
+import productReviewsImage from "@/assets/blog-product-reviews-hero.jpg";
+import mobileAppImage from "@/assets/blog-mobile-app-hero.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -35,7 +41,7 @@ const Blog = () => {
       id: "web-design-trends-2025",
       title: "Top 10 Web Design Trends Dominating 2025",
       excerpt: "Discover the latest web design trends that are shaping the digital landscape in 2025, from AI-powered interfaces to sustainable design practices.",
-      author: "David Waks",
+      author: "Isaac N.",
       date: "January 8, 2025",
       readTime: "8 min read",
       category: "Design",
@@ -65,7 +71,7 @@ const Blog = () => {
       id: "wordpress-vs-custom-development",
       title: "WordPress vs Custom Development: Which is Right for Your Business?",
       excerpt: "Compare the pros and cons of WordPress and custom development to make the best choice for your business needs and budget.",
-      author: "David Waks",
+      author: "Isaac N.",
       date: "December 28, 2024",
       readTime: "10 min read",
       category: "Development",
@@ -95,7 +101,7 @@ const Blog = () => {
       id: "color-psychology-web-design",
       title: "The Psychology of Color in Web Design: A Guide for Kenyan Brands",
       excerpt: "Discover how color choices influence emotions and drive conversions for Kenyan businesses online.",
-      author: "David Waks",
+      author: "Isaac N.",
       date: "January 12, 2025",
       readTime: "10 min read",
       category: "Design",
@@ -105,7 +111,7 @@ const Blog = () => {
       id: "navigation-design-best-practices",
       title: "Creating User-Friendly Navigation: Best Practices for 2025",
       excerpt: "Master the art of intuitive website navigation that keeps Kenyan visitors engaged and converts them into customers.",
-      author: "Sarah Mwangi",
+      author: "Isaac N.",
       date: "January 15, 2025",
       readTime: "12 min read",
       category: "Design",
@@ -115,7 +121,7 @@ const Blog = () => {
       id: "typography-trends-kenya",
       title: "Typography Trends That Make Kenyan Websites Stand Out",
       excerpt: "Explore the latest typography trends and font pairings that elevate your brand and enhance readability.",
-      author: "Grace Wanjiku",
+      author: "Isaac N.",
       date: "January 18, 2025",
       readTime: "9 min read",
       category: "Design",
@@ -125,7 +131,7 @@ const Blog = () => {
       id: "minimalist-vs-maximalist",
       title: "Minimalist vs Maximalist Design: Which Suits Your Business?",
       excerpt: "Understand the pros and cons of both design approaches to choose the perfect style for your Kenyan brand.",
-      author: "Peter Otieno",
+      author: "Isaac N.",
       date: "January 20, 2025",
       readTime: "11 min read",
       category: "Design",
@@ -135,7 +141,7 @@ const Blog = () => {
       id: "accessibility-design-guide",
       title: "Web Accessibility: Designing for Everyone in Kenya",
       excerpt: "Learn how to create inclusive websites that reach wider audiences and comply with accessibility standards.",
-      author: "James Kiprotich",
+      author: "Isaac N.",
       date: "January 22, 2025",
       readTime: "13 min read",
       category: "Design",
@@ -145,7 +151,7 @@ const Blog = () => {
       id: "visual-hierarchy-principles",
       title: "Mastering Visual Hierarchy in Web Design",
       excerpt: "Guide users naturally through your content with effective visual hierarchy principles and techniques.",
-      author: "David Waks",
+      author: "Isaac N.",
       date: "January 25, 2025",
       readTime: "10 min read",
       category: "Design",
@@ -210,6 +216,66 @@ const Blog = () => {
       readTime: "10 min read",
       category: "SEO",
       image: internationalSeoImage
+    },
+    {
+      id: "abandoned-cart-recovery",
+      title: "Abandoned Cart Recovery Strategies for Kenyan E-commerce Stores",
+      excerpt: "Recover lost sales and boost revenue with proven cart abandonment recovery strategies tailored for the Kenyan market.",
+      author: "Isaac N.",
+      date: "February 10, 2025",
+      readTime: "14 min read",
+      category: "E-commerce",
+      image: abandonedCartImage
+    },
+    {
+      id: "ecommerce-analytics",
+      title: "E-commerce Analytics Guide for Kenyan Online Stores",
+      excerpt: "Master e-commerce analytics to make data-driven decisions and grow your Kenyan online business profitably.",
+      author: "Isaac N.",
+      date: "February 12, 2025",
+      readTime: "16 min read",
+      category: "E-commerce",
+      image: ecommerceAnalyticsImage
+    },
+    {
+      id: "cross-selling-upselling",
+      title: "Cross-Selling and Upselling Strategies for Kenyan E-commerce",
+      excerpt: "Increase average order value and revenue with proven cross-selling and upselling techniques for the Kenyan market.",
+      author: "Isaac N.",
+      date: "February 14, 2025",
+      readTime: "13 min read",
+      category: "E-commerce",
+      image: crossSellingImage
+    },
+    {
+      id: "site-architecture-seo",
+      title: "E-commerce Site Architecture and SEO for Kenyan Stores",
+      excerpt: "Build a scalable site structure that improves SEO and user experience for your Kenyan online store.",
+      author: "Isaac N.",
+      date: "February 16, 2025",
+      readTime: "12 min read",
+      category: "E-commerce",
+      image: siteArchitectureImage
+    },
+    {
+      id: "product-reviews-strategy",
+      title: "Product Reviews Strategy for Kenyan E-commerce Success",
+      excerpt: "Build trust and increase conversions with authentic product reviews and customer testimonials.",
+      author: "Isaac N.",
+      date: "February 18, 2025",
+      readTime: "11 min read",
+      category: "E-commerce",
+      image: productReviewsImage
+    },
+    {
+      id: "mobile-app-ecommerce",
+      title: "Mobile Apps for E-commerce: Worth It for Kenyan Businesses?",
+      excerpt: "Evaluate whether a mobile app makes sense for your Kenyan e-commerce store and learn best practices for implementation.",
+      author: "Isaac N.",
+      date: "February 20, 2025",
+      readTime: "15 min read",
+      category: "E-commerce",
+      image: mobileAppImage
     }
   ];
 

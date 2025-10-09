@@ -42,6 +42,12 @@ import ConversionRateOptimization from "./pages/blog/ConversionRateOptimization"
 import CustomerRetentionEcommerce from "./pages/blog/CustomerRetentionEcommerce";
 import EcommerceSecurityTrust from "./pages/blog/EcommerceSecurityTrust";
 import SocialCommerceWhatsApp from "./pages/blog/SocialCommerceWhatsApp";
+import AbandonedCartRecovery from "./pages/blog/AbandonedCartRecovery";
+import EcommerceAnalytics from "./pages/blog/EcommerceAnalytics";
+import CrossSellingUpselling from "./pages/blog/CrossSellingUpselling";
+import SiteArchitectureSEO from "./pages/blog/SiteArchitectureSEO";
+import ProductReviewsStrategy from "./pages/blog/ProductReviewsStrategy";
+import MobileAppEcommerce from "./pages/blog/MobileAppEcommerce";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +96,12 @@ const App = () => (
             <Route path="blog/customer-retention-ecommerce" element={<CustomerRetentionEcommerce />} />
             <Route path="blog/ecommerce-security-trust" element={<EcommerceSecurityTrust />} />
             <Route path="blog/social-commerce-whatsapp" element={<SocialCommerceWhatsApp />} />
+            <Route path="blog/abandoned-cart-recovery" element={<AbandonedCartRecovery />} />
+            <Route path="blog/ecommerce-analytics" element={<EcommerceAnalytics />} />
+            <Route path="blog/cross-selling-upselling" element={<CrossSellingUpselling />} />
+            <Route path="blog/site-architecture-seo" element={<SiteArchitectureSEO />} />
+            <Route path="blog/product-reviews-strategy" element={<ProductReviewsStrategy />} />
+            <Route path="blog/mobile-app-ecommerce" element={<MobileAppEcommerce />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
