@@ -61,6 +61,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        blog: ['Outfit', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'sm': 'var(--shadow-sm)',

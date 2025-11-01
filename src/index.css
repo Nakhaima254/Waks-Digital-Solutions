@@ -149,6 +149,11 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
 }
 
 @layer components {
+  /* Blog typography - Futura-like font */
+  .blog-content {
+    @apply font-['Outfit',system-ui,sans-serif];
+  }
+
   /* Hero gradient text effect */
   .gradient-text {
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;

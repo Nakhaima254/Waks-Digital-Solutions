@@ -6,7 +6,7 @@ import technicalSeoImage from "@/assets/blog-technical-seo-image.jpg";
 
 const SEOGuideKenyanBusinesses = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

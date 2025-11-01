@@ -7,7 +7,7 @@ import colorTheoryImage from "@/assets/blog-color-theory.jpg";
 
 const ColorPsychologyWebDesign = () => {
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 font-blog">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-subtle overflow-hidden">
         <div className="absolute inset-0">

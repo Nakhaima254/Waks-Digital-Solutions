@@ -6,7 +6,7 @@ import accessibilityDesignImage from "@/assets/blog-accessibility-design.jpg";
 
 const AccessibilityDesignGuide = () => {
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 font-blog">
       <section className="relative py-20 bg-gradient-subtle overflow-hidden">
         <div className="absolute inset-0">
           <img src={accessibilityDesignImage} alt="Accessibility Design" className="w-full h-full object-cover opacity-20" />

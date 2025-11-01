@@ -48,6 +48,12 @@ import CrossSellingUpselling from "./pages/blog/CrossSellingUpselling";
 import SiteArchitectureSEO from "./pages/blog/SiteArchitectureSEO";
 import ProductReviewsStrategy from "./pages/blog/ProductReviewsStrategy";
 import MobileAppEcommerce from "./pages/blog/MobileAppEcommerce";
+import ResponsiveWebDesign from "./pages/blog/ResponsiveWebDesign";
+import ProgressiveWebApps from "./pages/blog/ProgressiveWebApps";
+import APIDesignBestPractices from "./pages/blog/APIDesignBestPractices";
+import WebPerformanceOptimization from "./pages/blog/WebPerformanceOptimization";
+import VersionControlGit from "./pages/blog/VersionControlGit";
+import AutomatedTesting from "./pages/blog/AutomatedTesting";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +108,12 @@ const App = () => (
             <Route path="blog/site-architecture-seo" element={<SiteArchitectureSEO />} />
             <Route path="blog/product-reviews-strategy" element={<ProductReviewsStrategy />} />
             <Route path="blog/mobile-app-ecommerce" element={<MobileAppEcommerce />} />
+            <Route path="blog/responsive-web-design" element={<ResponsiveWebDesign />} />
+            <Route path="blog/progressive-web-apps" element={<ProgressiveWebApps />} />
+            <Route path="blog/api-design-best-practices" element={<APIDesignBestPractices />} />
+            <Route path="blog/web-performance-optimization" element={<WebPerformanceOptimization />} />
+            <Route path="blog/version-control-git" element={<VersionControlGit />} />
+            <Route path="blog/automated-testing" element={<AutomatedTesting />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

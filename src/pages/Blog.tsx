@@ -30,6 +30,12 @@ import crossSellingImage from "@/assets/blog-cross-selling-hero.jpg";
 import siteArchitectureImage from "@/assets/blog-site-architecture-hero.jpg";
 import productReviewsImage from "@/assets/blog-product-reviews-hero.jpg";
 import mobileAppImage from "@/assets/blog-mobile-app-hero.jpg";
+import responsiveDesignImage from "@/assets/blog-responsive-design.jpg";
+import pwaImage from "@/assets/blog-pwa-hero.jpg";
+import apiDesignImage from "@/assets/blog-api-design.jpg";
+import performanceImage from "@/assets/blog-performance-hero.jpg";
+import versionControlImage from "@/assets/blog-version-control.jpg";
+import testingImage from "@/assets/blog-testing-hero.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -276,6 +282,66 @@ const Blog = () => {
       readTime: "15 min read",
       category: "E-commerce",
       image: mobileAppImage
+    },
+    {
+      id: "responsive-web-design",
+      title: "Responsive Web Design Best Practices for 2025",
+      excerpt: "Learn how to create websites that look perfect on every device. Master the art of responsive design with modern techniques and best practices.",
+      author: "Isaac N.",
+      date: "January 15, 2025",
+      readTime: "10 min read",
+      category: "Development",
+      image: responsiveDesignImage
+    },
+    {
+      id: "progressive-web-apps",
+      title: "Building Progressive Web Apps: The Future of Web Development",
+      excerpt: "Discover how Progressive Web Apps combine the best of web and mobile apps to deliver exceptional user experiences with offline capabilities.",
+      author: "Isaac N.",
+      date: "January 12, 2025",
+      readTime: "12 min read",
+      category: "Development",
+      image: pwaImage
+    },
+    {
+      id: "api-design-best-practices",
+      title: "API Design Best Practices: Building Robust Backend Systems",
+      excerpt: "Master the art of API design with best practices for creating scalable, secure, and developer-friendly backend systems.",
+      author: "Isaac N.",
+      date: "January 10, 2025",
+      readTime: "14 min read",
+      category: "Development",
+      image: apiDesignImage
+    },
+    {
+      id: "web-performance-optimization",
+      title: "Web Performance Optimization: Speed Matters",
+      excerpt: "Learn how to optimize your website's performance for faster loading times, better user experiences, and improved search rankings.",
+      author: "Isaac N.",
+      date: "January 8, 2025",
+      readTime: "11 min read",
+      category: "Development",
+      image: performanceImage
+    },
+    {
+      id: "version-control-git",
+      title: "Mastering Git: Version Control for Modern Development",
+      excerpt: "Learn essential Git workflows and best practices for effective version control, team collaboration, and maintaining clean project history.",
+      author: "Isaac N.",
+      date: "January 5, 2025",
+      readTime: "13 min read",
+      category: "Development",
+      image: versionControlImage
+    },
+    {
+      id: "automated-testing",
+      title: "Automated Testing: Building Reliable Web Applications",
+      excerpt: "Discover how automated testing ensures code quality, prevents regressions, and enables confident deployments in modern web development.",
+      author: "Isaac N.",
+      date: "January 3, 2025",
+      readTime: "12 min read",
+      category: "Development",
+      image: testingImage
     }
   ];
 
