@@ -54,6 +54,12 @@ import APIDesignBestPractices from "./pages/blog/APIDesignBestPractices";
 import WebPerformanceOptimization from "./pages/blog/WebPerformanceOptimization";
 import VersionControlGit from "./pages/blog/VersionControlGit";
 import AutomatedTesting from "./pages/blog/AutomatedTesting";
+import MobileUXBestPractices from "./pages/blog/MobileUXBestPractices";
+import MobilePaymentIntegration from "./pages/blog/MobilePaymentIntegration";
+import MobileSiteSpeedOptimization from "./pages/blog/MobileSiteSpeedOptimization";
+import MobileContentStrategy from "./pages/blog/MobileContentStrategy";
+import MobileAccessibilityGuide from "./pages/blog/MobileAccessibilityGuide";
+import MobileTestingGuide from "./pages/blog/MobileTestingGuide";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +120,12 @@ const App = () => (
             <Route path="blog/web-performance-optimization" element={<WebPerformanceOptimization />} />
             <Route path="blog/version-control-git" element={<VersionControlGit />} />
             <Route path="blog/automated-testing" element={<AutomatedTesting />} />
+            <Route path="blog/mobile-ux-best-practices" element={<MobileUXBestPractices />} />
+            <Route path="blog/mobile-payment-integration" element={<MobilePaymentIntegration />} />
+            <Route path="blog/mobile-site-speed-optimization" element={<MobileSiteSpeedOptimization />} />
+            <Route path="blog/mobile-content-strategy" element={<MobileContentStrategy />} />
+            <Route path="blog/mobile-accessibility-guide" element={<MobileAccessibilityGuide />} />
+            <Route path="blog/mobile-testing-guide" element={<MobileTestingGuide />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

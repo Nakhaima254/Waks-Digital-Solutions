@@ -36,6 +36,12 @@ import apiDesignImage from "@/assets/blog-api-design.jpg";
 import performanceImage from "@/assets/blog-performance-hero.jpg";
 import versionControlImage from "@/assets/blog-version-control.jpg";
 import testingImage from "@/assets/blog-testing-hero.jpg";
+import mobileUXImage from "@/assets/blog-mobile-ux-hero.jpg";
+import mobilePaymentImage from "@/assets/blog-mobile-payment-hero.jpg";
+import mobileSpeedImage from "@/assets/blog-mobile-speed-hero.jpg";
+import mobileContentImage from "@/assets/blog-mobile-content-hero.jpg";
+import mobileAccessibilityImage from "@/assets/blog-mobile-accessibility-hero.jpg";
+import mobileTestingImage from "@/assets/blog-mobile-testing-hero.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -342,6 +348,66 @@ const Blog = () => {
       readTime: "12 min read",
       category: "Development",
       image: testingImage
+    },
+    {
+      id: "mobile-ux-best-practices",
+      title: "Mobile UX Best Practices: Designing for Touch",
+      excerpt: "Master mobile user experience design with best practices for creating intuitive, touch-friendly interfaces that delight Kenyan users.",
+      author: "Isaac N.",
+      date: "March 15, 2024",
+      readTime: "12 min read",
+      category: "Mobile",
+      image: mobileUXImage
+    },
+    {
+      id: "mobile-payment-integration",
+      title: "Mobile Payment Integration for Kenyan Websites",
+      excerpt: "Learn how to seamlessly integrate M-Pesa and other mobile payment solutions into your website for maximum conversion.",
+      author: "Isaac N.",
+      date: "March 12, 2024",
+      readTime: "14 min read",
+      category: "Mobile",
+      image: mobilePaymentImage
+    },
+    {
+      id: "mobile-site-speed-optimization",
+      title: "Mobile Site Speed Optimization: Complete Guide",
+      excerpt: "Speed up your mobile website with proven optimization techniques for Kenya's mobile-first market.",
+      author: "Isaac N.",
+      date: "March 8, 2024",
+      readTime: "13 min read",
+      category: "Mobile",
+      image: mobileSpeedImage
+    },
+    {
+      id: "mobile-content-strategy",
+      title: "Mobile-Friendly Content Strategy for Maximum Engagement",
+      excerpt: "Master the art of creating scannable, engaging mobile content that keeps Kenyan users reading and converting.",
+      author: "Isaac N.",
+      date: "March 1, 2024",
+      readTime: "9 min read",
+      category: "Mobile",
+      image: mobileContentImage
+    },
+    {
+      id: "mobile-accessibility-guide",
+      title: "Mobile Accessibility: Building Inclusive Websites",
+      excerpt: "Create mobile websites accessible to all users, including those with disabilities, following WCAG guidelines.",
+      author: "Isaac N.",
+      date: "March 5, 2024",
+      readTime: "10 min read",
+      category: "Mobile",
+      image: mobileAccessibilityImage
+    },
+    {
+      id: "mobile-testing-guide",
+      title: "Comprehensive Mobile Website Testing Guide",
+      excerpt: "Learn effective mobile testing strategies to ensure flawless performance across devices and network conditions.",
+      author: "Isaac N.",
+      date: "March 10, 2024",
+      readTime: "11 min read",
+      category: "Mobile",
+      image: mobileTestingImage
     }
   ];
 
