@@ -42,6 +42,12 @@ import mobileSpeedImage from "@/assets/blog-mobile-speed-hero.jpg";
 import mobileContentImage from "@/assets/blog-mobile-content-hero.jpg";
 import mobileAccessibilityImage from "@/assets/blog-mobile-accessibility-hero.jpg";
 import mobileTestingImage from "@/assets/blog-mobile-testing-hero.jpg";
+import socialMediaImage from "@/assets/blog-social-media-marketing.jpg";
+import emailMarketingImage from "@/assets/blog-email-marketing-hero.jpg";
+import contentMarketingImage from "@/assets/blog-content-marketing-hero.jpg";
+import googleMyBusinessImage from "@/assets/blog-google-my-business.jpg";
+import influencerMarketingImage from "@/assets/blog-influencer-marketing-hero.jpg";
+import videoMarketingImage from "@/assets/blog-video-marketing-hero.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -408,6 +414,66 @@ const Blog = () => {
       readTime: "11 min read",
       category: "Mobile",
       image: mobileTestingImage
+    },
+    {
+      id: "social-media-marketing-guide",
+      title: "Social Media Marketing Strategies for Kenyan Businesses",
+      excerpt: "Master social media marketing with proven strategies that drive engagement and growth for Kenyan brands.",
+      author: "Isaac N.",
+      date: "March 20, 2024",
+      readTime: "15 min read",
+      category: "Marketing",
+      image: socialMediaImage
+    },
+    {
+      id: "email-marketing-mastery",
+      title: "Email Marketing Mastery: Building Profitable Campaigns in Kenya",
+      excerpt: "Learn how to create email campaigns that convert, retain customers, and drive sustainable revenue for your Kenyan business.",
+      author: "Isaac N.",
+      date: "March 18, 2024",
+      readTime: "14 min read",
+      category: "Marketing",
+      image: emailMarketingImage
+    },
+    {
+      id: "content-marketing-strategy",
+      title: "Content Marketing Strategy That Drives Business Growth in Kenya",
+      excerpt: "Build a content marketing engine that attracts, engages, and converts your target audience into loyal customers.",
+      author: "Isaac N.",
+      date: "March 15, 2024",
+      readTime: "16 min read",
+      category: "Marketing",
+      image: contentMarketingImage
+    },
+    {
+      id: "local-seo-google-my-business",
+      title: "Local SEO & Google My Business: Dominate Local Search in Kenya",
+      excerpt: "Master local SEO and Google My Business optimization to attract nearby customers actively searching for your services.",
+      author: "Isaac N.",
+      date: "March 12, 2024",
+      readTime: "13 min read",
+      category: "Marketing",
+      image: googleMyBusinessImage
+    },
+    {
+      id: "influencer-marketing-kenya",
+      title: "Influencer Marketing in Kenya: Finding the Right Partners",
+      excerpt: "Learn how to identify, partner with, and measure ROI from influencer collaborations in the Kenyan market.",
+      author: "Isaac N.",
+      date: "March 8, 2024",
+      readTime: "12 min read",
+      category: "Marketing",
+      image: influencerMarketingImage
+    },
+    {
+      id: "video-marketing-guide",
+      title: "Video Marketing Guide: Creating Content That Converts in Kenya",
+      excerpt: "Master video marketing to captivate audiences, boost engagement, and drive conversions for your Kenyan business.",
+      author: "Isaac N.",
+      date: "March 5, 2024",
+      readTime: "14 min read",
+      category: "Marketing",
+      image: videoMarketingImage
     }
   ];
 

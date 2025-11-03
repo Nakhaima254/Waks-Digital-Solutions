@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mobileContentHero from "@/assets/blog-mobile-content-hero.jpg";
 import mobileContentFormatting from "@/assets/blog-mobile-content-formatting.jpg";
 import mobileContentReading from "@/assets/blog-mobile-content-reading.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobileContentStrategy = () => {
   return (
@@ -30,21 +31,28 @@ const MobileContentStrategy = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
         <img src={mobileContentHero} alt="Mobile-friendly content on smartphone" className="w-full h-auto rounded-lg shadow-2xl" />
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="prose prose-lg max-w-none">
-          <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Writing for Mobile Readers</h2>
-          <img src={mobileContentFormatting} alt="Mobile content formatting examples" className="w-full h-auto rounded-lg shadow-lg my-8" />
-          <p className="text-foreground/80 leading-relaxed mb-4">Mobile users scan content quickly. Use short paragraphs, clear headings, and bullet points for maximum readability.</p>
-          <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Content Formatting Best Practices</h2>
-          <img src={mobileContentReading} alt="Person reading mobile content comfortably" className="w-full h-auto rounded-lg shadow-lg my-8" />
-          <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
-            <li>Use 16px minimum font size</li>
-            <li>Keep paragraphs to 2-3 sentences</li>
-            <li>Add whitespace between sections</li>
-            <li>Front-load important information</li>
-          </ul>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Writing for Mobile Readers</h2>
+              <img src={mobileContentFormatting} alt="Mobile content formatting examples" className="w-full h-auto rounded-lg shadow-lg my-8" />
+              <p className="text-foreground/80 leading-relaxed mb-4">Mobile users scan content quickly. Use short paragraphs, clear headings, and bullet points for maximum readability.</p>
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Content Formatting Best Practices</h2>
+              <img src={mobileContentReading} alt="Person reading mobile content comfortably" className="w-full h-auto rounded-lg shadow-lg my-8" />
+              <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
+                <li>Use 16px minimum font size</li>
+                <li>Keep paragraphs to 2-3 sentences</li>
+                <li>Add whitespace between sections</li>
+                <li>Front-load important information</li>
+              </ul>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Mobile" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

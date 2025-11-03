@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mobileAccessibilityHero from "@/assets/blog-mobile-accessibility-hero.jpg";
 import mobileAccessibilityTools from "@/assets/blog-mobile-accessibility-tools.jpg";
 import mobileAccessibilityUser from "@/assets/blog-mobile-accessibility-user.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobileAccessibilityGuide = () => {
   return (
@@ -29,20 +30,27 @@ const MobileAccessibilityGuide = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
         <img src={mobileAccessibilityHero} alt="Mobile accessibility features" className="w-full h-auto rounded-lg shadow-2xl" />
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="prose prose-lg max-w-none">
-          <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Accessibility Testing Tools</h2>
-          <img src={mobileAccessibilityTools} alt="Accessibility testing tools" className="w-full h-auto rounded-lg shadow-lg my-8" />
-          <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Inclusive Design Practices</h2>
-          <img src={mobileAccessibilityUser} alt="User with accessibility features" className="w-full h-auto rounded-lg shadow-lg my-8" />
-          <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
-            <li>Proper color contrast ratios</li>
-            <li>Screen reader compatibility</li>
-            <li>Keyboard navigation support</li>
-            <li>Alt text for images</li>
-          </ul>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Accessibility Testing Tools</h2>
+              <img src={mobileAccessibilityTools} alt="Accessibility testing tools" className="w-full h-auto rounded-lg shadow-lg my-8" />
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Inclusive Design Practices</h2>
+              <img src={mobileAccessibilityUser} alt="User with accessibility features" className="w-full h-auto rounded-lg shadow-lg my-8" />
+              <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
+                <li>Proper color contrast ratios</li>
+                <li>Screen reader compatibility</li>
+                <li>Keyboard navigation support</li>
+                <li>Alt text for images</li>
+              </ul>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Mobile" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

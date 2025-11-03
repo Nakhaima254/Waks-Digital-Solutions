@@ -60,6 +60,12 @@ import MobileSiteSpeedOptimization from "./pages/blog/MobileSiteSpeedOptimizatio
 import MobileContentStrategy from "./pages/blog/MobileContentStrategy";
 import MobileAccessibilityGuide from "./pages/blog/MobileAccessibilityGuide";
 import MobileTestingGuide from "./pages/blog/MobileTestingGuide";
+import SocialMediaMarketingGuide from "./pages/blog/SocialMediaMarketingGuide";
+import EmailMarketingMastery from "./pages/blog/EmailMarketingMastery";
+import ContentMarketingStrategy from "./pages/blog/ContentMarketingStrategy";
+import LocalSEOGoogleMyBusiness from "./pages/blog/LocalSEOGoogleMyBusiness";
+import InfluencerMarketingKenya from "./pages/blog/InfluencerMarketingKenya";
+import VideoMarketingGuide from "./pages/blog/VideoMarketingGuide";
 
 const queryClient = new QueryClient();
 
@@ -126,6 +132,12 @@ const App = () => (
             <Route path="blog/mobile-content-strategy" element={<MobileContentStrategy />} />
             <Route path="blog/mobile-accessibility-guide" element={<MobileAccessibilityGuide />} />
             <Route path="blog/mobile-testing-guide" element={<MobileTestingGuide />} />
+            <Route path="blog/social-media-marketing-guide" element={<SocialMediaMarketingGuide />} />
+            <Route path="blog/email-marketing-mastery" element={<EmailMarketingMastery />} />
+            <Route path="blog/content-marketing-strategy" element={<ContentMarketingStrategy />} />
+            <Route path="blog/local-seo-google-my-business" element={<LocalSEOGoogleMyBusiness />} />
+            <Route path="blog/influencer-marketing-kenya" element={<InfluencerMarketingKenya />} />
+            <Route path="blog/video-marketing-guide" element={<VideoMarketingGuide />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
