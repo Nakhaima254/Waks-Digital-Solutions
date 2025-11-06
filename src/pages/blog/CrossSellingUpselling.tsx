@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import crossSellingHero from "@/assets/blog-cross-selling-hero.jpg";
 import crossSellingUpsell from "@/assets/blog-cross-selling-upsell.jpg";
 import crossSellingBundles from "@/assets/blog-cross-selling-bundles.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const CrossSellingUpselling = () => {
   return (
@@ -24,8 +25,10 @@ const CrossSellingUpselling = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           <section>
             <img src={crossSellingHero} alt="E-commerce product recommendations" className="w-full h-auto rounded-lg mb-6" />
             <p className="text-lg text-muted-foreground leading-relaxed">Cross-selling and upselling are powerful strategies to increase revenue without spending more on customer acquisition. Learn how to implement these techniques effectively for your Kenyan e-commerce store.</p>
@@ -41,7 +44,11 @@ const CrossSellingUpselling = () => {
             <p className="text-muted-foreground">Create compelling product bundles that provide value to customers while increasing your average order value.</p>
           </section>
         </div>
-      </article>
+          </article>
+          
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };

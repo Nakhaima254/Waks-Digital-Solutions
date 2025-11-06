@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import conversionImage from "@/assets/blog-conversion-optimization.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const ConversionRateOptimization = () => {
   const relatedPosts = [
@@ -28,8 +29,10 @@ const ConversionRateOptimization = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           <section>
             <img src={conversionImage} alt="Conversion rate optimization analytics" className="w-full h-auto rounded-lg mb-6" />
             <p className="text-lg text-muted-foreground leading-relaxed">The average e-commerce conversion rate in Kenya is 1.5-2%. With CRO best practices, you can double or triple conversions from existing traffic, dramatically improving ROI.</p>
@@ -165,7 +168,11 @@ const ConversionRateOptimization = () => {
             </div>
           </section>
         </div>
-      </article>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };

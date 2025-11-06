@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import retentionImage from "@/assets/blog-customer-retention.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const CustomerRetentionEcommerce = () => {
   const relatedPosts = [
@@ -28,8 +29,10 @@ const CustomerRetentionEcommerce = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           <section>
             <img src={retentionImage} alt="Customer retention strategies" className="w-full h-auto rounded-lg mb-6" />
             <p className="text-lg text-muted-foreground leading-relaxed">Acquiring a new customer costs 5-25x more than retaining an existing one. Focus on retention to build sustainable, profitable e-commerce business in Kenya.</p>
@@ -176,7 +179,11 @@ const CustomerRetentionEcommerce = () => {
             </div>
           </section>
         </div>
-      </article>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };

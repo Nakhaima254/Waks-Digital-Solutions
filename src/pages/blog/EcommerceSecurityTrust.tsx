@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import securityImage from "@/assets/blog-ecommerce-security.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const EcommerceSecurityTrust = () => {
   const relatedPosts = [
@@ -28,8 +29,10 @@ const EcommerceSecurityTrust = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           <section>
             <img src={securityImage} alt="E-commerce security and trust" className="w-full h-auto rounded-lg mb-6" />
             <p className="text-lg text-muted-foreground leading-relaxed">In Kenya's growing e-commerce market, trust is the biggest barrier to online purchases. 60% of potential customers abandon checkout due to security concerns. Build confidence with these proven strategies.</p>
@@ -165,7 +168,11 @@ const EcommerceSecurityTrust = () => {
             </div>
           </section>
         </div>
-      </article>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };

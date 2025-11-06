@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User, ShoppingCart, TrendingUp, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import ecommerceSeoImage from "@/assets/blog-ecommerce-seo.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const EcommerceSEOStrategies = () => {
   const relatedPosts = [
@@ -49,8 +50,10 @@ const EcommerceSEOStrategies = () => {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -339,7 +342,11 @@ const EcommerceSEOStrategies = () => {
             </div>
           </section>
         </div>
-      </article>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mobileSpeedHero from "@/assets/blog-mobile-speed-hero.jpg";
 import mobileSpeedMetrics from "@/assets/blog-mobile-speed-metrics.jpg";
 import mobileSpeedCompression from "@/assets/blog-mobile-speed-compression.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobileSiteSpeedOptimization = () => {
   return (
@@ -60,8 +61,10 @@ const MobileSiteSpeedOptimization = () => {
       </div>
 
       {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="prose prose-lg max-w-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
             In Kenya's mobile-first market, site speed directly impacts user engagement, conversion rates, and search rankings. With variable network conditions across 3G and 4G connections, optimizing mobile performance isn't optional—it's critical for business success.
           </p>
@@ -262,8 +265,12 @@ const MobileSiteSpeedOptimization = () => {
               Get Started Today
             </Link>
           </div>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Mobile" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

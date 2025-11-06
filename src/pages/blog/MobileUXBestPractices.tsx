@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mobileUxHero from "@/assets/blog-mobile-ux-hero.jpg";
 import mobileUxWireframes from "@/assets/blog-mobile-ux-wireframes.jpg";
 import mobileUxTesting from "@/assets/blog-mobile-ux-testing.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobileUXBestPractices = () => {
   return (
@@ -60,8 +61,10 @@ const MobileUXBestPractices = () => {
       </div>
 
       {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="prose prose-lg max-w-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
             In Kenya's mobile-first market, exceptional user experience isn't optional—it's essential. With over 90% of internet users accessing websites through mobile devices, creating intuitive and engaging mobile experiences directly impacts your business success.
           </p>
@@ -181,8 +184,12 @@ const MobileUXBestPractices = () => {
               Get Started Today
             </Link>
           </div>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Mobile" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

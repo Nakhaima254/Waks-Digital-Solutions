@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import analyticsHero from "@/assets/blog-ecommerce-analytics-hero.jpg";
 import analyticsGoogle from "@/assets/blog-ecommerce-analytics-google.jpg";
 import analyticsFunnel from "@/assets/blog-ecommerce-analytics-funnel.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const EcommerceAnalytics = () => {
   const relatedPosts = [
@@ -51,8 +52,10 @@ const EcommerceAnalytics = () => {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -385,8 +388,12 @@ const EcommerceAnalytics = () => {
               ))}
             </div>
           </section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mobilePaymentHero from "@/assets/blog-mobile-payment-hero.jpg";
 import mobilePaymentGateway from "@/assets/blog-mobile-payment-gateway.jpg";
 import mobilePaymentSecurity from "@/assets/blog-mobile-payment-security.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobilePaymentIntegration = () => {
   return (
@@ -60,8 +61,10 @@ const MobilePaymentIntegration = () => {
       </div>
 
       {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="prose prose-lg max-w-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
             Mobile payment integration is crucial for success in Kenya's digital economy. With M-Pesa processing over 50 million transactions daily, your mobile website must offer seamless, secure payment experiences to convert visitors into customers.
           </p>
@@ -230,8 +233,12 @@ const MobilePaymentIntegration = () => {
               Contact Us Today
             </Link>
           </div>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Mobile" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

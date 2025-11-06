@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import abandonedCartHero from "@/assets/blog-abandoned-cart-hero.jpg";
 import abandonedCartEmail from "@/assets/blog-abandoned-cart-email.jpg";
 import abandonedCartOffers from "@/assets/blog-abandoned-cart-offers.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const AbandonedCartRecovery = () => {
   const relatedPosts = [
@@ -51,8 +52,10 @@ const AbandonedCartRecovery = () => {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -303,7 +306,11 @@ const AbandonedCartRecovery = () => {
             </div>
           </section>
         </div>
-      </article>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
+        </div>
+      </div>
     </div>
   );
 };
