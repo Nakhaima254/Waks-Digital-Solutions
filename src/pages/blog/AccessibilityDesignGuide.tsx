@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import accessibilityDesignImage from "@/assets/blog-accessibility-design.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const AccessibilityDesignGuide = () => {
   return (
@@ -23,17 +24,23 @@ const AccessibilityDesignGuide = () => {
         </div>
       </section>
       <section className="py-12 bg-background">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg">
-          <div className="space-y-6 text-foreground">
-            <p className="text-xl">Web accessibility ensures everyone can use your website, regardless of disabilities. In Kenya, this means reaching more customers and complying with emerging regulations.</p>
-            <h2 className="text-3xl font-bold text-primary mt-8">Why Accessibility Matters</h2>
-            <p>Over 15% of Kenyans have some form of disability. Accessible design benefits everyone through better usability, improved SEO, and wider audience reach.</p>
-            <div className="bg-accent/10 p-6 rounded-lg mt-8">
-              <h3 className="text-xl font-semibold text-primary mb-3">Ready to make your website accessible?</h3>
-              <Button variant="hero" size="lg" asChild><Link to="/contact">Contact Us</Link></Button>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <article className="lg:col-span-2 prose prose-lg">
+              <div className="space-y-6 text-foreground">
+                <p className="text-xl">Web accessibility ensures everyone can use your website, regardless of disabilities. In Kenya, this means reaching more customers and complying with emerging regulations.</p>
+                <h2 className="text-3xl font-bold text-primary mt-8">Why Accessibility Matters</h2>
+                <p>Over 15% of Kenyans have some form of disability. Accessible design benefits everyone through better usability, improved SEO, and wider audience reach.</p>
+                <div className="bg-accent/10 p-6 rounded-lg mt-8">
+                  <h3 className="text-xl font-semibold text-primary mb-3">Ready to make your website accessible?</h3>
+                  <Button variant="hero" size="lg" asChild><Link to="/contact">Contact Us</Link></Button>
+                </div>
+              </div>
+            </article>
+
+            <BlogSidebar currentCategory="Design" />
           </div>
-        </article>
+        </div>
       </section>
     </div>
   );

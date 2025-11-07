@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import reviewsHero from "@/assets/blog-product-reviews-hero.jpg";
 import reviewsSocial from "@/assets/blog-product-reviews-social-proof.jpg";
 import reviewsTestimonials from "@/assets/blog-product-reviews-testimonials.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const ProductReviewsStrategy = () => {
   return (
@@ -21,13 +22,19 @@ const ProductReviewsStrategy = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
-          <section><img src={reviewsHero} alt="Product reviews interface" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Product reviews are essential for building trust in the Kenyan e-commerce market.</p></section>
-          <section><img src={reviewsSocial} alt="Social proof badges" className="w-full h-auto rounded-lg mb-6" /></section>
-          <section><img src={reviewsTestimonials} alt="Customer testimonials" className="w-full h-auto rounded-lg mb-6" /></section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+              <section><img src={reviewsHero} alt="Product reviews interface" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Product reviews are essential for building trust in the Kenyan e-commerce market.</p></section>
+              <section><img src={reviewsSocial} alt="Social proof badges" className="w-full h-auto rounded-lg mb-6" /></section>
+              <section><img src={reviewsTestimonials} alt="Customer testimonials" className="w-full h-auto rounded-lg mb-6" /></section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

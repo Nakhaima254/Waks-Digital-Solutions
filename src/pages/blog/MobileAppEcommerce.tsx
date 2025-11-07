@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import mobileAppHero from "@/assets/blog-mobile-app-hero.jpg";
 import mobileAppDev from "@/assets/blog-mobile-app-development.jpg";
 import mobileAppFeatures from "@/assets/blog-mobile-app-features.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const MobileAppEcommerce = () => {
   return (
@@ -21,13 +22,19 @@ const MobileAppEcommerce = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
-          <section><img src={mobileAppHero} alt="Mobile e-commerce app interface" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Mobile apps can provide superior user experience and increase customer loyalty for Kenyan e-commerce businesses.</p></section>
-          <section><img src={mobileAppDev} alt="Mobile app development process" className="w-full h-auto rounded-lg mb-6" /></section>
-          <section><img src={mobileAppFeatures} alt="Mobile app features showcase" className="w-full h-auto rounded-lg mb-6" /></section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+              <section><img src={mobileAppHero} alt="Mobile e-commerce app interface" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Mobile apps can provide superior user experience and increase customer loyalty for Kenyan e-commerce businesses.</p></section>
+              <section><img src={mobileAppDev} alt="Mobile app development process" className="w-full h-auto rounded-lg mb-6" /></section>
+              <section><img src={mobileAppFeatures} alt="Mobile app features showcase" className="w-full h-auto rounded-lg mb-6" /></section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="E-commerce" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

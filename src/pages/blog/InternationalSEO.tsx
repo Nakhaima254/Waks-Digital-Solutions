@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import internationalSeoImage from "@/assets/blog-international-seo.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const InternationalSEO = () => {
   const relatedPosts = [
@@ -28,25 +29,31 @@ const InternationalSEO = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
-          <section>
-            <img src={internationalSeoImage} alt="International SEO strategy" className="w-full h-auto rounded-lg mb-6" />
-            <p className="text-lg text-muted-foreground leading-relaxed">Expanding beyond Kenya? International SEO helps you reach customers across East Africa and globally while maintaining strong local presence.</p>
-          </section>
-          <section className="border-t pt-8">
-            <h3 className="text-xl font-semibold text-foreground mb-4">Related Articles</h3>
-            <div className="grid gap-4">
-              {relatedPosts.map((post) => (
-                <Link key={post.id} to={`/blog/${post.id}`} onClick={() => window.scrollTo(0, 0)} className="flex items-center justify-between p-4 bg-muted rounded-lg hover:bg-muted/80 transition-colors group">
-                  <span className="text-foreground group-hover:text-primary transition-colors">{post.title}</span>
-                  <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+              <section>
+                <img src={internationalSeoImage} alt="International SEO strategy" className="w-full h-auto rounded-lg mb-6" />
+                <p className="text-lg text-muted-foreground leading-relaxed">Expanding beyond Kenya? International SEO helps you reach customers across East Africa and globally while maintaining strong local presence.</p>
+              </section>
+              <section className="border-t pt-8">
+                <h3 className="text-xl font-semibold text-foreground mb-4">Related Articles</h3>
+                <div className="grid gap-4">
+                  {relatedPosts.map((post) => (
+                    <Link key={post.id} to={`/blog/${post.id}`} onClick={() => window.scrollTo(0, 0)} className="flex items-center justify-between p-4 bg-muted rounded-lg hover:bg-muted/80 transition-colors group">
+                      <span className="text-foreground group-hover:text-primary transition-colors">{post.title}</span>
+                      <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  ))}
+                </div>
+              </section>
             </div>
-          </section>
+          </article>
+
+          <BlogSidebar currentCategory="SEO" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };
