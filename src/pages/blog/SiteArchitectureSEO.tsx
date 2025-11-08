@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import siteArchitectureHero from "@/assets/blog-site-architecture-hero.jpg";
 import siteArchitectureNav from "@/assets/blog-site-architecture-navigation.jpg";
 import siteArchitectureUrls from "@/assets/blog-site-architecture-urls.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const SiteArchitectureSEO = () => {
   return (
@@ -21,13 +22,19 @@ const SiteArchitectureSEO = () => {
           </div>
         </div>
       </div>
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
-          <section><img src={siteArchitectureHero} alt="Website sitemap architecture" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Proper site architecture is crucial for SEO and user experience in e-commerce.</p></section>
-          <section><img src={siteArchitectureNav} alt="Navigation menu structure" className="w-full h-auto rounded-lg mb-6" /></section>
-          <section><img src={siteArchitectureUrls} alt="URL structure examples" className="w-full h-auto rounded-lg mb-6" /></section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+              <section><img src={siteArchitectureHero} alt="Website sitemap architecture" className="w-full h-auto rounded-lg mb-6" /><p className="text-lg text-muted-foreground">Proper site architecture is crucial for SEO and user experience in e-commerce.</p></section>
+              <section><img src={siteArchitectureNav} alt="Navigation menu structure" className="w-full h-auto rounded-lg mb-6" /></section>
+              <section><img src={siteArchitectureUrls} alt="URL structure examples" className="w-full h-auto rounded-lg mb-6" /></section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="SEO" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

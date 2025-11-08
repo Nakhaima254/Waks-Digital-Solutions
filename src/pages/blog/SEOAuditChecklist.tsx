@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User, CheckCircle, AlertTriangle, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import seoAuditImage from "@/assets/blog-seo-audit.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const SEOAuditChecklist = () => {
   const relatedPosts = [
@@ -49,8 +50,10 @@ const SEOAuditChecklist = () => {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -373,9 +376,13 @@ const SEOAuditChecklist = () => {
                 </Link>
               ))}
             </div>
-          </section>
+            </section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="SEO" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

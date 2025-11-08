@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import seoHeroImage from "@/assets/blog-seo-hero.jpg";
 import googleMyBusinessImage from "@/assets/blog-google-my-business.jpg";
 import technicalSeoImage from "@/assets/blog-technical-seo-image.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const SEOGuideKenyanBusinesses = () => {
   return (
@@ -47,8 +48,10 @@ const SEOGuideKenyanBusinesses = () => {
       </div>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -235,9 +238,13 @@ const SEOGuideKenyanBusinesses = () => {
             >
               Get Professional SEO Help
             </Link>
-          </section>
+            </section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="SEO" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

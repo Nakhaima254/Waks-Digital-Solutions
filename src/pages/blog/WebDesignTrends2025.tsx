@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, Clock, User, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const WebDesignTrends2025 = () => {
   return (
@@ -49,9 +50,11 @@ const WebDesignTrends2025 = () => {
       </div>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="prose prose-lg max-w-none">
-          <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
             
             <section>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -160,9 +163,13 @@ const WebDesignTrends2025 = () => {
                 Get Your Modern Website Today
               </Link>
             </section>
-          </div>
+              </div>
+            </div>
+          </article>
+          
+          <BlogSidebar currentCategory="Design" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

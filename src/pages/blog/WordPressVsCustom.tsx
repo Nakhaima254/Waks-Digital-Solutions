@@ -1,5 +1,6 @@
 import { ArrowLeft, Calendar, Clock, User, Share2, Code, Zap, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const WordPressVsCustom = () => {
   return (
@@ -44,8 +45,10 @@ const WordPressVsCustom = () => {
       </div>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -269,9 +272,13 @@ const WordPressVsCustom = () => {
                 Learn About Custom Development
               </Link>
             </div>
-          </section>
+            </section>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="Development" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };

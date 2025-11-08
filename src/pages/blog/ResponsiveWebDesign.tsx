@@ -1,63 +1,37 @@
 import { Link } from "react-router-dom";
 import { Calendar, User, ArrowLeft } from "lucide-react";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import heroImage from "@/assets/blog-responsive-design.jpg";
 import testingImage from "@/assets/blog-responsive-testing.jpg";
 import frameworksImage from "@/assets/blog-responsive-frameworks.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const ResponsiveWebDesign = () => {
   return (
-    <div className="min-h-screen flex flex-col font-blog">
-      <Navigation />
-      
-      <article className="flex-grow">
-        {/* Hero Section */}
-        <div className="relative h-[60vh] overflow-hidden">
-          <img
-            src={heroImage}
-            alt="Responsive web design on multiple devices"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        </div>
-
-        {/* Content */}
-        <div className="container mx-auto px-4 -mt-32 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            {/* Back Button */}
-            <Link
-              to="/blog"
-              className="inline-flex items-center text-accent hover:text-accent-hover mb-8 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Blog
-            </Link>
-
-            {/* Article Header */}
-            <div className="bg-card rounded-xl shadow-lg p-8 mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-                Responsive Web Design Best Practices for 2025
-              </h1>
-              
-              <div className="flex flex-wrap gap-6 text-muted-foreground mb-6">
-                <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  <span>January 15, 2025</span>
-                </div>
-                <div className="flex items-center">
-                  <User className="w-4 h-4 mr-2" />
-                  <span>Isaac N.</span>
-                </div>
-              </div>
-
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Learn how to create websites that look perfect on every device. Master the art of responsive design with modern techniques and best practices.
-              </p>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
+      <div className="bg-primary text-primary-foreground py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/blog" className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors mb-6">
+            <ArrowLeft className="h-5 w-5" /><span>Back to Blog</span>
+          </Link>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4 text-sm text-primary-foreground/80">
+              <div className="flex items-center space-x-1"><User className="h-4 w-4" /><span>Isaac N.</span></div>
+              <div className="flex items-center space-x-1"><Calendar className="h-4 w-4" /><span>January 15, 2025</span></div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">Responsive Web Design Best Practices for 2025</h1>
+            <p className="text-xl text-primary-foreground/80">Learn how to create websites that look perfect on every device. Master the art of responsive design with modern techniques and best practices.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <img src={heroImage} alt="Responsive web design on multiple devices" className="w-full h-auto rounded-lg shadow-2xl" />
+      </div>
 
-            {/* Article Body */}
-            <div className="bg-card rounded-xl shadow-lg p-8 prose prose-lg max-w-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
               <h2>Why Responsive Design Matters</h2>
               <p>
                 In today's mobile-first world, responsive web design isn't optional—it's essential. With over 60% of web traffic coming from mobile devices, your website must provide an excellent experience across all screen sizes.
@@ -121,11 +95,11 @@ const ResponsiveWebDesign = () => {
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </article>
+          </article>
 
-      <Footer />
+          <BlogSidebar currentCategory="Design" />
+        </div>
+      </div>
     </div>
   );
 };

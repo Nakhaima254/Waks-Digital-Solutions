@@ -1,6 +1,7 @@
 import { ArrowLeft, Calendar, Clock, User, Search, Target, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import keywordResearchImage from "@/assets/blog-keyword-research.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const KeywordResearchGuide = () => {
   const relatedPosts = [
@@ -49,8 +50,10 @@ const KeywordResearchGuide = () => {
         </div>
       </div>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="bg-card rounded-lg shadow-lg p-8 space-y-8">
           
           <section>
             <img 
@@ -280,10 +283,14 @@ const KeywordResearchGuide = () => {
                   <ArrowLeft className="h-5 w-5 text-muted-foreground rotate-180 group-hover:translate-x-1 transition-transform" />
                 </Link>
               ))}
+              </div>
+            </section>
             </div>
-          </section>
+          </article>
+
+          <BlogSidebar currentCategory="SEO" />
         </div>
-      </article>
+      </div>
     </div>
   );
 };
