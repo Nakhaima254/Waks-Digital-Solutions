@@ -66,6 +66,12 @@ import ContentMarketingStrategy from "./pages/blog/ContentMarketingStrategy";
 import LocalSEOGoogleMyBusiness from "./pages/blog/LocalSEOGoogleMyBusiness";
 import InfluencerMarketingKenya from "./pages/blog/InfluencerMarketingKenya";
 import VideoMarketingGuide from "./pages/blog/VideoMarketingGuide";
+import AIWebDevelopment2025 from "./pages/blog/AIWebDevelopment2025";
+import EcommerceFutureKenya from "./pages/blog/EcommerceFutureKenya";
+import Web3BlockchainTrends from "./pages/blog/Web3BlockchainTrends";
+import CybersecurityTrends2025 from "./pages/blog/CybersecurityTrends2025";
+import RemoteWorkDigitalTools from "./pages/blog/RemoteWorkDigitalTools";
+import GreenWebDevelopment from "./pages/blog/GreenWebDevelopment";
 
 const queryClient = new QueryClient();
 
@@ -138,6 +144,12 @@ const App = () => (
             <Route path="blog/local-seo-google-my-business" element={<LocalSEOGoogleMyBusiness />} />
             <Route path="blog/influencer-marketing-kenya" element={<InfluencerMarketingKenya />} />
             <Route path="blog/video-marketing-guide" element={<VideoMarketingGuide />} />
+            <Route path="blog/ai-web-development-2025" element={<AIWebDevelopment2025 />} />
+            <Route path="blog/ecommerce-future-kenya" element={<EcommerceFutureKenya />} />
+            <Route path="blog/web3-blockchain-trends" element={<Web3BlockchainTrends />} />
+            <Route path="blog/cybersecurity-trends-2025" element={<CybersecurityTrends2025 />} />
+            <Route path="blog/remote-work-digital-tools" element={<RemoteWorkDigitalTools />} />
+            <Route path="blog/green-web-development" element={<GreenWebDevelopment />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
