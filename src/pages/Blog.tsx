@@ -48,6 +48,12 @@ import contentMarketingImage from "@/assets/blog-content-marketing-hero.jpg";
 import googleMyBusinessImage from "@/assets/blog-google-my-business.jpg";
 import influencerMarketingImage from "@/assets/blog-influencer-marketing-hero.jpg";
 import videoMarketingImage from "@/assets/blog-video-marketing-hero.jpg";
+import aiWebDevHeroImage from "@/assets/blog-ai-web-dev-hero.jpg";
+import ecommerceFutureHeroImage from "@/assets/blog-ecommerce-future-hero.jpg";
+import web3HeroImage from "@/assets/blog-web3-blockchain-hero.jpg";
+import cybersecurityHeroImage from "@/assets/blog-cybersecurity-trends-hero.jpg";
+import remoteWorkHeroImage from "@/assets/blog-remote-work-hero.jpg";
+import greenWebHeroImage from "@/assets/blog-green-web-hero.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -474,10 +480,70 @@ const Blog = () => {
       readTime: "14 min read",
       category: "Marketing",
       image: videoMarketingImage
+    },
+    {
+      id: "ai-web-development-2025",
+      title: "AI in Web Development 2025: The Revolution is Here",
+      excerpt: "Explore how artificial intelligence is transforming web development, from code generation to intelligent user experiences.",
+      author: "Isaac N.",
+      date: "April 1, 2025",
+      readTime: "13 min read",
+      category: "Industry News",
+      image: aiWebDevHeroImage
+    },
+    {
+      id: "ecommerce-future-kenya",
+      title: "The Future of E-commerce in Kenya: Trends and Predictions",
+      excerpt: "Discover the emerging trends shaping Kenya's e-commerce landscape and prepare your business for the future.",
+      author: "Isaac N.",
+      date: "March 28, 2025",
+      readTime: "12 min read",
+      category: "Industry News",
+      image: ecommerceFutureHeroImage
+    },
+    {
+      id: "web3-blockchain-trends",
+      title: "Web3 and Blockchain: What Kenyan Businesses Need to Know",
+      excerpt: "Understand Web3, blockchain technology, and how these innovations could transform business in Kenya.",
+      author: "Isaac N.",
+      date: "March 25, 2025",
+      readTime: "15 min read",
+      category: "Industry News",
+      image: web3HeroImage
+    },
+    {
+      id: "cybersecurity-trends-2025",
+      title: "Cybersecurity Trends 2025: Protecting Your Digital Assets",
+      excerpt: "Stay ahead of cyber threats with the latest security trends and best practices for Kenyan businesses.",
+      author: "Isaac N.",
+      date: "March 22, 2025",
+      readTime: "14 min read",
+      category: "Industry News",
+      image: cybersecurityHeroImage
+    },
+    {
+      id: "remote-work-digital-tools",
+      title: "Remote Work Revolution: Essential Digital Tools for Kenyan Teams",
+      excerpt: "Discover the tools and strategies powering successful remote work for businesses across Kenya.",
+      author: "Isaac N.",
+      date: "March 18, 2025",
+      readTime: "11 min read",
+      category: "Industry News",
+      image: remoteWorkHeroImage
+    },
+    {
+      id: "green-web-development",
+      title: "Sustainable Web Development: Building a Greener Digital Future",
+      excerpt: "Learn how to create environmentally friendly websites that reduce carbon footprint without sacrificing performance.",
+      author: "Isaac N.",
+      date: "March 15, 2025",
+      readTime: "10 min read",
+      category: "Industry News",
+      image: greenWebHeroImage
     }
   ];
 
-  const categories = ["All", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing"];
+  const categories = ["All", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing", "Industry News", "AI News"];
 
   // Filter blogs by category
   const filteredBlogs = activeCategory === "All" 

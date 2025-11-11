@@ -98,7 +98,7 @@ const BlogSidebar = ({ currentCategory }: BlogSidebarProps) => {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {["Latest", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing", "Industry News"].map((category) => (
+            {["Latest", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing", "Industry News", "AI News"].map((category) => (
               <Link key={category} to="/blog">
                 <Badge
                   variant={currentCategory === category ? "default" : "secondary"}
