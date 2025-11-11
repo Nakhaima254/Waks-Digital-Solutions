@@ -1,207 +1,85 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import aiServiceHero from "@/assets/blog-ai-customer-service.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
-import customerServiceHero from "@/assets/blog-ai-customer-service.jpg";
 
 const AICustomerService = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      <article className="py-12">
-        <div className="container mx-auto px-4">
-          <Link to="/blog">
-            <Button variant="ghost" className="mb-6">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
+      <div className="bg-primary text-primary-foreground py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/blog" className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors mb-6">
+            <ArrowLeft className="h-5 w-5" /><span>Back to Blog</span>
           </Link>
-
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <header className="mb-8">
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      April 8, 2025
-                    </span>
-                    <span className="flex items-center">
-                      <Clock className="mr-2 h-4 w-4" />
-                      14 min read
-                    </span>
-                    <span className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      Isaac N.
-                    </span>
-                  </div>
-
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                    AI-Powered Customer Service Solutions for Kenya
-                  </h1>
-
-                  <img
-                    src={customerServiceHero}
-                    alt="AI customer service center"
-                    className="w-full h-[400px] object-cover rounded-lg mb-6"
-                  />
-                </header>
-
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-muted-foreground mb-6">
-                    Transform your customer service operations with AI-powered chatbots, virtual 
-                    assistants, and intelligent support systems designed for the Kenyan market.
-                  </p>
-
-                  <h2>The Customer Service Challenge in Kenya</h2>
-                  <p>
-                    Kenyan businesses face unique customer service challenges: growing customer 
-                    expectations, limited support staff, multilingual requirements, and the need 
-                    to provide 24/7 support across multiple channels. AI-powered solutions offer 
-                    practical answers to these challenges.
-                  </p>
-
-                  <h2>AI Customer Service Technologies</h2>
-                  
-                  <h3>Intelligent Chatbots</h3>
-                  <p>
-                    Modern AI chatbots understand natural language in both English and Swahili, 
-                    handle complex queries, and learn from each interaction. Unlike rule-based 
-                    systems, they can understand context and intent.
-                  </p>
-
-                  <h3>Voice Assistants</h3>
-                  <p>
-                    Voice-based AI systems allow customers to speak naturally instead of typing. 
-                    Particularly valuable in Kenya where voice calls remain a preferred 
-                    communication method.
-                  </p>
-
-                  <h3>Email Response Automation</h3>
-                  <p>
-                    AI can draft responses to common email inquiries, route complex issues to 
-                    appropriate teams, and even detect urgent matters requiring immediate attention.
-                  </p>
-
-                  <h3>Sentiment Analysis</h3>
-                  <p>
-                    Monitor customer emotions in real-time. Identify frustrated customers early 
-                    and route them to human agents before issues escalate.
-                  </p>
-
-                  <h2>Implementation Best Practices</h2>
-                  
-                  <h3>Design for Your Customers</h3>
-                  <p>
-                    Understand how your Kenyan customers prefer to communicate. Some may prefer 
-                    WhatsApp chatbots, others phone calls, some email. Design your AI solution 
-                    to meet them where they are.
-                  </p>
-
-                  <h3>Multilingual Support</h3>
-                  <p>
-                    Ensure your AI system can seamlessly switch between English, Swahili, and 
-                    other local languages. Many Kenyan customers mix languages in a single 
-                    conversation (code-switching).
-                  </p>
-
-                  <h3>Smooth Handoff to Humans</h3>
-                  <p>
-                    No AI system is perfect. Design clear escalation paths when the AI cannot 
-                    help, and ensure human agents have full context when they take over.
-                  </p>
-
-                  <h3>Continuous Improvement</h3>
-                  <p>
-                    Regularly review conversations, identify gaps in the AI's knowledge, and 
-                    update its training. AI customer service is not set-and-forget.
-                  </p>
-
-                  <h2>Real-World Success Stories</h2>
-                  
-                  <h3>E-commerce Retailer</h3>
-                  <p>
-                    A Nairobi-based online store implemented an AI chatbot that handles order 
-                    tracking, product inquiries, and returns. Result: 80% reduction in support 
-                    tickets, 24/7 availability, and improved customer satisfaction.
-                  </p>
-
-                  <h3>Banking Services</h3>
-                  <p>
-                    A Kenyan bank deployed AI voice assistants for balance inquiries, transaction 
-                    history, and card blocking. Customers can now resolve issues without waiting 
-                    in call queues.
-                  </p>
-
-                  <h3>Utility Provider</h3>
-                  <p>
-                    An electricity provider uses AI to handle outage reports, billing inquiries, 
-                    and service requests across WhatsApp, reducing call center load by 60%.
-                  </p>
-
-                  <h2>ROI and Metrics</h2>
-                  <p>
-                    Measure the success of your AI customer service implementation:
-                  </p>
-                  <ul>
-                    <li><strong>First Contact Resolution:</strong> Percentage of issues resolved without human intervention</li>
-                    <li><strong>Response Time:</strong> Average time to first response (should drop to seconds)</li>
-                    <li><strong>Customer Satisfaction:</strong> CSAT scores for AI interactions vs. human</li>
-                    <li><strong>Cost Per Interaction:</strong> Typically 70-90% lower than human support</li>
-                    <li><strong>Agent Productivity:</strong> Freed-up agents handling complex, high-value issues</li>
-                  </ul>
-
-                  <h2>Common Pitfalls to Avoid</h2>
-                  
-                  <h3>Over-Automation</h3>
-                  <p>
-                    Don't try to automate everything at once. Start with common, straightforward 
-                    queries and gradually expand as the system proves itself.
-                  </p>
-
-                  <h3>Ignoring Cultural Context</h3>
-                  <p>
-                    Ensure your AI understands Kenyan communication styles, common phrases, and 
-                    cultural expectations. Generic solutions trained only on Western data will fail.
-                  </p>
-
-                  <h3>Poor User Experience</h3>
-                  <p>
-                    A bad AI experience is worse than no AI at all. If customers struggle to get 
-                    help from your bot, they'll abandon your business entirely.
-                  </p>
-
-                  <h2>The Future of AI Customer Service</h2>
-                  <p>
-                    The next generation of AI customer service will be more conversational, 
-                    emotionally intelligent, and proactive. Systems will anticipate customer 
-                    needs, reach out before problems occur, and provide truly personalized 
-                    experiences at scale.
-                  </p>
-
-                  <h2>Getting Started</h2>
-                  <p>
-                    Ready to implement AI customer service? Follow this roadmap:
-                  </p>
-                  <ol>
-                    <li>Analyze your current support tickets to identify automation opportunities</li>
-                    <li>Choose the right channel (chatbot, voice, email) for your customers</li>
-                    <li>Select a platform that supports Kenyan languages and integrates with your systems</li>
-                    <li>Start with a pilot covering 20-30% of common queries</li>
-                    <li>Measure, learn, and gradually expand coverage</li>
-                  </ol>
-                </div>
-              </div>
-
-              <BlogSidebar currentCategory="AI News" />
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4 text-sm text-primary-foreground/80">
+              <div className="flex items-center space-x-1"><User className="h-4 w-4" /><span>Isaac N.</span></div>
+              <div className="flex items-center space-x-1"><Calendar className="h-4 w-4" /><span>March 20, 2025</span></div>
+              <div className="flex items-center space-x-1"><Clock className="h-4 w-4" /><span>14 min read</span></div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">AI-Powered Customer Service Solutions for Kenya</h1>
+            <p className="text-xl text-primary-foreground/80">Transform customer experience with intelligent automation that scales support while reducing costs.</p>
+            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
+              <Share2 className="h-5 w-5" /><span>Share Article</span>
+            </button>
           </div>
         </div>
-      </article>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <img src={aiServiceHero} alt="AI-powered customer service dashboard" className="w-full h-auto rounded-lg shadow-2xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">The Customer Service Revolution</h2>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                AI is transforming customer service from a cost center into a competitive advantage. Kenyan businesses can now provide world-class support experiences without massive team expansions.
+              </p>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">AI Technologies Powering Customer Service</h2>
+              
+              <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">Intelligent Chatbots</h3>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Modern AI chatbots understand context, learn from interactions, and handle complex queries 24/7.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">Sentiment Analysis</h3>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                AI detects customer emotions in real-time, flagging frustrated customers for priority handling.
+              </p>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Best Practices</h2>
+              <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
+                <li>Start with FAQ automation before complex interactions</li>
+                <li>Always provide easy escalation to human agents</li>
+                <li>Maintain your brand voice in AI responses</li>
+                <li>Continuously train AI on real conversations</li>
+                <li>Monitor customer satisfaction metrics closely</li>
+              </ul>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">ROI and Cost Savings</h2>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Most Kenyan businesses see ROI within 3-6 months. AI can handle 60-80% of routine inquiries, reducing support costs by 40%.
+              </p>
+
+              <div className="bg-muted/50 p-6 rounded-lg my-8">
+                <h3 className="text-xl font-semibold text-primary mb-4">Ready to Transform Your Customer Service?</h3>
+                <p className="text-foreground/80 mb-4">
+                  Waks Digital Solutions specializes in implementing AI customer service solutions.
+                </p>
+                <Link to="/contact" className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors">
+                  Get Started Today
+                </Link>
+              </div>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="AI News" />
+        </div>
+      </div>
     </div>
   );
 };

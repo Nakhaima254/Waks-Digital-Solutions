@@ -1,118 +1,62 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import BlogSidebar from "@/components/BlogSidebar";
+import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import predictiveHero from "@/assets/blog-predictive-analytics-ecommerce.jpg";
+import BlogSidebar from "@/components/BlogSidebar";
 
 const PredictiveAnalyticsEcommerce = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      <article className="py-12">
-        <div className="container mx-auto px-4">
-          <Link to="/blog">
-            <Button variant="ghost" className="mb-6">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
+      <div className="bg-primary text-primary-foreground py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/blog" className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors mb-6">
+            <ArrowLeft className="h-5 w-5" /><span>Back to Blog</span>
           </Link>
-
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <header className="mb-8">
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      March 22, 2025
-                    </span>
-                    <span className="flex items-center">
-                      <Clock className="mr-2 h-4 w-4" />
-                      14 min read
-                    </span>
-                    <span className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      Isaac N.
-                    </span>
-                  </div>
-
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                    Predictive Analytics for E-commerce Success in Kenya
-                  </h1>
-
-                  <img
-                    src={predictiveHero}
-                    alt="Predictive analytics for e-commerce"
-                    className="w-full h-[400px] object-cover rounded-lg mb-6"
-                  />
-                </header>
-
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-muted-foreground mb-6">
-                    Use AI-powered predictive analytics to forecast demand, prevent churn, 
-                    optimize inventory, and make data-driven decisions for your Kenyan e-commerce 
-                    business.
-                  </p>
-
-                  <h2>The Power of Prediction</h2>
-                  <p>
-                    Predictive analytics uses historical data and machine learning to forecast 
-                    future outcomes, enabling proactive decision-making rather than reactive 
-                    responses.
-                  </p>
-
-                  <h2>Key Applications for E-commerce</h2>
-                  
-                  <h3>Demand Forecasting</h3>
-                  <p>
-                    Predict product demand weeks or months in advance, optimizing inventory 
-                    levels to avoid stockouts and overstocking.
-                  </p>
-
-                  <h3>Customer Churn Prediction</h3>
-                  <p>
-                    Identify customers at risk of leaving before they churn, enabling targeted 
-                    retention campaigns with personalized offers.
-                  </p>
-
-                  <h3>Lifetime Value Prediction</h3>
-                  <p>
-                    Calculate predicted customer lifetime value to focus acquisition and retention 
-                    efforts on high-value segments.
-                  </p>
-
-                  <h3>Dynamic Pricing</h3>
-                  <p>
-                    AI adjusts prices in real-time based on demand, competition, inventory levels, 
-                    and customer segments to maximize revenue.
-                  </p>
-
-                  <h3>Recommendation Engines</h3>
-                  <p>
-                    Predict which products customers are most likely to buy next, increasing 
-                    cross-sell and upsell opportunities.
-                  </p>
-
-                  <h2>Implementation Guide</h2>
-                  <ol>
-                    <li>Start collecting transactional and behavioral data now</li>
-                    <li>Choose one high-impact use case to pilot</li>
-                    <li>Use cloud-based ML tools for faster deployment</li>
-                    <li>Measure accuracy and business impact regularly</li>
-                    <li>Scale successful models across other areas</li>
-                  </ol>
-                </div>
-              </div>
-
-              <BlogSidebar currentCategory="AI News" />
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4 text-sm text-primary-foreground/80">
+              <div className="flex items-center space-x-1"><User className="h-4 w-4" /><span>Isaac N.</span></div>
+              <div className="flex items-center space-x-1"><Calendar className="h-4 w-4" /><span>March 6, 2025</span></div>
+              <div className="flex items-center space-x-1"><Clock className="h-4 w-4" /><span>14 min read</span></div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">Predictive Analytics for E-commerce Success in Kenya</h1>
+            <p className="text-xl text-primary-foreground/80">Use AI-powered predictive analytics to forecast demand, prevent churn, and make data-driven decisions.</p>
+            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
+              <Share2 className="h-5 w-5" /><span>Share Article</span>
+            </button>
           </div>
         </div>
-      </article>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <img src={predictiveHero} alt="Predictive analytics for e-commerce" className="w-full h-auto rounded-lg shadow-2xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications</h2>
+              <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
+                <li>Demand forecasting and inventory optimization</li>
+                <li>Customer churn prediction</li>
+                <li>Dynamic pricing strategies</li>
+                <li>Personalized recommendations</li>
+              </ul>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Benefits for Kenyan E-commerce</h2>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Reduce stockouts by 40%, increase customer retention by 30%, and optimize pricing for maximum revenue.
+              </p>
+
+              <div className="bg-muted/50 p-6 rounded-lg my-8">
+                <h3 className="text-xl font-semibold text-primary mb-4">Ready for Predictive Analytics?</h3>
+                <p className="text-foreground/80 mb-4">Waks Digital Solutions implements advanced analytics solutions.</p>
+                <Link to="/contact" className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors">Get Started</Link>
+              </div>
+            </div>
+          </article>
+          <BlogSidebar currentCategory="AI News" />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,178 +1,90 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import chatGPTHero from "@/assets/blog-chatgpt-kenyan-businesses.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
-import chatgptHero from "@/assets/blog-chatgpt-kenyan-businesses.jpg";
 
 const ChatGPTKenyanBusinesses = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      <article className="py-12">
-        <div className="container mx-auto px-4">
-          <Link to="/blog">
-            <Button variant="ghost" className="mb-6">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
+      <div className="bg-primary text-primary-foreground py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link to="/blog" className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors mb-6">
+            <ArrowLeft className="h-5 w-5" /><span>Back to Blog</span>
           </Link>
-
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <header className="mb-8">
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      April 10, 2025
-                    </span>
-                    <span className="flex items-center">
-                      <Clock className="mr-2 h-4 w-4" />
-                      12 min read
-                    </span>
-                    <span className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      Isaac N.
-                    </span>
-                  </div>
-
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                    ChatGPT and Conversational AI for Kenyan Businesses
-                  </h1>
-
-                  <img
-                    src={chatgptHero}
-                    alt="ChatGPT interface in Kenyan office"
-                    className="w-full h-[400px] object-cover rounded-lg mb-6"
-                  />
-                </header>
-
-                <div className="prose prose-lg max-w-none">
-                  <p className="text-xl text-muted-foreground mb-6">
-                    Discover how ChatGPT and conversational AI are transforming customer service, 
-                    content creation, and business operations for Kenyan companies.
-                  </p>
-
-                  <h2>The Rise of Conversational AI in Kenya</h2>
-                  <p>
-                    Conversational AI, powered by models like ChatGPT, is revolutionizing how Kenyan 
-                    businesses interact with customers, create content, and streamline operations. From 
-                    customer support chatbots to content generation tools, AI is making sophisticated 
-                    capabilities accessible to businesses of all sizes.
-                  </p>
-
-                  <h2>Key Applications for Kenyan Businesses</h2>
-                  
-                  <h3>1. Customer Service Automation</h3>
-                  <p>
-                    Implement AI-powered chatbots that handle customer inquiries 24/7 in multiple 
-                    languages including English and Swahili. Reduce response times from hours to seconds 
-                    while maintaining personalized interactions.
-                  </p>
-
-                  <h3>2. Content Creation and Marketing</h3>
-                  <p>
-                    Generate blog posts, social media content, product descriptions, and marketing copy 
-                    at scale. AI can help maintain consistent brand voice while adapting content for 
-                    different platforms and audiences.
-                  </p>
-
-                  <h3>3. Business Document Processing</h3>
-                  <p>
-                    Automate the creation of business documents, reports, proposals, and contracts. 
-                    ChatGPT can help draft professional documents quickly, allowing staff to focus on 
-                    strategic tasks.
-                  </p>
-
-                  <h3>4. Market Research and Analysis</h3>
-                  <p>
-                    Use AI to analyze market trends, summarize research reports, and extract insights 
-                    from customer feedback. Make data-driven decisions faster with AI-powered analysis.
-                  </p>
-
-                  <h2>Implementation Strategies</h2>
-                  
-                  <h3>Start Small and Scale</h3>
-                  <p>
-                    Begin with a pilot project in one department, such as customer service or marketing. 
-                    Learn what works, refine your approach, and gradually expand to other areas.
-                  </p>
-
-                  <h3>Train Your Team</h3>
-                  <p>
-                    Invest in AI literacy training for your staff. Understanding how to effectively 
-                    prompt AI systems and interpret results is crucial for success.
-                  </p>
-
-                  <h3>Maintain Human Oversight</h3>
-                  <p>
-                    AI should augment human capabilities, not replace them. Establish review processes 
-                    for AI-generated content and decisions, especially in customer-facing situations.
-                  </p>
-
-                  <h2>Considerations for Kenyan Context</h2>
-                  
-                  <h3>Language and Cultural Adaptation</h3>
-                  <p>
-                    While ChatGPT supports Swahili, fine-tuning for local dialects and cultural nuances 
-                    may be necessary. Consider custom training for industry-specific terminology.
-                  </p>
-
-                  <h3>Internet Connectivity</h3>
-                  <p>
-                    Plan for intermittent connectivity issues. Consider hybrid solutions that can 
-                    function with limited internet access or implement caching strategies.
-                  </p>
-
-                  <h3>Data Privacy and Security</h3>
-                  <p>
-                    Ensure compliance with Kenya's Data Protection Act when processing customer 
-                    information through AI systems. Avoid sharing sensitive business data with 
-                    external AI services.
-                  </p>
-
-                  <h2>Cost-Benefit Analysis</h2>
-                  <p>
-                    ChatGPT and similar AI tools offer significant ROI for Kenyan businesses:
-                  </p>
-                  <ul>
-                    <li>Reduce customer service costs by up to 70%</li>
-                    <li>Increase content production by 5-10x</li>
-                    <li>Improve response times from hours to seconds</li>
-                    <li>Free staff time for higher-value activities</li>
-                    <li>Scale operations without proportional staff increases</li>
-                  </ul>
-
-                  <h2>Future Outlook</h2>
-                  <p>
-                    As AI technology continues to evolve, Kenyan businesses that adopt these tools early 
-                    will gain significant competitive advantages. The key is to start experimenting now, 
-                    learn what works for your business, and stay updated on new capabilities as they emerge.
-                  </p>
-
-                  <h2>Getting Started</h2>
-                  <p>
-                    Ready to implement conversational AI in your Kenyan business? Start with these steps:
-                  </p>
-                  <ol>
-                    <li>Identify high-volume, repetitive tasks that AI could automate</li>
-                    <li>Choose a pilot project with measurable success metrics</li>
-                    <li>Select appropriate AI tools based on your needs and budget</li>
-                    <li>Train a small team to become AI champions</li>
-                    <li>Launch, measure, learn, and iterate</li>
-                  </ol>
-                </div>
-              </div>
-
-              <BlogSidebar currentCategory="AI News" />
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4 text-sm text-primary-foreground/80">
+              <div className="flex items-center space-x-1"><User className="h-4 w-4" /><span>Isaac N.</span></div>
+              <div className="flex items-center space-x-1"><Calendar className="h-4 w-4" /><span>March 22, 2025</span></div>
+              <div className="flex items-center space-x-1"><Clock className="h-4 w-4" /><span>12 min read</span></div>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">ChatGPT and Conversational AI: Transforming Kenyan Business</h1>
+            <p className="text-xl text-primary-foreground/80">Discover how ChatGPT and advanced conversational AI are revolutionizing customer service, content creation, and operations for Kenyan businesses.</p>
+            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
+              <Share2 className="h-5 w-5" /><span>Share Article</span>
+            </button>
           </div>
         </div>
-      </article>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-12">
+        <img src={chatGPTHero} alt="ChatGPT AI conversation interface" className="w-full h-auto rounded-lg shadow-2xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">What is ChatGPT?</h2>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                ChatGPT is an advanced AI language model developed by OpenAI that can understand and generate human-like text. It represents a breakthrough in natural language processing, enabling businesses to automate conversations, create content, and provide intelligent assistance at scale.
+              </p>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications for Kenyan Businesses</h2>
+              
+              <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">1. Customer Service Automation</h3>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Deploy AI-powered chatbots that handle customer inquiries 24/7, answering FAQs, processing orders, and escalating complex issues to human agents when needed.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">2. Content Creation</h3>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Generate blog posts, social media content, product descriptions, and marketing copy in minutes while maintaining quality and consistency.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">3. Business Process Automation</h3>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                Automate email responses, draft reports, summarize documents, and create presentations.
+              </p>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Strategies</h2>
+              <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
+                <li>Start with a pilot project in one department</li>
+                <li>Train your team on AI tools and best practices</li>
+                <li>Establish clear guidelines for AI use</li>
+                <li>Monitor outputs for accuracy and brand alignment</li>
+                <li>Iterate based on results and feedback</li>
+              </ul>
+
+              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Cost-Benefit Analysis</h2>
+              <p className="text-foreground/80 leading-relaxed mb-6">
+                ChatGPT Plus costs $20/month per user, while enterprise solutions start at around $25/user/month. Most Kenyan SMEs report 40-60% time savings on content and communication tasks.
+              </p>
+
+              <div className="bg-muted/50 p-6 rounded-lg my-8">
+                <h3 className="text-xl font-semibold text-primary mb-4">Ready to Implement AI?</h3>
+                <p className="text-foreground/80 mb-4">
+                  Waks Digital Solutions can help you integrate ChatGPT and other AI tools effectively.
+                </p>
+                <Link to="/contact" className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors">
+                  Get AI Consultation
+                </Link>
+              </div>
+            </div>
+          </article>
+
+          <BlogSidebar currentCategory="AI News" />
+        </div>
+      </div>
     </div>
   );
 };
