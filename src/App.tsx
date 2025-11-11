@@ -72,6 +72,16 @@ import Web3BlockchainTrends from "./pages/blog/Web3BlockchainTrends";
 import CybersecurityTrends2025 from "./pages/blog/CybersecurityTrends2025";
 import RemoteWorkDigitalTools from "./pages/blog/RemoteWorkDigitalTools";
 import GreenWebDevelopment from "./pages/blog/GreenWebDevelopment";
+import ChatGPTKenyanBusinesses from "./pages/blog/ChatGPTKenyanBusinesses";
+import AICustomerService from "./pages/blog/AICustomerService";
+import MachineLearningAnalytics from "./pages/blog/MachineLearningAnalytics";
+import AIContentTools from "./pages/blog/AIContentTools";
+import ComputerVisionKenya from "./pages/blog/ComputerVisionKenya";
+import NLPLocalLanguages from "./pages/blog/NLPLocalLanguages";
+import AIHealthcareKenya from "./pages/blog/AIHealthcareKenya";
+import AIEthicsPrivacy from "./pages/blog/AIEthicsPrivacy";
+import AIMarketingAutomation from "./pages/blog/AIMarketingAutomation";
+import PredictiveAnalyticsEcommerce from "./pages/blog/PredictiveAnalyticsEcommerce";
 
 const queryClient = new QueryClient();
 
@@ -150,6 +160,16 @@ const App = () => (
             <Route path="blog/cybersecurity-trends-2025" element={<CybersecurityTrends2025 />} />
             <Route path="blog/remote-work-digital-tools" element={<RemoteWorkDigitalTools />} />
             <Route path="blog/green-web-development" element={<GreenWebDevelopment />} />
+            <Route path="blog/chatgpt-kenyan-businesses" element={<ChatGPTKenyanBusinesses />} />
+            <Route path="blog/ai-customer-service" element={<AICustomerService />} />
+            <Route path="blog/machine-learning-analytics" element={<MachineLearningAnalytics />} />
+            <Route path="blog/ai-content-tools" element={<AIContentTools />} />
+            <Route path="blog/computer-vision-kenya" element={<ComputerVisionKenya />} />
+            <Route path="blog/nlp-local-languages" element={<NLPLocalLanguages />} />
+            <Route path="blog/ai-healthcare-kenya" element={<AIHealthcareKenya />} />
+            <Route path="blog/ai-ethics-privacy" element={<AIEthicsPrivacy />} />
+            <Route path="blog/ai-marketing-automation" element={<AIMarketingAutomation />} />
+            <Route path="blog/predictive-analytics-ecommerce" element={<PredictiveAnalyticsEcommerce />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

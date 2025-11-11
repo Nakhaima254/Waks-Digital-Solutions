@@ -54,6 +54,16 @@ import web3HeroImage from "@/assets/blog-web3-blockchain-hero.jpg";
 import cybersecurityHeroImage from "@/assets/blog-cybersecurity-trends-hero.jpg";
 import remoteWorkHeroImage from "@/assets/blog-remote-work-hero.jpg";
 import greenWebHeroImage from "@/assets/blog-green-web-hero.jpg";
+import chatgptKenyanImage from "@/assets/blog-chatgpt-kenyan-businesses.jpg";
+import aiCustomerServiceImage from "@/assets/blog-ai-customer-service.jpg";
+import mlAnalyticsImage from "@/assets/blog-machine-learning-analytics.jpg";
+import aiContentToolsImage from "@/assets/blog-ai-content-tools.jpg";
+import computerVisionImage from "@/assets/blog-computer-vision-kenya.jpg";
+import nlpLocalImage from "@/assets/blog-nlp-local-languages.jpg";
+import aiHealthcareImage from "@/assets/blog-ai-healthcare-kenya.jpg";
+import aiEthicsImage from "@/assets/blog-ai-ethics-privacy.jpg";
+import aiMarketingImage from "@/assets/blog-ai-marketing-automation.jpg";
+import predictiveAnalyticsImage from "@/assets/blog-predictive-analytics-ecommerce.jpg";
 
 const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -540,6 +550,106 @@ const Blog = () => {
       readTime: "10 min read",
       category: "Industry News",
       image: greenWebHeroImage
+    },
+    {
+      id: "chatgpt-kenyan-businesses",
+      title: "ChatGPT and Conversational AI for Kenyan Businesses",
+      excerpt: "Discover how ChatGPT and conversational AI are transforming customer service, content creation, and business operations for Kenyan companies.",
+      author: "Isaac N.",
+      date: "April 10, 2025",
+      readTime: "12 min read",
+      category: "AI News",
+      image: chatgptKenyanImage
+    },
+    {
+      id: "ai-customer-service",
+      title: "AI-Powered Customer Service Solutions for Kenya",
+      excerpt: "Transform your customer service operations with AI-powered chatbots, virtual assistants, and intelligent support systems designed for the Kenyan market.",
+      author: "Isaac N.",
+      date: "April 8, 2025",
+      readTime: "14 min read",
+      category: "AI News",
+      image: aiCustomerServiceImage
+    },
+    {
+      id: "machine-learning-analytics",
+      title: "Machine Learning for Business Analytics: A Kenyan Perspective",
+      excerpt: "Unlock powerful insights from your business data using machine learning. Learn how Kenyan companies are leveraging ML for predictive analytics.",
+      author: "Isaac N.",
+      date: "April 6, 2025",
+      readTime: "16 min read",
+      category: "AI News",
+      image: mlAnalyticsImage
+    },
+    {
+      id: "ai-content-tools",
+      title: "AI Content Creation Tools: Transforming Kenyan Marketing",
+      excerpt: "Discover the best AI tools for content creation and learn how Kenyan businesses are using them to scale their marketing efforts.",
+      author: "Isaac N.",
+      date: "April 4, 2025",
+      readTime: "13 min read",
+      category: "AI News",
+      image: aiContentToolsImage
+    },
+    {
+      id: "computer-vision-kenya",
+      title: "Computer Vision Applications for Kenyan Businesses",
+      excerpt: "Explore how computer vision and AI-powered image recognition are creating new opportunities for security, retail, agriculture, and more in Kenya.",
+      author: "Isaac N.",
+      date: "April 2, 2025",
+      readTime: "15 min read",
+      category: "AI News",
+      image: computerVisionImage
+    },
+    {
+      id: "nlp-local-languages",
+      title: "Natural Language Processing for Swahili and Kenyan Languages",
+      excerpt: "Learn how Natural Language Processing is breaking language barriers and enabling Kenyan businesses to serve customers in their preferred languages.",
+      author: "Isaac N.",
+      date: "March 30, 2025",
+      readTime: "14 min read",
+      category: "AI News",
+      image: nlpLocalImage
+    },
+    {
+      id: "ai-healthcare-kenya",
+      title: "AI in Healthcare: Kenya's Digital Health Revolution",
+      excerpt: "Discover how artificial intelligence is transforming healthcare delivery in Kenya, from diagnosis to treatment and patient care.",
+      author: "Isaac N.",
+      date: "March 28, 2025",
+      readTime: "17 min read",
+      category: "AI News",
+      image: aiHealthcareImage
+    },
+    {
+      id: "ai-ethics-privacy",
+      title: "AI Ethics and Data Privacy: A Guide for Kenyan Businesses",
+      excerpt: "Navigate the complex landscape of AI ethics and data privacy. Learn how Kenyan businesses can implement AI responsibly while complying with regulations.",
+      author: "Isaac N.",
+      date: "March 26, 2025",
+      readTime: "18 min read",
+      category: "AI News",
+      image: aiEthicsImage
+    },
+    {
+      id: "ai-marketing-automation",
+      title: "AI-Driven Marketing Automation for Kenyan Businesses",
+      excerpt: "Leverage AI to automate and optimize your marketing campaigns, personalize customer experiences, and maximize ROI in Kenya's competitive market.",
+      author: "Isaac N.",
+      date: "March 24, 2025",
+      readTime: "15 min read",
+      category: "AI News",
+      image: aiMarketingImage
+    },
+    {
+      id: "predictive-analytics-ecommerce",
+      title: "Predictive Analytics for E-commerce Success in Kenya",
+      excerpt: "Use AI-powered predictive analytics to forecast demand, prevent churn, optimize inventory, and make data-driven decisions for your Kenyan e-commerce business.",
+      author: "Isaac N.",
+      date: "March 22, 2025",
+      readTime: "14 min read",
+      category: "AI News",
+      image: predictiveAnalyticsImage
     }
   ];
 
