@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import computerVisionHero from "@/assets/blog-computer-vision-kenya.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const ComputerVisionKenya = () => {
+  const tocItems = [
+    { id: "what-is", title: "What is Computer Vision?" },
+    { id: "applications", title: "Applications in Kenyan Industries" },
+    { id: "success-stories", title: "Success Stories from Kenya" },
+    { id: "getting-started", title: "Getting Started" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -19,9 +29,12 @@ const ComputerVisionKenya = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">Computer Vision Applications in Kenya: From Agriculture to Retail</h1>
             <p className="text-xl text-primary-foreground/80">Explore how image recognition and computer vision AI are solving real-world problems across Kenyan industries.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="Computer Vision Applications in Kenya: From Agriculture to Retail"
+                description="Explore how image recognition and computer vision AI are solving real-world problems across Kenyan industries."
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -31,15 +44,19 @@ const ComputerVisionKenya = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <aside className="lg:col-span-1">
+            <TableOfContents items={tocItems} />
+          </aside>
+          
           <article className="lg:col-span-2">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">What is Computer Vision?</h2>
+              <h2 id="what-is" className="text-3xl font-bold text-primary mt-12 mb-6">What is Computer Vision?</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Computer vision enables machines to interpret and understand visual information, identify objects, recognize patterns, and make decisions based on image data.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Applications in Kenyan Industries</h2>
+              <h2 id="applications" className="text-3xl font-bold text-primary mt-12 mb-6">Applications in Kenyan Industries</h2>
               
               <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">Agriculture</h3>
               <p className="text-foreground/80 leading-relaxed mb-6">
@@ -56,12 +73,12 @@ const ComputerVisionKenya = () => {
                 Facial recognition for access control, automated intrusion detection, and vehicle recognition for parking management.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Success Stories from Kenya</h2>
+              <h2 id="success-stories" className="text-3xl font-bold text-primary mt-12 mb-6">Success Stories from Kenya</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 <strong>PlantVillage Nuru:</strong> Free app helping Kenyan farmers detect crop diseases using smartphone cameras.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Getting Started</h2>
+              <h2 id="getting-started" className="text-3xl font-bold text-primary mt-12 mb-6">Getting Started</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li>Identify a specific business problem to solve</li>
                 <li>Collect and label training data</li>
@@ -78,10 +95,14 @@ const ComputerVisionKenya = () => {
                   Explore Computer Vision
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="computer-vision-kenya" category="AI News" />
             </div>
           </article>
 
-          <BlogSidebar currentCategory="AI News" />
+          <aside className="lg:col-span-1">
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>

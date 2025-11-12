@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import chatGPTHero from "@/assets/blog-chatgpt-kenyan-businesses.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const ChatGPTKenyanBusinesses = () => {
+  const tocItems = [
+    { id: "what-is", title: "What is ChatGPT?" },
+    { id: "applications", title: "Key Applications for Kenyan Businesses" },
+    { id: "implementation", title: "Implementation Strategies" },
+    { id: "cost-benefit", title: "Cost-Benefit Analysis" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -19,9 +29,12 @@ const ChatGPTKenyanBusinesses = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">ChatGPT and Conversational AI: Transforming Kenyan Business</h1>
             <p className="text-xl text-primary-foreground/80">Discover how ChatGPT and advanced conversational AI are revolutionizing customer service, content creation, and operations for Kenyan businesses.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="ChatGPT and Conversational AI: Transforming Kenyan Business"
+                description="Discover how ChatGPT and advanced conversational AI are revolutionizing customer service, content creation, and operations for Kenyan businesses."
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -31,15 +44,19 @@ const ChatGPTKenyanBusinesses = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <aside className="lg:col-span-1">
+            <TableOfContents items={tocItems} />
+          </aside>
+          
           <article className="lg:col-span-2">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">What is ChatGPT?</h2>
+              <h2 id="what-is" className="text-3xl font-bold text-primary mt-12 mb-6">What is ChatGPT?</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 ChatGPT is an advanced AI language model developed by OpenAI that can understand and generate human-like text. It represents a breakthrough in natural language processing, enabling businesses to automate conversations, create content, and provide intelligent assistance at scale.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications for Kenyan Businesses</h2>
+              <h2 id="applications" className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications for Kenyan Businesses</h2>
               
               <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">1. Customer Service Automation</h3>
               <p className="text-foreground/80 leading-relaxed mb-6">
@@ -56,7 +73,7 @@ const ChatGPTKenyanBusinesses = () => {
                 Automate email responses, draft reports, summarize documents, and create presentations.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Strategies</h2>
+              <h2 id="implementation" className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Strategies</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li>Start with a pilot project in one department</li>
                 <li>Train your team on AI tools and best practices</li>
@@ -65,7 +82,7 @@ const ChatGPTKenyanBusinesses = () => {
                 <li>Iterate based on results and feedback</li>
               </ul>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Cost-Benefit Analysis</h2>
+              <h2 id="cost-benefit" className="text-3xl font-bold text-primary mt-12 mb-6">Cost-Benefit Analysis</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 ChatGPT Plus costs $20/month per user, while enterprise solutions start at around $25/user/month. Most Kenyan SMEs report 40-60% time savings on content and communication tasks.
               </p>
@@ -79,10 +96,14 @@ const ChatGPTKenyanBusinesses = () => {
                   Get AI Consultation
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="chatgpt-kenyan-businesses" category="AI News" />
             </div>
           </article>
 
-          <BlogSidebar currentCategory="AI News" />
+          <aside className="lg:col-span-1">
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>

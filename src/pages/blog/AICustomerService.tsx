@@ -4,8 +4,16 @@ import aiServiceHero from "@/assets/blog-ai-customer-service.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
 import RelatedPosts from "@/components/RelatedPosts";
 import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const AICustomerService = () => {
+  const tocItems = [
+    { id: "revolution", title: "The Customer Service Revolution" },
+    { id: "technologies", title: "AI Technologies Powering Customer Service" },
+    { id: "best-practices", title: "Implementation Best Practices" },
+    { id: "roi", title: "ROI and Cost Savings" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -36,15 +44,19 @@ const AICustomerService = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <aside className="lg:col-span-1">
+            <TableOfContents items={tocItems} />
+          </aside>
+          
           <article className="lg:col-span-2">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">The Customer Service Revolution</h2>
+              <h2 id="revolution" className="text-3xl font-bold text-primary mt-12 mb-6">The Customer Service Revolution</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 AI is transforming customer service from a cost center into a competitive advantage. Kenyan businesses can now provide world-class support experiences without massive team expansions.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">AI Technologies Powering Customer Service</h2>
+              <h2 id="technologies" className="text-3xl font-bold text-primary mt-12 mb-6">AI Technologies Powering Customer Service</h2>
               
               <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">Intelligent Chatbots</h3>
               <p className="text-foreground/80 leading-relaxed mb-6">
@@ -56,7 +68,7 @@ const AICustomerService = () => {
                 AI detects customer emotions in real-time, flagging frustrated customers for priority handling.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Best Practices</h2>
+              <h2 id="best-practices" className="text-3xl font-bold text-primary mt-12 mb-6">Implementation Best Practices</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li>Start with FAQ automation before complex interactions</li>
                 <li>Always provide easy escalation to human agents</li>
@@ -65,7 +77,7 @@ const AICustomerService = () => {
                 <li>Monitor customer satisfaction metrics closely</li>
               </ul>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">ROI and Cost Savings</h2>
+              <h2 id="roi" className="text-3xl font-bold text-primary mt-12 mb-6">ROI and Cost Savings</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Most Kenyan businesses see ROI within 3-6 months. AI can handle 60-80% of routine inquiries, reducing support costs by 40%.
               </p>
@@ -84,7 +96,9 @@ const AICustomerService = () => {
             </div>
           </article>
 
-          <BlogSidebar currentCategory="AI News" />
+          <aside className="lg:col-span-1">
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>

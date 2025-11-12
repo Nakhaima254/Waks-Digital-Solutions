@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import predictiveHero from "@/assets/blog-predictive-analytics-ecommerce.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const PredictiveAnalyticsEcommerce = () => {
+  const tocItems = [
+    { id: "applications", title: "Key Applications" },
+    { id: "benefits", title: "Benefits for Kenyan E-commerce" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -19,9 +27,12 @@ const PredictiveAnalyticsEcommerce = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">Predictive Analytics for E-commerce Success in Kenya</h1>
             <p className="text-xl text-primary-foreground/80">Use AI-powered predictive analytics to forecast demand, prevent churn, and make data-driven decisions.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="Predictive Analytics for E-commerce Success in Kenya"
+                description="Use AI-powered predictive analytics to forecast demand, prevent churn, and make data-driven decisions."
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -31,10 +42,14 @@ const PredictiveAnalyticsEcommerce = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <aside className="lg:col-span-1">
+            <TableOfContents items={tocItems} />
+          </aside>
+          
           <article className="lg:col-span-2">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications</h2>
+              <h2 id="applications" className="text-3xl font-bold text-primary mt-12 mb-6">Key Applications</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li>Demand forecasting and inventory optimization</li>
                 <li>Customer churn prediction</li>
@@ -42,7 +57,7 @@ const PredictiveAnalyticsEcommerce = () => {
                 <li>Personalized recommendations</li>
               </ul>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Benefits for Kenyan E-commerce</h2>
+              <h2 id="benefits" className="text-3xl font-bold text-primary mt-12 mb-6">Benefits for Kenyan E-commerce</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Reduce stockouts by 40%, increase customer retention by 30%, and optimize pricing for maximum revenue.
               </p>
@@ -52,9 +67,14 @@ const PredictiveAnalyticsEcommerce = () => {
                 <p className="text-foreground/80 mb-4">Waks Digital Solutions implements advanced analytics solutions.</p>
                 <Link to="/contact" className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary-hover transition-colors">Get Started</Link>
               </div>
+
+              <RelatedPosts currentSlug="predictive-analytics-ecommerce" category="AI News" />
             </div>
           </article>
-          <BlogSidebar currentCategory="AI News" />
+          
+          <aside className="lg:col-span-1">
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>

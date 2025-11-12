@@ -1,9 +1,19 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import aiContentHero from "@/assets/blog-ai-content-tools.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const AIContentTools = () => {
+  const tocItems = [
+    { id: "challenge", title: "The Content Creation Challenge" },
+    { id: "tools", title: "Top AI Content Tools for 2025" },
+    { id: "effective-use", title: "Using AI Content Tools Effectively" },
+    { id: "roi", title: "ROI of AI Content Tools" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -19,9 +29,12 @@ const AIContentTools = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">AI Content Creation Tools: Revolutionizing Kenyan Marketing</h1>
             <p className="text-xl text-primary-foreground/80">Discover how AI writing assistants are transforming content creation for businesses across Kenya.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="AI Content Creation Tools: Revolutionizing Kenyan Marketing"
+                description="Discover how AI writing assistants are transforming content creation for businesses across Kenya."
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -31,15 +44,19 @@ const AIContentTools = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <aside className="lg:col-span-1">
+            <TableOfContents items={tocItems} />
+          </aside>
+          
           <article className="lg:col-span-2">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">The Content Creation Challenge</h2>
+              <h2 id="challenge" className="text-3xl font-bold text-primary mt-12 mb-6">The Content Creation Challenge</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Quality content is essential for digital marketing, but creating it consistently is time-consuming. AI content tools solve this by accelerating creation while maintaining quality.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Top AI Content Tools for 2025</h2>
+              <h2 id="tools" className="text-3xl font-bold text-primary mt-12 mb-6">Top AI Content Tools for 2025</h2>
               
               <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">ChatGPT & GPT-4</h3>
               <p className="text-foreground/80 leading-relaxed mb-6">
@@ -51,7 +68,7 @@ const AIContentTools = () => {
                 Specialized for marketing content with templates for ads, landing pages, and sales copy.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Using AI Content Tools Effectively</h2>
+              <h2 id="effective-use" className="text-3xl font-bold text-primary mt-12 mb-6">Using AI Content Tools Effectively</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li>Provide clear, detailed prompts for best results</li>
                 <li>Always review and edit AI-generated content</li>
@@ -59,7 +76,7 @@ const AIContentTools = () => {
                 <li>Maintain your unique brand voice</li>
               </ul>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">ROI of AI Content Tools</h2>
+              <h2 id="roi" className="text-3xl font-bold text-primary mt-12 mb-6">ROI of AI Content Tools</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Most Kenyan businesses report 3-5x faster content creation and 60% cost savings compared to hiring writers.
               </p>
@@ -73,10 +90,14 @@ const AIContentTools = () => {
                   Boost Your Content Game
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="ai-content-tools" category="AI News" />
             </div>
           </article>
 
-          <BlogSidebar currentCategory="AI News" />
+          <aside className="lg:col-span-1">
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>
