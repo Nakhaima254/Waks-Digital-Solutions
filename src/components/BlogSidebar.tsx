@@ -84,7 +84,7 @@ const BlogSidebar = ({ currentCategory }: BlogSidebarProps) => {
           ))}
           
           <Link
-            to="/blog"
+            to="/blog?category=All"
             className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium mt-4"
           >
             View All Blogs
