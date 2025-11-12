@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import mlAnalyticsHero from "@/assets/blog-machine-learning-analytics.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
 
 const MachineLearningAnalytics = () => {
   return (
@@ -73,6 +74,8 @@ const MachineLearningAnalytics = () => {
                   Start Your ML Journey
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="machine-learning-analytics" category="AI News" />
             </div>
           </article>
 

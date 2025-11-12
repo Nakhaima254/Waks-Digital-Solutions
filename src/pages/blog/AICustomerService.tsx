@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import aiServiceHero from "@/assets/blog-ai-customer-service.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
 
 const AICustomerService = () => {
   return (
@@ -74,6 +75,8 @@ const AICustomerService = () => {
                   Get Started Today
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="ai-customer-service" category="AI News" />
             </div>
           </article>
 
