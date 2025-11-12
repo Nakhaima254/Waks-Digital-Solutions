@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import ethicsHero from "@/assets/blog-ai-ethics-privacy.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
 
 const AIEthicsPrivacy = () => {
   return (
@@ -291,6 +292,8 @@ const AIEthicsPrivacy = () => {
                   Get Started Today
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="ai-ethics-privacy" category="AI News" />
             </div>
           </article>
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
 import healthcareHero from "@/assets/blog-ai-healthcare-kenya.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
+import RelatedPosts from "@/components/RelatedPosts";
 
 const AIHealthcareKenya = () => {
   return (
@@ -238,6 +239,8 @@ const AIHealthcareKenya = () => {
                   Get Started Today
                 </Link>
               </div>
+
+              <RelatedPosts currentSlug="ai-healthcare-kenya" category="AI News" />
             </div>
           </article>
 
