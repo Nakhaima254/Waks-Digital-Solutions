@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Import blog images
 import webDesignTrendsImage from "@/assets/blog-web-design-trends.jpg";
@@ -66,9 +66,18 @@ import aiMarketingImage from "@/assets/blog-ai-marketing-automation.jpg";
 import predictiveAnalyticsImage from "@/assets/blog-predictive-analytics-ecommerce.jpg";
 
 const Blog = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const categoryFromUrl = searchParams.get("category") || "All";
+  const [activeCategory, setActiveCategory] = useState(categoryFromUrl);
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 9;
+
+  // Update active category when URL changes
+  useEffect(() => {
+    setActiveCategory(categoryFromUrl);
+    setCurrentPage(1);
+  }, [categoryFromUrl]);
 
   const blogPosts = [
     {
@@ -668,8 +677,7 @@ const Blog = () => {
 
   // Reset to page 1 when category changes
   const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    setCurrentPage(1);
+    navigate(`/blog?category=${encodeURIComponent(category)}`);
   };
 
   return (
