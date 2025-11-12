@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import ethicsHero from "@/assets/blog-ai-ethics-privacy.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
 import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
 
 const AIEthicsPrivacy = () => {
   return (
@@ -20,9 +21,12 @@ const AIEthicsPrivacy = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">AI Ethics and Data Privacy: A Guide for Kenyan Businesses</h1>
             <p className="text-xl text-primary-foreground/80">Navigate the complex landscape of AI ethics and data privacy. Learn how Kenyan businesses can implement AI responsibly while complying with regulations and building customer trust.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="AI Ethics and Data Privacy: A Guide for Kenyan Businesses"
+                description="Navigate the complex landscape of AI ethics and data privacy. Learn how Kenyan businesses can implement AI responsibly."
+              />
+            </div>
           </div>
         </div>
       </div>

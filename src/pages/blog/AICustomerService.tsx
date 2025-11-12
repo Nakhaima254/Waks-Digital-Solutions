@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import aiServiceHero from "@/assets/blog-ai-customer-service.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
 import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
 
 const AICustomerService = () => {
   return (
@@ -20,9 +21,12 @@ const AICustomerService = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">AI-Powered Customer Service Solutions for Kenya</h1>
             <p className="text-xl text-primary-foreground/80">Transform customer experience with intelligent automation that scales support while reducing costs.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="AI-Powered Customer Service Solutions for Kenya"
+                description="Transform customer experience with intelligent automation that scales support while reducing costs."
+              />
+            </div>
           </div>
         </div>
       </div>

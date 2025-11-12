@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
 import healthcareHero from "@/assets/blog-ai-healthcare-kenya.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
 import RelatedPosts from "@/components/RelatedPosts";
+import ShareButtons from "@/components/ShareButtons";
 
 const AIHealthcareKenya = () => {
   return (
@@ -20,9 +21,12 @@ const AIHealthcareKenya = () => {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">AI in Healthcare: Kenya's Digital Health Revolution</h1>
             <p className="text-xl text-primary-foreground/80">Discover how artificial intelligence is transforming healthcare delivery in Kenya, from diagnosis to treatment and patient care.</p>
-            <button className="inline-flex items-center space-x-2 text-primary-foreground/80 hover:text-accent transition-colors">
-              <Share2 className="h-5 w-5" /><span>Share Article</span>
-            </button>
+            <div className="mt-4">
+              <ShareButtons 
+                title="AI in Healthcare: Kenya's Digital Health Revolution"
+                description="Discover how artificial intelligence is transforming healthcare delivery in Kenya, from diagnosis to treatment and patient care."
+              />
+            </div>
           </div>
         </div>
       </div>
