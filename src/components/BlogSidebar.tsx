@@ -99,7 +99,7 @@ const BlogSidebar = ({ currentCategory }: BlogSidebarProps) => {
         <CardContent>
           <div className="flex flex-wrap gap-2">
             {["Latest", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing", "Industry News", "AI News"].map((category) => (
-              <Link key={category} to="/blog">
+              <Link key={category} to={`/blog?category=${encodeURIComponent(category)}`}>
                 <Badge
                   variant={currentCategory === category ? "default" : "secondary"}
                   className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
