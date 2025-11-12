@@ -4,8 +4,16 @@ import mlAnalyticsHero from "@/assets/blog-machine-learning-analytics.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
 import RelatedPosts from "@/components/RelatedPosts";
 import ShareButtons from "@/components/ShareButtons";
+import TableOfContents from "@/components/TableOfContents";
 
 const MachineLearningAnalytics = () => {
+  const tocItems = [
+    { id: "understanding-ml", title: "Understanding Machine Learning for Business" },
+    { id: "key-applications", title: "Key ML Applications in Analytics" },
+    { id: "getting-started", title: "Getting Started with ML Analytics" },
+    { id: "real-world-impact", title: "Real-World Impact" },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       <div className="bg-primary text-primary-foreground py-16">
@@ -36,15 +44,15 @@ const MachineLearningAnalytics = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <article className="lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <article className="lg:col-span-3">
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Understanding Machine Learning for Business</h2>
+              <h2 id="understanding-ml" className="text-3xl font-bold text-primary mt-12 mb-6">Understanding Machine Learning for Business</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Machine learning enables computers to learn from data and make predictions without explicit programming, transforming raw data into actionable insights.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Key ML Applications in Analytics</h2>
+              <h2 id="key-applications" className="text-3xl font-bold text-primary mt-12 mb-6">Key ML Applications in Analytics</h2>
               
               <h3 className="text-2xl font-semibold text-primary mt-8 mb-4">Customer Behavior Prediction</h3>
               <p className="text-foreground/80 leading-relaxed mb-6">
@@ -56,7 +64,7 @@ const MachineLearningAnalytics = () => {
                 ML models analyze historical data, seasonality, and market trends for accurate sales predictions.
               </p>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Getting Started with ML Analytics</h2>
+              <h2 id="getting-started" className="text-3xl font-bold text-primary mt-12 mb-6">Getting Started with ML Analytics</h2>
               <ul className="list-disc pl-6 space-y-2 text-foreground/80 mb-6">
                 <li><strong>Data Collection:</strong> Start gathering clean, structured data</li>
                 <li><strong>Define Objectives:</strong> Identify specific business questions to answer</li>
@@ -64,7 +72,7 @@ const MachineLearningAnalytics = () => {
                 <li><strong>Start Simple:</strong> Begin with basic predictive models</li>
               </ul>
 
-              <h2 className="text-3xl font-bold text-primary mt-12 mb-6">Real-World Impact</h2>
+              <h2 id="real-world-impact" className="text-3xl font-bold text-primary mt-12 mb-6">Real-World Impact</h2>
               <p className="text-foreground/80 leading-relaxed mb-6">
                 Kenyan businesses using ML analytics report 25-40% improvements in forecast accuracy and 30% reduction in customer churn.
               </p>
@@ -83,7 +91,10 @@ const MachineLearningAnalytics = () => {
             </div>
           </article>
 
-          <BlogSidebar currentCategory="AI News" />
+          <aside className="space-y-8">
+            <TableOfContents items={tocItems} />
+            <BlogSidebar currentCategory="AI News" />
+          </aside>
         </div>
       </div>
     </div>
