@@ -84,7 +84,7 @@ const BlogSidebar = ({ currentCategory }: BlogSidebarProps) => {
           ))}
           
           <Link
-            to="/blog"
+            to="/blog?category=All"
             className="block w-full text-center py-2 px-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium mt-4"
           >
             View All Blogs
@@ -99,7 +99,7 @@ const BlogSidebar = ({ currentCategory }: BlogSidebarProps) => {
         <CardContent>
           <div className="flex flex-wrap gap-2">
             {["Latest", "Design", "SEO", "E-commerce", "Development", "Mobile", "Marketing", "Industry News", "AI News"].map((category) => (
-              <Link key={category} to="/blog">
+              <Link key={category} to={`/blog?category=${encodeURIComponent(category)}`}>
                 <Badge
                   variant={currentCategory === category ? "default" : "secondary"}
                   className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
