@@ -15,12 +15,18 @@ import {
   Search
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTypingEffect } from "@/hooks/useTypingEffect";
 import heroImage from "@/assets/hero-image.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
 
 const Home = () => {
+  const { displayedText } = useTypingEffect({ 
+    text: "Grow Your Business", 
+    speed: 100, 
+    delay: 500 
+  });
   const services = [
     {
       icon: Code,
@@ -102,12 +108,15 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-4 animate-fade-in">
-                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-scale-in">
+                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-float">
                   Your Digital Growth Partner
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   We Build Websites That 
-                  <span className="block gradient-text">Grow Your Business</span>
+                  <span className="block gradient-text">
+                    {displayedText}
+                    <span className="animate-pulse">|</span>
+                  </span>
                 </h1>
                 <p className="text-xl text-white/90 leading-relaxed max-w-xl">
                   Professional web development and design services for small to medium businesses in Nairobi. 
