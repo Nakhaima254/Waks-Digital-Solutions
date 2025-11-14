@@ -101,8 +101,8 @@ const Home = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
-              <div className="space-y-4">
-                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
+              <div className="space-y-4 animate-fade-in">
+                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-scale-in">
                   Your Digital Growth Partner
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -115,25 +115,25 @@ const Home = () => {
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="lg" className="sm:h-14 sm:px-8 sm:py-4 sm:text-lg" asChild>
+              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <Button variant="hero" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
                   <Link to="/contact">Start Your Project</Link>
                 </Button>
-                <Button variant="hero-outline" size="lg" className="sm:h-14 sm:px-8 sm:py-4 sm:text-lg" asChild>
+                <Button variant="hero-outline" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
                   <Link to="/portfolio">View Our Work</Link>
                 </Button>
               </div>
 
-              <div className="flex items-center space-x-8 pt-4">
-                <div className="text-center">
+              <div className="flex items-center space-x-8 pt-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <div className="text-center hover-scale">
                   <div className="text-2xl font-bold text-accent">5+</div>
                   <div className="text-sm text-white/80">Projects Completed</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center hover-scale">
                   <div className="text-2xl font-bold text-accent">100%</div>
                   <div className="text-sm text-white/80">Client Satisfaction</div>
                 </div>
-                <div className="text-center">
+                <div className="text-center hover-scale">
                   <div className="text-2xl font-bold text-accent">3+</div>
                   <div className="text-sm text-white/80">Years Experience</div>
                 </div>
