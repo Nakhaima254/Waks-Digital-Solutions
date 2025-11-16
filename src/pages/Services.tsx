@@ -157,12 +157,12 @@ const Services = () => {
 
           <div className="space-y-16">
             {mainServices.map((service, index) => (
-              <Card key={index} className="card-elevated overflow-hidden">
+              <Card key={index} className="card-elevated overflow-hidden group">
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   <div className="space-y-6">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center">
-                        <service.icon className="h-8 w-8 text-white" />
+                      <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
+                        <service.icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform duration-300" />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-primary">{service.title}</h3>
@@ -230,10 +230,10 @@ const Services = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {additionalServices.map((service, index) => (
-              <Card key={index} className="card-elevated p-6 text-center hover:scale-105 transition-all duration-300">
+              <Card key={index} className="card-elevated p-6 text-center hover:scale-105 transition-all duration-300 group">
                 <div className="space-y-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center mx-auto">
-                    <service.icon className="h-6 w-6 text-white" />
+                  <div className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
+                    <service.icon className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <h3 className="text-lg font-semibold text-primary">{service.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
