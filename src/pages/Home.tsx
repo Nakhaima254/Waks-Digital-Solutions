@@ -182,14 +182,14 @@ const Home = () => {
             {services.map((service, index) => (
               <Card 
                 key={index} 
-                className={`card-elevated p-8 hover:scale-105 transition-all duration-300 ${
+                className={`card-elevated p-8 hover:scale-105 transition-all duration-300 group ${
                   servicesReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="space-y-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center">
-                    <service.icon className="h-8 w-8 text-white" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
+                    <service.icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="space-y-3">
                     <h3 className="text-xl font-semibold text-primary">{service.title}</h3>
