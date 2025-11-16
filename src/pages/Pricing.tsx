@@ -253,7 +253,7 @@ const Pricing = () => {
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact">Start Your Project</Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-primary" asChild>
+            <Button variant="outline" size="lg" className="text-black dark:text-white border-white hover:bg-accent hover:text-white hover:border-accent" asChild>
               <Link to="/portfolio">View Our Work</Link>
             </Button>
           </div>
