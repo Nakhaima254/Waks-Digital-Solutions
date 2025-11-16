@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import heroImage from "@/assets/hero-image.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
@@ -27,6 +28,11 @@ const Home = () => {
     speed: 100, 
     delay: 500 
   });
+  
+  const servicesReveal = useScrollReveal();
+  const portfolioReveal = useScrollReveal();
+  const testimonialsReveal = useScrollReveal();
+  
   const services = [
     {
       icon: Code,
@@ -162,9 +168,18 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div 
+            ref={servicesReveal.ref}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {services.map((service, index) => (
-              <Card key={index} className="card-elevated p-8 hover:scale-105 transition-all duration-300">
+              <Card 
+                key={index} 
+                className={`card-elevated p-8 hover:scale-105 transition-all duration-300 ${
+                  servicesReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="space-y-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center">
                     <service.icon className="h-8 w-8 text-white" />
@@ -206,9 +221,18 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div 
+            ref={portfolioReveal.ref}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {portfolioProjects.map((project, index) => (
-              <Card key={index} className="card-elevated overflow-hidden group hover:scale-105 transition-all duration-300">
+              <Card 
+                key={index} 
+                className={`card-elevated overflow-hidden group hover:scale-105 transition-all duration-300 ${
+                  portfolioReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
                 <div className="aspect-video overflow-hidden relative">
                   <img 
                     src={project.image} 
@@ -257,9 +281,18 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div 
+            ref={testimonialsReveal.ref}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="card-elevated p-6 hover:scale-105 transition-all duration-300">
+              <Card 
+                key={index} 
+                className={`card-elevated p-6 hover:scale-105 transition-all duration-300 ${
+                  testimonialsReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="space-y-4">
                   <div className="flex space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
