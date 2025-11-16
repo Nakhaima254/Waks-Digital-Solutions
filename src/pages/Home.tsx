@@ -127,7 +127,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-4 animate-fade-in">
-                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground dark:bg-foreground/20 dark:text-foreground border-accent/30 dark:border-foreground/30 animate-float">
+                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-float">
                   Your Digital Growth Partner
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -158,19 +158,19 @@ const Home = () => {
                 style={{ animationDelay: '0.4s' }}
               >
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent dark:text-foreground">
+                  <div className="text-2xl font-bold text-accent">
                     {projectsCount}+
                   </div>
                   <div className="text-sm text-white/80">Projects Completed</div>
                 </div>
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent dark:text-foreground">
+                  <div className="text-2xl font-bold text-accent">
                     {satisfactionCount}%
                   </div>
                   <div className="text-sm text-white/80">Client Satisfaction</div>
                 </div>
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent dark:text-foreground">
+                  <div className="text-2xl font-bold text-accent">
                     {experienceCount}+
                   </div>
                   <div className="text-sm text-white/80">Years Experience</div>
