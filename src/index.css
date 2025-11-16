@@ -156,7 +156,7 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
 
   /* Hero gradient text effect */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-primary dark:from-foreground dark:via-foreground dark:to-foreground bg-clip-text text-transparent;
   }
 
   /* Professional button variants */

@@ -204,8 +204,8 @@ const Home = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="space-y-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
-                    <service.icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover dark:from-foreground dark:to-foreground rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50 dark:group-hover:shadow-foreground/50">
+                    <service.icon className="h-8 w-8 text-white dark:text-background group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div className="space-y-3">
                     <h3 className="text-xl font-semibold text-primary">{service.title}</h3>
