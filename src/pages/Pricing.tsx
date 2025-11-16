@@ -58,6 +58,25 @@ const Pricing = () => {
       ],
       popular: false,
       deliveryTime: "3-4 weeks"
+    },
+    {
+      name: "Custom System Design",
+      price: "From KSH 100,000",
+      description: "Enterprise solution for complex business systems",
+      features: [
+        "Custom business logic implementation",
+        "Database architecture & design",
+        "API development & integration",
+        "Third-party service integration",
+        "Automated workflows & processes",
+        "Scalable system architecture",
+        "12 months free maintenance",
+        "Documentation & training",
+        "Priority support & updates",
+        "Performance optimization"
+      ],
+      popular: false,
+      deliveryTime: "4-12 weeks"
     }
   ];
 
@@ -93,7 +112,7 @@ const Pricing = () => {
       {/* Pricing Cards */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {plans.map((plan, index) => (
               <Card 
                 key={plan.name} 
