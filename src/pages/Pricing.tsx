@@ -97,7 +97,7 @@ const Pricing = () => {
             {plans.map((plan, index) => (
               <Card 
                 key={plan.name} 
-                className={`relative ${plan.popular ? 'border-accent shadow-elegant scale-105' : ''}`}
+                className={`relative group hover:scale-105 transition-all duration-300 ${plan.popular ? 'border-accent shadow-elegant scale-105' : ''}`}
               >
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -125,7 +125,7 @@ const Pricing = () => {
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                        <Check className="w-5 h-5 text-accent mt-0.5 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" />
                         <span className="text-sm">{feature}</span>
                       </li>
                     ))}
@@ -159,23 +159,23 @@ const Pricing = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center p-6">
-              <h3 className="font-semibold mb-2">Logo Design</h3>
+            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Logo Design</h3>
               <p className="text-muted-foreground text-sm mb-3">Professional logo design</p>
               <p className="font-bold text-accent">KSH 8,000</p>
             </Card>
-            <Card className="text-center p-6">
-              <h3 className="font-semibold mb-2">Extra Page</h3>
+            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Extra Page</h3>
               <p className="text-muted-foreground text-sm mb-3">Additional custom page</p>
               <p className="font-bold text-accent">KSH 3,000</p>
             </Card>
-            <Card className="text-center p-6">
-              <h3 className="font-semibold mb-2">Monthly Maintenance</h3>
+            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Monthly Maintenance</h3>
               <p className="text-muted-foreground text-sm mb-3">Ongoing updates & support</p>
               <p className="font-bold text-accent">KSH 5,000</p>
             </Card>
-            <Card className="text-center p-6">
-              <h3 className="font-semibold mb-2">Custom Feature</h3>
+            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Custom Feature</h3>
               <p className="text-muted-foreground text-sm mb-3">Bespoke functionality</p>
               <p className="font-bold text-accent">Quote on request</p>
             </Card>
