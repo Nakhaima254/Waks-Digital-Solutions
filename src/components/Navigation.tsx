@@ -2,12 +2,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "@/assets/Waks Tech-03.svg";
+import { useTheme } from "next-themes";
+import LogoLight from "@/assets/Waks Tech-03.svg";
+import LogoDark from "/Waks Tech-04.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { theme } = useTheme();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -27,7 +30,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img
-              src={Logo}
+              src={theme === "dark" ? LogoDark : LogoLight}
               alt="Waks Digital Partner Logo"
               className="h-20 w-auto"
               style={{ maxWidth: 350 }}
