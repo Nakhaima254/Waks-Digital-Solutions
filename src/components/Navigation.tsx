@@ -43,8 +43,8 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isActive(item.path) ? "text-accent" : "text-foreground"
+                className={`text-sm font-medium transition-colors hover:text-accent dark:hover:text-foreground ${
+                  isActive(item.path) ? "text-accent dark:text-foreground" : "text-foreground"
                 }`}
               >
                 {item.name}
@@ -79,8 +79,8 @@ const Navigation = () => {
                   to={item.path}
                   className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                     isActive(item.path)
-                      ? "text-accent bg-accent-light"
-                      : "text-foreground hover:text-accent hover:bg-muted"
+                      ? "text-accent dark:text-foreground bg-accent-light dark:bg-muted"
+                      : "text-foreground hover:text-accent dark:hover:text-foreground hover:bg-muted"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
