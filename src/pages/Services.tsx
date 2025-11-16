@@ -12,7 +12,8 @@ import {
   ArrowRight,
   Layers,
   Shield,
-  Clock
+  Clock,
+  Network
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
@@ -69,6 +70,23 @@ const Services = () => {
       startingPrice: "From KES 75,000",
       timeline: "3-8 weeks",
       ideal: "Businesses ready to sell products or services online"
+    },
+    {
+      icon: Network,
+      title: "Custom System Design",
+      description: "Comprehensive system architecture and design solutions for complex business operations. Build scalable, integrated systems that streamline your workflows.",
+      benefits: [
+        "Custom business logic implementation",
+        "Database architecture and design",
+        "API development and integration",
+        "Third-party service integration",
+        "Automated workflows and processes",
+        "Scalable system architecture"
+      ],
+      technologies: ["System Architecture", "API Design", "Database Design", "Microservices"],
+      startingPrice: "From KES 100,000",
+      timeline: "4-12 weeks",
+      ideal: "Businesses needing custom software solutions and automation"
     }
   ];
 

@@ -12,7 +12,8 @@ import {
   CheckCircle2,
   Globe,
   Smartphone,
-  Search
+  Search,
+  Network
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
@@ -51,6 +52,12 @@ const Home = () => {
       title: "E-commerce Solutions",
       description: "Complete online stores that help you sell your products and services to customers worldwide.",
       features: ["Secure Payments", "Inventory Management", "Customer Analytics"]
+    },
+    {
+      icon: Network,
+      title: "Custom System Design",
+      description: "Scalable system architecture and design solutions that streamline your business operations and workflows.",
+      features: ["API Development", "Database Design", "Process Automation"]
     }
   ];
 
@@ -170,7 +177,7 @@ const Home = () => {
 
           <div 
             ref={servicesReveal.ref}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
             {services.map((service, index) => (
               <Card 
