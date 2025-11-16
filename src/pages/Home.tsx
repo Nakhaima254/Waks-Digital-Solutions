@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useCountUp } from "@/hooks/useCountUp";
 import heroImage from "@/assets/hero-image.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
@@ -33,6 +34,11 @@ const Home = () => {
   const servicesReveal = useScrollReveal();
   const portfolioReveal = useScrollReveal();
   const testimonialsReveal = useScrollReveal();
+  const statsReveal = useScrollReveal({ threshold: 0.5 });
+  
+  const projectsCount = useCountUp({ end: 5, duration: 2000, isActive: statsReveal.isVisible });
+  const satisfactionCount = useCountUp({ end: 100, duration: 2000, isActive: statsReveal.isVisible });
+  const experienceCount = useCountUp({ end: 3, duration: 2000, isActive: statsReveal.isVisible });
   
   const services = [
     {
@@ -146,17 +152,27 @@ const Home = () => {
                 </Button>
               </div>
 
-              <div className="flex items-center space-x-8 pt-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div 
+                ref={statsReveal.ref}
+                className="flex items-center space-x-8 pt-4 animate-fade-in" 
+                style={{ animationDelay: '0.4s' }}
+              >
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">5+</div>
+                  <div className="text-2xl font-bold text-accent">
+                    {projectsCount}+
+                  </div>
                   <div className="text-sm text-white/80">Projects Completed</div>
                 </div>
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">100%</div>
+                  <div className="text-2xl font-bold text-accent">
+                    {satisfactionCount}%
+                  </div>
                   <div className="text-sm text-white/80">Client Satisfaction</div>
                 </div>
                 <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">3+</div>
+                  <div className="text-2xl font-bold text-accent">
+                    {experienceCount}+
+                  </div>
                   <div className="text-sm text-white/80">Years Experience</div>
                 </div>
               </div>
