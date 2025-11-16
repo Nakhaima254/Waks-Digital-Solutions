@@ -117,7 +117,7 @@ const Terms = () => {
             </p>
             <div className="mt-4 p-4 bg-muted rounded-lg">
               <p><strong>Email:</strong> legal@waksdigital.co.ke</p>
-              <p><strong>Phone:</strong> +254 700 123 456</p>
+              <p><strong>Phone:</strong> +254 718 098 165</p>
               <p><strong>Address:</strong> Nairobi, Kenya</p>
             </div>
           </section>
