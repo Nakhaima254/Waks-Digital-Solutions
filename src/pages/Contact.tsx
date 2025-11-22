@@ -94,6 +94,8 @@ ${data.message}
     });
     
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    form.reset();
   };
 
   const scrollToForm = () => {
