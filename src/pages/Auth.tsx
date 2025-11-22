@@ -104,7 +104,15 @@ export default function Auth() {
                 </div>
                 
                 <div>
-                  <Label htmlFor="login-password">Password</Label>
+                  <div className="flex justify-between items-center mb-2">
+                    <Label htmlFor="login-password">Password</Label>
+                    <Link 
+                      to="/forgot-password" 
+                      className="text-sm text-primary hover:underline"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
                   <Input
                     id="login-password"
                     type="password"
