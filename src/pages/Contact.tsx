@@ -87,12 +87,13 @@ Message:
 ${data.message}
     `.trim();
     
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
     toast({
-      title: "Opening email client",
-      description: "Your message is ready to send!",
+      title: "✓ Message Ready to Send!",
+      description: "Your email client will open with your message pre-filled. We'll respond within 24 hours.",
+      duration: 5000,
     });
+    
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const scrollToForm = () => {
