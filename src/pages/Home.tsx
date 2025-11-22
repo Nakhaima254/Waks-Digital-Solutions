@@ -23,6 +23,8 @@ import heroImage from "@/assets/hero-image.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const Home = () => {
   const { displayedText } = useTypingEffect({ 
@@ -108,6 +110,18 @@ const Home = () => {
       name: "Truechoice Merchants",
       role: "CEO, Truechoice Merchants Limited",
       content: "The corporate website they built for us perfectly represents our logistics expertise. We've seen a 400% increase in service inquiries since launch!",
+      rating: 5
+    },
+    {
+      name: "Baya Cleaning Services",
+      role: "Owner, Baya Cleaning Services",
+      content: "Our cleaning business has grown tremendously since launching our website with Waks Digital. The online booking system makes it easy for clients to schedule services, and we've seen a 250% increase in bookings!",
+      rating: 5
+    },
+    {
+      name: "Royal Digital School LMS",
+      role: "Director, Royal Digital School",
+      content: "The learning management system they developed for us is outstanding! Our teachers and students love how easy it is to use. Course enrollment has doubled, and parent satisfaction has never been higher.",
       rating: 5
     }
   ];
@@ -304,32 +318,45 @@ const Home = () => {
             </p>
           </div>
 
-          <div 
-            ref={testimonialsReveal.ref}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={index} 
-                className={`card-elevated p-6 hover:scale-105 transition-all duration-300 ${
-                  testimonialsReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="space-y-4">
-                  <div className="flex space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-accent text-accent dark:fill-foreground dark:text-foreground" />
-                    ))}
-                  </div>
-                  <p className="text-foreground leading-relaxed italic">"{testimonial.content}"</p>
-                  <div className="space-y-1">
-                    <div className="font-semibold text-primary">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                  </div>
-                </div>
-              </Card>
-            ))}
+          <div ref={testimonialsReveal.ref}>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card 
+                      className={`card-elevated p-6 hover:scale-105 transition-all duration-300 h-full ${
+                        testimonialsReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
+                      }`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className="space-y-4">
+                        <div className="flex space-x-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 fill-accent text-accent dark:fill-foreground dark:text-foreground" />
+                          ))}
+                        </div>
+                        <p className="text-foreground leading-relaxed italic">"{testimonial.content}"</p>
+                        <div className="space-y-1">
+                          <div className="font-semibold text-primary">{testimonial.name}</div>
+                          <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                        </div>
+                      </div>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </section>
