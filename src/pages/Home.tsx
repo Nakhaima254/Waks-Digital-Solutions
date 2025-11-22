@@ -25,8 +25,21 @@ import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Please enter a valid email address").max(255),
+  phone: z.string().min(10, "Please enter a valid phone number").max(20),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000),
+});
 
 const Home = () => {
+  const { toast } = useToast();
   const { displayedText } = useTypingEffect({ 
     text: "Grow Your Business", 
     speed: 100, 
@@ -41,6 +54,32 @@ const Home = () => {
   const projectsCount = useCountUp({ end: 5, duration: 2000, isActive: statsReveal.isVisible });
   const satisfactionCount = useCountUp({ end: 100, duration: 2000, isActive: statsReveal.isVisible });
   const experienceCount = useCountUp({ end: 3, duration: 2000, isActive: statsReveal.isVisible });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const email = "info@waksdigital.co.ke";
+    const subject = `New Contact from ${values.name}`;
+    const body = `Name: ${values.name}%0D%0AEmail: ${values.email}%0D%0APhone: ${values.phone}%0D%0A%0D%0AMessage:%0D%0A${values.message}`;
+    
+    toast({
+      title: "✓ Message Ready to Send!",
+      description: "Your email client will open with your message pre-filled. We'll respond within 24 hours.",
+      duration: 5000,
+    });
+    
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    form.reset();
+  };
   
   const services = [
     {
@@ -372,33 +411,71 @@ const Home = () => {
           </div>
 
           <Card className="card-elevated p-8">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground">Name</label>
-                  <Input id="name" placeholder="Your full name" />
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your full name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="your@email.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
-                  <Input id="email" type="email" placeholder="your@email.com" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium text-foreground">Phone Number</label>
-                <Input id="phone" placeholder="+254 700 123 456" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details</label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell us about your project, timeline, and budget..."
-                  rows={5}
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input placeholder="+254 700 123 456" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <Button variant="hero" size="lg" className="w-full">
-                Send Message <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Details</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="Tell us about your project, timeline, and budget..."
+                          rows={5}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" variant="hero" size="lg" className="w-full">
+                  Send Message <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
+            </Form>
           </Card>
         </div>
       </section>
