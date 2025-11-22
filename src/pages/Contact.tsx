@@ -3,6 +3,12 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   Mail, 
   Phone, 
@@ -18,6 +24,33 @@ import {
 import contactHeroImage from "@/assets/contact-hero.jpg";
 
 const Contact = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const email = 'info@waksdigital.co.ke';
+    const subject = `New Contact Form: ${formData.get('projectType')}`;
+    const body = `
+Name: ${formData.get('firstName')} ${formData.get('lastName')}
+Email: ${formData.get('email')}
+Phone: ${formData.get('phone')}
+Company: ${formData.get('company')}
+Project Type: ${formData.get('projectType')}
+Budget: ${formData.get('budget')}
+
+Message:
+${formData.get('message')}
+    `.trim();
+    
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const scrollToForm = () => {
+    const formSection = document.getElementById('contact-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const contactMethods = [
     {
       icon: Mail,
@@ -145,7 +178,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form & Info */}
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12" id="contact-form">
             {/* Contact Form */}
             <Card className="card-elevated p-8">
               <div className="space-y-6">
@@ -156,37 +189,38 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="firstName" className="text-sm font-medium text-foreground">First Name *</label>
-                      <Input id="firstName" placeholder="John" required />
+                      <Input id="firstName" name="firstName" placeholder="John" required />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="lastName" className="text-sm font-medium text-foreground">Last Name *</label>
-                      <Input id="lastName" placeholder="Doe" required />
+                      <Input id="lastName" name="lastName" placeholder="Doe" required />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-foreground">Email Address *</label>
-                    <Input id="email" type="email" placeholder="john@example.com" required />
+                    <Input id="email" name="email" type="email" placeholder="john@example.com" required />
                   </div>
                   
                   <div className="space-y-2">
                     <label htmlFor="phone" className="text-sm font-medium text-foreground">Phone Number</label>
-                    <Input id="phone" placeholder="+254 700 123 456" />
+                    <Input id="phone" name="phone" placeholder="+254 700 123 456" />
                   </div>
 
                   <div className="space-y-2">
                     <label htmlFor="company" className="text-sm font-medium text-foreground">Company/Business Name</label>
-                    <Input id="company" placeholder="Your business name" />
+                    <Input id="company" name="company" placeholder="Your business name" />
                   </div>
 
                   <div className="space-y-2">
                     <label htmlFor="projectType" className="text-sm font-medium text-foreground">Project Type</label>
                     <select 
                       id="projectType"
+                      name="projectType"
                       className="w-full h-10 px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <option value="">Select project type</option>
@@ -203,6 +237,7 @@ const Contact = () => {
                     <label htmlFor="budget" className="text-sm font-medium text-foreground">Budget Range</label>
                     <select 
                       id="budget"
+                      name="budget"
                       className="w-full h-10 px-3 py-2 border border-input bg-background rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <option value="">Select budget range</option>
@@ -217,14 +252,15 @@ const Contact = () => {
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium text-foreground">Project Details *</label>
                     <Textarea 
-                      id="message" 
+                      id="message"
+                      name="message" 
                       placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
                       rows={6}
                       required
                     />
                   </div>
                   
-                  <Button variant="hero" size="lg" className="w-full">
+                  <Button type="submit" variant="hero" size="lg" className="w-full">
                     Send Message <Send className="ml-2 h-4 w-4" />
                   </Button>
                 </form>
@@ -305,22 +341,24 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <Card key={index} className="card-elevated p-6">
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-primary">{faq.question}</h3>
+              <AccordionItem key={index} value={`item-${index}`} className="card-elevated border-0 rounded-lg overflow-hidden">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-accent/5 transition-colors">
+                  <span className="text-lg font-semibold text-primary text-left">{faq.question}</span>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
                   <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
-                </div>
-              </Card>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
 
           <div className="text-center mt-12">
             <p className="text-muted-foreground mb-4">
               Have a different question? We're here to help.
             </p>
-            <Button variant="outline" size="lg">
+            <Button variant="outline" size="lg" onClick={scrollToForm}>
               <Mail className="mr-2 h-4 w-4" />
               Ask Your Question
             </Button>
