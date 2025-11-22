@@ -1,5 +1,5 @@
 const WhatsAppFloater = () => {
-  const phoneNumber = "254723014032";
+  const phoneNumber = "254718098165";
   const message = "Hello! I'm interested in your services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
