@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogOut, Shield } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
-import { useAuth } from "@/contexts/AuthContext";
 import LogoLight from "@/assets/Waks Tech-03.svg";
 import LogoDark from "/Waks Tech-04.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -12,7 +11,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
-  const { user, isAdmin, signOut } = useAuth();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -53,32 +51,9 @@ const Navigation = () => {
               </Link>
             ))}
             <ThemeToggle />
-            
-            {user ? (
-              <>
-                {isAdmin && (
-                  <Button variant="outline" size="sm" asChild>
-                    <Link to="/admin/dashboard">
-                      <Shield className="w-4 h-4 mr-2" />
-                      Admin
-                    </Link>
-                  </Button>
-                )}
-                <Button variant="outline" size="sm" onClick={() => signOut()}>
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button variant="outline" size="sm" asChild>
-                  <Link to="/auth">Login</Link>
-                </Button>
-                <Button variant="hero" size="sm" asChild>
-                  <Link to="/contact">Get Started</Link>
-                </Button>
-              </>
-            )}
+            <Button variant="hero" size="sm" asChild>
+              <Link to="/contact">Get Started</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -113,31 +88,9 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="px-3 py-2 space-y-2">
-                {user ? (
-                  <>
-                    {isAdmin && (
-                      <Button variant="outline" size="sm" className="w-full" asChild>
-                        <Link to="/admin/dashboard">
-                          <Shield className="w-4 h-4 mr-2" />
-                          Admin
-                        </Link>
-                      </Button>
-                    )}
-                    <Button variant="outline" size="sm" className="w-full" onClick={() => signOut()}>
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button variant="outline" size="sm" className="w-full" asChild>
-                      <Link to="/auth">Login</Link>
-                    </Button>
-                    <Button variant="hero" size="sm" className="w-full" asChild>
-                      <Link to="/contact">Get Started</Link>
-                    </Button>
-                  </>
-                )}
+                <Button variant="hero" size="sm" className="w-full" asChild>
+                  <Link to="/contact">Get Started</Link>
+                </Button>
               </div>
             </div>
           </div>
