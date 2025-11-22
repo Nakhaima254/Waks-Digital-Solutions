@@ -3,8 +3,38 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
 
 const Pricing = () => {
+  const [currency, setCurrency] = useState<string>("KSH");
+
+  // Exchange rates (approximate as of 2024)
+  const exchangeRates: Record<string, { rate: number; symbol: string }> = {
+    KSH: { rate: 1, symbol: "KSH" },
+    USD: { rate: 0.0077, symbol: "$" },
+    EUR: { rate: 0.0071, symbol: "€" },
+    GBP: { rate: 0.0061, symbol: "£" },
+  };
+
+  // Convert price from KSH to selected currency
+  const convertPrice = (kshPrice: string): string => {
+    // Extract numeric value from price string
+    const numericValue = parseInt(kshPrice.replace(/[^0-9]/g, ''));
+    
+    if (isNaN(numericValue)) return kshPrice;
+    
+    const converted = numericValue * exchangeRates[currency].rate;
+    const symbol = exchangeRates[currency].symbol;
+    
+    // Format based on currency
+    if (currency === "KSH") {
+      return `${symbol} ${numericValue.toLocaleString()}`;
+    } else {
+      return `${symbol}${Math.round(converted).toLocaleString()}`;
+    }
+  };
+
   const plans = [
     {
       name: "Starter",
@@ -92,6 +122,25 @@ const Pricing = () => {
             Choose the perfect website package for your business needs. All plans include responsive design, 
             professional development, and ongoing support to help your business grow online.
           </p>
+          
+          {/* Currency Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="flex items-center gap-3 bg-card p-4 rounded-lg shadow-md">
+              <span className="text-sm font-medium text-foreground">View prices in:</span>
+              <Select value={currency} onValueChange={setCurrency}>
+                <SelectTrigger className="w-[140px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="KSH">🇰🇪 KSH</SelectItem>
+                  <SelectItem value="USD">🇺🇸 USD</SelectItem>
+                  <SelectItem value="EUR">🇪🇺 EUR</SelectItem>
+                  <SelectItem value="GBP">🇬🇧 GBP</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Check className="w-4 h-4 text-accent" />
@@ -130,7 +179,7 @@ const Pricing = () => {
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
                   <div className="mt-4">
-                    <span className="text-4xl font-bold text-accent">{plan.price}</span>
+                    <span className="text-4xl font-bold text-accent">{convertPrice(plan.price)}</span>
                   </div>
                   <p className="text-muted-foreground mt-2">{plan.description}</p>
                   <div className="mt-2">
@@ -181,17 +230,17 @@ const Pricing = () => {
             <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
               <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Logo Design</h3>
               <p className="text-muted-foreground text-sm mb-3">Professional logo design</p>
-              <p className="font-bold text-accent">KSH 8,000</p>
+              <p className="font-bold text-accent">{convertPrice("KSH 8,000")}</p>
             </Card>
             <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
               <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Extra Page</h3>
               <p className="text-muted-foreground text-sm mb-3">Additional custom page</p>
-              <p className="font-bold text-accent">KSH 3,000</p>
+              <p className="font-bold text-accent">{convertPrice("KSH 3,000")}</p>
             </Card>
             <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
               <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Monthly Maintenance</h3>
               <p className="text-muted-foreground text-sm mb-3">Ongoing updates & support</p>
-              <p className="font-bold text-accent">KSH 5,000</p>
+              <p className="font-bold text-accent">{convertPrice("KSH 5,000")}</p>
             </Card>
             <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
               <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Custom Feature</h3>
