@@ -92,6 +92,23 @@ const Ticket = () => {
 
       if (dbError) throw dbError;
 
+      // Send welcome email notification
+      supabase.functions.invoke('send-ticket-status-update', {
+        body: {
+          email: data.email,
+          name: data.name,
+          ticketNumber: ticketNumber,
+          subject: data.subject,
+          oldStatus: 'new',
+          newStatus: 'open',
+          dashboardUrl: `${window.location.origin}/ticket-dashboard`,
+        },
+      }).then(({ error: emailError }) => {
+        if (emailError) {
+          console.error('Failed to send ticket confirmation email:', emailError);
+        }
+      });
+
       const emailBody = `
 New Support Ticket Submission
 

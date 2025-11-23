@@ -188,6 +188,18 @@ export default function TicketsDashboard() {
 
   const updateTicketStatus = async (ticketId: string, newStatus: string) => {
     try {
+      // Get the current ticket data first
+      const { data: ticket, error: fetchError } = await supabase
+        .from('tickets')
+        .select('*')
+        .eq('id', ticketId)
+        .single();
+
+      if (fetchError) throw fetchError;
+
+      const oldStatus = ticket.status;
+
+      // Update the status
       const { error } = await supabase
         .from('tickets')
         .update({ status: newStatus })
@@ -195,9 +207,26 @@ export default function TicketsDashboard() {
 
       if (error) throw error;
 
+      // Send email notification in background
+      supabase.functions.invoke('send-ticket-status-update', {
+        body: {
+          email: ticket.email,
+          name: ticket.name,
+          ticketNumber: ticket.ticket_number,
+          subject: ticket.subject,
+          oldStatus,
+          newStatus,
+          dashboardUrl: `${window.location.origin}/ticket-dashboard`,
+        },
+      }).then(({ error: emailError }) => {
+        if (emailError) {
+          console.error('Failed to send status update email:', emailError);
+        }
+      });
+
       toast({
         title: 'Success',
-        description: 'Ticket status updated successfully',
+        description: 'Ticket status updated and notification sent',
       });
 
       fetchTickets();
