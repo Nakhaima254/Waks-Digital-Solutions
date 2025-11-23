@@ -13,6 +13,8 @@ import Contact from "./pages/Contact";
 import Ticket from "./pages/Ticket";
 import TicketDashboard from "./pages/TicketDashboard";
 import Auth from "./pages/Auth";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -112,6 +114,8 @@ const App = () => (
             <Route path="ticket" element={<Ticket />} />
             <Route path="ticket-dashboard" element={<TicketDashboard />} />
             <Route path="auth" element={<Auth />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
