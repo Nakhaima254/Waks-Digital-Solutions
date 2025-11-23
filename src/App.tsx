@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Ticket from "./pages/Ticket";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -104,6 +105,7 @@ const App = () => (
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="ticket" element={<Ticket />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
