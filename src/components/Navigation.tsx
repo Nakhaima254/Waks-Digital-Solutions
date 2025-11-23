@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
 import LogoDark from "/Waks Tech-04.png";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -53,6 +55,16 @@ const Navigation = () => {
               </Link>
             ))}
             <ThemeToggle />
+            {user ? (
+              <Button variant="ghost" size="sm" onClick={signOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            ) : (
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/auth">Login</Link>
+              </Button>
+            )}
             <Button variant="hero" size="sm" asChild>
               <Link to="/contact">Get Started</Link>
             </Button>
@@ -90,6 +102,16 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="px-3 py-2 space-y-2">
+                {user ? (
+                  <Button variant="ghost" size="sm" className="w-full" onClick={signOut}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                ) : (
+                  <Button variant="ghost" size="sm" className="w-full" asChild>
+                    <Link to="/auth">Login</Link>
+                  </Button>
+                )}
                 <Button variant="hero" size="sm" className="w-full" asChild>
                   <Link to="/contact">Get Started</Link>
                 </Button>
