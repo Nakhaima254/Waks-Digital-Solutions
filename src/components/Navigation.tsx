@@ -12,7 +12,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
-  const { user, signOut } = useAuth();
+  const { user, signOut, isAdmin } = useAuth();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -25,7 +25,13 @@ const Navigation = () => {
     { name: "Ticket", path: "/ticket" },
   ];
 
+  const adminNavItems = [
+    { name: "Admin Dashboard", path: "/admin/tickets" },
+  ];
+
   const isActive = (path: string) => location.pathname === path;
+
+  const allNavItems = isAdmin ? [...navItems, ...adminNavItems] : navItems;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -43,7 +49,7 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
@@ -87,7 +93,7 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
-              {navItems.map((item) => (
+              {allNavItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}

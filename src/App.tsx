@@ -88,6 +88,7 @@ import AIEthicsPrivacy from "./pages/blog/AIEthicsPrivacy";
 import AIMarketingAutomation from "./pages/blog/AIMarketingAutomation";
 import PredictiveAnalyticsEcommerce from "./pages/blog/PredictiveAnalyticsEcommerce";
 import FAQ from "./pages/FAQ";
+import TicketsDashboard from "./pages/admin/TicketsDashboard";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
@@ -116,6 +117,7 @@ const App = () => (
             <Route path="auth" element={<Auth />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="reset-password" element={<ResetPassword />} />
+            <Route path="admin/tickets" element={<TicketsDashboard />} />
             <Route path="faq" element={<FAQ />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
