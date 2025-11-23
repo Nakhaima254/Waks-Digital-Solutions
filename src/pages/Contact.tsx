@@ -49,6 +49,7 @@ const formSchema = z.object({
   phone: z.string().trim().max(20, "Phone number must be less than 20 characters").optional(),
   company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
   projectType: z.string().min(1, "Please select a project type"),
+  ticket: z.string().trim().max(100, "Ticket must be less than 100 characters").optional(),
   budget: z.string().optional(),
   message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000, "Message must be less than 2000 characters"),
 });
@@ -67,6 +68,7 @@ const Contact = () => {
       phone: "",
       company: "",
       projectType: "",
+      ticket: "",
       budget: "",
       message: "",
     },
@@ -81,6 +83,7 @@ Email: ${data.email}
 Phone: ${data.phone || 'N/A'}
 Company: ${data.company || 'N/A'}
 Project Type: ${data.projectType}
+Ticket: ${data.ticket || 'N/A'}
 Budget: ${data.budget || 'Not specified'}
 
 Message:
@@ -337,6 +340,20 @@ ${data.message}
                               <SelectItem value="other">Other</SelectItem>
                             </SelectContent>
                           </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="ticket"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Ticket</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter ticket number (if applicable)" {...field} />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
