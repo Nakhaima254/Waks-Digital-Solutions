@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -61,6 +62,36 @@ const Ticket = () => {
     setIsSubmitting(true);
     
     try {
+      // Check if user is authenticated
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        toast({
+          title: "Authentication Required",
+          description: "Please log in to submit a ticket.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Save to database
+      const { error: dbError } = await supabase.from("tickets").insert({
+        user_id: session.user.id,
+        ticket_number: data.ticketNumber,
+        name: data.name,
+        email: data.email,
+        phone: data.phone || null,
+        company: data.company || null,
+        priority: data.priority,
+        category: data.category,
+        subject: data.subject,
+        description: data.description,
+        status: "open",
+      });
+
+      if (dbError) throw dbError;
+
       const emailBody = `
 New Support Ticket Submission
 
@@ -88,7 +119,7 @@ ${data.description}
 
       toast({
         title: "Ticket Submitted Successfully!",
-        description: "We'll respond to your ticket shortly. Check your WhatsApp for confirmation.",
+        description: "Your ticket has been saved. We'll respond shortly. Check your WhatsApp for confirmation.",
       });
 
       form.reset();
@@ -122,6 +153,11 @@ ${data.description}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Need help with an existing project or service? Submit a support ticket and our team will get back to you promptly.
           </p>
+          <div className="mt-4">
+            <Button variant="outline" onClick={() => window.location.href = '/ticket-dashboard'}>
+              View My Tickets
+            </Button>
+          </div>
         </motion.div>
 
         <motion.div
