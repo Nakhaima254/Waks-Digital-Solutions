@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Ticket, Search, Filter, Plus, Clock, AlertCircle } from "lucide-react";
-import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 
@@ -146,12 +145,7 @@ const TicketDashboard = () => {
   return (
     <div className="min-h-screen pt-20 pb-12">
       <div className="container max-w-7xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
+        <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-600">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
@@ -207,16 +201,11 @@ const TicketDashboard = () => {
               </SelectContent>
             </Select>
           </div>
-        </motion.div>
+        </div>
 
         {/* Tickets List */}
         {filteredTickets.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center py-12"
-          >
+          <div className="text-center py-12 animate-in fade-in slide-in-from-bottom-4 duration-600 delay-200">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
               <Ticket className="w-8 h-8 text-muted-foreground" />
             </div>
@@ -232,15 +221,13 @@ const TicketDashboard = () => {
                 Create Your First Ticket
               </Button>
             )}
-          </motion.div>
+          </div>
         ) : (
           <div className="grid gap-4">
-            {filteredTickets.map((ticket, index) => (
-              <motion.div
+            {filteredTickets.map((ticket) => (
+              <div
                 key={ticket.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="animate-in fade-in slide-in-from-bottom-2 duration-500"
               >
                 <Card className="hover:shadow-lg transition-shadow">
                   <CardHeader>
@@ -282,7 +269,7 @@ const TicketDashboard = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}

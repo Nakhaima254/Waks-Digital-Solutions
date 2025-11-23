@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Ticket as TicketIcon, Send } from "lucide-react";
-import { motion } from "framer-motion";
 import { useState } from "react";
 
 const ticketSchema = z.object({
@@ -138,12 +137,7 @@ ${data.description}
   return (
     <div className="min-h-screen pt-20 pb-12">
       <div className="container max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-600">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
             <TicketIcon className="w-8 h-8 text-primary" />
           </div>
@@ -158,14 +152,9 @@ ${data.description}
               View My Tickets
             </Button>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-card border border-border rounded-xl p-8 shadow-lg"
-        >
+        <div className="bg-card border border-border rounded-xl p-8 shadow-lg animate-in fade-in slide-in-from-bottom-4 duration-600 delay-200">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -342,7 +331,7 @@ ${data.description}
               </Button>
             </form>
           </Form>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
