@@ -42,7 +42,7 @@ export default function Auth() {
 
   // Redirect if already logged in
   if (user) {
-    navigate('/');
+    navigate('/ticket-dashboard');
   }
 
   const handleLogin = async (data: LoginFormData) => {
@@ -51,7 +51,7 @@ export default function Auth() {
     setIsLoading(false);
     
     if (!error) {
-      navigate('/');
+      navigate('/ticket-dashboard');
     }
   };
 
@@ -78,7 +78,7 @@ export default function Auth() {
             </Button>
           </div>
           <CardTitle>Welcome to Waks Digital</CardTitle>
-          <CardDescription>Sign in to manage your blog</CardDescription>
+          <CardDescription>Sign in to manage your tickets</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
