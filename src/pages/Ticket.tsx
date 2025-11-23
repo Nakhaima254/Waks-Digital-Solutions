@@ -29,7 +29,6 @@ const ticketSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address").max(255, "Email must be less than 255 characters"),
   phone: z.string().trim().max(20, "Phone number must be less than 20 characters").optional(),
   company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
-  ticketNumber: z.string().trim().min(1, "Ticket number is required").max(50, "Ticket number must be less than 50 characters"),
   priority: z.string().min(1, "Please select a priority"),
   category: z.string().min(1, "Please select a category"),
   subject: z.string().trim().min(5, "Subject must be at least 5 characters").max(200, "Subject must be less than 200 characters"),
@@ -49,7 +48,6 @@ const Ticket = () => {
       email: "",
       phone: "",
       company: "",
-      ticketNumber: "",
       priority: "",
       category: "",
       subject: "",
@@ -74,10 +72,13 @@ const Ticket = () => {
         return;
       }
 
+      // Generate ticket number
+      const ticketNumber = `TKT-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+
       // Save to database
       const { error: dbError } = await supabase.from("tickets").insert({
         user_id: session.user.id,
-        ticket_number: data.ticketNumber,
+        ticket_number: ticketNumber,
         name: data.name,
         email: data.email,
         phone: data.phone || null,
@@ -96,7 +97,7 @@ New Support Ticket Submission
 
 Ticket Information:
 -------------------
-Ticket Number: ${data.ticketNumber}
+Ticket Number: ${ticketNumber}
 Priority: ${data.priority}
 Category: ${data.category}
 Subject: ${data.subject}
@@ -208,20 +209,6 @@ ${data.description}
                       <FormLabel>Company</FormLabel>
                       <FormControl>
                         <Input placeholder="Your Company Name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="ticketNumber"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Ticket Number *</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., TKT-2024-001" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
