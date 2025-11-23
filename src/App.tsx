@@ -86,6 +86,7 @@ import AIEthicsPrivacy from "./pages/blog/AIEthicsPrivacy";
 import AIMarketingAutomation from "./pages/blog/AIMarketingAutomation";
 import PredictiveAnalyticsEcommerce from "./pages/blog/PredictiveAnalyticsEcommerce";
 import FAQ from "./pages/FAQ";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +96,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -182,6 +184,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
         </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
