@@ -89,8 +89,46 @@ export default function TicketsDashboard() {
   useEffect(() => {
     if (isAdmin) {
       fetchTickets();
+
+      // Set up real-time subscription
+      const channel = supabase
+        .channel('tickets-changes')
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'tickets'
+          },
+          (payload) => {
+            console.log('Real-time ticket change:', payload);
+            
+            if (payload.eventType === 'INSERT') {
+              setTickets((current) => [payload.new as Ticket, ...current]);
+              toast({
+                title: 'New Ticket',
+                description: `Ticket ${(payload.new as Ticket).ticket_number} created`,
+              });
+            } else if (payload.eventType === 'UPDATE') {
+              setTickets((current) =>
+                current.map((ticket) =>
+                  ticket.id === payload.new.id ? (payload.new as Ticket) : ticket
+                )
+              );
+            } else if (payload.eventType === 'DELETE') {
+              setTickets((current) =>
+                current.filter((ticket) => ticket.id !== payload.old.id)
+              );
+            }
+          }
+        )
+        .subscribe();
+
+      return () => {
+        supabase.removeChannel(channel);
+      };
     }
-  }, [isAdmin]);
+  }, [isAdmin, toast]);
 
   useEffect(() => {
     filterTickets();
@@ -197,6 +235,10 @@ export default function TicketsDashboard() {
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Admin Ticket Dashboard</h1>
           <p className="text-muted-foreground">View and manage all support tickets</p>
+          <div className="mt-2 flex items-center gap-2 text-sm">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+            <span className="text-muted-foreground">Real-time updates enabled</span>
+          </div>
         </div>
 
         <Card className="mb-6">
