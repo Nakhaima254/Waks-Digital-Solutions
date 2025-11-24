@@ -139,8 +139,8 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-fade-in left-1/2 -translate-x-1/2">
-                    <div className="w-[900px] p-0">
+                  <NavigationMenuContent className="animate-fade-in">
+                    <div className="w-[900px] max-w-[90vw] p-0">
                       <div className="grid md:grid-cols-[350px_1fr]">
                         {/* Featured Image Section */}
                         <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
@@ -226,8 +226,8 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Support
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-fade-in left-1/2 -translate-x-1/2">
-                    <div className="w-[700px] p-0">
+                  <NavigationMenuContent className="animate-fade-in">
+                    <div className="w-[700px] max-w-[90vw] p-0">
                       <div className="grid md:grid-cols-[300px_1fr]">
                         {/* Contact Info Section */}
                         <div className="bg-muted/50 p-6 border-r">
