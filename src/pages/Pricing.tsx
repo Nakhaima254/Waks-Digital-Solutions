@@ -214,6 +214,169 @@ const Pricing = () => {
         </div>
       </section>
 
+      {/* Comparison Table */}
+      <section className="py-20 bg-gradient-subtle">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Compare Plans & Features
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See what's included in each package at a glance
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-card rounded-lg overflow-hidden shadow-lg">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="text-left p-4 font-semibold text-foreground">Features</th>
+                  <th className="text-center p-4 font-semibold text-foreground">Starter</th>
+                  <th className="text-center p-4 font-semibold text-foreground bg-accent/10">
+                    <div className="flex items-center justify-center gap-2">
+                      Professional
+                      <Star className="w-4 h-4 text-accent fill-accent" />
+                    </div>
+                  </th>
+                  <th className="text-center p-4 font-semibold text-foreground">Premium</th>
+                  <th className="text-center p-4 font-semibold text-foreground">Custom System</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Number of Pages</td>
+                  <td className="text-center p-4">5 pages</td>
+                  <td className="text-center p-4 bg-accent/5">10 pages</td>
+                  <td className="text-center p-4">15+ pages</td>
+                  <td className="text-center p-4">Unlimited</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Responsive Design</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Custom Design</td>
+                  <td className="text-center p-4 text-muted-foreground">Basic</td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">SEO Optimization</td>
+                  <td className="text-center p-4 text-muted-foreground">Basic</td>
+                  <td className="text-center p-4 bg-accent/5">Advanced</td>
+                  <td className="text-center p-4">Advanced</td>
+                  <td className="text-center p-4">Enterprise</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Content Management System</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">E-commerce Features</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Payment Gateway</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Blog/News Section</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Google Analytics</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4">Advanced</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">WhatsApp Integration</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Email Marketing Setup</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Multi-language Support</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">API Integration</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Custom Business Logic</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4 bg-accent/5">—</td>
+                  <td className="text-center p-4">—</td>
+                  <td className="text-center p-4"><Check className="w-5 h-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Free Maintenance Period</td>
+                  <td className="text-center p-4">1 month</td>
+                  <td className="text-center p-4 bg-accent/5">3 months</td>
+                  <td className="text-center p-4">6 months</td>
+                  <td className="text-center p-4">12 months</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4 font-medium">Training & Documentation</td>
+                  <td className="text-center p-4">Basic</td>
+                  <td className="text-center p-4 bg-accent/5">Standard</td>
+                  <td className="text-center p-4">Comprehensive</td>
+                  <td className="text-center p-4">Full</td>
+                </tr>
+                <tr className="hover:bg-muted/20 transition-colors bg-muted/30">
+                  <td className="p-4 font-bold">Starting Price</td>
+                  <td className="text-center p-4 font-bold text-accent">{convertPrice("KSH 25,000")}</td>
+                  <td className="text-center p-4 font-bold text-accent bg-accent/10">{convertPrice("KSH 50,000")}</td>
+                  <td className="text-center p-4 font-bold text-accent">{convertPrice("KSH 85,000")}</td>
+                  <td className="text-center p-4 font-bold text-accent">From {convertPrice("KSH 100,000")}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground mb-4">
+              Not sure which plan is right for you?
+            </p>
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/contact">Get a Free Consultation</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Additional Services */}
       <section className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
