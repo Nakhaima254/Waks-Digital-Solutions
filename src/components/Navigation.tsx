@@ -199,12 +199,12 @@ const Navigation = () => {
                                   key={service.name}
                                   to={service.path}
                                   className={cn(
-                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-accent hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
-                                    isActive(service.path) && "bg-accent/10"
+                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-muted/50 hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
+                                    isActive(service.path) && "bg-muted"
                                   )}
                                 >
                                   <div className="flex items-start gap-3">
-                                    <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110 mt-0.5">
+                                    <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110 mt-0.5">
                                       <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-3" />
                                     </div>
                                     <div className="flex-1">
@@ -285,11 +285,11 @@ const Navigation = () => {
                                   key={item.name}
                                   to={item.path}
                                   className={cn(
-                                    "group flex items-start gap-3 rounded-lg p-3 transition-all duration-300 hover:bg-accent hover:shadow-sm hover:translate-x-1",
-                                    isActive(item.path) && "bg-accent/10"
+                                    "group flex items-start gap-3 rounded-lg p-3 transition-all duration-300 hover:bg-muted/50 hover:shadow-sm hover:translate-x-1",
+                                    isActive(item.path) && "bg-muted"
                                   )}
                                 >
-                                  <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                                  <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110">
                                     <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-12" />
                                   </div>
                                   <div className="flex-1">
