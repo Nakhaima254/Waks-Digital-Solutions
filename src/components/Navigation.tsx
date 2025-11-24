@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,18 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -103,16 +113,25 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className={cn(
+      "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300",
+      isScrolled && "shadow-md"
+    )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className={cn(
+          "flex justify-between items-center transition-all duration-300",
+          isScrolled ? "h-14" : "h-16"
+        )}>
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img
               src={theme === "dark" ? LogoDark : LogoLight}
               alt="Waks Digital Partner Logo"
-              className="h-20 w-auto"
-              style={{ maxWidth: 350 }}
+              className={cn(
+                "w-auto transition-all duration-300",
+                isScrolled ? "h-16" : "h-20"
+              )}
+              style={{ maxWidth: isScrolled ? 280 : 350 }}
             />
           </Link>
 
