@@ -5,6 +5,13 @@ import { Check, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 const Pricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
@@ -226,7 +233,8 @@ const Pricing = () => {
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          {/* Desktop Table View - Hidden on Mobile */}
+          <div className="hidden lg:block overflow-x-auto">
             <table className="w-full bg-card rounded-lg overflow-hidden shadow-lg">
               <thead>
                 <tr className="bg-muted/50">
@@ -364,6 +372,112 @@ const Pricing = () => {
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Accordion View - Hidden on Desktop */}
+          <div className="lg:hidden space-y-4">
+            <Accordion type="single" collapsible className="space-y-4">
+              {plans.map((plan, index) => (
+                <AccordionItem 
+                  key={plan.name} 
+                  value={`plan-${index}`}
+                  className={cn(
+                    "card-elevated border-2 rounded-lg overflow-hidden",
+                    plan.popular && "border-accent"
+                  )}
+                >
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/20 transition-colors">
+                    <div className="flex items-center justify-between w-full pr-4">
+                      <div className="text-left">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold text-foreground">{plan.name}</span>
+                          {plan.popular && <Star className="w-4 h-4 text-accent fill-accent" />}
+                        </div>
+                        <div className="text-2xl font-bold text-accent mt-1">{convertPrice(plan.price)}</div>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-6">
+                    <div className="space-y-3 pt-2">
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Number of Pages</span>
+                        <span className="text-sm">{plan.name === "Starter" ? "5 pages" : plan.name === "Professional" ? "10 pages" : plan.name === "Premium" ? "15+ pages" : "Unlimited"}</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Responsive Design</span>
+                        <Check className="w-5 h-5 text-accent" />
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Custom Design</span>
+                        {plan.name === "Starter" ? <span className="text-sm text-muted-foreground">Basic</span> : <Check className="w-5 h-5 text-accent" />}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">SEO Optimization</span>
+                        <span className="text-sm">{plan.name === "Starter" ? "Basic" : plan.name === "Custom System Design" ? "Enterprise" : "Advanced"}</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">CMS</span>
+                        {plan.name === "Starter" ? <span className="text-sm text-muted-foreground">—</span> : <Check className="w-5 h-5 text-accent" />}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">E-commerce</span>
+                        {(plan.name === "Premium" || plan.name === "Custom System Design") ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Payment Gateway</span>
+                        {(plan.name === "Premium" || plan.name === "Custom System Design") ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Blog/News Section</span>
+                        {plan.name === "Starter" ? <span className="text-sm text-muted-foreground">—</span> : <Check className="w-5 h-5 text-accent" />}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Google Analytics</span>
+                        {plan.name === "Starter" ? <span className="text-sm text-muted-foreground">—</span> : plan.name === "Custom System Design" ? <span className="text-sm">Advanced</span> : <Check className="w-5 h-5 text-accent" />}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">WhatsApp Integration</span>
+                        {plan.name === "Starter" ? <span className="text-sm text-muted-foreground">—</span> : <Check className="w-5 h-5 text-accent" />}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Email Marketing</span>
+                        {(plan.name === "Premium" || plan.name === "Custom System Design") ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Multi-language</span>
+                        {(plan.name === "Premium" || plan.name === "Custom System Design") ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">API Integration</span>
+                        {plan.name === "Custom System Design" ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Custom Business Logic</span>
+                        {plan.name === "Custom System Design" ? <Check className="w-5 h-5 text-accent" /> : <span className="text-sm text-muted-foreground">—</span>}
+                      </div>
+                      <div className="flex justify-between items-center py-2 border-b">
+                        <span className="text-sm font-medium">Free Maintenance</span>
+                        <span className="text-sm">{plan.name === "Starter" ? "1 month" : plan.name === "Professional" ? "3 months" : plan.name === "Premium" ? "6 months" : "12 months"}</span>
+                      </div>
+                      <div className="flex justify-between items-center py-2">
+                        <span className="text-sm font-medium">Training</span>
+                        <span className="text-sm">{plan.name === "Starter" ? "Basic" : plan.name === "Professional" ? "Standard" : plan.name === "Premium" ? "Comprehensive" : "Full"}</span>
+                      </div>
+                      <div className="pt-4">
+                        <Button 
+                          className="w-full" 
+                          variant={plan.popular ? "default" : "outline"}
+                          size="lg"
+                          asChild
+                        >
+                          <Link to="/contact">Get Started</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
 
           <div className="text-center mt-12">
