@@ -309,7 +309,7 @@ const SEOServices = () => {
               <Link to="/contact">Start SEO Campaign</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="/pricing" state={{ from: '/services/seo-services', serviceName: 'SEO Services' }}>View Pricing</Link>
             </Button>
           </div>
         </div>

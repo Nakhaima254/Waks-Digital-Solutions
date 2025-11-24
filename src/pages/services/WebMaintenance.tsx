@@ -219,7 +219,7 @@ const WebMaintenance = () => {
               <Link to="/contact">Contact Us Today</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-background text-foreground border-border hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 rounded-full" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="/pricing" state={{ from: '/services/web-maintenance', serviceName: 'Web Maintenance' }}>View Pricing</Link>
             </Button>
           </div>
         </div>

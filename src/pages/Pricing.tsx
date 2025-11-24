@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Check, Star, ArrowLeft } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import {
@@ -15,6 +15,8 @@ import { cn } from "@/lib/utils";
 
 const Pricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
+  const location = useLocation();
+  const state = location.state as { from?: string; serviceName?: string } | null;
 
   // Exchange rates (approximate as of 2024)
   const exchangeRates: Record<string, { rate: number; symbol: string }> = {
@@ -121,17 +123,35 @@ const Pricing = () => {
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-subtle">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Simple, Transparent Pricing
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Choose the perfect website package for your business needs. All plans include responsive design, 
-            professional development, and ongoing support to help your business grow online.
-          </p>
-          
-          {/* Currency Selector */}
-          <div className="flex justify-center mb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Back to Service Button */}
+          {state?.from && state?.serviceName && (
+            <div className="mb-8 animate-fade-in">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="group hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" 
+                asChild
+              >
+                <Link to={state.from} className="flex items-center gap-2">
+                  <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                  Back to {state.serviceName}
+                </Link>
+              </Button>
+            </div>
+          )}
+
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Simple, Transparent Pricing
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Choose the perfect website package for your business needs. All plans include responsive design, 
+              professional development, and ongoing support to help your business grow online.
+            </p>
+            
+            {/* Currency Selector */}
+            <div className="flex justify-center mb-8">
             <div className="flex items-center gap-3 bg-card p-4 rounded-lg shadow-md">
               <span className="text-sm font-medium text-foreground">View prices in:</span>
               <Select value={currency} onValueChange={setCurrency}>
@@ -161,6 +181,7 @@ const Pricing = () => {
               <Check className="w-4 h-4 text-accent" />
               Nairobi-based support
             </div>
+          </div>
           </div>
         </div>
       </section>
