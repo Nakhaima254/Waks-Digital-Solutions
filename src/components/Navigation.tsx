@@ -111,38 +111,70 @@ const Navigation = () => {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[700px] p-6">
-                      <div className="grid gap-4 md:grid-cols-3">
-                        {serviceItems.map((service) => {
-                          const IconComponent = service.icon === "Code" ? Code : 
-                            service.icon === "ShoppingCart" ? ShoppingCart :
-                            service.icon === "Search" ? Search :
-                            service.icon === "PenTool" ? PenTool :
-                            service.icon === "Wrench" ? Wrench : Code;
-                          
-                          return (
-                            <Link
-                              key={service.name}
-                              to={service.path}
-                              className={cn(
-                                "group block select-none space-y-2 rounded-lg p-4 leading-none no-underline outline-none transition-all hover:bg-accent hover:shadow-md",
-                                isActive(service.path) && "bg-accent/10"
-                              )}
-                            >
-                              <div className="flex items-center gap-3">
-                                <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20">
-                                  <IconComponent className="h-5 w-5 text-primary" />
-                                </div>
-                                <div>
-                                  <div className="text-sm font-semibold leading-none text-foreground">{service.name}</div>
-                                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
-                                    {service.description}
-                                  </p>
-                                </div>
+                    <div className="w-[900px] p-0">
+                      <div className="grid md:grid-cols-[350px_1fr]">
+                        {/* Featured Image Section */}
+                        <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
+                          <div className="relative z-10">
+                            <h3 className="text-3xl font-bold text-white mb-4">Our Services</h3>
+                            <p className="text-white/90 text-sm leading-relaxed mb-6">
+                              Comprehensive digital solutions tailored to grow your business and establish your online presence.
+                            </p>
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2 text-white/90 text-sm">
+                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                <span>Expert team of developers</span>
                               </div>
-                            </Link>
-                          );
-                        })}
+                              <div className="flex items-center gap-2 text-white/90 text-sm">
+                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                <span>Proven track record</span>
+                              </div>
+                              <div className="flex items-center gap-2 text-white/90 text-sm">
+                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                <span>Ongoing support</span>
+                              </div>
+                            </div>
+                          </div>
+                          {/* Decorative elements */}
+                          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+                        </div>
+
+                        {/* Services Grid */}
+                        <div className="p-6">
+                          <div className="grid gap-3 md:grid-cols-2">
+                            {serviceItems.map((service) => {
+                              const IconComponent = service.icon === "Code" ? Code : 
+                                service.icon === "ShoppingCart" ? ShoppingCart :
+                                service.icon === "Search" ? Search :
+                                service.icon === "PenTool" ? PenTool :
+                                service.icon === "Wrench" ? Wrench : Code;
+                              
+                              return (
+                                <Link
+                                  key={service.name}
+                                  to={service.path}
+                                  className={cn(
+                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all hover:bg-accent hover:shadow-sm",
+                                    isActive(service.path) && "bg-accent/10"
+                                  )}
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20 mt-0.5">
+                                      <IconComponent className="h-4 w-4 text-primary" />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="text-sm font-semibold leading-none text-foreground mb-1">{service.name}</div>
+                                      <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                                        {service.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </NavigationMenuContent>
