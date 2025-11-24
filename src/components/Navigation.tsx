@@ -139,7 +139,7 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="left-0">
+                  <NavigationMenuContent className="left-0 animate-fade-in">
                     <div className="w-[900px] p-0">
                       <div className="grid md:grid-cols-[350px_1fr]">
                         {/* Featured Image Section */}
@@ -180,13 +180,13 @@ const Navigation = () => {
                                   key={service.name}
                                   to={service.path}
                                   className={cn(
-                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all hover:bg-accent hover:shadow-sm",
+                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-accent hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
                                     isActive(service.path) && "bg-accent/10"
                                   )}
                                 >
                                   <div className="flex items-start gap-3">
-                                    <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20 mt-0.5">
-                                      <IconComponent className="h-4 w-4 text-primary" />
+                                    <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110 mt-0.5">
+                                      <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-3" />
                                     </div>
                                     <div className="flex-1">
                                       <div className="text-sm font-semibold leading-none text-foreground mb-1">{service.name}</div>
@@ -226,23 +226,23 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Support
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="left-0">
+                  <NavigationMenuContent className="left-0 animate-fade-in">
                     <div className="w-[700px] p-0">
                       <div className="grid md:grid-cols-[300px_1fr]">
                         {/* Contact Info Section */}
                         <div className="bg-muted/50 p-6 border-r">
                           <h3 className="text-lg font-bold mb-4">Contact Info</h3>
                           <div className="space-y-4">
-                            <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
-                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                            <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
                               <span className="break-all">www.wakstech.com</span>
                             </a>
-                            <a href="mailto:info@wakstech.com" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
-                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                            <a href="mailto:info@wakstech.com" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
                               <span>info@wakstech.com</span>
                             </a>
-                            <a href="tel:+254798435087" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
-                              <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                            <a href="tel:+254798435087" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                              <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
                               <span>+254 798 435 087</span>
                             </a>
                             <div className="flex items-start gap-3 text-sm text-muted-foreground">
@@ -266,12 +266,12 @@ const Navigation = () => {
                                   key={item.name}
                                   to={item.path}
                                   className={cn(
-                                    "group flex items-start gap-3 rounded-lg p-3 transition-all hover:bg-accent",
+                                    "group flex items-start gap-3 rounded-lg p-3 transition-all duration-300 hover:bg-accent hover:shadow-sm hover:translate-x-1",
                                     isActive(item.path) && "bg-accent/10"
                                   )}
                                 >
-                                  <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20">
-                                    <IconComponent className="h-4 w-4 text-primary" />
+                                  <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                                    <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-12" />
                                   </div>
                                   <div className="flex-1">
                                     <div className="text-sm font-semibold leading-none text-foreground mb-1">{item.name}</div>
