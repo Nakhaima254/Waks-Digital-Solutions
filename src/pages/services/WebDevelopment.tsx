@@ -205,7 +205,7 @@ const WebDevelopment = () => {
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact">Start Your Project</Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-primary" asChild>
+            <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
               <Link to="/pricing">View Pricing</Link>
             </Button>
           </div>

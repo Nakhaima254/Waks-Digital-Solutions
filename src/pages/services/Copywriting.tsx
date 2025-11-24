@@ -123,9 +123,14 @@ const Copywriting = () => {
           <p className="text-xl text-muted-foreground mb-8">
             Let's create copy that captures attention, builds trust, and drives conversions.
           </p>
-          <Button size="lg" asChild className="rounded-full">
-            <Link to="/contact">Start Your Project</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" asChild className="rounded-full">
+              <Link to="/contact">Start Your Project</Link>
+            </Button>
+            <Button variant="outline" size="lg" className="bg-background text-foreground border-border hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 rounded-full" asChild>
+              <Link to="/pricing">View Pricing</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>
