@@ -219,34 +219,63 @@ const Pricing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Additional Services
+              Add-On Services
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Need something specific? We offer additional services to complement your website package.
+              Enhance your website package with these additional services. All prices are available in multiple currencies.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
-              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Logo Design</h3>
-              <p className="text-muted-foreground text-sm mb-3">Professional logo design</p>
-              <p className="font-bold text-accent">{convertPrice("KSH 8,000")}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                  <span className="text-2xl">🎨</span>
+                </div>
+              </div>
+              <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Logo Design</h3>
+              <p className="text-muted-foreground text-sm mb-4">Professional logo design with multiple concepts and revisions</p>
+              <p className="font-bold text-2xl text-accent">{convertPrice("KSH 8,000")}</p>
             </Card>
-            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
-              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Extra Page</h3>
-              <p className="text-muted-foreground text-sm mb-3">Additional custom page</p>
-              <p className="font-bold text-accent">{convertPrice("KSH 3,000")}</p>
+            
+            <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                  <span className="text-2xl">📄</span>
+                </div>
+              </div>
+              <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Extra Page</h3>
+              <p className="text-muted-foreground text-sm mb-4">Additional custom page with full design and functionality</p>
+              <p className="font-bold text-2xl text-accent">{convertPrice("KSH 3,000")}</p>
             </Card>
-            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
-              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Monthly Maintenance</h3>
-              <p className="text-muted-foreground text-sm mb-3">Ongoing updates & support</p>
-              <p className="font-bold text-accent">{convertPrice("KSH 5,000")}</p>
+            
+            <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                  <span className="text-2xl">🔧</span>
+                </div>
+              </div>
+              <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Monthly Maintenance</h3>
+              <p className="text-muted-foreground text-sm mb-4">Ongoing updates, security, backups & technical support</p>
+              <p className="font-bold text-2xl text-accent">{convertPrice("KSH 5,000")}<span className="text-sm font-normal text-muted-foreground">/month</span></p>
             </Card>
-            <Card className="text-center p-6 group hover:scale-105 transition-all duration-300">
-              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors duration-300">Custom Feature</h3>
-              <p className="text-muted-foreground text-sm mb-3">Bespoke functionality</p>
-              <p className="font-bold text-accent">Quote on request</p>
+            
+            <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
+              <div className="mb-4 flex justify-center">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                  <span className="text-2xl">⚡</span>
+                </div>
+              </div>
+              <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Custom Feature</h3>
+              <p className="text-muted-foreground text-sm mb-4">Bespoke functionality tailored to your needs</p>
+              <p className="font-bold text-lg text-accent">Quote on request</p>
             </Card>
+          </div>
+
+          <div className="text-center">
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/contact">Discuss Custom Requirements</Link>
+            </Button>
           </div>
         </div>
       </section>

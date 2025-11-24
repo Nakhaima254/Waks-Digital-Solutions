@@ -36,7 +36,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Pricing", path: "/pricing" },
   ];
 
   const serviceItems = [
@@ -229,6 +228,18 @@ const Navigation = () => {
 
             {/* Blog Link */}
             <Link
+              to="/pricing"
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/pricing")
+                  ? "text-accent bg-accent/10"
+                  : "text-foreground hover:text-accent hover:bg-accent/5"
+              }`}
+            >
+              Pricing
+            </Link>
+
+            {/* Blog Link */}
+            <Link
               to="/blog"
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive("/blog")
@@ -400,6 +411,32 @@ const Navigation = () => {
                   </div>
                 )}
               </div>
+
+              {/* Mobile Pricing Link */}
+              <Link
+                to="/pricing"
+                onClick={() => setIsOpen(false)}
+                className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                  isActive("/pricing")
+                    ? "text-accent bg-accent/10"
+                    : "text-foreground hover:text-accent hover:bg-accent/5"
+                }`}
+              >
+                Pricing
+              </Link>
+
+              {/* Mobile Blog Link */}
+              <Link
+                to="/blog"
+                onClick={() => setIsOpen(false)}
+                className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                  isActive("/blog")
+                    ? "text-accent bg-accent/10"
+                    : "text-foreground hover:text-accent hover:bg-accent/5"
+                }`}
+              >
+                Blog
+              </Link>
 
               {/* Mobile Support Dropdown */}
               <div className="border-t pt-2">
