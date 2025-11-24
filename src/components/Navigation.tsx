@@ -249,30 +249,30 @@ const Navigation = () => {
                     <div className="w-[600px] max-w-[90vw] p-0">
                       <div className="grid md:grid-cols-[250px_1fr]">
                         {/* Contact Info Section */}
-                        <div className="bg-muted/50 p-6 border-r">
-                          <h3 className="text-lg font-bold mb-4">Contact Info</h3>
-                          <div className="space-y-4">
-                            <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                              <span className="break-all">www.wakstech.com</span>
-                            </a>
-                            <a href="mailto:info@wakstech.com" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                              <span>info@wakstech.com</span>
-                            </a>
-                            <a href="tel:+254798435087" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                              <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                              <span>+254 798 435 087</span>
-                            </a>
-                            <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                              <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                              <span>Kanu Street, Langa Langa<br />Nakuru, Kenya</span>
+                          <div className="bg-muted/50 p-6 border-r">
+                            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
+                            <div className="space-y-4">
+                              <a href="mailto:info@waksdigital.co.ke" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                <span>info@waksdigital.co.ke</span>
+                              </a>
+                              <a href="tel:+254718098165" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                <span>+254 718 098 165</span>
+                              </a>
+                              <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                <span>+254 746 388 308 (WhatsApp)</span>
+                              </a>
+                              <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                                <span>Kanu Street, Langa Langa<br />Nakuru, Kenya</span>
+                              </div>
                             </div>
+                            <Button variant="default" size="sm" className="w-full mt-6" asChild>
+                              <Link to="/contact">I Need More Info</Link>
+                            </Button>
                           </div>
-                          <Button variant="default" size="sm" className="w-full mt-6" asChild>
-                            <Link to="/contact">I Need More Info</Link>
-                          </Button>
-                        </div>
 
                         {/* Support Links */}
                         <div className="p-6">
@@ -331,8 +331,16 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
+          <>
+            {/* Backdrop overlay */}
+            <div 
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Mobile menu */}
+            <div className="md:hidden fixed inset-y-0 right-0 w-full sm:w-80 bg-background z-50 shadow-2xl animate-slide-in-right overflow-y-auto">
+              <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -406,17 +414,17 @@ const Navigation = () => {
                     {/* Contact Info */}
                     <div className="bg-muted/50 rounded-lg p-4 space-y-3">
                       <h4 className="font-semibold text-sm">Contact Info</h4>
-                      <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs hover:text-primary">
+                      <a href="mailto:info@waksdigital.co.ke" className="flex items-center gap-2 text-xs hover:text-primary">
                         <Mail className="h-3 w-3" />
-                        <span>www.wakstech.com</span>
+                        <span>info@waksdigital.co.ke</span>
                       </a>
-                      <a href="mailto:info@wakstech.com" className="flex items-center gap-2 text-xs hover:text-primary">
-                        <Mail className="h-3 w-3" />
-                        <span>info@wakstech.com</span>
-                      </a>
-                      <a href="tel:+254798435087" className="flex items-center gap-2 text-xs hover:text-primary">
+                      <a href="tel:+254718098165" className="flex items-center gap-2 text-xs hover:text-primary">
                         <Phone className="h-3 w-3" />
-                        <span>+254 798 435 087</span>
+                        <span>+254 718 098 165</span>
+                      </a>
+                      <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs hover:text-primary">
+                        <Phone className="h-3 w-3" />
+                        <span>+254 746 388 308 (WhatsApp)</span>
                       </a>
                       <div className="flex items-start gap-2 text-xs text-muted-foreground">
                         <MapPin className="h-3 w-3 mt-0.5" />
@@ -458,13 +466,14 @@ const Navigation = () => {
                 )}
               </div>
 
-              <div className="px-3 py-2 space-y-2 border-t pt-2">
-                <Button variant="hero" size="sm" className="w-full" asChild onClick={() => setIsOpen(false)}>
-                  <Link to="/contact">Get Started</Link>
-                </Button>
-              </div>
+               <div className="px-3 py-2 space-y-2 border-t pt-2">
+                 <Button variant="hero" size="sm" className="w-full" asChild onClick={() => setIsOpen(false)}>
+                   <Link to="/contact">Get Started</Link>
+                 </Button>
+               </div>
+             </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </nav>
