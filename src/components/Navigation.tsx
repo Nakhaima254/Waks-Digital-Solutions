@@ -26,7 +26,6 @@ const Navigation = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Blog", path: "/blog" },
   ];
 
   const serviceItems = [
@@ -72,7 +71,7 @@ const Navigation = () => {
     {
       name: "Services",
       path: "/services",
-      description: "Explore our services",
+      description: "Explore our Services",
       icon: Briefcase
     },
     {
@@ -84,19 +83,19 @@ const Navigation = () => {
     {
       name: "Frequently Asked Questions",
       path: "/faq",
-      description: "Explore FAQs",
+      description: "Explore faqs",
       icon: HelpCircle
     },
     {
       name: "Terms and Conditions",
       path: "/terms",
-      description: "View terms and conditions",
+      description: "View terms and Conditions",
       icon: FileText
     },
     {
       name: "Privacy Policy",
       path: "/privacy",
-      description: "View privacy policy",
+      description: "View Privacy Policy",
       icon: Lock
     },
   ];
@@ -140,7 +139,7 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Services
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="left-0">
                     <div className="w-[900px] p-0">
                       <div className="grid md:grid-cols-[350px_1fr]">
                         {/* Featured Image Section */}
@@ -208,6 +207,18 @@ const Navigation = () => {
               </NavigationMenuList>
             </NavigationMenu>
 
+            {/* Blog Link */}
+            <Link
+              to="/blog"
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/blog")
+                  ? "text-accent bg-accent/10"
+                  : "text-foreground hover:text-accent hover:bg-accent/5"
+              }`}
+            >
+              Blog
+            </Link>
+
             {/* Support Mega Menu */}
             <NavigationMenu>
               <NavigationMenuList>
@@ -215,7 +226,7 @@ const Navigation = () => {
                   <NavigationMenuTrigger className="text-sm font-medium">
                     Support
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="left-0">
                     <div className="w-[700px] p-0">
                       <div className="grid md:grid-cols-[300px_1fr]">
                         {/* Contact Info Section */}
