@@ -128,7 +128,7 @@ const Copywriting = () => {
               <Link to="/contact">Start Your Project</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-background text-foreground border-border hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 rounded-full" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="/pricing" state={{ from: '/services/copywriting', serviceName: 'Copywriting Services' }}>View Pricing</Link>
             </Button>
           </div>
         </div>

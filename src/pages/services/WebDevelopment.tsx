@@ -206,7 +206,7 @@ const WebDevelopment = () => {
               <Link to="/contact">Start Your Project</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="/pricing" state={{ from: '/services/web-development', serviceName: 'Web Development' }}>View Pricing</Link>
             </Button>
           </div>
         </div>

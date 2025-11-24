@@ -224,7 +224,7 @@ const WordPressDesign = () => {
               <Link to="/contact">Get Your WordPress Site</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="/pricing" state={{ from: '/services/wordpress-design', serviceName: 'WordPress Design' }}>View Pricing</Link>
             </Button>
           </div>
         </div>
