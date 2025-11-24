@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -19,17 +19,14 @@ import { cn } from "@/lib/utils";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "About", path: "/about" },
+    { name: "About Us", path: "/about" },
     { name: "Blog", path: "/blog" },
-    { name: "FAQ", path: "/faq" },
-    { name: "Contact", path: "/contact" },
   ];
 
   const serviceItems = [
@@ -37,37 +34,70 @@ const Navigation = () => {
       name: "Web Development",
       path: "/services/web-development",
       description: "Custom, scalable websites built from scratch",
-      icon: "Code"
+      icon: Code
     },
     {
       name: "WordPress Design",
       path: "/services/wordpress-design",
       description: "Professional WordPress websites with easy management",
-      icon: "Wordpress"
+      icon: Code
     },
     {
       name: "E-commerce Solutions",
       path: "/services/ecommerce-solutions",
       description: "Complete online stores to sell your products",
-      icon: "ShoppingCart"
+      icon: ShoppingCart
     },
     {
       name: "SEO Services",
       path: "/services/seo-services",
       description: "Improve your search engine visibility",
-      icon: "Search"
+      icon: Search
     },
     {
       name: "Copywriting Services",
       path: "/services/copywriting",
       description: "Engaging content that converts visitors to customers",
-      icon: "PenTool"
+      icon: PenTool
     },
     {
       name: "Web Maintenance",
       path: "/services/web-maintenance",
       description: "Keep your website secure, updated and running smoothly",
-      icon: "Wrench"
+      icon: Wrench
+    },
+  ];
+
+  const supportItems = [
+    {
+      name: "Services",
+      path: "/services",
+      description: "Explore our services",
+      icon: Briefcase
+    },
+    {
+      name: "Portfolio",
+      path: "/portfolio",
+      description: "Explore our portfolio",
+      icon: Briefcase
+    },
+    {
+      name: "Frequently Asked Questions",
+      path: "/faq",
+      description: "Explore FAQs",
+      icon: HelpCircle
+    },
+    {
+      name: "Terms and Conditions",
+      path: "/terms",
+      description: "View terms and conditions",
+      icon: FileText
+    },
+    {
+      name: "Privacy Policy",
+      path: "/privacy",
+      description: "View privacy policy",
+      icon: Lock
     },
   ];
 
@@ -144,11 +174,7 @@ const Navigation = () => {
                         <div className="p-6">
                           <div className="grid gap-3 md:grid-cols-2">
                             {serviceItems.map((service) => {
-                              const IconComponent = service.icon === "Code" ? Code : 
-                                service.icon === "ShoppingCart" ? ShoppingCart :
-                                service.icon === "Search" ? Search :
-                                service.icon === "PenTool" ? PenTool :
-                                service.icon === "Wrench" ? Wrench : Code;
+                              const IconComponent = service.icon;
                               
                               return (
                                 <Link
@@ -169,6 +195,78 @@ const Navigation = () => {
                                         {service.description}
                                       </p>
                                     </div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            {/* Support Mega Menu */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium">
+                    Support
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[700px] p-0">
+                      <div className="grid md:grid-cols-[300px_1fr]">
+                        {/* Contact Info Section */}
+                        <div className="bg-muted/50 p-6 border-r">
+                          <h3 className="text-lg font-bold mb-4">Contact Info</h3>
+                          <div className="space-y-4">
+                            <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
+                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                              <span className="break-all">www.wakstech.com</span>
+                            </a>
+                            <a href="mailto:info@wakstech.com" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
+                              <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                              <span>info@wakstech.com</span>
+                            </a>
+                            <a href="tel:+254798435087" className="flex items-start gap-3 text-sm hover:text-primary transition-colors">
+                              <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                              <span>+254 798 435 087</span>
+                            </a>
+                            <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                              <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                              <span>Kanu Street, Langa Langa<br />Nakuru, Kenya</span>
+                            </div>
+                          </div>
+                          <Button variant="default" size="sm" className="w-full mt-6" asChild>
+                            <Link to="/contact">I Need More Info</Link>
+                          </Button>
+                        </div>
+
+                        {/* Support Links */}
+                        <div className="p-6">
+                          <div className="grid gap-2">
+                            {supportItems.map((item) => {
+                              const IconComponent = item.icon;
+                              
+                              return (
+                                <Link
+                                  key={item.name}
+                                  to={item.path}
+                                  className={cn(
+                                    "group flex items-start gap-3 rounded-lg p-3 transition-all hover:bg-accent",
+                                    isActive(item.path) && "bg-accent/10"
+                                  )}
+                                >
+                                  <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20">
+                                    <IconComponent className="h-4 w-4 text-primary" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="text-sm font-semibold leading-none text-foreground mb-1">{item.name}</div>
+                                    <p className="text-xs leading-snug text-muted-foreground">
+                                      {item.description}
+                                    </p>
                                   </div>
                                 </Link>
                               );
@@ -232,11 +330,7 @@ const Navigation = () => {
                 {mobileServicesOpen && (
                   <div className="mt-2 space-y-1 pl-4">
                     {serviceItems.map((service) => {
-                      const IconComponent = service.icon === "Code" ? Code : 
-                        service.icon === "ShoppingCart" ? ShoppingCart :
-                        service.icon === "Search" ? Search :
-                        service.icon === "PenTool" ? PenTool :
-                        service.icon === "Wrench" ? Wrench : Code;
+                      const IconComponent = service.icon;
                       
                       return (
                         <Link
@@ -259,6 +353,72 @@ const Navigation = () => {
                             <div>
                               <div className="font-medium text-sm">{service.name}</div>
                               <div className="text-xs text-muted-foreground mt-1">{service.description}</div>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Support Dropdown */}
+              <div className="border-t pt-2">
+                <button
+                  onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
+                  className="w-full px-3 py-2 rounded-md text-sm font-medium text-foreground hover:text-accent hover:bg-accent/5 flex items-center justify-between transition-colors"
+                >
+                  Support
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileSupportOpen && "rotate-180")} />
+                </button>
+                {mobileSupportOpen && (
+                  <div className="mt-2 space-y-3 pl-4">
+                    {/* Contact Info */}
+                    <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                      <h4 className="font-semibold text-sm">Contact Info</h4>
+                      <a href="https://wakstech.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs hover:text-primary">
+                        <Mail className="h-3 w-3" />
+                        <span>www.wakstech.com</span>
+                      </a>
+                      <a href="mailto:info@wakstech.com" className="flex items-center gap-2 text-xs hover:text-primary">
+                        <Mail className="h-3 w-3" />
+                        <span>info@wakstech.com</span>
+                      </a>
+                      <a href="tel:+254798435087" className="flex items-center gap-2 text-xs hover:text-primary">
+                        <Phone className="h-3 w-3" />
+                        <span>+254 798 435 087</span>
+                      </a>
+                      <div className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <MapPin className="h-3 w-3 mt-0.5" />
+                        <span>Kanu Street, Langa Langa, Nakuru, Kenya</span>
+                      </div>
+                    </div>
+                    
+                    {/* Support Links */}
+                    {supportItems.map((item) => {
+                      const IconComponent = item.icon;
+                      
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          onClick={() => {
+                            setIsOpen(false);
+                            setMobileSupportOpen(false);
+                          }}
+                          className={`block px-3 py-3 rounded-md transition-colors ${
+                            isActive(item.path)
+                              ? "text-accent bg-accent/10"
+                              : "text-foreground hover:text-accent hover:bg-accent/5"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="rounded-md bg-primary/10 p-2">
+                              <IconComponent className="h-4 w-4 text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-sm">{item.name}</div>
+                              <div className="text-xs text-muted-foreground mt-1">{item.description}</div>
                             </div>
                           </div>
                         </Link>
