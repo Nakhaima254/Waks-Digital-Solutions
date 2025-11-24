@@ -139,6 +139,10 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground font-['Inter',system-ui,sans-serif] antialiased;
   }
@@ -185,6 +189,22 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
 
   .section-hero {
     @apply bg-[var(--gradient-hero)] text-primary-foreground;
+  }
+
+  /* Page transition animation */
+  .page-transition {
+    animation: pageTransition 0.3s ease-in-out;
+  }
+
+  @keyframes pageTransition {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
