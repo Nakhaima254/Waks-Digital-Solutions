@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -36,22 +36,38 @@ const Navigation = () => {
     {
       name: "Web Development",
       path: "/services/web-development",
-      description: "Custom, scalable websites built from scratch"
+      description: "Custom, scalable websites built from scratch",
+      icon: "Code"
     },
     {
       name: "WordPress Design",
       path: "/services/wordpress-design",
-      description: "Professional WordPress websites with easy management"
+      description: "Professional WordPress websites with easy management",
+      icon: "Wordpress"
     },
     {
       name: "E-commerce Solutions",
       path: "/services/ecommerce-solutions",
-      description: "Complete online stores to sell your products"
+      description: "Complete online stores to sell your products",
+      icon: "ShoppingCart"
     },
     {
       name: "SEO Services",
       path: "/services/seo-services",
-      description: "Improve your search engine visibility"
+      description: "Improve your search engine visibility",
+      icon: "Search"
+    },
+    {
+      name: "Copywriting Services",
+      path: "/services/copywriting",
+      description: "Engaging content that converts visitors to customers",
+      icon: "PenTool"
+    },
+    {
+      name: "Web Maintenance",
+      path: "/services/web-maintenance",
+      description: "Keep your website secure, updated and running smoothly",
+      icon: "Wrench"
     },
   ];
 
@@ -95,22 +111,39 @@ const Navigation = () => {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[600px] gap-3 p-6 md:grid-cols-2">
-                      {serviceItems.map((service) => (
-                        <Link
-                          key={service.name}
-                          to={service.path}
-                          className={cn(
-                            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                            isActive(service.path) && "bg-accent/10"
-                          )}
-                        >
-                          <div className="text-sm font-medium leading-none">{service.name}</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            {service.description}
-                          </p>
-                        </Link>
-                      ))}
+                    <div className="w-[700px] p-6">
+                      <div className="grid gap-4 md:grid-cols-3">
+                        {serviceItems.map((service) => {
+                          const IconComponent = service.icon === "Code" ? Code : 
+                            service.icon === "ShoppingCart" ? ShoppingCart :
+                            service.icon === "Search" ? Search :
+                            service.icon === "PenTool" ? PenTool :
+                            service.icon === "Wrench" ? Wrench : Code;
+                          
+                          return (
+                            <Link
+                              key={service.name}
+                              to={service.path}
+                              className={cn(
+                                "group block select-none space-y-2 rounded-lg p-4 leading-none no-underline outline-none transition-all hover:bg-accent hover:shadow-md",
+                                isActive(service.path) && "bg-accent/10"
+                              )}
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="rounded-md bg-primary/10 p-2 transition-colors group-hover:bg-primary/20">
+                                  <IconComponent className="h-5 w-5 text-primary" />
+                                </div>
+                                <div>
+                                  <div className="text-sm font-semibold leading-none text-foreground">{service.name}</div>
+                                  <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
+                                    {service.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -166,24 +199,39 @@ const Navigation = () => {
                 </button>
                 {mobileServicesOpen && (
                   <div className="mt-2 space-y-1 pl-4">
-                    {serviceItems.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.path}
-                        onClick={() => {
-                          setIsOpen(false);
-                          setMobileServicesOpen(false);
-                        }}
-                        className={`block px-3 py-3 rounded-md transition-colors ${
-                          isActive(service.path)
-                            ? "text-accent bg-accent/10"
-                            : "text-foreground hover:text-accent hover:bg-accent/5"
-                        }`}
-                      >
-                        <div className="font-medium text-sm">{service.name}</div>
-                        <div className="text-xs text-muted-foreground mt-1">{service.description}</div>
-                      </Link>
-                    ))}
+                    {serviceItems.map((service) => {
+                      const IconComponent = service.icon === "Code" ? Code : 
+                        service.icon === "ShoppingCart" ? ShoppingCart :
+                        service.icon === "Search" ? Search :
+                        service.icon === "PenTool" ? PenTool :
+                        service.icon === "Wrench" ? Wrench : Code;
+                      
+                      return (
+                        <Link
+                          key={service.name}
+                          to={service.path}
+                          onClick={() => {
+                            setIsOpen(false);
+                            setMobileServicesOpen(false);
+                          }}
+                          className={`block px-3 py-3 rounded-md transition-colors ${
+                            isActive(service.path)
+                              ? "text-accent bg-accent/10"
+                              : "text-foreground hover:text-accent hover:bg-accent/5"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="rounded-md bg-primary/10 p-2">
+                              <IconComponent className="h-4 w-4 text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-medium text-sm">{service.name}</div>
+                              <div className="text-xs text-muted-foreground mt-1">{service.description}</div>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>

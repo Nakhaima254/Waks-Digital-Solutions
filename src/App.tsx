@@ -18,6 +18,8 @@ import WebDevelopment from "./pages/services/WebDevelopment";
 import WordPressDesign from "./pages/services/WordPressDesign";
 import EcommerceSolutions from "./pages/services/EcommerceSolutions";
 import SEOServices from "./pages/services/SEOServices";
+import Copywriting from "./pages/services/Copywriting";
+import WebMaintenance from "./pages/services/WebMaintenance";
 import WebDesignTrends2025 from "./pages/blog/WebDesignTrends2025";
 import SEOGuideKenyanBusinesses from "./pages/blog/SEOGuideKenyanBusinesses";
 import EcommerceSuccessKenya from "./pages/blog/EcommerceSuccessKenya";
@@ -100,6 +102,8 @@ const App = () => (
             <Route path="services/wordpress-design" element={<WordPressDesign />} />
             <Route path="services/ecommerce-solutions" element={<EcommerceSolutions />} />
             <Route path="services/seo-services" element={<SEOServices />} />
+            <Route path="services/copywriting" element={<Copywriting />} />
+            <Route path="services/web-maintenance" element={<WebMaintenance />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
