@@ -140,8 +140,8 @@ const Navigation = () => {
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="animate-fade-in">
-                    <div className="w-[900px] max-w-[90vw] p-0">
-                      <div className="grid md:grid-cols-[350px_1fr]">
+                    <div className="w-[800px] max-w-[90vw] p-0">
+                      <div className="grid md:grid-cols-[280px_1fr]">
                         {/* Featured Image Section */}
                         <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
                           <div className="relative z-10">
@@ -227,8 +227,8 @@ const Navigation = () => {
                     Support
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="animate-fade-in">
-                    <div className="w-[700px] max-w-[90vw] p-0">
-                      <div className="grid md:grid-cols-[300px_1fr]">
+                    <div className="w-[600px] max-w-[90vw] p-0">
+                      <div className="grid md:grid-cols-[250px_1fr]">
                         {/* Contact Info Section */}
                         <div className="bg-muted/50 p-6 border-r">
                           <h3 className="text-lg font-bold mb-4">Contact Info</h3>
