@@ -390,9 +390,14 @@ const Navigation = () => {
                 ))}
                 
                 {/* Mobile Services Dropdown */}
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className="rounded-xl border border-border overflow-hidden bg-background">
                   <button
-                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setMobileServicesOpen(!mobileServicesOpen);
+                    }}
                     className={cn(
                       "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
                       mobileServicesOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
@@ -404,11 +409,8 @@ const Navigation = () => {
                       mobileServicesOpen && "rotate-180"
                     )} />
                   </button>
-                  <div className={cn(
-                    "overflow-hidden transition-all duration-300 ease-in-out",
-                    mobileServicesOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
-                  )}>
-                    <div className="p-3 space-y-2 bg-muted/30">
+                  {mobileServicesOpen && (
+                    <div className="p-3 space-y-2 bg-muted/30 animate-fade-in">
                       {serviceItems.map((service) => {
                         const IconComponent = service.icon;
                         
@@ -438,7 +440,7 @@ const Navigation = () => {
                         );
                       })}
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Mobile Pricing Link */}
@@ -470,9 +472,14 @@ const Navigation = () => {
                 </Link>
 
                 {/* Mobile Support Dropdown */}
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className="rounded-xl border border-border overflow-hidden bg-background">
                   <button
-                    onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setMobileSupportOpen(!mobileSupportOpen);
+                    }}
                     className={cn(
                       "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
                       mobileSupportOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
@@ -484,11 +491,8 @@ const Navigation = () => {
                       mobileSupportOpen && "rotate-180"
                     )} />
                   </button>
-                  <div className={cn(
-                    "overflow-hidden transition-all duration-300 ease-in-out",
-                    mobileSupportOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-                  )}>
-                    <div className="p-3 space-y-3 bg-muted/30">
+                  {mobileSupportOpen && (
+                    <div className="p-3 space-y-3 bg-muted/30 animate-fade-in">
                       {/* Contact Info Card */}
                       <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-5 space-y-4 border border-primary/20">
                         <h4 className="font-bold text-base text-foreground">Contact Info</h4>
@@ -550,7 +554,7 @@ const Navigation = () => {
                         );
                       })}
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
               
