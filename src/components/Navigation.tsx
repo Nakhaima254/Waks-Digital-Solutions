@@ -346,12 +346,12 @@ const Navigation = () => {
           <>
             {/* Backdrop overlay */}
             <div 
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden animate-fade-in"
               onClick={() => setIsOpen(false)}
             />
             
             {/* Mobile menu - Full screen */}
-            <div className="md:hidden fixed inset-0 top-0 bg-background z-50 animate-slide-in-right overflow-hidden flex flex-col">
+            <div className="md:hidden fixed inset-0 bg-background z-[70] animate-slide-in-right overflow-hidden flex flex-col">
               {/* Header with close button */}
               <div className="flex items-center justify-between px-4 py-4 border-b border-border bg-background">
                 <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
