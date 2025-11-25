@@ -346,170 +346,220 @@ const Navigation = () => {
           <>
             {/* Backdrop overlay */}
             <div 
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
               onClick={() => setIsOpen(false)}
             />
             
-            {/* Mobile menu */}
-            <div className="md:hidden fixed inset-y-0 right-0 w-full sm:w-80 bg-background z-50 shadow-2xl animate-slide-in-right overflow-y-auto">
-              <div className="px-2 pt-2 pb-3 space-y-1 border-t border-border">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(item.path)
-                      ? "text-accent bg-accent/10"
-                      : "text-foreground hover:text-accent hover:bg-accent/5"
-                  }`}
-                >
-                  {item.name}
+            {/* Mobile menu - Full screen */}
+            <div className="md:hidden fixed inset-0 top-0 bg-background z-50 animate-slide-in-right overflow-hidden flex flex-col">
+              {/* Header with close button */}
+              <div className="flex items-center justify-between px-4 py-4 border-b border-border bg-background">
+                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
+                  <img
+                    src={theme === "dark" ? LogoDark : LogoLight}
+                    alt="Waks Digital Partner Logo"
+                    className="h-12 w-auto"
+                  />
                 </Link>
-              ))}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                  className="h-10 w-10 rounded-full hover:bg-accent/10"
+                >
+                  <X className="h-6 w-6" />
+                </Button>
+              </div>
               
-              {/* Mobile Services Dropdown */}
-              <div className="border-t pt-2">
-                <button
-                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="w-full px-3 py-2 rounded-md text-sm font-medium text-foreground hover:text-accent hover:bg-accent/5 flex items-center justify-between transition-colors"
-                >
-                  Services
-                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileServicesOpen && "rotate-180")} />
-                </button>
-                {mobileServicesOpen && (
-                  <div className="mt-2 space-y-1 pl-4">
-                    {serviceItems.map((service) => {
-                      const IconComponent = service.icon;
-                      
-                      return (
-                        <Link
-                          key={service.name}
-                          to={service.path}
-                          onClick={() => {
-                            setIsOpen(false);
-                            setMobileServicesOpen(false);
-                          }}
-                          className={`block px-3 py-3 rounded-md transition-colors ${
-                            isActive(service.path)
-                              ? "text-accent bg-accent/10"
-                              : "text-foreground hover:text-accent hover:bg-accent/5"
-                          }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="rounded-md bg-primary/10 p-2">
-                              <IconComponent className="h-4 w-4 text-primary" />
+              {/* Scrollable content */}
+              <div className="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
+                      isActive(item.path)
+                        ? "text-accent bg-accent/10 border border-accent/20"
+                        : "text-foreground hover:text-accent hover:bg-muted/50"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                
+                {/* Mobile Services Dropdown */}
+                <div className="rounded-xl border border-border overflow-hidden">
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className={cn(
+                      "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
+                      mobileServicesOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
+                    )}
+                  >
+                    <span>Services</span>
+                    <ChevronDown className={cn(
+                      "h-5 w-5 transition-transform duration-300",
+                      mobileServicesOpen && "rotate-180"
+                    )} />
+                  </button>
+                  <div className={cn(
+                    "overflow-hidden transition-all duration-300 ease-in-out",
+                    mobileServicesOpen ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
+                  )}>
+                    <div className="p-3 space-y-2 bg-muted/30">
+                      {serviceItems.map((service) => {
+                        const IconComponent = service.icon;
+                        
+                        return (
+                          <Link
+                            key={service.name}
+                            to={service.path}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setMobileServicesOpen(false);
+                            }}
+                            className={cn(
+                              "flex items-start gap-4 p-4 rounded-lg transition-all duration-200",
+                              isActive(service.path)
+                                ? "bg-accent/15 border border-accent/30"
+                                : "bg-background hover:bg-accent/5 border border-transparent"
+                            )}
+                          >
+                            <div className="rounded-lg bg-primary/10 p-3 flex-shrink-0">
+                              <IconComponent className="h-5 w-5 text-primary" />
                             </div>
-                            <div>
-                              <div className="font-medium text-sm">{service.name}</div>
-                              <div className="text-xs text-muted-foreground mt-1">{service.description}</div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-base text-foreground">{service.name}</div>
+                              <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{service.description}</div>
                             </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* Mobile Pricing Link */}
-              <Link
-                to="/pricing"
-                onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  isActive("/pricing")
-                    ? "text-accent bg-accent/10"
-                    : "text-foreground hover:text-accent hover:bg-accent/5"
-                }`}
-              >
-                Pricing
-              </Link>
-
-              {/* Mobile Blog Link */}
-              <Link
-                to="/blog"
-                onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  isActive("/blog")
-                    ? "text-accent bg-accent/10"
-                    : "text-foreground hover:text-accent hover:bg-accent/5"
-                }`}
-              >
-                Blog
-              </Link>
-
-              {/* Mobile Support Dropdown */}
-              <div className="border-t pt-2">
-                <button
-                  onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
-                  className="w-full px-3 py-2 rounded-md text-sm font-medium text-foreground hover:text-accent hover:bg-accent/5 flex items-center justify-between transition-colors"
-                >
-                  Support
-                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileSupportOpen && "rotate-180")} />
-                </button>
-                {mobileSupportOpen && (
-                  <div className="mt-2 space-y-3 pl-4">
-                    {/* Contact Info */}
-                    <div className="bg-muted/50 rounded-lg p-4 space-y-3">
-                      <h4 className="font-semibold text-sm">Contact Info</h4>
-                      <a href="mailto:info@waksdigital.co.ke" className="flex items-center gap-2 text-xs hover:text-primary">
-                        <Mail className="h-3 w-3" />
-                        <span>info@waksdigital.co.ke</span>
-                      </a>
-                      <a href="tel:+254718098165" className="flex items-center gap-2 text-xs hover:text-primary">
-                        <Phone className="h-3 w-3" />
-                        <span>+254 718 098 165</span>
-                      </a>
-                      <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-xs hover:text-primary">
-                        <Phone className="h-3 w-3" />
-                        <span>+254 746 388 308 (WhatsApp)</span>
-                      </a>
-                      <div className="flex items-start gap-2 text-xs text-muted-foreground">
-                        <MapPin className="h-3 w-3 mt-0.5" />
-                        <span>Kanu Street, Langa Langa, Nakuru, Kenya</span>
-                      </div>
+                          </Link>
+                        );
+                      })}
                     </div>
-                    
-                    {/* Support Links */}
-                    {supportItems.map((item) => {
-                      const IconComponent = item.icon;
-                      
-                      return (
-                        <Link
-                          key={item.name}
-                          to={item.path}
-                          onClick={() => {
-                            setIsOpen(false);
-                            setMobileSupportOpen(false);
-                          }}
-                          className={`block px-3 py-3 rounded-md transition-colors ${
-                            isActive(item.path)
-                              ? "text-accent bg-accent/10"
-                              : "text-foreground hover:text-accent hover:bg-accent/5"
-                          }`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="rounded-md bg-primary/10 p-2">
-                              <IconComponent className="h-4 w-4 text-primary" />
-                            </div>
-                            <div>
-                              <div className="font-medium text-sm">{item.name}</div>
-                              <div className="text-xs text-muted-foreground mt-1">{item.description}</div>
-                            </div>
-                          </div>
-                        </Link>
-                      );
-                    })}
                   </div>
-                )}
-              </div>
+                </div>
 
-               <div className="px-3 py-2 space-y-2 border-t pt-2">
-                 <Button variant="hero" size="sm" className="w-full" asChild onClick={() => setIsOpen(false)}>
-                   <Link to="/contact">Get Started</Link>
-                 </Button>
-               </div>
-             </div>
+                {/* Mobile Pricing Link */}
+                <Link
+                  to="/pricing"
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
+                    isActive("/pricing")
+                      ? "text-accent bg-accent/10 border border-accent/20"
+                      : "text-foreground hover:text-accent hover:bg-muted/50"
+                  )}
+                >
+                  Pricing
+                </Link>
+
+                {/* Mobile Blog Link */}
+                <Link
+                  to="/blog"
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
+                    isActive("/blog")
+                      ? "text-accent bg-accent/10 border border-accent/20"
+                      : "text-foreground hover:text-accent hover:bg-muted/50"
+                  )}
+                >
+                  Blog
+                </Link>
+
+                {/* Mobile Support Dropdown */}
+                <div className="rounded-xl border border-border overflow-hidden">
+                  <button
+                    onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
+                    className={cn(
+                      "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
+                      mobileSupportOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
+                    )}
+                  >
+                    <span>Support</span>
+                    <ChevronDown className={cn(
+                      "h-5 w-5 transition-transform duration-300",
+                      mobileSupportOpen && "rotate-180"
+                    )} />
+                  </button>
+                  <div className={cn(
+                    "overflow-hidden transition-all duration-300 ease-in-out",
+                    mobileSupportOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+                  )}>
+                    <div className="p-3 space-y-3 bg-muted/30">
+                      {/* Contact Info Card */}
+                      <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-5 space-y-4 border border-primary/20">
+                        <h4 className="font-bold text-base text-foreground">Contact Info</h4>
+                        <div className="space-y-3">
+                          <a href="mailto:info@waksdigital.co.ke" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                            <div className="rounded-lg bg-primary/10 p-2">
+                              <Mail className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>info@waksdigital.co.ke</span>
+                          </a>
+                          <a href="tel:+254718098165" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                            <div className="rounded-lg bg-primary/10 p-2">
+                              <Phone className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>+254 718 098 165</span>
+                          </a>
+                          <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
+                            <div className="rounded-lg bg-primary/10 p-2">
+                              <Phone className="h-4 w-4 text-primary" />
+                            </div>
+                            <span>+254 746 388 308 (WhatsApp)</span>
+                          </a>
+                          <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                            <div className="rounded-lg bg-muted p-2">
+                              <MapPin className="h-4 w-4" />
+                            </div>
+                            <span>Kanu Street, Langa Langa, Nakuru, Kenya</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Support Links */}
+                      {supportItems.map((item) => {
+                        const IconComponent = item.icon;
+                        
+                        return (
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setMobileSupportOpen(false);
+                            }}
+                            className={cn(
+                              "flex items-start gap-4 p-4 rounded-lg transition-all duration-200",
+                              isActive(item.path)
+                                ? "bg-accent/15 border border-accent/30"
+                                : "bg-background hover:bg-accent/5 border border-transparent"
+                            )}
+                          >
+                            <div className="rounded-lg bg-primary/10 p-3 flex-shrink-0">
+                              <IconComponent className="h-5 w-5 text-primary" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-base text-foreground">{item.name}</div>
+                              <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{item.description}</div>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Fixed bottom CTA */}
+              <div className="px-4 py-4 border-t border-border bg-background">
+                <Button variant="hero" size="lg" className="w-full text-base py-6" asChild onClick={() => setIsOpen(false)}>
+                  <Link to="/contact">Get Started</Link>
+                </Button>
+              </div>
             </div>
           </>
         )}
