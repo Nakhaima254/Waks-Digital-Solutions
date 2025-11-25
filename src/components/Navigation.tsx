@@ -113,462 +113,410 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className={cn(
-      "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300",
-      isScrolled && "shadow-md"
-    )}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={cn(
-          "flex justify-between items-center transition-all duration-300",
-          isScrolled ? "h-14" : "h-16"
-        )}>
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src={theme === "dark" ? LogoDark : LogoLight}
-              alt="Waks Digital Partner Logo"
-              className={cn(
-                "w-auto transition-all duration-300",
-                isScrolled ? "h-16" : "h-20"
-              )}
-              style={{ maxWidth: isScrolled ? 280 : 350 }}
-            />
-          </Link>
+    <>
+      <nav className={cn(
+        "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300",
+        isScrolled && "shadow-md"
+      )}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className={cn(
+            "flex justify-between items-center transition-all duration-300",
+            isScrolled ? "h-14" : "h-16"
+          )}>
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-2">
+              <img
+                src={theme === "dark" ? LogoDark : LogoLight}
+                alt="Waks Digital Partner Logo"
+                className={cn(
+                  "w-auto transition-all duration-300",
+                  isScrolled ? "h-16" : "h-20"
+                )}
+                style={{ maxWidth: isScrolled ? 280 : 350 }}
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive(item.path)
+                      ? "text-accent bg-accent/10"
+                      : "text-foreground hover:text-accent hover:bg-accent/5"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              
+              {/* Services Mega Menu */}
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm font-medium">
+                      Services
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="animate-fade-in">
+                      <div className="w-[800px] max-w-[90vw] p-0">
+                        <div className="grid md:grid-cols-[280px_1fr]">
+                          {/* Featured Image Section */}
+                          <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
+                            <div className="relative z-10">
+                              <h3 className="text-3xl font-bold text-white mb-4">Our Services</h3>
+                              <p className="text-white/90 text-sm leading-relaxed mb-6">
+                                Comprehensive digital solutions tailored to grow your business and establish your online presence.
+                              </p>
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2 text-white/90 text-sm">
+                                  <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                  <span>Expert team of developers</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-white/90 text-sm">
+                                  <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                  <span>Proven track record</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-white/90 text-sm">
+                                  <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
+                                  <span>Ongoing support</span>
+                                </div>
+                              </div>
+                            </div>
+                            {/* Decorative elements */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
+                          </div>
+
+                          {/* Services Grid */}
+                          <div className="p-6">
+                            <div className="grid gap-3 md:grid-cols-2">
+                              {serviceItems.map((service) => {
+                                const IconComponent = service.icon;
+                                
+                                return (
+                                  <Link
+                                    key={service.name}
+                                    to={service.path}
+                                    className={cn(
+                                      "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-muted/50 hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
+                                      isActive(service.path) && "bg-muted"
+                                    )}
+                                  >
+                                    <div className="flex items-start gap-3">
+                                      <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110 mt-0.5">
+                                        <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-3" />
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="text-sm font-semibold leading-none text-foreground mb-1">{service.name}</div>
+                                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                                          {service.description}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+
+              {/* Blog Link */}
               <Link
-                key={item.name}
-                to={item.path}
+                to="/pricing"
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive(item.path)
+                  isActive("/pricing")
                     ? "text-accent bg-accent/10"
                     : "text-foreground hover:text-accent hover:bg-accent/5"
                 }`}
               >
-                {item.name}
+                Pricing
               </Link>
-            ))}
-            
-            {/* Services Mega Menu */}
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium">
-                    Services
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-fade-in">
-                    <div className="w-[800px] max-w-[90vw] p-0">
-                      <div className="grid md:grid-cols-[280px_1fr]">
-                        {/* Featured Image Section */}
-                        <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
-                          <div className="relative z-10">
-                            <h3 className="text-3xl font-bold text-white mb-4">Our Services</h3>
-                            <p className="text-white/90 text-sm leading-relaxed mb-6">
-                              Comprehensive digital solutions tailored to grow your business and establish your online presence.
-                            </p>
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 text-white/90 text-sm">
-                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
-                                <span>Expert team of developers</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-white/90 text-sm">
-                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
-                                <span>Proven track record</span>
-                              </div>
-                              <div className="flex items-center gap-2 text-white/90 text-sm">
-                                <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
-                                <span>Ongoing support</span>
-                              </div>
-                            </div>
-                          </div>
-                          {/* Decorative elements */}
-                          <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-                          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-                        </div>
 
-                        {/* Services Grid */}
-                        <div className="p-6">
-                          <div className="grid gap-3 md:grid-cols-2">
-                            {serviceItems.map((service) => {
-                              const IconComponent = service.icon;
-                              
-                              return (
-                                <Link
-                                  key={service.name}
-                                  to={service.path}
-                                  className={cn(
-                                    "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-muted/50 hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
-                                    isActive(service.path) && "bg-muted"
-                                  )}
-                                >
-                                  <div className="flex items-start gap-3">
-                                    <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110 mt-0.5">
-                                      <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-3" />
+              {/* Blog Link */}
+              <Link
+                to="/blog"
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/blog")
+                    ? "text-accent bg-accent/10"
+                    : "text-foreground hover:text-accent hover:bg-accent/5"
+                }`}
+              >
+                Blog
+              </Link>
+
+              {/* Support Mega Menu */}
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm font-medium">
+                      Support
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="animate-fade-in">
+                      <div className="w-[600px] max-w-[90vw] p-0">
+                        <div className="grid md:grid-cols-[250px_1fr]">
+                          {/* Contact Info Section */}
+                            <div className="bg-muted/50 p-6 border-r">
+                              <h3 className="text-lg font-bold mb-4">Contact Info</h3>
+                              <div className="space-y-4">
+                                <a href="mailto:info@waksdigital.co.ke" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                  <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                  <span>info@waksdigital.co.ke</span>
+                                </a>
+                                <a href="tel:+254718098165" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                  <span>+254 718 098 165</span>
+                                </a>
+                                <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                  <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
+                                  <span>+254 746 388 308 (WhatsApp)</span>
+                                </a>
+                                <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                                  <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                                  <span>Nairobi, Kenya</span>
+                                </div>
+                              </div>
+                              <Button variant="default" size="sm" className="w-full mt-6" asChild>
+                                <Link to="/contact">I Need More Info</Link>
+                              </Button>
+                            </div>
+
+                          {/* Support Links */}
+                          <div className="p-6">
+                            <div className="grid gap-2">
+                              {supportItems.map((item) => {
+                                const IconComponent = item.icon;
+                                
+                                return (
+                                  <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    className={cn(
+                                      "group flex items-start gap-3 rounded-lg p-3 transition-all duration-300 hover:bg-muted/50 hover:shadow-sm hover:translate-x-1",
+                                      isActive(item.path) && "bg-muted"
+                                    )}
+                                  >
+                                    <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110">
+                                      <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-12" />
                                     </div>
                                     <div className="flex-1">
-                                      <div className="text-sm font-semibold leading-none text-foreground mb-1">{service.name}</div>
-                                      <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
-                                        {service.description}
+                                      <div className="text-sm font-semibold leading-none text-foreground mb-1">{item.name}</div>
+                                      <p className="text-xs leading-snug text-muted-foreground">
+                                        {item.description}
                                       </p>
                                     </div>
-                                  </div>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-
-            {/* Blog Link */}
-            <Link
-              to="/pricing"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/pricing")
-                  ? "text-accent bg-accent/10"
-                  : "text-foreground hover:text-accent hover:bg-accent/5"
-              }`}
-            >
-              Pricing
-            </Link>
-
-            {/* Blog Link */}
-            <Link
-              to="/blog"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/blog")
-                  ? "text-accent bg-accent/10"
-                  : "text-foreground hover:text-accent hover:bg-accent/5"
-              }`}
-            >
-              Blog
-            </Link>
-
-            {/* Support Mega Menu */}
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium">
-                    Support
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-fade-in">
-                    <div className="w-[600px] max-w-[90vw] p-0">
-                      <div className="grid md:grid-cols-[250px_1fr]">
-                        {/* Contact Info Section */}
-                          <div className="bg-muted/50 p-6 border-r">
-                            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
-                            <div className="space-y-4">
-                              <a href="mailto:info@waksdigital.co.ke" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                                <span>info@waksdigital.co.ke</span>
-                              </a>
-                              <a href="tel:+254718098165" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                                <span>+254 718 098 165</span>
-                              </a>
-                              <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
-                                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                                <span>+254 746 388 308 (WhatsApp)</span>
-                              </a>
-                              <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                                <span>Nairobi, Kenya</span>
-                              </div>
+                                  </Link>
+                                );
+                              })}
                             </div>
-                            <Button variant="default" size="sm" className="w-full mt-6" asChild>
-                              <Link to="/contact">I Need More Info</Link>
-                            </Button>
-                          </div>
-
-                        {/* Support Links */}
-                        <div className="p-6">
-                          <div className="grid gap-2">
-                            {supportItems.map((item) => {
-                              const IconComponent = item.icon;
-                              
-                              return (
-                                <Link
-                                  key={item.name}
-                                  to={item.path}
-                                  className={cn(
-                                    "group flex items-start gap-3 rounded-lg p-3 transition-all duration-300 hover:bg-muted/50 hover:shadow-sm hover:translate-x-1",
-                                    isActive(item.path) && "bg-muted"
-                                  )}
-                                >
-                                  <div className="rounded-md bg-primary/10 p-2 transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110">
-                                    <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-12" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="text-sm font-semibold leading-none text-foreground mb-1">{item.name}</div>
-                                    <p className="text-xs leading-snug text-muted-foreground">
-                                      {item.description}
-                                    </p>
-                                  </div>
-                                </Link>
-                              );
-                            })}
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
 
-            <ThemeToggle />
-            <Button variant="hero" size="sm" asChild className="ml-2">
-              <Link to="/contact">Get Started</Link>
-            </Button>
-          </div>
+              <ThemeToggle />
+              <Button variant="hero" size="sm" asChild className="ml-2">
+                <Link to="/contact">Get Started</Link>
+              </Button>
+            </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
         </div>
+      </nav>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <>
-            {/* Backdrop overlay */}
-            <div 
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden animate-fade-in"
-              onClick={() => setIsOpen(false)}
-            />
+      {/* Mobile Navigation - OUTSIDE nav container */}
+      {isOpen && (
+        <div className="md:hidden fixed inset-0 z-[100]">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
+          
+          {/* Menu Panel */}
+          <div className="absolute inset-0 bg-background flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-4 border-b border-border">
+              <Link to="/" onClick={() => setIsOpen(false)}>
+                <img
+                  src={theme === "dark" ? LogoDark : LogoLight}
+                  alt="Waks Digital Partner Logo"
+                  className="h-10 w-auto"
+                />
+              </Link>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
             
-            {/* Mobile menu - Full screen */}
-            <div className="md:hidden fixed inset-0 bg-background z-[70] animate-slide-in-right overflow-hidden flex flex-col">
-              {/* Header with close button */}
-              <div className="flex items-center justify-between px-4 py-4 border-b border-border bg-background">
-                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center">
-                  <img
-                    src={theme === "dark" ? LogoDark : LogoLight}
-                    alt="Waks Digital Partner Logo"
-                    className="h-12 w-auto"
-                  />
-                </Link>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsOpen(false)}
-                  className="h-10 w-10 rounded-full hover:bg-accent/10"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-              
-              {/* Scrollable content */}
-              <div className="flex-1 overflow-y-auto px-4 py-6 space-y-2">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
-                      isActive(item.path)
-                        ? "text-accent bg-accent/10 border border-accent/20"
-                        : "text-foreground hover:text-accent hover:bg-muted/50"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                
-                {/* Mobile Services Dropdown */}
-                <div className="rounded-xl border border-border overflow-hidden bg-background">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setMobileServicesOpen(!mobileServicesOpen);
-                    }}
-                    className={cn(
-                      "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
-                      mobileServicesOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
-                    )}
-                  >
-                    <span>Services</span>
-                    <ChevronDown className={cn(
-                      "h-5 w-5 transition-transform duration-300",
-                      mobileServicesOpen && "rotate-180"
-                    )} />
-                  </button>
-                  {mobileServicesOpen && (
-                    <div className="p-3 space-y-2 bg-muted/30 animate-fade-in">
-                      {serviceItems.map((service) => {
-                        const IconComponent = service.icon;
-                        
-                        return (
-                          <Link
-                            key={service.name}
-                            to={service.path}
-                            onClick={() => {
-                              setIsOpen(false);
-                              setMobileServicesOpen(false);
-                            }}
-                            className={cn(
-                              "flex items-start gap-4 p-4 rounded-lg transition-all duration-200",
-                              isActive(service.path)
-                                ? "bg-accent/15 border border-accent/30"
-                                : "bg-background hover:bg-accent/5 border border-transparent"
-                            )}
-                          >
-                            <div className="rounded-lg bg-primary/10 p-3 flex-shrink-0">
-                              <IconComponent className="h-5 w-5 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-semibold text-base text-foreground">{service.name}</div>
-                              <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{service.description}</div>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-
-                {/* Mobile Pricing Link */}
+            {/* Scrollable Menu Items */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {/* Nav Links */}
+              {navItems.map((item) => (
                 <Link
-                  to="/pricing"
+                  key={item.name}
+                  to={item.path}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
-                    isActive("/pricing")
-                      ? "text-accent bg-accent/10 border border-accent/20"
-                      : "text-foreground hover:text-accent hover:bg-muted/50"
+                    "block px-4 py-3 text-lg font-medium rounded-lg",
+                    isActive(item.path)
+                      ? "text-accent bg-accent/10"
+                      : "text-foreground hover:bg-muted"
                   )}
                 >
-                  Pricing
+                  {item.name}
                 </Link>
-
-                {/* Mobile Blog Link */}
-                <Link
-                  to="/blog"
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "flex items-center px-4 py-4 text-base font-medium rounded-xl transition-all duration-200",
-                    isActive("/blog")
-                      ? "text-accent bg-accent/10 border border-accent/20"
-                      : "text-foreground hover:text-accent hover:bg-muted/50"
-                  )}
-                >
-                  Blog
-                </Link>
-
-                {/* Mobile Support Dropdown */}
-                <div className="rounded-xl border border-border overflow-hidden bg-background">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setMobileSupportOpen(!mobileSupportOpen);
-                    }}
-                    className={cn(
-                      "w-full px-4 py-4 text-base font-medium flex items-center justify-between transition-all duration-200",
-                      mobileSupportOpen ? "bg-accent/10 text-accent" : "text-foreground hover:bg-muted/50"
-                    )}
-                  >
-                    <span>Support</span>
-                    <ChevronDown className={cn(
-                      "h-5 w-5 transition-transform duration-300",
-                      mobileSupportOpen && "rotate-180"
-                    )} />
-                  </button>
-                  {mobileSupportOpen && (
-                    <div className="p-3 space-y-3 bg-muted/30 animate-fade-in">
-                      {/* Contact Info Card */}
-                      <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl p-5 space-y-4 border border-primary/20">
-                        <h4 className="font-bold text-base text-foreground">Contact Info</h4>
-                        <div className="space-y-3">
-                          <a href="mailto:info@waksdigital.co.ke" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
-                            <div className="rounded-lg bg-primary/10 p-2">
-                              <Mail className="h-4 w-4 text-primary" />
-                            </div>
-                            <span>info@waksdigital.co.ke</span>
-                          </a>
-                          <a href="tel:+254718098165" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
-                            <div className="rounded-lg bg-primary/10 p-2">
-                              <Phone className="h-4 w-4 text-primary" />
-                            </div>
-                            <span>+254 718 098 165</span>
-                          </a>
-                          <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm hover:text-primary transition-colors">
-                            <div className="rounded-lg bg-primary/10 p-2">
-                              <Phone className="h-4 w-4 text-primary" />
-                            </div>
-                            <span>+254 746 388 308 (WhatsApp)</span>
-                          </a>
-                          <div className="flex items-start gap-3 text-sm text-muted-foreground">
-                            <div className="rounded-lg bg-muted p-2">
-                              <MapPin className="h-4 w-4" />
-                            </div>
-                            <span>Nairobi, Kenya</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Support Links */}
-                      {supportItems.map((item) => {
-                        const IconComponent = item.icon;
-                        
-                        return (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            onClick={() => {
-                              setIsOpen(false);
-                              setMobileSupportOpen(false);
-                            }}
-                            className={cn(
-                              "flex items-start gap-4 p-4 rounded-lg transition-all duration-200",
-                              isActive(item.path)
-                                ? "bg-accent/15 border border-accent/30"
-                                : "bg-background hover:bg-accent/5 border border-transparent"
-                            )}
-                          >
-                            <div className="rounded-lg bg-primary/10 p-3 flex-shrink-0">
-                              <IconComponent className="h-5 w-5 text-primary" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-semibold text-base text-foreground">{item.name}</div>
-                              <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{item.description}</div>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </div>
+              ))}
               
-              {/* Fixed bottom CTA */}
-              <div className="px-4 py-4 border-t border-border bg-background">
-                <Button variant="hero" size="lg" className="w-full text-base py-6" asChild onClick={() => setIsOpen(false)}>
-                  <Link to="/contact">Get Started</Link>
-                </Button>
+              {/* Services Dropdown */}
+              <div className="border border-border rounded-lg overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className={cn(
+                    "w-full px-4 py-3 text-lg font-medium flex items-center justify-between",
+                    mobileServicesOpen ? "bg-accent/10 text-accent" : "text-foreground"
+                  )}
+                >
+                  Services
+                  <ChevronDown className={cn(
+                    "h-5 w-5 transition-transform",
+                    mobileServicesOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobileServicesOpen && (
+                  <div className="bg-muted/50 p-2 space-y-1">
+                    {serviceItems.map((service) => {
+                      const IconComponent = service.icon;
+                      return (
+                        <Link
+                          key={service.name}
+                          to={service.path}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-background"
+                        >
+                          <IconComponent className="h-5 w-5 text-primary" />
+                          <span className="text-base">{service.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Pricing */}
+              <Link
+                to="/pricing"
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "block px-4 py-3 text-lg font-medium rounded-lg",
+                  isActive("/pricing")
+                    ? "text-accent bg-accent/10"
+                    : "text-foreground hover:bg-muted"
+                )}
+              >
+                Pricing
+              </Link>
+
+              {/* Blog */}
+              <Link
+                to="/blog"
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "block px-4 py-3 text-lg font-medium rounded-lg",
+                  isActive("/blog")
+                    ? "text-accent bg-accent/10"
+                    : "text-foreground hover:bg-muted"
+                )}
+              >
+                Blog
+              </Link>
+
+              {/* Support Dropdown */}
+              <div className="border border-border rounded-lg overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
+                  className={cn(
+                    "w-full px-4 py-3 text-lg font-medium flex items-center justify-between",
+                    mobileSupportOpen ? "bg-accent/10 text-accent" : "text-foreground"
+                  )}
+                >
+                  Support
+                  <ChevronDown className={cn(
+                    "h-5 w-5 transition-transform",
+                    mobileSupportOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobileSupportOpen && (
+                  <div className="bg-muted/50 p-2 space-y-1">
+                    {supportItems.map((item) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <Link
+                          key={item.name}
+                          to={item.path}
+                          onClick={() => setIsOpen(false)}
+                          className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-background"
+                        >
+                          <IconComponent className="h-5 w-5 text-primary" />
+                          <span className="text-base">{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                    {/* Contact Info */}
+                    <div className="mt-2 p-3 bg-background rounded-lg space-y-2">
+                      <p className="text-sm font-semibold">Contact Us</p>
+                      <a href="tel:+254718098165" className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Phone className="h-4 w-4" />
+                        +254 718 098 165
+                      </a>
+                      <a href="mailto:info@waksdigital.co.ke" className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Mail className="h-4 w-4" />
+                        info@waksdigital.co.ke
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
-          </>
-        )}
-      </div>
-    </nav>
+            
+            {/* Bottom CTA */}
+            <div className="p-4 border-t border-border">
+              <Button variant="hero" size="lg" className="w-full" asChild>
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  Get Started
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
