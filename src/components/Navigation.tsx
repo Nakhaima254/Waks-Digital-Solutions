@@ -278,7 +278,7 @@ const Navigation = () => {
                               </a>
                               <div className="flex items-start gap-3 text-sm text-muted-foreground">
                                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                                <span>Kanu Street, Langa Langa<br />Nakuru, Kenya</span>
+                                <span>Nairobi, Kenya</span>
                               </div>
                             </div>
                             <Button variant="default" size="sm" className="w-full mt-6" asChild>
@@ -515,7 +515,7 @@ const Navigation = () => {
                             <div className="rounded-lg bg-muted p-2">
                               <MapPin className="h-4 w-4" />
                             </div>
-                            <span>Kanu Street, Langa Langa, Nakuru, Kenya</span>
+                            <span>Nairobi, Kenya</span>
                           </div>
                         </div>
                       </div>
