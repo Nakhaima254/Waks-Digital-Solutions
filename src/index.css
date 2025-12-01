@@ -206,5 +206,44 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
       transform: translateY(0);
     }
   }
+
+  /* Parallax and 3D transforms */
+  .parallax-container {
+    perspective: 1000px;
+    perspective-origin: center;
+  }
+
+  .parallax-layer {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .depth-layer-1 {
+    transform: translateZ(50px);
+  }
+
+  .depth-layer-2 {
+    transform: translateZ(100px);
+  }
+
+  .depth-layer-back {
+    transform: translateZ(-50px);
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
