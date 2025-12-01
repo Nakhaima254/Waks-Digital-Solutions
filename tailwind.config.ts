@@ -135,6 +135,16 @@ export default {
             opacity: "1",
           },
         },
+        "backdrop-blur-in": {
+          "0%": { 
+            backdropFilter: "blur(0px)",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+          },
+          "100%": { 
+            backdropFilter: "blur(8px)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -144,6 +154,7 @@ export default {
         "pulse-ring": "pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "fade-in": "fade-in 0.2s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
+        "backdrop-blur-in": "backdrop-blur-in 0.3s ease-out",
       },
     },
   },
