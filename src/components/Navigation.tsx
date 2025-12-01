@@ -354,7 +354,7 @@ const Navigation = () => {
           />
           
           {/* Menu Panel */}
-          <div className="absolute inset-0 bg-background flex flex-col">
+          <div className="absolute inset-0 bg-background flex flex-col animate-slide-in-right">
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-border">
               <Link to="/" onClick={() => setIsOpen(false)}>
