@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, CreditCard, Package, BarChart3, Shield, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import ecommerceImage from "@/assets/service-ecommerce-solutions.jpg";
+import FloatingElements from "@/components/FloatingElements";
 
 const EcommerceSolutions = () => {
   const features = [
@@ -105,6 +106,7 @@ const EcommerceSolutions = () => {
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+        <FloatingElements density="high" color="accent" />
         <div className="absolute inset-0">
           <img 
             src={ecommerceImage} 
@@ -112,7 +114,7 @@ const EcommerceSolutions = () => {
             className="w-full h-full object-cover opacity-10"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center">
             <Badge className="mb-4">E-commerce Solutions</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
