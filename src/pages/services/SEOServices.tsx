@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Search, TrendingUp, Target, FileText, Link2, BarChart } from "lucide-react";
 import { Link } from "react-router-dom";
 import seoImage from "@/assets/service-seo-services.jpg";
+import FloatingElements from "@/components/FloatingElements";
 
 const SEOServices = () => {
   const services = [
@@ -97,6 +98,7 @@ const SEOServices = () => {
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+        <FloatingElements density="medium" color="mixed" />
         <div className="absolute inset-0">
           <img 
             src={seoImage} 
@@ -104,7 +106,7 @@ const SEOServices = () => {
             className="w-full h-full object-cover opacity-10"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
           <div className="text-center">
             <Badge className="mb-4">SEO Services</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
