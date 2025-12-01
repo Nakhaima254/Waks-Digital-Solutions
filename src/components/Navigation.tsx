@@ -18,11 +18,22 @@ import { cn } from "@/lib/utils";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { theme } = useTheme();
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+      setMobileServicesOpen(false);
+      setMobileSupportOpen(false);
+    }, 300); // Match animation duration
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -332,10 +343,10 @@ const Navigation = () => {
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-2">
               <ThemeToggle />
-              <Button
+            <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => isOpen ? handleClose() : setIsOpen(true)}
               >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
@@ -349,15 +360,21 @@ const Navigation = () => {
         <div className="md:hidden fixed inset-0 z-[100]">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 animate-backdrop-blur-in"
-            onClick={() => setIsOpen(false)}
+            className={cn(
+              "absolute inset-0",
+              isClosing ? "animate-backdrop-blur-out" : "animate-backdrop-blur-in"
+            )}
+            onClick={handleClose}
           />
           
           {/* Menu Panel */}
-          <div className="absolute inset-0 bg-background flex flex-col animate-slide-in-right">
+          <div className={cn(
+            "absolute inset-0 bg-background flex flex-col",
+            isClosing ? "animate-slide-out-right" : "animate-slide-in-right"
+          )}>
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-4 border-b border-border">
-              <Link to="/" onClick={() => setIsOpen(false)}>
+              <Link to="/" onClick={handleClose}>
                 <img
                   src={theme === "dark" ? LogoDark : LogoLight}
                   alt="Waks Digital Partner Logo"
@@ -367,7 +384,7 @@ const Navigation = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
               >
                 <X className="h-6 w-6" />
               </Button>
@@ -380,7 +397,7 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleClose}
                   className={cn(
                     "block px-4 py-3 text-lg font-medium rounded-lg",
                     isActive(item.path)
@@ -416,7 +433,7 @@ const Navigation = () => {
                         <Link
                           key={service.name}
                           to={service.path}
-                          onClick={() => setIsOpen(false)}
+                          onClick={handleClose}
                           className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-background"
                         >
                           <IconComponent className="h-5 w-5 text-primary" />
@@ -431,7 +448,7 @@ const Navigation = () => {
               {/* Pricing */}
               <Link
                 to="/pricing"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className={cn(
                   "block px-4 py-3 text-lg font-medium rounded-lg",
                   isActive("/pricing")
@@ -445,7 +462,7 @@ const Navigation = () => {
               {/* Blog */}
               <Link
                 to="/blog"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className={cn(
                   "block px-4 py-3 text-lg font-medium rounded-lg",
                   isActive("/blog")
@@ -480,7 +497,7 @@ const Navigation = () => {
                         <Link
                           key={item.name}
                           to={item.path}
-                          onClick={() => setIsOpen(false)}
+                          onClick={handleClose}
                           className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-background"
                         >
                           <IconComponent className="h-5 w-5 text-primary" />
@@ -508,7 +525,7 @@ const Navigation = () => {
             {/* Bottom CTA */}
             <div className="p-4 border-t border-border">
               <Button variant="hero" size="lg" className="w-full" asChild>
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                <Link to="/contact" onClick={handleClose}>
                   Get Started
                 </Link>
               </Button>

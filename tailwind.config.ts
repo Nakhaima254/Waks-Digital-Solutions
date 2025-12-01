@@ -145,6 +145,26 @@ export default {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
         },
+        "backdrop-blur-out": {
+          "0%": { 
+            backdropFilter: "blur(8px)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          "100%": { 
+            backdropFilter: "blur(0px)",
+            backgroundColor: "rgba(0, 0, 0, 0)",
+          },
+        },
+        "slide-out-right": {
+          "0%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -155,6 +175,8 @@ export default {
         "fade-in": "fade-in 0.2s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "backdrop-blur-in": "backdrop-blur-in 0.3s ease-out",
+        "slide-out-right": "slide-out-right 0.3s ease-out",
+        "backdrop-blur-out": "backdrop-blur-out 0.3s ease-out",
       },
     },
   },
