@@ -349,7 +349,7 @@ const Navigation = () => {
         <div className="md:hidden fixed inset-0 z-[100]">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 animate-backdrop-blur-in"
             onClick={() => setIsOpen(false)}
           />
           
