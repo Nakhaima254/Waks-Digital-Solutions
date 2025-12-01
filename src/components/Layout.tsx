@@ -9,31 +9,31 @@ import { useEffect, useState } from "react";
 const Layout = () => {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransitionStage] = useState("fadeIn");
+  const [transitionStage, setTransitionStage] = useState("enter");
 
   useEffect(() => {
     if (location !== displayLocation) {
-      setTransitionStage("fadeOut");
+      setTransitionStage("exit");
     }
   }, [location, displayLocation]);
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
       <ParticlesBackground />
       <ScrollToTop />
       <Navigation />
       <main 
-        className={`flex-1 relative z-10 transition-opacity duration-300 ${
-          transitionStage === "fadeOut" ? "opacity-0" : "opacity-100"
+        className={`flex-1 relative z-10 ${
+          transitionStage === "exit" ? "animate-page-exit" : "animate-page-enter"
         }`}
-        onTransitionEnd={() => {
-          if (transitionStage === "fadeOut") {
-            setTransitionStage("fadeIn");
+        onAnimationEnd={() => {
+          if (transitionStage === "exit") {
+            setTransitionStage("enter");
             setDisplayLocation(location);
           }
         }}
       >
-        <Outlet />
+        <Outlet key={displayLocation.pathname} />
       </main>
       <Footer />
       <WhatsAppFloater />
