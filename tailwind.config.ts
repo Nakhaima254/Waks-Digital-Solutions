@@ -165,6 +165,16 @@ export default {
             opacity: "0",
           },
         },
+        "scale-fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.95) translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1) translateY(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -177,6 +187,7 @@ export default {
         "backdrop-blur-in": "backdrop-blur-in 0.3s ease-out",
         "slide-out-right": "slide-out-right 0.3s ease-out",
         "backdrop-blur-out": "backdrop-blur-out 0.3s ease-out",
+        "scale-fade-in": "scale-fade-in 0.4s ease-out forwards",
       },
     },
   },
