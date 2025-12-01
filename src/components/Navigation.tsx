@@ -393,24 +393,32 @@ const Navigation = () => {
             {/* Scrollable Menu Items */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {/* Nav Links */}
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   onClick={handleClose}
                   className={cn(
-                    "block px-4 py-3 text-lg font-medium rounded-lg",
+                    "block px-4 py-3 text-lg font-medium rounded-lg opacity-0",
+                    !isClosing && "animate-scale-fade-in",
                     isActive(item.path)
                       ? "text-accent bg-accent/10"
                       : "text-foreground hover:bg-muted"
                   )}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   {item.name}
                 </Link>
               ))}
               
               {/* Services Dropdown */}
-              <div className="border border-border rounded-lg overflow-hidden">
+              <div 
+                className={cn(
+                  "border border-border rounded-lg overflow-hidden opacity-0",
+                  !isClosing && "animate-scale-fade-in"
+                )}
+                style={{ animationDelay: `${navItems.length * 50}ms` }}
+              >
                 <button
                   type="button"
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
@@ -450,11 +458,13 @@ const Navigation = () => {
                 to="/pricing"
                 onClick={handleClose}
                 className={cn(
-                  "block px-4 py-3 text-lg font-medium rounded-lg",
+                  "block px-4 py-3 text-lg font-medium rounded-lg opacity-0",
+                  !isClosing && "animate-scale-fade-in",
                   isActive("/pricing")
                     ? "text-accent bg-accent/10"
                     : "text-foreground hover:bg-muted"
                 )}
+                style={{ animationDelay: `${(navItems.length + 1) * 50}ms` }}
               >
                 Pricing
               </Link>
@@ -464,17 +474,25 @@ const Navigation = () => {
                 to="/blog"
                 onClick={handleClose}
                 className={cn(
-                  "block px-4 py-3 text-lg font-medium rounded-lg",
+                  "block px-4 py-3 text-lg font-medium rounded-lg opacity-0",
+                  !isClosing && "animate-scale-fade-in",
                   isActive("/blog")
                     ? "text-accent bg-accent/10"
                     : "text-foreground hover:bg-muted"
                 )}
+                style={{ animationDelay: `${(navItems.length + 2) * 50}ms` }}
               >
                 Blog
               </Link>
 
               {/* Support Dropdown */}
-              <div className="border border-border rounded-lg overflow-hidden">
+              <div 
+                className={cn(
+                  "border border-border rounded-lg overflow-hidden opacity-0",
+                  !isClosing && "animate-scale-fade-in"
+                )}
+                style={{ animationDelay: `${(navItems.length + 3) * 50}ms` }}
+              >
                 <button
                   type="button"
                   onClick={() => setMobileSupportOpen(!mobileSupportOpen)}
