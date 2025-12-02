@@ -3,6 +3,7 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
 import WhatsAppFloater from "./WhatsAppFloater";
+import FloatingMenu from "./FloatingMenu";
 import ParticlesBackground from "./ParticlesBackground";
 import { useEffect, useState } from "react";
 
@@ -37,6 +38,7 @@ const Layout = () => {
       </main>
       <Footer />
       <WhatsAppFloater />
+      <FloatingMenu />
     </div>
   );
 };
