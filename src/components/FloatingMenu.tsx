@@ -57,7 +57,7 @@ const FloatingMenu = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
         >
         <motion.nav 
@@ -68,7 +68,7 @@ const FloatingMenu = () => {
               : "bg-background/80 backdrop-blur-xl shadow-primary/5"
           )}
           animate={{ opacity: isScrolling ? 0.7 : 1 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -76,25 +76,23 @@ const FloatingMenu = () => {
 
             return (
               <Link key={item.path} to={item.path} className="relative">
-                <motion.div
+                <div
                   className={cn(
-                    "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-full relative z-10",
+                    "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-full relative z-10 transition-transform duration-200",
+                    "hover:scale-105 active:scale-95",
                     active ? "text-primary-foreground" : ""
                   )}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
                   {active && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-primary rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 bg-primary rounded-full shadow-lg shadow-primary/30"
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                     />
                   )}
                   <Icon className="h-4 w-4 relative z-10" />
                   <span className="text-[10px] font-medium relative z-10">{item.label}</span>
-                </motion.div>
+                </div>
               </Link>
             );
           })}
