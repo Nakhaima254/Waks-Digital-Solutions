@@ -13,6 +13,7 @@ const menuItems = [
 const FloatingMenu = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const isActive = (path: string) => {
     if (path === "/") return location.pathname === "/";
@@ -20,6 +21,8 @@ const FloatingMenu = () => {
   };
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
@@ -28,12 +31,22 @@ const FloatingMenu = () => {
       // Hide when within 200px of bottom
       const isNearBottom = scrollTop + clientHeight >= scrollHeight - 200;
       setIsVisible(!isNearBottom);
+      
+      // Set scrolling state
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Check initial position
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   return (
@@ -43,7 +56,12 @@ const FloatingMenu = () => {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0 pointer-events-none"
       )}
     >
-      <nav className="flex items-center gap-1 bg-background/80 backdrop-blur-xl border border-border rounded-full px-2 py-2 shadow-lg shadow-primary/5">
+      <nav className={cn(
+        "flex items-center gap-1 border border-border rounded-full px-2 py-2 shadow-lg transition-all duration-300",
+        isScrolling 
+          ? "bg-background/40 backdrop-blur-2xl shadow-primary/3" 
+          : "bg-background/80 backdrop-blur-xl shadow-primary/5"
+      )}>
         {menuItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);
