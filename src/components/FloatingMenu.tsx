@@ -1,4 +1,4 @@
-import { Home, Users, Briefcase, DollarSign } from "lucide-react";
+import { Home, Users, Briefcase, DollarSign, BookOpen } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ const menuItems = [
   { label: "About", icon: Users, path: "/about" },
   { label: "Services", icon: Briefcase, path: "/services" },
   { label: "Pricing", icon: DollarSign, path: "/pricing" },
+  { label: "Blog", icon: BookOpen, path: "/blog" },
 ];
 
 const FloatingMenu = () => {
