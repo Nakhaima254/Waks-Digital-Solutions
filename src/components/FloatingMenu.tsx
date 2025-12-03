@@ -59,7 +59,7 @@ const FloatingMenu = () => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed bottom-6 left-1/2 -translate-x-[55%] sm:-translate-x-1/2 z-50"
+          className="fixed bottom-6 left-1/2 -translate-x-[60%] sm:-translate-x-1/2 z-50"
         >
         <motion.nav 
           className={cn(
