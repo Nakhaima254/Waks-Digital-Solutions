@@ -62,7 +62,7 @@ const FloatingMenu = () => {
         >
         <motion.nav 
           className={cn(
-            "flex items-center gap-1 border border-border rounded-full px-2 py-2 shadow-lg relative",
+            "flex items-center gap-0.5 sm:gap-1 border border-border rounded-full px-1.5 sm:px-2 py-1.5 sm:py-2 shadow-lg relative",
             isScrolling 
               ? "bg-background/40 backdrop-blur-2xl shadow-primary/3" 
               : "bg-background/80 backdrop-blur-xl shadow-primary/5"
@@ -78,7 +78,7 @@ const FloatingMenu = () => {
               <Link key={item.path} to={item.path} className="relative">
                 <div
                   className={cn(
-                    "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-full relative z-10 transition-transform duration-200",
+                    "flex flex-col items-center gap-0.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full relative z-10 transition-transform duration-200",
                     "hover:scale-105 active:scale-95",
                     active ? "text-primary-foreground" : ""
                   )}
@@ -90,8 +90,8 @@ const FloatingMenu = () => {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     />
                   )}
-                  <Icon className="h-4 w-4 relative z-10" />
-                  <span className="text-[10px] font-medium relative z-10">{item.label}</span>
+                  <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 relative z-10" />
+                  <span className="text-[9px] sm:text-[10px] font-medium relative z-10">{item.label}</span>
                 </div>
               </Link>
             );
