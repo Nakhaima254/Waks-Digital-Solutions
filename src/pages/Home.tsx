@@ -115,21 +115,24 @@ const Home = () => {
       category: "Travel & Tourism",
       description: "Professional travel agency website offering visa applications, flight ticketing, and tour packages with seamless booking experience.",
       image: projectAimoTravel,
-      technologies: ["WordPress", "Booking System", "Payment Integration"]
+      technologies: ["WordPress", "Booking System", "Payment Integration"],
+      url: "https://aimotravel.com"
     },
     {
       title: "Remican SACCO",
       category: "Financial Services",  
       description: "Complete digital banking platform with member portal, loan calculator, and mobile app integration for secure account management.",
       image: projectRemicanSacco,
-      technologies: ["Member Portal", "Loan Calculator", "Mobile App"]
+      technologies: ["Member Portal", "Loan Calculator", "Mobile App"],
+      url: "https://remicansacco.co.ke"
     },
     {
       title: "Truechoice Merchants",
       category: "Logistics & Freight",
       description: "Professional freight forwarding website showcasing international logistics services with comprehensive cargo tracking.",
       image: projectTruechoice,
-      technologies: ["Corporate Design", "Service Portal", "SEO"]
+      technologies: ["Corporate Design", "Service Portal", "SEO"],
+      url: "https://truechoicemerchants.co.ke"
     }
   ];
 
@@ -304,38 +307,48 @@ const Home = () => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {portfolioProjects.map((project, index) => (
-              <Card 
-                key={index} 
-                className={`card-elevated overflow-hidden group hover:scale-105 transition-all duration-300 ${
-                  portfolioReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 0.15}s` }}
+              <a 
+                key={index}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
               >
-                <div className="aspect-video overflow-hidden relative">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary">{project.category}</Badge>
+                <Card 
+                  className={`card-elevated overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer ${
+                    portfolioReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
+                  }`}
+                  style={{ animationDelay: `${index * 0.15}s` }}
+                >
+                  <div className="aspect-video overflow-hidden relative">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                    <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Globe className="h-4 w-4 text-accent" />
                     </div>
-                    <h3 className="text-xl font-semibold text-primary">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
+                  <div className="p-6 space-y-4">
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary">{project.category}</Badge>
+                      </div>
+                      <h3 className="text-xl font-semibold text-primary group-hover:text-accent transition-colors">{project.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, idx) => (
+                        <Badge key={idx} variant="outline" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </a>
             ))}
           </div>
 
