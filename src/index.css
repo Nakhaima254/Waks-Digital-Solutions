@@ -163,6 +163,11 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
   }
 
+  /* Animated gradient text */
+  .gradient-text-animated {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-shift;
+  }
+
   /* Professional button variants */
   .btn-hero {
     @apply bg-[var(--gradient-accent)] text-accent-foreground font-semibold px-8 py-4 rounded-lg 
@@ -228,6 +233,105 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
 
   .depth-layer-back {
     transform: translateZ(-50px);
+  }
+
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted-foreground) / 0.1) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  /* Glow effects */
+  .glow-accent {
+    @apply animate-glow;
+  }
+
+  .glow-on-hover {
+    @apply transition-shadow duration-300;
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.4);
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+  .stagger-7 { animation-delay: 0.7s; }
+  .stagger-8 { animation-delay: 0.8s; }
+
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-2 shadow-lg;
+  }
+
+  /* Text underline animation */
+  .underline-grow {
+    @apply relative inline-block;
+  }
+
+  .underline-grow::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
+  }
+
+  .underline-grow:hover::after {
+    @apply w-full;
+  }
+
+  /* Magnetic button effect */
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-transform duration-300;
+  }
+
+  .magnetic-btn::before {
+    content: '';
+    @apply absolute inset-0 bg-accent/10 scale-0 rounded-full transition-transform duration-500;
+  }
+
+  .magnetic-btn:hover::before {
+    @apply scale-150;
+  }
+
+  /* Card tilt on hover */
+  .tilt-card {
+    @apply transition-transform duration-300;
+    transform-style: preserve-3d;
+  }
+
+  .tilt-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  }
+
+  /* Border gradient animation */
+  .border-gradient {
+    @apply relative rounded-lg;
+  }
+
+  .border-gradient::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-accent via-primary to-accent rounded-lg opacity-0 blur transition-opacity duration-300;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+    z-index: -1;
+  }
+
+  .border-gradient:hover::before {
+    @apply opacity-100;
   }
 
   /* Smooth scroll behavior */
