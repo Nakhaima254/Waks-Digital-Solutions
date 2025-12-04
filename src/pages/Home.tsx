@@ -116,7 +116,7 @@ const Home = () => {
       description: "Professional travel agency website offering visa applications, flight ticketing, and tour packages with seamless booking experience.",
       image: projectAimoTravel,
       technologies: ["WordPress", "Booking System", "Payment Integration"],
-      url: "https://aimotravel.com"
+      url: "https://aimotravelagency.com/"
     },
     {
       title: "Remican SACCO",
@@ -132,7 +132,7 @@ const Home = () => {
       description: "Professional freight forwarding website showcasing international logistics services with comprehensive cargo tracking.",
       image: projectTruechoice,
       technologies: ["Corporate Design", "Service Portal", "SEO"],
-      url: "https://truechoicemerchants.co.ke"
+      url: "https://truechoice.co.ke/"
     }
   ];
 
