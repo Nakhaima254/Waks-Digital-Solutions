@@ -16,6 +16,8 @@ import projectJavinnaSafaris from "@/assets/project-safari-lodge.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectQuietWaters from "@/assets/project-quiet-waters.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
+import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
+import { motion } from "framer-motion";
 
 const Portfolio = () => {
   const projects = [
@@ -188,128 +190,139 @@ const Portfolio = () => {
       {/* Stats Section */}
       <section className="py-12 bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">5+</div>
-              <div className="text-sm text-muted-foreground">Projects Completed</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">100%</div>
-              <div className="text-sm text-muted-foreground">Client Satisfaction</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">300%</div>
-              <div className="text-sm text-muted-foreground">Average Inquiry Increase</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-accent">5</div>
-              <div className="text-sm text-muted-foreground">Industries Served</div>
-            </div>
-          </div>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" staggerDelay={0.15}>
+            {[
+              { value: "5+", label: "Projects Completed" },
+              { value: "100%", label: "Client Satisfaction" },
+              { value: "300%", label: "Average Inquiry Increase" },
+              { value: "5", label: "Industries Served" }
+            ].map((stat, index) => (
+              <StaggerItem key={index} animation="scale">
+                <motion.div 
+                  className="space-y-2"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="text-3xl font-bold text-accent">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Portfolio Grid */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Featured Case Studies</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Each project tells a story of transformation and growth
             </p>
-          </div>
+          </AnimatedElement>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
             {projects.map((project) => (
-              <Card key={project.id} className="card-elevated overflow-hidden group hover:scale-105 transition-all duration-300">
-                <div className="aspect-video relative overflow-hidden">
-                  {project.image ? (
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
-                      <Globe className="h-16 w-16 text-accent/40" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-4">
-                    <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
-                      {project.category}
-                    </Badge>
-                  </div>
-                </div>
-                
-                <div className="p-6 space-y-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground">{project.year}</span>
-                      <div className="flex items-center space-x-1 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
-                        <span>{project.timeline}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold text-primary group-hover:text-accent transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                      {project.description}
-                    </p>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex flex-wrap gap-1">
-                      {project.technologies.slice(0, 3).map((tech, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <Badge variant="outline" className="text-xs">
-                          +{project.technologies.length - 3} more
-                        </Badge>
+              <StaggerItem key={project.id}>
+                <HoverCard>
+                  <Card className="card-elevated overflow-hidden group h-full">
+                    <div className="aspect-video relative overflow-hidden">
+                      {project.image ? (
+                        <motion.img 
+                          src={project.image} 
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                          <Globe className="h-16 w-16 text-accent/40" />
+                        </div>
                       )}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-4"
+                        initial={{ opacity: 0.8 }}
+                        whileHover={{ opacity: 1 }}
+                      >
+                        <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
+                          {project.category}
+                        </Badge>
+                      </motion.div>
                     </div>
                     
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-medium text-primary">Key Results:</h4>
-                      <div className="space-y-1">
-                        {project.results.slice(0, 2).map((result, idx) => (
-                          <div key={idx} className="flex items-center space-x-2 text-xs">
-                            <TrendingUp className="h-3 w-3 text-accent" />
-                            <span className="text-foreground">{result}</span>
+                    <div className="p-6 space-y-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-muted-foreground">{project.year}</span>
+                          <div className="flex items-center space-x-1 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            <span>{project.timeline}</span>
                           </div>
-                        ))}
+                        </div>
+                        <h3 className="text-xl font-semibold text-primary group-hover:text-accent transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                          {project.description}
+                        </p>
+                      </div>
+                      
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap gap-1">
+                          {project.technologies.slice(0, 3).map((tech, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                          {project.technologies.length > 3 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{project.technologies.length - 3} more
+                            </Badge>
+                          )}
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-medium text-primary">Key Results:</h4>
+                          <div className="space-y-1">
+                            {project.results.slice(0, 2).map((result, idx) => (
+                              <div key={idx} className="flex items-center space-x-2 text-xs">
+                                <TrendingUp className="h-3 w-3 text-accent" />
+                                <span className="text-foreground">{result}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex space-x-2 pt-2">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="flex-1"
+                          asChild
+                        >
+                          <a href={project.website} target="_blank" rel="noopener noreferrer">
+                            Website Preview
+                          </a>
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          asChild
+                        >
+                          <a href={project.website} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4" />
+                          </a>
+                        </Button>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex space-x-2 pt-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="flex-1"
-                      asChild
-                    >
-                      <a href={project.website} target="_blank" rel="noopener noreferrer">
-                        Website Preview
-                      </a>
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      asChild
-                    >
-                      <a href={project.website} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </Card>
+                  </Card>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

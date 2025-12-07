@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
+import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const mainServices = [
@@ -221,33 +223,48 @@ const Services = () => {
       {/* Additional Services */}
       <section className="py-20 section-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Additional Services</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Complete your digital presence with our supporting services
             </p>
-          </div>
+          </AnimatedElement>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.1}>
             {additionalServices.map((service, index) => (
-              <Card key={index} className="card-elevated p-6 text-center hover:scale-105 transition-all duration-300 group">
-                <div className="space-y-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
-                    <service.icon className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-primary">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
-                  <div className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="text-xs text-foreground bg-muted px-2 py-1 rounded">
-                        {feature}
+              <StaggerItem key={index}>
+                <HoverCard>
+                  <Card className="card-elevated p-6 text-center h-full group">
+                    <div className="space-y-4">
+                      <motion.div 
+                        className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center mx-auto shadow-lg"
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <service.icon className="h-6 w-6 text-white" />
+                      </motion.div>
+                      <h3 className="text-lg font-semibold text-primary">{service.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                      <div className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <motion.div 
+                            key={idx} 
+                            className="text-xs text-foreground bg-muted px-2 py-1 rounded"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            {feature}
+                          </motion.div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
+                    </div>
+                  </Card>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import aboutTeamImage from "@/assets/about-team.jpg";
+import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
+import { motion } from "framer-motion";
 
 const About = () => {
   const skills = [
@@ -77,58 +79,83 @@ const About = () => {
       {/* Hero Section */}
       <section className="relative py-20 section-hero overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <motion.img 
             src={aboutTeamImage} 
             alt="Our Team" 
             className="w-full h-full object-cover opacity-15"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-foreground space-y-6">
-              <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
-                About Waks Digital Solutions
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground">
-                Building Digital
-                <span className="block text-accent">Success Stories</span>
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                We're a Nairobi-based web development and design agency passionate about helping 
-                small to medium businesses thrive in the digital world. Every project we take on 
-                is an opportunity to create something meaningful.
-              </p>
+              <AnimatedElement animation="fadeUp" delay={0.1}>
+                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
+                  About Waks Digital Solutions
+                </Badge>
+              </AnimatedElement>
+              <AnimatedElement animation="fadeUp" delay={0.2}>
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground">
+                  Building Digital
+                  <span className="block text-accent">Success Stories</span>
+                </h1>
+              </AnimatedElement>
+              <AnimatedElement animation="fadeUp" delay={0.3}>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  We're a Nairobi-based web development and design agency passionate about helping 
+                  small to medium businesses thrive in the digital world. Every project we take on 
+                  is an opportunity to create something meaningful.
+                </p>
+              </AnimatedElement>
             </div>
             
-            <div className="relative">
-              <Card className="card-elevated p-8 bg-white/10 backdrop-blur-sm border-white/20">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-full flex items-center justify-center">
-                      <Users className="h-8 w-8 text-white" />
+            <AnimatedElement animation="fadeLeft" delay={0.4}>
+              <div className="relative">
+                <motion.div
+                  whileHover={{ scale: 1.02, rotate: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Card className="card-elevated p-8 bg-white/10 backdrop-blur-sm border-white/20">
+                    <div className="space-y-6">
+                      <div className="flex items-center space-x-4">
+                        <motion.div 
+                          className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-full flex items-center justify-center"
+                          animate={{ rotate: [0, 5, -5, 0] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <Users className="h-8 w-8 text-white" />
+                        </motion.div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-foreground">Client-First Philosophy</h3>
+                          <p className="text-muted-foreground">Your success drives everything we do</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 gap-4 pt-4">
+                        {[
+                          { value: "50+", label: "Happy Clients" },
+                          { value: "3+", label: "Years Experience" },
+                          { value: "100%", label: "Satisfaction Rate" }
+                        ].map((stat, index) => (
+                          <motion.div 
+                            key={index}
+                            className="text-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 + index * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            <div className="text-2xl font-bold text-accent">{stat.value}</div>
+                            <div className="text-sm text-muted-foreground">{stat.label}</div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground">Client-First Philosophy</h3>
-                      <p className="text-muted-foreground">Your success drives everything we do</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-4 pt-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">50+</div>
-                      <div className="text-sm text-muted-foreground">Happy Clients</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">3+</div>
-                      <div className="text-sm text-muted-foreground">Years Experience</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-accent">100%</div>
-                      <div className="text-sm text-muted-foreground">Satisfaction Rate</div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
+                  </Card>
+                </motion.div>
+              </div>
+            </AnimatedElement>
           </div>
         </div>
       </section>
@@ -201,40 +228,55 @@ const About = () => {
       {/* Mission & Values */}
       <section className="py-20 section-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Mission & Values</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               What drives us and guides every decision we make
             </p>
-          </div>
+          </AnimatedElement>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16" staggerDelay={0.1}>
             {values.map((value, index) => (
-              <Card key={index} className="card-elevated p-6 text-center hover:scale-105 transition-all duration-300">
-                <div className="space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto">
-                    <value.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-primary">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
-                </div>
-              </Card>
+              <StaggerItem key={index}>
+                <HoverCard>
+                  <Card className="card-elevated p-6 text-center h-full">
+                    <div className="space-y-4">
+                      <motion.div 
+                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <value.icon className="h-8 w-8 text-white" />
+                      </motion.div>
+                      <h3 className="text-lg font-semibold text-primary">{value.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                    </div>
+                  </Card>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <Card className="card-elevated p-8 text-center">
-            <div className="space-y-6">
-              <Award className="h-16 w-16 text-accent mx-auto" />
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
-                <p className="text-lg text-foreground leading-relaxed max-w-3xl mx-auto">
-                  To empower Kenyan small and medium businesses with professional, 
-                  results-driven digital solutions that fuel growth, increase visibility, 
-                  and create lasting success in the digital economy.
-                </p>
+          <AnimatedElement animation="scale" delay={0.3}>
+            <Card className="card-elevated p-8 text-center">
+              <div className="space-y-6">
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Award className="h-16 w-16 text-accent mx-auto" />
+                </motion.div>
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
+                  <p className="text-lg text-foreground leading-relaxed max-w-3xl mx-auto">
+                    To empower Kenyan small and medium businesses with professional, 
+                    results-driven digital solutions that fuel growth, increase visibility, 
+                    and create lasting success in the digital economy.
+                  </p>
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </AnimatedElement>
         </div>
       </section>
 
