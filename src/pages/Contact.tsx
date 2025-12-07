@@ -45,6 +45,8 @@ import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
+import { motion } from "framer-motion";
 
 const formSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(100, "First name must be less than 100 characters"),
@@ -225,34 +227,43 @@ ${data.message}
       {/* Contact Methods */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Get In Touch</h2>
             <p className="text-xl text-muted-foreground">
               Choose the best way to reach us
             </p>
-          </div>
+          </AnimatedElement>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <StaggerContainer className="grid md:grid-cols-3 gap-8 mb-16" staggerDelay={0.15}>
             {contactMethods.map((method, index) => (
-              <Card key={index} className="card-elevated p-6 text-center hover:scale-105 transition-all duration-300">
-                <div className="space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto">
-                    <method.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-primary">{method.title}</h3>
-                    <p className="text-muted-foreground text-sm">{method.description}</p>
-                    <a 
-                      href={method.action}
-                      className="text-accent hover:text-accent-hover font-medium transition-colors block"
-                    >
-                      {method.contact}
-                    </a>
-                  </div>
-                </div>
-              </Card>
+              <StaggerItem key={index}>
+                <HoverCard>
+                  <Card className="card-elevated p-6 text-center h-full">
+                    <div className="space-y-4">
+                      <motion.div 
+                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <method.icon className="h-8 w-8 text-white" />
+                      </motion.div>
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-semibold text-primary">{method.title}</h3>
+                        <p className="text-muted-foreground text-sm">{method.description}</p>
+                        <motion.a 
+                          href={method.action}
+                          className="text-accent hover:text-accent-hover font-medium transition-colors block"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {method.contact}
+                        </motion.a>
+                      </div>
+                    </div>
+                  </Card>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
             {/* Contact Form & Info */}
             <div className="grid lg:grid-cols-2 gap-12" id="contact-form">

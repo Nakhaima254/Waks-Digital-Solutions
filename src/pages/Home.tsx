@@ -31,6 +31,8 @@ import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import FloatingElements from "@/components/FloatingElements";
+import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
+import { motion } from "framer-motion";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -242,53 +244,62 @@ const Home = () => {
       {/* Services Section */}
       <section className="py-20 section-gradient">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Services</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               We offer comprehensive digital solutions to help your business succeed online
             </p>
-          </div>
+          </AnimatedElement>
 
-          <div 
-            ref={servicesReveal.ref}
+          <StaggerContainer 
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            staggerDelay={0.1}
           >
             {services.map((service, index) => (
-              <Card 
-                key={index} 
-                className={`card-elevated p-8 hover:scale-105 transition-all duration-300 group ${
-                  servicesReveal.isVisible ? 'animate-fade-in' : 'opacity-0'
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="space-y-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover dark:from-foreground dark:to-foreground rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50 dark:group-hover:shadow-foreground/50">
-                    <service.icon className="h-8 w-8 text-white dark:text-background group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-semibold text-primary">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-                  </div>
-                  <div className="space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle2 className="h-4 w-4 text-accent dark:text-foreground" />
-                        <span className="text-sm text-foreground">{feature}</span>
+              <StaggerItem key={index}>
+                <HoverCard>
+                  <Card className="card-elevated p-8 h-full group">
+                    <div className="space-y-6">
+                      <motion.div 
+                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover dark:from-foreground dark:to-foreground rounded-xl flex items-center justify-center shadow-lg"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <service.icon className="h-8 w-8 text-white dark:text-background" />
+                      </motion.div>
+                      <div className="space-y-3">
+                        <h3 className="text-xl font-semibold text-primary">{service.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
+                      <div className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <motion.div 
+                            key={idx} 
+                            className="flex items-center space-x-2"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            <CheckCircle2 className="h-4 w-4 text-accent dark:text-foreground" />
+                            <span className="text-sm text-foreground">{feature}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </HoverCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <div className="text-center mt-12">
+          <AnimatedElement animation="fadeUp" delay={0.4} className="text-center mt-12">
             <Button variant="outline" size="lg" asChild>
               <Link to="/services">
                 View All Services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-          </div>
+          </AnimatedElement>
         </div>
       </section>
 
