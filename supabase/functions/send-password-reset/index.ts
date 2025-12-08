@@ -9,10 +9,50 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Allowed domains for password reset links
+const ALLOWED_DOMAINS = [
+  "localhost",
+  "127.0.0.1",
+  "lovable.dev",
+  "lovable.app",
+  "waksdigital.com",
+  "waksdigital.co.ke",
+];
+
 interface PasswordResetRequest {
   email: string;
   resetLink: string;
 }
+
+// Input validation functions
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidResetLink = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
+    
+    // Check if the hostname matches or is a subdomain of allowed domains
+    return ALLOWED_DOMAINS.some(domain => 
+      hostname === domain || hostname.endsWith(`.${domain}`)
+    );
+  } catch {
+    return false;
+  }
+};
+
+// HTML escape function to prevent injection
+const escapeHtml = (str: string): string => {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -20,9 +60,31 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email, resetLink }: PasswordResetRequest = await req.json();
+    const body = await req.json();
+    const { email, resetLink } = body as PasswordResetRequest;
 
-    console.log("Sending password reset email to:", email);
+    // Validate email
+    if (!email || typeof email !== 'string' || !isValidEmail(email)) {
+      console.error("Invalid email format:", email);
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Validate reset link domain
+    if (!resetLink || typeof resetLink !== 'string' || !isValidResetLink(resetLink)) {
+      console.error("Invalid reset link domain:", resetLink);
+      return new Response(
+        JSON.stringify({ error: "Invalid reset link" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    console.log("Sending password reset email to:", escapeHtml(email));
+
+    // Escape the reset link for safe HTML embedding
+    const safeResetLink = escapeHtml(resetLink);
 
     const emailResponse = await resend.emails.send({
       from: "Waks Digital <onboarding@resend.dev>",
@@ -49,7 +111,7 @@ const handler = async (req: Request): Promise<Response> => {
               </p>
               
               <div style="text-align: center; margin: 30px 0;">
-                <a href="${resetLink}" 
+                <a href="${safeResetLink}" 
                    style="background: linear-gradient(135deg, #FF7C1F 0%, #FF9A3F 100%); 
                           color: white; 
                           padding: 14px 30px; 
@@ -66,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
                 Or copy and paste this link into your browser:
               </p>
               <p style="font-size: 12px; color: #0066cc; word-break: break-all; background: #f5f5f5; padding: 10px; border-radius: 5px;">
-                ${resetLink}
+                ${safeResetLink}
               </p>
               
               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
@@ -101,7 +163,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-password-reset function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Failed to send email" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

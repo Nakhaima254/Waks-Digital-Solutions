@@ -9,6 +9,19 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Allowed domains for dashboard URLs
+const ALLOWED_DOMAINS = [
+  "localhost",
+  "127.0.0.1",
+  "lovable.dev",
+  "lovable.app",
+  "waksdigital.com",
+  "waksdigital.co.ke",
+];
+
+// Valid status values
+const VALID_STATUSES = ['open', 'in-progress', 'resolved', 'closed'];
+
 interface TicketStatusUpdateRequest {
   email: string;
   name: string;
@@ -18,6 +31,42 @@ interface TicketStatusUpdateRequest {
   newStatus: string;
   dashboardUrl?: string;
 }
+
+// Input validation functions
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.length <= 255;
+};
+
+const isValidUrl = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname;
+    return ALLOWED_DOMAINS.some(domain => 
+      hostname === domain || hostname.endsWith(`.${domain}`)
+    );
+  } catch {
+    return false;
+  }
+};
+
+const isValidString = (str: unknown, maxLength: number = 500): str is string => {
+  return typeof str === 'string' && str.length > 0 && str.length <= maxLength;
+};
+
+const isValidStatus = (status: string): boolean => {
+  return VALID_STATUSES.includes(status);
+};
+
+// HTML escape function to prevent injection
+const escapeHtml = (str: string): string => {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
 
 const statusMessages = {
   'open': {
@@ -48,6 +97,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    const body = await req.json();
     const { 
       email, 
       name, 
@@ -55,18 +105,71 @@ const handler = async (req: Request): Promise<Response> => {
       subject, 
       oldStatus, 
       newStatus,
-      dashboardUrl = 'https://your-domain.com/ticket-dashboard'
-    }: TicketStatusUpdateRequest = await req.json();
+      dashboardUrl
+    } = body as TicketStatusUpdateRequest;
+
+    // Validate all inputs
+    if (!isValidEmail(email)) {
+      console.error("Invalid email format:", email);
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (!isValidString(name, 100)) {
+      console.error("Invalid name");
+      return new Response(
+        JSON.stringify({ error: "Invalid name" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (!isValidString(ticketNumber, 50)) {
+      console.error("Invalid ticket number");
+      return new Response(
+        JSON.stringify({ error: "Invalid ticket number" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (!isValidString(subject, 200)) {
+      console.error("Invalid subject");
+      return new Response(
+        JSON.stringify({ error: "Invalid subject" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (!isValidStatus(oldStatus) || !isValidStatus(newStatus)) {
+      console.error("Invalid status values");
+      return new Response(
+        JSON.stringify({ error: "Invalid status values" }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    // Use a safe default dashboard URL
+    const safeDashboardUrl = dashboardUrl && isValidUrl(dashboardUrl) 
+      ? escapeHtml(dashboardUrl) 
+      : '#';
+
+    // Escape all user-provided content
+    const safeName = escapeHtml(name);
+    const safeTicketNumber = escapeHtml(ticketNumber);
+    const safeSubject = escapeHtml(subject);
+    const safeOldStatus = escapeHtml(oldStatus);
+    const safeNewStatus = escapeHtml(newStatus);
 
     console.log("Sending ticket status update email to:", email);
-    console.log("Status change:", oldStatus, "->", newStatus);
+    console.log("Status change:", safeOldStatus, "->", safeNewStatus);
 
     const statusInfo = statusMessages[newStatus as keyof typeof statusMessages] || statusMessages['open'];
 
     const emailResponse = await resend.emails.send({
       from: "Waks Digital Support <onboarding@resend.dev>",
       to: [email],
-      subject: `Ticket ${ticketNumber}: ${statusInfo.title}`,
+      subject: `Ticket ${safeTicketNumber}: ${statusInfo.title}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -80,7 +183,7 @@ const handler = async (req: Request): Promise<Response> => {
             </div>
             
             <div style="background: #ffffff; padding: 40px 30px; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 10px 10px;">
-              <p style="font-size: 16px; margin-bottom: 20px;">Hello ${name},</p>
+              <p style="font-size: 16px; margin-bottom: 20px;">Hello ${safeName},</p>
               
               <div style="background: ${statusInfo.color}15; border-left: 4px solid ${statusInfo.color}; padding: 20px; margin: 30px 0; border-radius: 4px;">
                 <h2 style="margin: 0 0 10px 0; color: ${statusInfo.color}; font-size: 20px;">
@@ -96,21 +199,21 @@ const handler = async (req: Request): Promise<Response> => {
                 <table style="width: 100%; border-collapse: collapse;">
                   <tr>
                     <td style="padding: 8px 0; color: #666; font-size: 14px; width: 40%;">Ticket Number:</td>
-                    <td style="padding: 8px 0; color: #333; font-weight: 600; font-size: 14px; font-family: monospace;">${ticketNumber}</td>
+                    <td style="padding: 8px 0; color: #333; font-weight: 600; font-size: 14px; font-family: monospace;">${safeTicketNumber}</td>
                   </tr>
                   <tr>
                     <td style="padding: 8px 0; color: #666; font-size: 14px;">Subject:</td>
-                    <td style="padding: 8px 0; color: #333; font-size: 14px;">${subject}</td>
+                    <td style="padding: 8px 0; color: #333; font-size: 14px;">${safeSubject}</td>
                   </tr>
                   <tr>
                     <td style="padding: 8px 0; color: #666; font-size: 14px;">Previous Status:</td>
-                    <td style="padding: 8px 0; color: #333; font-size: 14px; text-transform: capitalize;">${oldStatus.replace('-', ' ')}</td>
+                    <td style="padding: 8px 0; color: #333; font-size: 14px; text-transform: capitalize;">${safeOldStatus.replace('-', ' ')}</td>
                   </tr>
                   <tr>
                     <td style="padding: 8px 0; color: #666; font-size: 14px;">New Status:</td>
                     <td style="padding: 8px 0; font-weight: 600; font-size: 14px; text-transform: capitalize;">
                       <span style="background: ${statusInfo.color}; color: white; padding: 4px 12px; border-radius: 4px; display: inline-block;">
-                        ${newStatus.replace('-', ' ')}
+                        ${safeNewStatus.replace('-', ' ')}
                       </span>
                     </td>
                   </tr>
@@ -122,7 +225,7 @@ const handler = async (req: Request): Promise<Response> => {
               </p>
               
               <div style="text-align: center; margin: 30px 0;">
-                <a href="${dashboardUrl}" 
+                <a href="${safeDashboardUrl}" 
                    style="background: linear-gradient(135deg, #FF7C1F 0%, #FF9A3F 100%); 
                           color: white; 
                           padding: 14px 30px; 
@@ -163,7 +266,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-ticket-status-update function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Failed to send email" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
