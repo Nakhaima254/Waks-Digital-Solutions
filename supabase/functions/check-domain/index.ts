@@ -14,6 +14,7 @@ interface DomainAvailability {
   available: boolean;
   price?: number;
   currency?: string;
+  error?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -58,11 +59,17 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Extensions to check
-    const extensions = [".co.ke", ".com", ".ke", ".org", ".net", ".africa"];
+    // Use production API endpoint
+    // For OTE/testing, use: https://api.ote-godaddy.com
+    const apiBaseUrl = "https://api.godaddy.com";
+
+    // Extensions to check - focus on most common ones that GoDaddy supports well
+    const extensions = [".com", ".org", ".net", ".co", ".io", ".info"];
     const results: DomainAvailability[] = [];
+    let authError = false;
 
     console.log(`Checking domain availability for: ${baseDomain}`);
+    console.log(`Using API key starting with: ${apiKey.substring(0, 8)}...`);
 
     // Check availability for each extension
     for (const ext of extensions) {
@@ -71,34 +78,38 @@ const handler = async (req: Request): Promise<Response> => {
       try {
         // GoDaddy API endpoint for domain availability
         const response = await fetch(
-          `https://api.godaddy.com/v1/domains/available?domain=${encodeURIComponent(fullDomain)}`,
+          `${apiBaseUrl}/v1/domains/available?domain=${encodeURIComponent(fullDomain)}`,
           {
             method: "GET",
             headers: {
               "Authorization": `sso-key ${apiKey}:${apiSecret}`,
-              "Content-Type": "application/json",
+              "Accept": "application/json",
             },
           }
         );
 
+        const responseText = await response.text();
+        console.log(`GoDaddy response for ${fullDomain}: ${response.status} - ${responseText}`);
+
         if (response.ok) {
-          const data = await response.json();
-          console.log(`GoDaddy response for ${fullDomain}:`, JSON.stringify(data));
+          const data = JSON.parse(responseText);
           
           results.push({
             domain: fullDomain,
             available: data.available === true,
-            price: data.price ? data.price / 1000000 : undefined, // GoDaddy returns price in micro-units
+            price: data.price ? data.price / 1000000 : undefined,
             currency: data.currency || "USD",
           });
+        } else if (response.status === 401 || response.status === 403 || responseText.includes("UNABLE_TO_AUTHENTICATE")) {
+          authError = true;
+          console.error(`Authentication failed for GoDaddy API`);
+          break;
         } else {
-          const errorText = await response.text();
-          console.error(`GoDaddy API error for ${fullDomain}:`, response.status, errorText);
-          
-          // Add as unavailable if we can't check
+          // Domain might not be supported by GoDaddy
           results.push({
             domain: fullDomain,
             available: false,
+            error: "Unable to check",
           });
         }
       } catch (error) {
@@ -106,8 +117,23 @@ const handler = async (req: Request): Promise<Response> => {
         results.push({
           domain: fullDomain,
           available: false,
+          error: "Check failed",
         });
       }
+    }
+
+    // If authentication failed, return specific error
+    if (authError) {
+      return new Response(
+        JSON.stringify({ 
+          error: "API authentication failed. Please verify your GoDaddy API credentials are for production (not OTE/sandbox) and have the correct format: API_KEY:API_SECRET",
+          authError: true
+        }),
+        {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
     }
 
     console.log(`Domain check complete. Results:`, JSON.stringify(results));
