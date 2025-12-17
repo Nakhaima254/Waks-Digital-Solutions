@@ -26,9 +26,22 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const Services = () => {
+  type DomainResultStatus = "available" | "taken" | "unsupported" | "error";
+  type DomainExtensionResult = {
+    ext: string;
+    status: DomainResultStatus;
+    available: boolean | null;
+    price: string;
+    note?: string;
+  };
+
   const [domainSearch, setDomainSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [searchResult, setSearchResult] = useState<{ domain: string; available: boolean; extensions: { ext: string; available: boolean; price: string }[] } | null>(null);
+  const [searchResult, setSearchResult] = useState<{
+    domain: string;
+    available: boolean;
+    extensions: DomainExtensionResult[];
+  } | null>(null);
   const { toast } = useToast();
 
   const popularExtensions = [
@@ -43,10 +56,10 @@ const Services = () => {
   const handleDomainSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!domainSearch.trim()) return;
-    
+
     setIsSearching(true);
     setSearchResult(null);
-    
+
     try {
       const { data, error } = await supabase.functions.invoke("check-domain", {
         body: { domain: domainSearch.trim() },
@@ -62,29 +75,40 @@ const Services = () => {
         return;
       }
 
-      if (data.error) {
+      if (data?.authError) {
         toast({
-          title: "Invalid Domain",
+          title: "Domain Search Unavailable",
+          description: "GoDaddy authentication failed. We'll fix this shortly—please try again later.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (data?.error) {
+        toast({
+          title: "Domain Check Error",
           description: data.error,
           variant: "destructive",
         });
         return;
       }
 
-      // Map the API results to our display format
-      const results = data.results.map((result: any) => {
-        const ext = result.domain.replace(data.domain, "");
-        const extInfo = popularExtensions.find(e => e.ext === ext);
+      const results: DomainExtensionResult[] = (data?.results ?? []).map((result: any) => {
+        const extInfo = popularExtensions.find((e) => e.ext === result.ext);
+        const apiPrice = typeof result.price === "number" ? `$${result.price.toFixed(2)}/yr` : undefined;
+
         return {
-          ext,
-          available: result.available,
-          price: extInfo?.price || (result.price ? `$${result.price.toFixed(2)}/yr` : "Contact us"),
+          ext: result.ext,
+          status: result.status,
+          available: typeof result.available === "boolean" ? result.available : null,
+          price: extInfo?.price || apiPrice || "Contact us",
+          note: result.note,
         };
       });
 
       setSearchResult({
         domain: data.domain,
-        available: data.hasAvailable,
+        available: results.some((r) => r.status === "available"),
         extensions: results,
       });
     } catch (error) {
@@ -281,29 +305,47 @@ const Services = () => {
                       Results for "{searchResult.domain}"
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {searchResult.extensions.map((result, idx) => (
-                        <motion.div
-                          key={result.ext}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: idx * 0.1 }}
-                          className={`p-4 rounded-lg border ${
-                            result.available 
-                              ? "bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800" 
-                              : "bg-muted/50 border-border"
-                          }`}
-                        >
-                          <p className="font-semibold text-foreground">
-                            {searchResult.domain}{result.ext}
-                          </p>
-                          <p className={`text-sm ${result.available ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
-                            {result.available ? "Available" : "Taken"}
-                          </p>
-                          {result.available && (
-                            <p className="text-xs text-muted-foreground mt-1">{result.price}</p>
-                          )}
-                        </motion.div>
-                      ))}
+                      {searchResult.extensions.map((result, idx) => {
+                        const isAvailable = result.status === "available";
+                        const isTaken = result.status === "taken";
+                        const label =
+                          result.status === "available"
+                            ? "Available"
+                            : result.status === "taken"
+                              ? "Taken"
+                              : result.status === "unsupported"
+                                ? "Not supported"
+                                : "Unknown";
+
+                        return (
+                          <motion.div
+                            key={result.ext}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className={`p-4 rounded-lg border ${
+                              isAvailable
+                                ? "bg-accent/10 border-accent/30"
+                                : isTaken
+                                  ? "bg-muted/50 border-border"
+                                  : "bg-secondary/30 border-border"
+                            }`}
+                          >
+                            <p className="font-semibold text-foreground">
+                              {searchResult.domain}{result.ext}
+                            </p>
+                            <p className={`text-sm ${isAvailable ? "text-accent" : "text-muted-foreground"}`}>
+                              {label}
+                            </p>
+                            {isAvailable && (
+                              <p className="text-xs text-muted-foreground mt-1">{result.price}</p>
+                            )}
+                            {!isAvailable && result.note && (
+                              <p className="text-xs text-muted-foreground mt-1">{result.note}</p>
+                            )}
+                          </motion.div>
+                        );
+                      })}
                     </div>
                     {searchResult.available && (
                       <Button variant="hero" asChild className="mt-4">
