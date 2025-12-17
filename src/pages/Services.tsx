@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { 
   Code, 
   Palette, 
@@ -13,7 +15,8 @@ import {
   Layers,
   Shield,
   Clock,
-  Network
+  Network,
+  Loader2
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
@@ -21,6 +24,46 @@ import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/com
 import { motion } from "framer-motion";
 
 const Services = () => {
+  const [domainSearch, setDomainSearch] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResult, setSearchResult] = useState<{ domain: string; available: boolean; extensions: { ext: string; available: boolean; price: string }[] } | null>(null);
+
+  const popularExtensions = [
+    { ext: ".co.ke", price: "KES 1,200/yr" },
+    { ext: ".com", price: "KES 1,500/yr" },
+    { ext: ".ke", price: "KES 2,500/yr" },
+    { ext: ".org", price: "KES 1,400/yr" },
+    { ext: ".net", price: "KES 1,400/yr" },
+    { ext: ".africa", price: "KES 3,000/yr" },
+  ];
+
+  const handleDomainSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!domainSearch.trim()) return;
+    
+    setIsSearching(true);
+    
+    // Simulate domain availability check
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    const cleanDomain = domainSearch.toLowerCase().replace(/\s+/g, "").split(".")[0];
+    
+    // Simulated results - in production, this would call a real domain API
+    const results = popularExtensions.map(ext => ({
+      ext: ext.ext,
+      available: Math.random() > 0.4, // Simulated availability
+      price: ext.price
+    }));
+    
+    setSearchResult({
+      domain: cleanDomain,
+      available: results.some(r => r.available),
+      extensions: results
+    });
+    
+    setIsSearching(false);
+  };
+
   const mainServices = [
     {
       icon: Code,
@@ -144,6 +187,112 @@ const Services = () => {
               to help your Kenyan business succeed online.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Free Domain Search Section */}
+      <section className="py-16 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedElement animation="fadeUp">
+            <Card className="card-elevated p-8 md:p-12 text-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none" />
+              <div className="relative space-y-6">
+                <div className="space-y-3">
+                  <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
+                    Free Tool
+                  </Badge>
+                  <h2 className="text-2xl md:text-3xl font-bold text-primary">
+                    Find Your Perfect Domain
+                  </h2>
+                  <p className="text-muted-foreground max-w-xl mx-auto">
+                    Search for available domain names and secure your online identity today. 
+                    We offer competitive prices on all popular extensions.
+                  </p>
+                </div>
+
+                <form onSubmit={handleDomainSearch} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+                  <div className="relative flex-1">
+                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                    <Input
+                      type="text"
+                      placeholder="Enter your domain name..."
+                      value={domainSearch}
+                      onChange={(e) => setDomainSearch(e.target.value)}
+                      className="pl-10 h-12 text-base"
+                    />
+                  </div>
+                  <Button type="submit" variant="hero" size="lg" disabled={isSearching || !domainSearch.trim()}>
+                    {isSearching ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Searching...
+                      </>
+                    ) : (
+                      <>
+                        <Search className="mr-2 h-4 w-4" />
+                        Search
+                      </>
+                    )}
+                  </Button>
+                </form>
+
+                {searchResult && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-4 mt-6"
+                  >
+                    <h3 className="text-lg font-semibold text-primary">
+                      Results for "{searchResult.domain}"
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {searchResult.extensions.map((result, idx) => (
+                        <motion.div
+                          key={result.ext}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: idx * 0.1 }}
+                          className={`p-4 rounded-lg border ${
+                            result.available 
+                              ? "bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800" 
+                              : "bg-muted/50 border-border"
+                          }`}
+                        >
+                          <p className="font-semibold text-foreground">
+                            {searchResult.domain}{result.ext}
+                          </p>
+                          <p className={`text-sm ${result.available ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}`}>
+                            {result.available ? "Available" : "Taken"}
+                          </p>
+                          {result.available && (
+                            <p className="text-xs text-muted-foreground mt-1">{result.price}</p>
+                          )}
+                        </motion.div>
+                      ))}
+                    </div>
+                    {searchResult.available && (
+                      <Button variant="hero" asChild className="mt-4">
+                        <Link to="/contact">
+                          Register Your Domain <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    )}
+                  </motion.div>
+                )}
+
+                <div className="pt-4 border-t border-border">
+                  <p className="text-sm text-muted-foreground mb-3">Popular extensions:</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {popularExtensions.map((ext) => (
+                      <Badge key={ext.ext} variant="outline" className="text-xs">
+                        {ext.ext} - {ext.price}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </AnimatedElement>
         </div>
       </section>
 
