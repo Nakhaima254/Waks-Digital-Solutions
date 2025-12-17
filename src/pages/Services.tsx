@@ -22,11 +22,14 @@ import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Services = () => {
   const [domainSearch, setDomainSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [searchResult, setSearchResult] = useState<{ domain: string; available: boolean; extensions: { ext: string; available: boolean; price: string }[] } | null>(null);
+  const { toast } = useToast();
 
   const popularExtensions = [
     { ext: ".co.ke", price: "KES 1,200/yr" },
@@ -42,26 +45,58 @@ const Services = () => {
     if (!domainSearch.trim()) return;
     
     setIsSearching(true);
+    setSearchResult(null);
     
-    // Simulate domain availability check
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    const cleanDomain = domainSearch.toLowerCase().replace(/\s+/g, "").split(".")[0];
-    
-    // Simulated results - in production, this would call a real domain API
-    const results = popularExtensions.map(ext => ({
-      ext: ext.ext,
-      available: Math.random() > 0.4, // Simulated availability
-      price: ext.price
-    }));
-    
-    setSearchResult({
-      domain: cleanDomain,
-      available: results.some(r => r.available),
-      extensions: results
-    });
-    
-    setIsSearching(false);
+    try {
+      const { data, error } = await supabase.functions.invoke("check-domain", {
+        body: { domain: domainSearch.trim() },
+      });
+
+      if (error) {
+        console.error("Domain check error:", error);
+        toast({
+          title: "Error",
+          description: "Failed to check domain availability. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      if (data.error) {
+        toast({
+          title: "Invalid Domain",
+          description: data.error,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Map the API results to our display format
+      const results = data.results.map((result: any) => {
+        const ext = result.domain.replace(data.domain, "");
+        const extInfo = popularExtensions.find(e => e.ext === ext);
+        return {
+          ext,
+          available: result.available,
+          price: extInfo?.price || (result.price ? `$${result.price.toFixed(2)}/yr` : "Contact us"),
+        };
+      });
+
+      setSearchResult({
+        domain: data.domain,
+        available: data.hasAvailable,
+        extensions: results,
+      });
+    } catch (error) {
+      console.error("Domain search error:", error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const mainServices = [
