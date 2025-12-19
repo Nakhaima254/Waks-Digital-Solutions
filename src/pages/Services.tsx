@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { 
   Code, 
   Palette, 
@@ -15,114 +13,14 @@ import {
   Layers,
   Shield,
   Clock,
-  Network,
-  Loader2
+  Network
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
 
 const Services = () => {
-  type DomainResultStatus = "available" | "taken" | "unsupported" | "error";
-  type DomainExtensionResult = {
-    ext: string;
-    status: DomainResultStatus;
-    available: boolean | null;
-    price: string;
-    note?: string;
-  };
-
-  const [domainSearch, setDomainSearch] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchResult, setSearchResult] = useState<{
-    domain: string;
-    available: boolean;
-    extensions: DomainExtensionResult[];
-  } | null>(null);
-  const { toast } = useToast();
-
-  const popularExtensions = [
-    { ext: ".co.ke", price: "KES 1,200/yr" },
-    { ext: ".com", price: "KES 1,500/yr" },
-    { ext: ".ke", price: "KES 2,500/yr" },
-    { ext: ".org", price: "KES 1,400/yr" },
-    { ext: ".net", price: "KES 1,400/yr" },
-    { ext: ".africa", price: "KES 3,000/yr" },
-  ];
-
-  const handleDomainSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!domainSearch.trim()) return;
-
-    setIsSearching(true);
-    setSearchResult(null);
-
-    try {
-      const { data, error } = await supabase.functions.invoke("check-domain", {
-        body: { domain: domainSearch.trim() },
-      });
-
-      if (error) {
-        console.error("Domain check error:", error);
-        toast({
-          title: "Error",
-          description: "Failed to check domain availability. Please try again.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      if (data?.authError) {
-        toast({
-          title: "Domain Search Unavailable",
-          description: "GoDaddy authentication failed. We'll fix this shortly—please try again later.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      if (data?.error) {
-        toast({
-          title: "Domain Check Error",
-          description: data.error,
-          variant: "destructive",
-        });
-        return;
-      }
-
-      const results: DomainExtensionResult[] = (data?.results ?? []).map((result: any) => {
-        const extInfo = popularExtensions.find((e) => e.ext === result.ext);
-        const apiPrice = typeof result.price === "number" ? `$${result.price.toFixed(2)}/yr` : undefined;
-
-        return {
-          ext: result.ext,
-          status: result.status,
-          available: typeof result.available === "boolean" ? result.available : null,
-          price: extInfo?.price || apiPrice || "Contact us",
-          note: result.note,
-        };
-      });
-
-      setSearchResult({
-        domain: data.domain,
-        available: results.some((r) => r.status === "available"),
-        extensions: results,
-      });
-    } catch (error) {
-      console.error("Domain search error:", error);
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
   const mainServices = [
     {
       icon: Code,
@@ -246,130 +144,6 @@ const Services = () => {
               to help your Kenyan business succeed online.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Free Domain Search Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedElement animation="fadeUp">
-            <Card className="card-elevated p-8 md:p-12 text-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 pointer-events-none" />
-              <div className="relative space-y-6">
-                <div className="space-y-3">
-                  <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
-                    Free Tool
-                  </Badge>
-                  <h2 className="text-2xl md:text-3xl font-bold text-primary">
-                    Find Your Perfect Domain
-                  </h2>
-                  <p className="text-muted-foreground max-w-xl mx-auto">
-                    Search for available domain names and secure your online identity today. 
-                    We offer competitive prices on all popular extensions.
-                  </p>
-                </div>
-
-                <form onSubmit={handleDomainSearch} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
-                  <div className="relative flex-1">
-                    <Globe className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder="Enter your domain name..."
-                      value={domainSearch}
-                      onChange={(e) => setDomainSearch(e.target.value)}
-                      className="pl-10 h-12 text-base"
-                    />
-                  </div>
-                  <Button type="submit" variant="hero" size="lg" disabled={isSearching || !domainSearch.trim()}>
-                    {isSearching ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Searching...
-                      </>
-                    ) : (
-                      <>
-                        <Search className="mr-2 h-4 w-4" />
-                        Search
-                      </>
-                    )}
-                  </Button>
-                </form>
-
-                {searchResult && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="space-y-4 mt-6"
-                  >
-                    <h3 className="text-lg font-semibold text-primary">
-                      Results for "{searchResult.domain}"
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {searchResult.extensions.map((result, idx) => {
-                        const isAvailable = result.status === "available";
-                        const isTaken = result.status === "taken";
-                        const label =
-                          result.status === "available"
-                            ? "Available"
-                            : result.status === "taken"
-                              ? "Taken"
-                              : result.status === "unsupported"
-                                ? "Not supported"
-                                : "Unknown";
-
-                        return (
-                          <motion.div
-                            key={result.ext}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: idx * 0.1 }}
-                            className={`p-4 rounded-lg border ${
-                              isAvailable
-                                ? "bg-accent/10 border-accent/30"
-                                : isTaken
-                                  ? "bg-muted/50 border-border"
-                                  : "bg-secondary/30 border-border"
-                            }`}
-                          >
-                            <p className="font-semibold text-foreground">
-                              {searchResult.domain}{result.ext}
-                            </p>
-                            <p className={`text-sm ${isAvailable ? "text-accent" : "text-muted-foreground"}`}>
-                              {label}
-                            </p>
-                            {isAvailable && (
-                              <p className="text-xs text-muted-foreground mt-1">{result.price}</p>
-                            )}
-                            {!isAvailable && result.note && (
-                              <p className="text-xs text-muted-foreground mt-1">{result.note}</p>
-                            )}
-                          </motion.div>
-                        );
-                      })}
-                    </div>
-                    {searchResult.available && (
-                      <Button variant="hero" asChild className="mt-4">
-                        <Link to="/contact">
-                          Register Your Domain <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    )}
-                  </motion.div>
-                )}
-
-                <div className="pt-4 border-t border-border">
-                  <p className="text-sm text-muted-foreground mb-3">Popular extensions:</p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {popularExtensions.map((ext) => (
-                      <Badge key={ext.ext} variant="outline" className="text-xs">
-                        {ext.ext} - {ext.price}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </AnimatedElement>
         </div>
       </section>
 
