@@ -464,6 +464,7 @@ ${data.message}
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
+                                    <SelectItem value="15k-25k">KES 15,000 - 25,000</SelectItem>
                                     <SelectItem value="25k-50k">KES 25,000 - 50,000</SelectItem>
                                     <SelectItem value="50k-100k">KES 50,000 - 100,000</SelectItem>
                                     <SelectItem value="100k-200k">KES 100,000 - 200,000</SelectItem>
