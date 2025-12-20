@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback } from "react";
 
 // Replace with your actual Turnstile site key
-const TURNSTILE_SITE_KEY = "0x4AAAAAABeP1xxmPjxFFPft";
+const TURNSTILE_SITE_KEY = "0x4AAAAAACHt4UW_iNiPSjq0";
 
 interface TurnstileWidgetProps {
   onVerify: (token: string) => void;
