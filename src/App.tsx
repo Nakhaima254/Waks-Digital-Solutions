@@ -85,6 +85,9 @@ import AIEthicsPrivacy from "./pages/blog/AIEthicsPrivacy";
 import AIMarketingAutomation from "./pages/blog/AIMarketingAutomation";
 import PredictiveAnalyticsEcommerce from "./pages/blog/PredictiveAnalyticsEcommerce";
 import FAQ from "./pages/FAQ";
+import Auth from "./pages/Auth";
+import Ticket from "./pages/Ticket";
+import TicketDashboard from "./pages/TicketDashboard";
 
 const queryClient = new QueryClient();
 
@@ -109,6 +112,9 @@ const App = () => (
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="faq" element={<FAQ />} />
+            <Route path="auth" element={<Auth />} />
+            <Route path="ticket" element={<Ticket />} />
+            <Route path="ticket-dashboard" element={<TicketDashboard />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
             <Route path="blog" element={<Blog />} />
