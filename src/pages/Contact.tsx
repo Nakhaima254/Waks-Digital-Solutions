@@ -36,17 +36,19 @@ import {
   Star,
   CheckCircle2,
   ArrowRight,
-  ArrowLeft
+  ArrowLeft,
+  ShieldCheck
 } from "lucide-react";
 import contactHeroImage from "@/assets/contact-hero.jpg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const formSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(100, "First name must be less than 100 characters"),
@@ -64,6 +66,8 @@ type FormData = z.infer<typeof formSchema>;
 const Contact = () => {
   const { toast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileVerified, setTurnstileVerified] = useState(false);
   
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -77,8 +81,28 @@ const Contact = () => {
       budget: "",
       message: "",
     },
-    mode: "onChange", // Enable real-time validation
+    mode: "onChange",
   });
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+    setTurnstileVerified(true);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+    setTurnstileVerified(false);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setTurnstileToken(null);
+    setTurnstileVerified(false);
+    toast({
+      title: "CAPTCHA Error",
+      description: "Failed to load CAPTCHA. Please refresh the page.",
+      variant: "destructive",
+    });
+  }, [toast]);
 
   const validateStep1 = async () => {
     const fieldsToValidate = ['firstName', 'lastName', 'email'] as const;
@@ -98,6 +122,16 @@ const Contact = () => {
   };
 
   const handleSubmit = (data: FormData) => {
+    // Verify CAPTCHA first
+    if (!turnstileToken) {
+      toast({
+        title: "CAPTCHA Required",
+        description: "Please complete the CAPTCHA verification.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const email = 'info@waksdigital.co.ke';
     const subject = `New Contact Form: ${data.projectType}`;
     const body = `
@@ -460,6 +494,25 @@ ${data.message}
                             )}
                           />
 
+                          {/* Turnstile CAPTCHA */}
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <ShieldCheck className="h-4 w-4" />
+                              <span>Complete the security check below</span>
+                            </div>
+                            <TurnstileWidget
+                              onVerify={handleTurnstileVerify}
+                              onExpire={handleTurnstileExpire}
+                              onError={handleTurnstileError}
+                            />
+                            {turnstileVerified && (
+                              <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
+                                <ShieldCheck className="h-4 w-4" />
+                                Verification complete
+                              </p>
+                            )}
+                          </div>
+
                           <div className="flex gap-4">
                             <Button 
                               type="button" 
@@ -476,6 +529,7 @@ ${data.message}
                               variant="hero" 
                               size="lg" 
                               className="flex-1"
+                              disabled={!turnstileVerified}
                             >
                               Send Message
                               <Send className="ml-2 h-4 w-4" />
