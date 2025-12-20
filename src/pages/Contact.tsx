@@ -142,15 +142,15 @@ ${data.message}
       icon: Phone,
       title: "Call Us",
       description: "Speak with us directly",
-      contact: "+254 718 098 165",
-      action: "tel:+254718098165"
+      contact: "+254 750 509 252",
+      action: "tel:+254750509252"
     },
     {
       icon: MessageCircle,
       title: "WhatsApp",
       description: "Quick questions and updates",
-      contact: "+254 746 388 308",
-      action: "https://wa.me/254746388308"
+      contact: "+254 750 509 252",
+      action: "https://wa.me/254750509252"
     }
   ];
 
