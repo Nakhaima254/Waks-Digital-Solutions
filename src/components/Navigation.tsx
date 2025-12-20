@@ -284,9 +284,9 @@ const Navigation = () => {
                                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
                                   <span>+254 750 509 252</span>
                                 </a>
-                                <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <a href="https://wa.me/254750509252" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
                                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                                  <span>+254 746 388 308 (WhatsApp)</span>
+                                  <span>+254 750 509 252 (WhatsApp)</span>
                                 </a>
                                 <div className="flex items-start gap-3 text-sm text-muted-foreground">
                                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
