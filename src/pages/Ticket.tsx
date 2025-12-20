@@ -21,9 +21,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Ticket as TicketIcon, Send, ShieldCheck } from "lucide-react";
-import { useState, useCallback } from "react";
-import TurnstileWidget from "@/components/TurnstileWidget";
+import { Mail, Ticket as TicketIcon, Send } from "lucide-react";
+import { useState } from "react";
 
 const ticketSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
@@ -41,8 +40,6 @@ type TicketFormValues = z.infer<typeof ticketSchema>;
 const Ticket = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const [turnstileVerified, setTurnstileVerified] = useState(false);
 
   const form = useForm<TicketFormValues>({
     resolver: zodResolver(ticketSchema),
@@ -58,58 +55,10 @@ const Ticket = () => {
     },
   });
 
-  const handleTurnstileVerify = useCallback((token: string) => {
-    setTurnstileToken(token);
-    setTurnstileVerified(true);
-  }, []);
-
-  const handleTurnstileExpire = useCallback(() => {
-    setTurnstileToken(null);
-    setTurnstileVerified(false);
-  }, []);
-
-  const handleTurnstileError = useCallback(() => {
-    setTurnstileToken(null);
-    setTurnstileVerified(false);
-    toast({
-      title: "CAPTCHA Error",
-      description: "Failed to load CAPTCHA. Please refresh the page.",
-      variant: "destructive",
-    });
-  }, [toast]);
-
   const onSubmit = async (data: TicketFormValues) => {
-    // Verify CAPTCHA first
-    if (!turnstileToken) {
-      toast({
-        title: "CAPTCHA Required",
-        description: "Please complete the CAPTCHA verification.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     
     try {
-      // Verify Turnstile token server-side
-      const { data: verifyData, error: verifyError } = await supabase.functions.invoke(
-        'verify-turnstile',
-        { body: { token: turnstileToken } }
-      );
-
-      if (verifyError || !verifyData?.success) {
-        toast({
-          title: "CAPTCHA Verification Failed",
-          description: "Please try completing the CAPTCHA again.",
-          variant: "destructive",
-        });
-        setTurnstileToken(null);
-        setTurnstileVerified(false);
-        setIsSubmitting(false);
-        return;
-      }
-
       // Check if user is authenticated
       const { data: { session } } = await supabase.auth.getSession();
       
@@ -366,30 +315,11 @@ ${data.description}
                 )}
               />
 
-              {/* Turnstile CAPTCHA */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4" />
-                  <span>Complete the security check below</span>
-                </div>
-                <TurnstileWidget
-                  onVerify={handleTurnstileVerify}
-                  onExpire={handleTurnstileExpire}
-                  onError={handleTurnstileError}
-                />
-                {turnstileVerified && (
-                  <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
-                    <ShieldCheck className="h-4 w-4" />
-                    Verification complete
-                  </p>
-                )}
-              </div>
-
               <Button
                 type="submit"
                 size="lg"
                 className="w-full"
-                disabled={isSubmitting || !turnstileVerified}
+                disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
