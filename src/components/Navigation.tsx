@@ -280,9 +280,9 @@ const Navigation = () => {
                                   <Mail className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
                                   <span>info@waksdigital.co.ke</span>
                                 </a>
-                                <a href="tel:+254718098165" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
+                                <a href="tel:+254750509252" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
                                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
-                                  <span>+254 718 098 165</span>
+                                  <span>+254 750 509 252</span>
                                 </a>
                                 <a href="https://wa.me/254746388308" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary transition-all duration-300 hover:translate-x-1">
                                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0 transition-transform duration-300 hover:scale-110" />
