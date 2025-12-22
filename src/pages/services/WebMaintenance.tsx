@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wrench, Shield, Zap, RefreshCw, Database, Lock } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Wrench, Shield, Zap, RefreshCw, Database, Lock, ArrowRight, CreditCard } from "lucide-react";
+import { motion } from "framer-motion";
 
 const WebMaintenance = () => {
   const services = [
@@ -205,6 +207,39 @@ const WebMaintenance = () => {
         </div>
       </section>
 
+      {/* Pricing CTA Section */}
+      <section className="py-16 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-cyan-600 to-teal-600 rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-black/10" />
+            <div className="relative z-10">
+              <Badge className="mb-4 bg-white/20 text-white border-white/30">
+                <CreditCard className="w-3 h-3 mr-1" />
+                Maintenance Plans
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                View Our Maintenance Packages
+              </h2>
+              <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                From basic care to enterprise-level support. Keep your website running smoothly.
+              </p>
+              <Button size="lg" variant="secondary" className="group" asChild>
+                <Link to="/pricing/maintenance" className="flex items-center gap-2">
+                  View Detailed Pricing
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -219,7 +254,7 @@ const WebMaintenance = () => {
               <Link to="/contact">Contact Us Today</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-background text-foreground border-border hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 rounded-full" asChild>
-              <Link to="/pricing" state={{ from: '/services/web-maintenance', serviceName: 'Web Maintenance' }}>View Pricing</Link>
+              <Link to="/pricing/maintenance">View Pricing</Link>
             </Button>
           </div>
         </div>

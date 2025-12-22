@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code2, Monitor, Zap, Shield, Search, Users } from "lucide-react";
+import { Code2, Monitor, Zap, Shield, Search, Users, ArrowRight, CreditCard } from "lucide-react";
 import { Link } from "react-router-dom";
 import webDevImage from "@/assets/service-web-development.jpg";
 import FloatingElements from "@/components/FloatingElements";
+import { motion } from "framer-motion";
 
 const WebDevelopment = () => {
   const features = [
@@ -80,9 +81,18 @@ const WebDevelopment = () => {
               Stand out from the competition with a custom-built website designed specifically for your business. 
               No templates, no limitations - just pure creativity and functionality.
             </p>
-            <Button size="lg" asChild>
-              <Link to="/contact">Start Your Custom Project</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <Link to="/contact">Start Your Custom Project</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="group" asChild>
+                <Link to="/pricing/web-development" className="flex items-center gap-2">
+                  <CreditCard className="w-4 h-4" />
+                  View Pricing
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -194,6 +204,39 @@ const WebDevelopment = () => {
         </div>
       </section>
 
+      {/* Pricing CTA Section */}
+      <section className="py-16 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-primary to-accent rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-black/10" />
+            <div className="relative z-10">
+              <Badge className="mb-4 bg-white/20 text-white border-white/30">
+                <CreditCard className="w-3 h-3 mr-1" />
+                Transparent Pricing
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                View Our Web Development Packages
+              </h2>
+              <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                From starter websites to enterprise solutions. Find the perfect package for your business needs.
+              </p>
+              <Button size="lg" variant="secondary" className="group" asChild>
+                <Link to="/pricing/web-development" className="flex items-center gap-2">
+                  View Detailed Pricing
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -208,7 +251,7 @@ const WebDevelopment = () => {
               <Link to="/contact">Start Your Project</Link>
             </Button>
             <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
-              <Link to="/pricing" state={{ from: '/services/web-development', serviceName: 'Web Development' }}>View Pricing</Link>
+              <Link to="/pricing/web-development">View Pricing</Link>
             </Button>
           </div>
         </div>
