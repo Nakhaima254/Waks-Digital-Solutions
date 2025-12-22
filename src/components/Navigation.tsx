@@ -54,36 +54,42 @@ const Navigation = () => {
     {
       name: "Web Development",
       path: "/services/web-development",
+      pricingPath: "/pricing/web-development",
       description: "Custom, scalable websites built from scratch",
       icon: Code
     },
     {
       name: "WordPress Design",
       path: "/services/wordpress-design",
+      pricingPath: "/pricing/wordpress",
       description: "Professional WordPress websites with easy management",
       icon: Code
     },
     {
       name: "E-commerce Solutions",
       path: "/services/ecommerce-solutions",
+      pricingPath: "/pricing/ecommerce",
       description: "Complete online stores to sell your products",
       icon: ShoppingCart
     },
     {
       name: "SEO Services",
       path: "/services/seo-services",
+      pricingPath: "/pricing/seo",
       description: "Improve your search engine visibility",
       icon: Search
     },
     {
       name: "Copywriting Services",
       path: "/services/copywriting",
+      pricingPath: "/pricing/copywriting",
       description: "Engaging content that converts visitors to customers",
       icon: PenTool
     },
     {
       name: "Web Maintenance",
       path: "/services/web-maintenance",
+      pricingPath: "/pricing/maintenance",
       description: "Keep your website secure, updated and running smoothly",
       icon: Wrench
     },
@@ -438,11 +444,10 @@ const Navigation = () => {
                                 const IconComponent = service.icon;
                                 
                                 return (
-                                  <Link
+                                  <div
                                     key={service.name}
-                                    to={service.path}
                                     className={cn(
-                                      "group block select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-muted/50 hover:shadow-md hover:scale-[1.02] hover:-translate-y-0.5",
+                                      "group select-none space-y-2 rounded-lg p-3 leading-none no-underline outline-none transition-all duration-300 hover:bg-muted/50 hover:shadow-md",
                                       isActive(service.path) && "bg-muted"
                                     )}
                                   >
@@ -451,13 +456,33 @@ const Navigation = () => {
                                         <IconComponent className="h-4 w-4 text-primary transition-transform duration-300 group-hover:rotate-3" />
                                       </div>
                                       <div className="flex-1">
-                                        <div className="text-sm font-semibold leading-none text-foreground mb-1">{service.name}</div>
-                                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                                        <Link 
+                                          to={service.path}
+                                          className="text-sm font-semibold leading-none text-foreground mb-1 hover:text-primary transition-colors block"
+                                        >
+                                          {service.name}
+                                        </Link>
+                                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground mb-2">
                                           {service.description}
                                         </p>
+                                        <div className="flex gap-2">
+                                          <Link
+                                            to={service.path}
+                                            className="text-xs text-primary hover:underline"
+                                          >
+                                            Learn More
+                                          </Link>
+                                          <span className="text-muted-foreground">•</span>
+                                          <Link
+                                            to={service.pricingPath}
+                                            className="text-xs text-accent hover:underline font-medium"
+                                          >
+                                            View Pricing
+                                          </Link>
+                                        </div>
                                       </div>
                                     </div>
-                                  </Link>
+                                  </div>
                                 );
                               })}
                             </div>
