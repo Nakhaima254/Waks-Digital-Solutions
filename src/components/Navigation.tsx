@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -181,15 +181,15 @@ const Navigation = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [currentOffer, setCurrentOffer] = useState(0);
 
-  const offers = [
-    { text: "🎄 Holiday Special: 25% off all services until Dec 31st!", link: "/pricing" },
-    { text: "⚡ Free website audit - Discover your growth potential", link: "/contact" },
-    { text: "🚀 Launch your business online in just 7 days", link: "/services/web-development" },
-    { text: "🎁 New Year Offer: Free hosting for 6 months with any website!", link: "/services/web-development" },
-    { text: "💼 SME Package: Complete digital presence starting at KES 25,000", link: "/pricing" },
-    { text: "🔥 Limited Time: 50% off SEO services for new clients", link: "/services/seo-services" },
-    { text: "✨ E-commerce Special: Get your online store live in 14 days", link: "/services/ecommerce-solutions" },
-    { text: "📱 Free mobile optimization with every website project", link: "/services/web-development" },
+  const offers: { text: string; link: string; icon: LucideIcon }[] = [
+    { text: "Holiday Special: 25% off all services until Dec 31st!", link: "/pricing", icon: TreePine },
+    { text: "Free website audit - Discover your growth potential", link: "/contact", icon: Zap },
+    { text: "Launch your business online in just 7 days", link: "/services/web-development", icon: Rocket },
+    { text: "New Year Offer: Free hosting for 6 months with any website!", link: "/services/web-development", icon: Gift },
+    { text: "SME Package: Complete digital presence starting at KES 25,000", link: "/pricing", icon: Briefcase },
+    { text: "Limited Time: 50% off SEO services for new clients", link: "/services/seo-services", icon: Flame },
+    { text: "E-commerce Special: Get your online store live in 14 days", link: "/services/ecommerce-solutions", icon: Package },
+    { text: "Free mobile optimization with every website project", link: "/services/web-development", icon: Smartphone },
   ];
 
   useEffect(() => {
@@ -223,7 +223,10 @@ const Navigation = () => {
                     transition={{ duration: 0.3 }}
                     className="flex items-center gap-2"
                   >
-                    <Sparkles className="h-4 w-4 text-white animate-pulse" />
+                    {(() => {
+                      const OfferIcon = offers[currentOffer].icon;
+                      return <OfferIcon className="h-4 w-4 text-white" />;
+                    })()}
                     <Link
                       to={offers[currentOffer].link}
                       className="text-white text-sm font-medium hover:underline"
