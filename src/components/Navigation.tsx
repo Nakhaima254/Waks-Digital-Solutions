@@ -352,23 +352,43 @@ const Navigation = () => {
                             {featuredItems.map((item, idx) => {
                               const IconComponent = item.icon;
                               return (
-                                <Link
+                                <motion.div
                                   key={idx}
-                                  to={item.link}
-                                  className={cn(
-                                    "flex-shrink-0 group relative overflow-hidden rounded-lg p-3 w-[180px]",
-                                    "bg-gradient-to-br",
-                                    item.color,
-                                    "hover:scale-[1.02] transition-all duration-300 hover:shadow-lg"
-                                  )}
+                                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                                  transition={{ 
+                                    duration: 0.4, 
+                                    delay: idx * 0.1,
+                                    ease: [0.25, 0.46, 0.45, 0.94]
+                                  }}
                                 >
-                                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                                  <div className="relative z-10">
-                                    <IconComponent className="h-5 w-5 text-white mb-2" />
-                                    <h4 className="text-xs font-bold text-white mb-1">{item.title}</h4>
-                                    <p className="text-[10px] text-white/80 leading-tight">{item.description}</p>
-                                  </div>
-                                </Link>
+                                  <Link
+                                    to={item.link}
+                                    className={cn(
+                                      "flex-shrink-0 group relative overflow-hidden rounded-lg p-3 w-[180px] block",
+                                      "bg-gradient-to-br",
+                                      item.color,
+                                      "hover:scale-[1.05] transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                                    )}
+                                  >
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                                    <motion.div 
+                                      className="relative z-10"
+                                      whileHover={{ y: -2 }}
+                                      transition={{ duration: 0.2 }}
+                                    >
+                                      <motion.div
+                                        initial={{ rotate: 0 }}
+                                        whileHover={{ rotate: 12, scale: 1.1 }}
+                                        transition={{ duration: 0.3 }}
+                                      >
+                                        <IconComponent className="h-5 w-5 text-white mb-2" />
+                                      </motion.div>
+                                      <h4 className="text-xs font-bold text-white mb-1">{item.title}</h4>
+                                      <p className="text-[10px] text-white/80 leading-tight">{item.description}</p>
+                                    </motion.div>
+                                  </Link>
+                                </motion.div>
                               );
                             })}
                           </div>
