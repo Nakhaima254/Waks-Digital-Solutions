@@ -368,9 +368,17 @@ const Navigation = () => {
                                       "flex-shrink-0 group relative overflow-hidden rounded-lg p-3 w-[180px] block",
                                       "bg-gradient-to-br",
                                       item.color,
-                                      "hover:scale-[1.05] transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+                                      "hover:scale-[1.05] transition-all duration-300",
+                                      "shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30",
+                                      "animate-glow"
                                     )}
                                   >
+                                    {/* Shimmer effect overlay */}
+                                    <div 
+                                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
+                                    />
+                                    {/* Glow border effect */}
+                                    <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ring-2 ring-white/40" />
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                                     <motion.div 
                                       className="relative z-10"
@@ -381,11 +389,12 @@ const Navigation = () => {
                                         initial={{ rotate: 0 }}
                                         whileHover={{ rotate: 12, scale: 1.1 }}
                                         transition={{ duration: 0.3 }}
+                                        className="drop-shadow-lg"
                                       >
-                                        <IconComponent className="h-5 w-5 text-white mb-2" />
+                                        <IconComponent className="h-5 w-5 text-white mb-2 drop-shadow-md" />
                                       </motion.div>
-                                      <h4 className="text-xs font-bold text-white mb-1">{item.title}</h4>
-                                      <p className="text-[10px] text-white/80 leading-tight">{item.description}</p>
+                                      <h4 className="text-xs font-bold text-white mb-1 drop-shadow-sm">{item.title}</h4>
+                                      <p className="text-[10px] text-white/90 leading-tight drop-shadow-sm">{item.description}</p>
                                     </motion.div>
                                   </Link>
                                 </motion.div>
