@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, CreditCard, Package, BarChart3, Shield, Smartphone } from "lucide-react";
+import { ShoppingCart, CreditCard, Package, BarChart3, Shield, Smartphone, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import ecommerceImage from "@/assets/service-ecommerce-solutions.jpg";
 import FloatingElements from "@/components/FloatingElements";
@@ -255,15 +255,15 @@ const EcommerceSolutions = () => {
               <p className="text-muted-foreground text-sm">Prices displayed in Kenyan Shillings</p>
             </div>
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold">
-                🚚
+              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Truck className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Local Shipping</h3>
               <p className="text-muted-foreground text-sm">Integration with Kenyan courier services</p>
             </div>
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold">
-                📱
+              <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Mobile First</h3>
               <p className="text-muted-foreground text-sm">Optimized for mobile shopping habits</p>

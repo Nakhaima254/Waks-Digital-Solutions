@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft } from "lucide-react";
+import { Check, Star, ArrowLeft, Palette, FileText, Wrench, Zap } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -528,7 +528,7 @@ const Pricing = () => {
             <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <span className="text-2xl">🎨</span>
+                  <Palette className="h-8 w-8 text-accent" />
                 </div>
               </div>
               <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Logo Design</h3>
@@ -539,7 +539,7 @@ const Pricing = () => {
             <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <span className="text-2xl">📄</span>
+                  <FileText className="h-8 w-8 text-accent" />
                 </div>
               </div>
               <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Extra Page</h3>
@@ -550,7 +550,7 @@ const Pricing = () => {
             <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <span className="text-2xl">🔧</span>
+                  <Wrench className="h-8 w-8 text-accent" />
                 </div>
               </div>
               <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Monthly Maintenance</h3>
@@ -561,7 +561,7 @@ const Pricing = () => {
             <Card className="text-center p-6 group hover:scale-105 hover:shadow-elegant transition-all duration-300 border-2 hover:border-accent">
               <div className="mb-4 flex justify-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <span className="text-2xl">⚡</span>
+                  <Zap className="h-8 w-8 text-accent" />
                 </div>
               </div>
               <h3 className="font-semibold mb-2 text-lg group-hover:text-accent transition-colors duration-300">Custom Feature</h3>

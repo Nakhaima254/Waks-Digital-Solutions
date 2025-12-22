@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, TrendingUp, Target, FileText, Link2, BarChart } from "lucide-react";
+import { Search, TrendingUp, Target, FileText, Link2, BarChart, Building2, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import seoImage from "@/assets/service-seo-services.jpg";
 import FloatingElements from "@/components/FloatingElements";
@@ -280,15 +280,15 @@ const SEOServices = () => {
               <p className="text-muted-foreground text-sm">Deep understanding of Kenyan search behavior and preferences</p>
             </div>
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold">
-                🏙️
+              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Building2 className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">City-Specific Targeting</h3>
               <p className="text-muted-foreground text-sm">Optimize for Nairobi, Mombasa, Kisumu and other major cities</p>
             </div>
             <div className="text-center p-6">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold">
-                📱
+              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold mb-2">Mobile-First Approach</h3>
               <p className="text-muted-foreground text-sm">Optimized for mobile users who make up majority of Kenyan internet users</p>
