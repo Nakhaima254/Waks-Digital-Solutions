@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -15,6 +15,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,6 +89,37 @@ const Navigation = () => {
     },
   ];
 
+  const featuredItems = [
+    {
+      title: "New Year Special",
+      description: "Get 20% off all web development packages",
+      icon: Gift,
+      color: "from-orange-500 to-red-500",
+      link: "/pricing"
+    },
+    {
+      title: "Free SEO Audit",
+      description: "Discover your website's potential",
+      icon: Search,
+      color: "from-blue-500 to-cyan-500",
+      link: "/services/seo-services"
+    },
+    {
+      title: "Startup Package",
+      description: "Complete digital presence for new businesses",
+      icon: Zap,
+      color: "from-purple-500 to-pink-500",
+      link: "/services/web-development"
+    },
+    {
+      title: "E-commerce Boost",
+      description: "Transform your online store performance",
+      icon: ShoppingCart,
+      color: "from-green-500 to-emerald-500",
+      link: "/services/ecommerce-solutions"
+    },
+  ];
+
   const supportItems = [
     {
       name: "Services",
@@ -121,12 +153,111 @@ const Navigation = () => {
     },
   ];
 
+  // Featured scroll state
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollButtons = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  const scrollFeatured = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 200;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+      setTimeout(updateScrollButtons, 300);
+    }
+  };
+
+  // Offers banner state
+  const [showBanner, setShowBanner] = useState(true);
+  const [currentOffer, setCurrentOffer] = useState(0);
+
+  const offers = [
+    { text: "🎄 Holiday Special: 25% off all services until Dec 31st!", link: "/pricing" },
+    { text: "⚡ Free website audit - Discover your growth potential", link: "/contact" },
+    { text: "🚀 Launch your business online in just 7 days", link: "/services/web-development" },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentOffer((prev) => (prev + 1) % offers.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [offers.length]);
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
+      {/* Offers Banner */}
+      <AnimatePresence>
+        {showBanner && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-accent via-primary to-accent overflow-hidden"
+          >
+            <div className="relative py-2 px-4">
+              <div className="max-w-7xl mx-auto flex items-center justify-center gap-4">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentOffer}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex items-center gap-2"
+                  >
+                    <Sparkles className="h-4 w-4 text-white animate-pulse" />
+                    <Link
+                      to={offers[currentOffer].link}
+                      className="text-white text-sm font-medium hover:underline"
+                    >
+                      {offers[currentOffer].text}
+                    </Link>
+                    <ArrowRight className="h-4 w-4 text-white" />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors"
+                aria-label="Close banner"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              {/* Offer dots indicator */}
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 flex gap-1.5">
+                {offers.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentOffer(idx)}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all duration-300",
+                      idx === currentOffer ? "w-4 bg-white" : "w-1.5 bg-white/50 hover:bg-white/70"
+                    )}
+                    aria-label={`Go to offer ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <nav className={cn(
-        "fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300",
+        "fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-all duration-300",
+        showBanner ? "top-10" : "top-0",
         isScrolled && "shadow-md"
       )}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -171,7 +302,70 @@ const Navigation = () => {
                       Services
                     </NavigationMenuTrigger>
                     <NavigationMenuContent className="animate-fade-in">
-                      <div className="w-[800px] max-w-[90vw] p-0">
+                      <div className="w-[850px] max-w-[90vw] p-0">
+                        {/* Featured Scroll Section */}
+                        <div className="border-b border-border bg-muted/30 py-3 px-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <Star className="h-4 w-4 text-accent" />
+                              <span className="text-xs font-semibold text-foreground">Featured Offers</span>
+                            </div>
+                            <div className="flex gap-1">
+                              <button
+                                onClick={() => scrollFeatured('left')}
+                                disabled={!canScrollLeft}
+                                className={cn(
+                                  "p-1 rounded-full transition-all",
+                                  canScrollLeft ? "hover:bg-muted text-foreground" : "text-muted-foreground/40 cursor-not-allowed"
+                                )}
+                                aria-label="Scroll left"
+                              >
+                                <ChevronLeft className="h-4 w-4" />
+                              </button>
+                              <button
+                                onClick={() => scrollFeatured('right')}
+                                disabled={!canScrollRight}
+                                className={cn(
+                                  "p-1 rounded-full transition-all",
+                                  canScrollRight ? "hover:bg-muted text-foreground" : "text-muted-foreground/40 cursor-not-allowed"
+                                )}
+                                aria-label="Scroll right"
+                              >
+                                <ChevronRight className="h-4 w-4" />
+                              </button>
+                            </div>
+                          </div>
+                          <div
+                            ref={scrollContainerRef}
+                            onScroll={updateScrollButtons}
+                            className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth pb-1"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                          >
+                            {featuredItems.map((item, idx) => {
+                              const IconComponent = item.icon;
+                              return (
+                                <Link
+                                  key={idx}
+                                  to={item.link}
+                                  className={cn(
+                                    "flex-shrink-0 group relative overflow-hidden rounded-lg p-3 w-[180px]",
+                                    "bg-gradient-to-br",
+                                    item.color,
+                                    "hover:scale-[1.02] transition-all duration-300 hover:shadow-lg"
+                                  )}
+                                >
+                                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                                  <div className="relative z-10">
+                                    <IconComponent className="h-5 w-5 text-white mb-2" />
+                                    <h4 className="text-xs font-bold text-white mb-1">{item.title}</h4>
+                                    <p className="text-[10px] text-white/80 leading-tight">{item.description}</p>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+
                         <div className="grid md:grid-cols-[280px_1fr]">
                           {/* Featured Image Section */}
                           <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
