@@ -62,7 +62,7 @@ const WebDevelopment = () => {
   return (
     <main className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+      <section className="relative py-20 bg-muted overflow-hidden">
         <FloatingElements density="medium" color="accent" />
         <div className="absolute inset-0">
           <img 
@@ -212,7 +212,7 @@ const WebDevelopment = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary to-accent rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+            className="bg-accent rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-black/10" />
             <div className="relative z-10">
@@ -238,7 +238,7 @@ const WebDevelopment = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-white">
+      <section className="py-20 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready for a Custom Website?

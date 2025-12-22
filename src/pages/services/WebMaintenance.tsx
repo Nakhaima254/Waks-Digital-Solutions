@@ -42,7 +42,7 @@ const WebMaintenance = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary/10 via-background to-accent/5">
+      <section className="relative py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-6">

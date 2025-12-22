@@ -163,7 +163,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+      <section className="relative py-20 bg-muted overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src={portfolioHeroImage} 
@@ -237,12 +237,12 @@ const Portfolio = () => {
                           transition={{ duration: 0.4 }}
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                        <div className="w-full h-full bg-accent/20 flex items-center justify-center">
                           <Globe className="h-16 w-16 text-accent/40" />
                         </div>
                       )}
                       <motion.div 
-                        className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-4"
+                        className="absolute inset-0 bg-primary/80 flex items-end p-4"
                         initial={{ opacity: 0.8 }}
                         whileHover={{ opacity: 1 }}
                       >
@@ -327,7 +327,7 @@ const Portfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">

@@ -122,7 +122,7 @@ const Services = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-subtle overflow-hidden">
+      <section className="relative py-20 bg-muted overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src={servicesHeroImage} 
@@ -163,7 +163,7 @@ const Services = () => {
                 <div className="grid lg:grid-cols-2 gap-8 p-8">
                   <div className="space-y-6">
                     <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
+                      <div className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-accent/50">
                         <service.icon className="h-8 w-8 text-white group-hover:scale-110 transition-transform duration-300" />
                       </div>
                       <div>
@@ -221,7 +221,7 @@ const Services = () => {
       </section>
 
       {/* Additional Services */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Additional Services</h2>
@@ -237,7 +237,7 @@ const Services = () => {
                   <Card className="card-elevated p-6 text-center h-full group">
                     <div className="space-y-4">
                       <motion.div 
-                        className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-lg flex items-center justify-center mx-auto shadow-lg"
+                        className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto shadow-lg"
                         whileHover={{ rotate: 360, scale: 1.2 }}
                         transition={{ duration: 0.5 }}
                       >

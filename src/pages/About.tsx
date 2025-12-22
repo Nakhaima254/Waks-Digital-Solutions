@@ -121,7 +121,7 @@ const About = () => {
                     <div className="space-y-6">
                       <div className="flex items-center space-x-4">
                         <motion.div 
-                          className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-full flex items-center justify-center"
+                          className="w-16 h-16 bg-accent rounded-full flex items-center justify-center"
                           animate={{ rotate: [0, 5, -5, 0] }}
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                         >
@@ -212,7 +212,7 @@ const About = () => {
                       </div>
                       <div className="w-full bg-muted rounded-full h-2">
                         <div 
-                          className="bg-gradient-to-r from-accent to-accent-hover h-2 rounded-full transition-all duration-500"
+                          className="bg-accent h-2 rounded-full transition-all duration-500"
                           style={{ width: `${skill.level}%` }}
                         ></div>
                       </div>
@@ -226,7 +226,7 @@ const About = () => {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Mission & Values</h2>
@@ -242,7 +242,7 @@ const About = () => {
                   <Card className="card-elevated p-6 text-center h-full">
                     <div className="space-y-4">
                       <motion.div 
-                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto"
+                        className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mx-auto"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -294,7 +294,7 @@ const About = () => {
             {timeline.map((item, index) => (
               <div key={index} className="flex items-start space-x-6">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-accent to-accent-hover rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
                     <Calendar className="h-6 w-6 text-white" />
                   </div>
                 </div>
@@ -314,7 +314,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">

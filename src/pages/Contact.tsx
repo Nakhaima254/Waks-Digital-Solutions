@@ -242,7 +242,7 @@ ${data.message}
                   <Card className="card-elevated p-6 text-center h-full">
                     <div className="space-y-4">
                       <motion.div 
-                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover rounded-xl flex items-center justify-center mx-auto"
+                        className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center mx-auto"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -290,7 +290,7 @@ ${data.message}
                     </div>
                     <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                       <div 
-                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-accent to-accent-hover transition-all duration-500 ease-in-out rounded-full"
+                        className="absolute top-0 left-0 h-full bg-accent transition-all duration-500 ease-in-out rounded-full"
                         style={{ width: `${(currentStep / 2) * 100}%` }}
                       />
                     </div>
