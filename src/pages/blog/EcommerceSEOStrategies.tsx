@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, Clock, User, ShoppingCart, TrendingUp, Star } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, ShoppingCart, TrendingUp, Star, XCircle, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import ecommerceSeoImage from "@/assets/blog-ecommerce-seo.jpg";
 import BlogSidebar from "@/components/BlogSidebar";
@@ -90,8 +90,8 @@ const EcommerceSEOStrategies = () => {
             
             <h3 className="text-xl font-semibold text-foreground mb-3">1. Product Titles</h3>
             <div className="bg-muted p-4 rounded-lg mb-6">
-              <p className="mb-2"><strong>❌ Bad:</strong> "Laptop"</p>
-              <p><strong>✅ Good:</strong> "HP Pavilion 15 Laptop - Intel Core i5, 8GB RAM, 256GB SSD - Nairobi Kenya"</p>
+              <p className="mb-2 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /><strong>Bad:</strong> "Laptop"</p>
+              <p className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /><strong>Good:</strong> "HP Pavilion 15 Laptop - Intel Core i5, 8GB RAM, 256GB SSD - Nairobi Kenya"</p>
               <div className="mt-4 text-sm text-muted-foreground">
                 <p><strong>Include:</strong></p>
                 <ul className="list-disc list-inside mt-2">
@@ -227,9 +227,9 @@ const EcommerceSEOStrategies = () => {
 
             <h3 className="text-xl font-semibold text-foreground mb-3">URL Structure</h3>
             <div className="bg-muted p-4 rounded-lg">
-              <p className="mb-2"><strong>✅ Good URL Structure:</strong></p>
+              <p className="mb-2 flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /><strong>Good URL Structure:</strong></p>
               <p className="text-sm text-muted-foreground mb-4">yourstore.com/electronics/laptops/hp-pavilion-15</p>
-              <p className="mb-2"><strong>❌ Bad URL Structure:</strong></p>
+              <p className="mb-2 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /><strong>Bad URL Structure:</strong></p>
               <p className="text-sm text-muted-foreground">yourstore.com/product?id=12345</p>
             </div>
           </section>
