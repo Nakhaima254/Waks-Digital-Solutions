@@ -185,12 +185,17 @@ const Navigation = () => {
     { text: "🎄 Holiday Special: 25% off all services until Dec 31st!", link: "/pricing" },
     { text: "⚡ Free website audit - Discover your growth potential", link: "/contact" },
     { text: "🚀 Launch your business online in just 7 days", link: "/services/web-development" },
+    { text: "🎁 New Year Offer: Free hosting for 6 months with any website!", link: "/services/web-development" },
+    { text: "💼 SME Package: Complete digital presence starting at KES 25,000", link: "/pricing" },
+    { text: "🔥 Limited Time: 50% off SEO services for new clients", link: "/services/seo-services" },
+    { text: "✨ E-commerce Special: Get your online store live in 14 days", link: "/services/ecommerce-solutions" },
+    { text: "📱 Free mobile optimization with every website project", link: "/services/web-development" },
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentOffer((prev) => (prev + 1) % offers.length);
-    }, 5000);
+    }, 4000); // Faster rotation - 4 seconds per offer
     return () => clearInterval(interval);
   }, [offers.length]);
 
