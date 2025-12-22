@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, type LucideIcon } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -694,15 +694,24 @@ const Navigation = () => {
                     {serviceItems.map((service) => {
                       const IconComponent = service.icon;
                       return (
-                        <Link
-                          key={service.name}
-                          to={service.path}
-                          onClick={handleClose}
-                          className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-background"
-                        >
-                          <IconComponent className="h-5 w-5 text-primary" />
-                          <span className="text-base">{service.name}</span>
-                        </Link>
+                        <div key={service.name} className="rounded-md hover:bg-background">
+                          <Link
+                            to={service.path}
+                            onClick={handleClose}
+                            className="flex items-center gap-3 px-3 py-2"
+                          >
+                            <IconComponent className="h-5 w-5 text-primary" />
+                            <span className="text-base">{service.name}</span>
+                          </Link>
+                          <Link
+                            to={service.pricingPath}
+                            onClick={handleClose}
+                            className="flex items-center gap-3 px-3 py-2 ml-8 text-sm text-muted-foreground hover:text-primary"
+                          >
+                            <CreditCard className="h-4 w-4" />
+                            <span>View Pricing</span>
+                          </Link>
+                        </div>
                       );
                     })}
                   </div>
