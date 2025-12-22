@@ -180,7 +180,7 @@ const Home = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent dark:from-black/95 dark:via-black/80 dark:to-transparent"></div>
+          <div className="absolute inset-0 bg-primary/90 dark:bg-background/90"></div>
         </div>
         
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -242,7 +242,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Services</h2>
@@ -261,7 +261,7 @@ const Home = () => {
                   <Card className="card-elevated p-8 h-full group">
                     <div className="space-y-6">
                       <motion.div 
-                        className="w-16 h-16 bg-gradient-to-r from-accent to-accent-hover dark:from-foreground dark:to-foreground rounded-xl flex items-center justify-center shadow-lg"
+                        className="w-16 h-16 bg-accent rounded-xl flex items-center justify-center shadow-lg"
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
@@ -337,7 +337,7 @@ const Home = () => {
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-primary/60"></div>
                     <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Globe className="h-4 w-4 text-accent" />
                     </div>
@@ -374,7 +374,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 section-gradient">
+      <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">What Our Clients Say</h2>

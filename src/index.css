@@ -53,11 +53,9 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     --input: 215 15% 92%;
     --ring: 22 100% 52%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(215 50% 15%), hsl(215 50% 25%));
-    --gradient-accent: linear-gradient(135deg, hsl(22 100% 52%), hsl(22 100% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 50% 15%) 0%, hsl(215 40% 25%) 50%, hsl(22 100% 52%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(215 15% 98%) 100%);
+    /* Hero backgrounds - flat colors */
+    --hero-bg: 215 50% 15%;
+    --hero-bg-alt: 215 50% 20%;
 
     /* Shadows */
     --shadow-sm: 0 2px 8px hsl(215 25% 15% / 0.08);
@@ -126,11 +124,9 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     --input: 215 15% 22%;
     --ring: 22 100% 52%;
 
-    /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(215 25% 12%), hsl(215 25% 18%));
-    --gradient-accent: linear-gradient(135deg, hsl(22 100% 52%), hsl(22 100% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 25% 8%) 0%, hsl(215 25% 15%) 50%, hsl(22 100% 52%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(215 25% 8%) 0%, hsl(215 25% 12%) 100%);
+    /* Hero backgrounds - flat colors */
+    --hero-bg: 215 25% 12%;
+    --hero-bg-alt: 215 25% 18%;
   }
 }
 
@@ -158,19 +154,9 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     @apply font-['Outfit',system-ui,sans-serif];
   }
 
-  /* Hero gradient text effect */
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
-  }
-
-  /* Animated gradient text */
-  .gradient-text-animated {
-    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-shift;
-  }
-
   /* Professional button variants */
   .btn-hero {
-    @apply bg-[var(--gradient-accent)] text-accent-foreground font-semibold px-8 py-4 rounded-lg 
+    @apply bg-accent text-accent-foreground font-semibold px-8 py-4 rounded-lg 
            shadow-[var(--shadow-accent)] transition-[var(--transition-base)] 
            hover:shadow-[var(--shadow-lg)] hover:scale-105;
   }
@@ -188,12 +174,12 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
   }
 
   /* Section backgrounds */
-  .section-gradient {
-    @apply bg-[var(--gradient-subtle)];
+  .section-muted {
+    @apply bg-muted;
   }
 
   .section-hero {
-    @apply bg-[var(--gradient-hero)] text-primary-foreground;
+    @apply bg-primary text-primary-foreground;
   }
 
   /* Page transition animation */
@@ -315,23 +301,6 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
 
   .tilt-card:hover {
     transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
-  }
-
-  /* Border gradient animation */
-  .border-gradient {
-    @apply relative rounded-lg;
-  }
-
-  .border-gradient::before {
-    content: '';
-    @apply absolute -inset-0.5 bg-gradient-to-r from-accent via-primary to-accent rounded-lg opacity-0 blur transition-opacity duration-300;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
-    z-index: -1;
-  }
-
-  .border-gradient:hover::before {
-    @apply opacity-100;
   }
 
   /* Smooth scroll behavior */
