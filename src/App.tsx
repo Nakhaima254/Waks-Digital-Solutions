@@ -20,6 +20,12 @@ import EcommerceSolutions from "./pages/services/EcommerceSolutions";
 import SEOServices from "./pages/services/SEOServices";
 import Copywriting from "./pages/services/Copywriting";
 import WebMaintenance from "./pages/services/WebMaintenance";
+import WebDevelopmentPricing from "./pages/pricing/WebDevelopmentPricing";
+import WordPressPricing from "./pages/pricing/WordPressPricing";
+import EcommercePricing from "./pages/pricing/EcommercePricing";
+import SEOPricing from "./pages/pricing/SEOPricing";
+import CopywritingPricing from "./pages/pricing/CopywritingPricing";
+import MaintenancePricing from "./pages/pricing/MaintenancePricing";
 import WebDesignTrends2025 from "./pages/blog/WebDesignTrends2025";
 import SEOGuideKenyanBusinesses from "./pages/blog/SEOGuideKenyanBusinesses";
 import EcommerceSuccessKenya from "./pages/blog/EcommerceSuccessKenya";
@@ -108,6 +114,12 @@ const App = () => (
             <Route path="services/copywriting" element={<Copywriting />} />
             <Route path="services/web-maintenance" element={<WebMaintenance />} />
             <Route path="pricing" element={<Pricing />} />
+            <Route path="pricing/web-development" element={<WebDevelopmentPricing />} />
+            <Route path="pricing/wordpress" element={<WordPressPricing />} />
+            <Route path="pricing/ecommerce" element={<EcommercePricing />} />
+            <Route path="pricing/seo" element={<SEOPricing />} />
+            <Route path="pricing/copywriting" element={<CopywritingPricing />} />
+            <Route path="pricing/maintenance" element={<MaintenancePricing />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
