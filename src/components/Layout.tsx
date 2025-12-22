@@ -5,6 +5,7 @@ import ScrollToTop from "./ScrollToTop";
 import WhatsAppFloater from "./WhatsAppFloater";
 import FloatingMenu from "./FloatingMenu";
 import ParticlesBackground from "./ParticlesBackground";
+import BackToTop from "./BackToTop";
 import { useEffect, useState } from "react";
 
 const Layout = () => {
@@ -39,6 +40,7 @@ const Layout = () => {
       <Footer />
       <WhatsAppFloater />
       <FloatingMenu />
+      <BackToTop />
     </div>
   );
 };
