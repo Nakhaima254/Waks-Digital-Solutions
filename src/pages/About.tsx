@@ -77,7 +77,7 @@ const About = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 section-hero overflow-hidden">
+      <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">
           <motion.img 
             src={aboutTeamImage} 
@@ -90,20 +90,20 @@ const About = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-foreground space-y-6">
+            <div className="text-primary-foreground space-y-6">
               <AnimatedElement animation="fadeUp" delay={0.1}>
                 <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
                   About Waks Digital Solutions
                 </Badge>
               </AnimatedElement>
               <AnimatedElement animation="fadeUp" delay={0.2}>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight text-foreground">
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight text-primary-foreground">
                   Building Digital
                   <span className="block text-accent">Success Stories</span>
                 </h1>
               </AnimatedElement>
               <AnimatedElement animation="fadeUp" delay={0.3}>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-xl text-primary-foreground/90 leading-relaxed">
                   We're a Nairobi-based web development and design agency passionate about helping 
                   small to medium businesses thrive in the digital world. Every project we take on 
                   is an opportunity to create something meaningful.
@@ -128,8 +128,8 @@ const About = () => {
                           <Users className="h-8 w-8 text-white" />
                         </motion.div>
                         <div>
-                          <h3 className="text-xl font-semibold text-foreground">Client-First Philosophy</h3>
-                          <p className="text-muted-foreground">Your success drives everything we do</p>
+                          <h3 className="text-xl font-semibold text-primary-foreground">Client-First Philosophy</h3>
+                          <p className="text-primary-foreground/80">Your success drives everything we do</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-3 gap-4 pt-4">
@@ -147,7 +147,7 @@ const About = () => {
                             viewport={{ once: true }}
                           >
                             <div className="text-2xl font-bold text-accent">{stat.value}</div>
-                            <div className="text-sm text-muted-foreground">{stat.label}</div>
+                            <div className="text-sm text-primary-foreground/80">{stat.label}</div>
                           </motion.div>
                         ))}
                       </div>

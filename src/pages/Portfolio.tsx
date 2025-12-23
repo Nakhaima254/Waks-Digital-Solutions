@@ -163,7 +163,7 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-muted overflow-hidden">
+      <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src={portfolioHeroImage} 
@@ -176,11 +176,11 @@ const Portfolio = () => {
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Our Work
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground">
+            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground">
               Projects That
               <span className="block text-accent">Drive Results</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
               See how we've helped Kenyan businesses transform their online presence and achieve measurable growth.
             </p>
           </div>
