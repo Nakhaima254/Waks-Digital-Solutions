@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft, Wrench, Zap, Shield, Clock, RefreshCw, Headphones } from "lucide-react";
+import { Check, Star, Wrench, Zap, Shield, Clock, RefreshCw, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const MaintenancePricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
@@ -159,14 +160,13 @@ const MaintenancePricing = () => {
       {/* Hero Section */}
       <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <Button variant="outline" size="sm" asChild>
-              <Link to="/services/web-maintenance" className="flex items-center gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Web Maintenance
-              </Link>
-            </Button>
-          </div>
+          <Breadcrumbs
+            items={[
+              { label: "Services", path: "/services" },
+              { label: "Web Maintenance", path: "/services/web-maintenance" },
+              { label: "Pricing" }
+            ]}
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -355,19 +355,19 @@ const MaintenancePricing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
+      <section className="py-20 bg-accent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-accent-foreground mb-6">
             Keep Your Website Running Smoothly
           </h2>
-          <p className="text-white/90 text-lg mb-8">
+          <p className="text-accent-foreground/90 text-lg mb-8">
             Join businesses that trust us to maintain their online presence
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
               <Link to="/contact">Get Started</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent text-accent-foreground border-accent-foreground hover:bg-accent-foreground/10" asChild>
               <Link to="/services">All Services</Link>
             </Button>
           </div>
