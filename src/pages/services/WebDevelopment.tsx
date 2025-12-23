@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import webDevImage from "@/assets/service-web-development.jpg";
 import FloatingElements from "@/components/FloatingElements";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const WebDevelopment = () => {
   const features = [
@@ -72,6 +73,10 @@ const WebDevelopment = () => {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <Breadcrumbs items={[
+            { label: "Services", path: "/services" },
+            { label: "Web Development" }
+          ]} />
           <div className="text-center">
             <Badge className="mb-4">Custom Web Development</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -238,7 +243,7 @@ const WebDevelopment = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-accent text-accent-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready for a Custom Website?
@@ -247,10 +252,10 @@ const WebDevelopment = () => {
             Let's create something unique that perfectly represents your business and goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="secondary" size="lg" asChild>
               <Link to="/contact">Start Your Project</Link>
             </Button>
-            <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
+            <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link to="/pricing/web-development">View Pricing</Link>
             </Button>
           </div>

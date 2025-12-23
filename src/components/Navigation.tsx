@@ -318,7 +318,7 @@ const Navigation = () => {
                     <NavigationMenuContent className="animate-fade-in">
                       <div className="w-[850px] max-w-[90vw] p-0">
                         {/* Featured Scroll Section */}
-                        <div className="border-b border-border bg-muted/30 py-3 px-4">
+                        <div className="border-b border-border bg-accent/10 py-3 px-4">
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-2">
                               <Star className="h-4 w-4 text-accent" />
@@ -372,11 +372,9 @@ const Navigation = () => {
                                     to={item.link}
                                     className={cn(
                                       "flex-shrink-0 group relative overflow-hidden rounded-lg p-3 w-[180px] block",
-                                      "bg-gradient-to-br",
-                                      item.color,
+                                      "bg-accent",
                                       "hover:scale-[1.05] transition-all duration-300",
-                                      "shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30",
-                                      "animate-glow"
+                                      "shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30"
                                     )}
                                   >
                                     {/* Shimmer effect overlay */}
@@ -411,7 +409,7 @@ const Navigation = () => {
 
                         <div className="grid md:grid-cols-[280px_1fr]">
                           {/* Featured Image Section */}
-                          <div className="relative overflow-hidden bg-gradient-to-br from-primary to-accent p-8 flex flex-col justify-center">
+                          <div className="relative overflow-hidden bg-accent p-8 flex flex-col justify-center">
                             <div className="relative z-10">
                               <h3 className="text-3xl font-bold text-white mb-4">Our Services</h3>
                               <p className="text-white/90 text-sm leading-relaxed mb-6">

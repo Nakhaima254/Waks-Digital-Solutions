@@ -5,6 +5,7 @@ import { Edit, Palette, Plug, Shield, Smartphone, Users, ArrowRight, CreditCard 
 import { Link } from "react-router-dom";
 import wordpressImage from "@/assets/service-wordpress-design.jpg";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const WordPressDesign = () => {
   const benefits = [
@@ -65,6 +66,10 @@ const WordPressDesign = () => {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[
+            { label: "Services", path: "/services" },
+            { label: "WordPress Design" }
+          ]} />
           <div className="text-center">
             <Badge className="mb-4">WordPress Design</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -254,7 +259,7 @@ const WordPressDesign = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-accent text-accent-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready for Your WordPress Website?
@@ -263,10 +268,10 @@ const WordPressDesign = () => {
             Join thousands of businesses who trust WordPress to power their online presence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="secondary" size="lg" asChild>
               <Link to="/contact">Get Your WordPress Site</Link>
             </Button>
-            <Button variant="outline" size="lg" className="bg-white text-primary border-white hover:bg-accent hover:text-white hover:border-accent transition-all duration-300" asChild>
+            <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link to="/pricing/wordpress">View Pricing</Link>
             </Button>
           </div>
