@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { PenTool, FileText, Target, TrendingUp, Mail, MessageSquare, ArrowRight, CreditCard } from "lucide-react";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Copywriting = () => {
   const services = [
@@ -40,10 +41,14 @@ const Copywriting = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <section className="relative py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[
+            { label: "Services", path: "/services" },
+            { label: "Copywriting" }
+          ]} />
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-6">
               <PenTool className="h-8 w-8 text-primary" />
@@ -150,19 +155,19 @@ const Copywriting = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-accent text-accent-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Elevate Your Content?
           </h2>
-          <p className="text-xl text-muted-foreground mb-8">
+          <p className="text-xl mb-8 opacity-90">
             Let's create copy that captures attention, builds trust, and drives conversions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild className="rounded-full">
+            <Button size="lg" variant="secondary" asChild className="rounded-full">
               <Link to="/contact">Start Your Project</Link>
             </Button>
-            <Button variant="outline" size="lg" className="bg-background text-foreground border-border hover:bg-accent hover:text-white hover:border-accent transition-all duration-300 rounded-full" asChild>
+            <Button variant="outline" size="lg" className="bg-transparent text-white border-white hover:bg-white/10 rounded-full" asChild>
               <Link to="/pricing/copywriting">View Pricing</Link>
             </Button>
           </div>

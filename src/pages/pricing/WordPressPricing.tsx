@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const WordPressPricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
@@ -160,6 +161,11 @@ const WordPressPricing = () => {
       {/* Hero Section */}
       <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[
+            { label: "Services", path: "/services" },
+            { label: "WordPress Design", path: "/services/wordpress-design" },
+            { label: "Pricing" }
+          ]} />
           <div className="mb-8">
             <Button variant="outline" size="sm" asChild>
               <Link to="/services/wordpress-design" className="flex items-center gap-2">
@@ -355,7 +361,7 @@ const WordPressPricing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary">
+      <section className="py-20 bg-accent">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready for Your WordPress Site?
