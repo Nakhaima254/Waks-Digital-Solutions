@@ -200,7 +200,7 @@ ${data.message}
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 section-hero overflow-hidden">
+      <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src={contactHeroImage} 
@@ -213,11 +213,11 @@ ${data.message}
             <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
               Let's Start Building
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-black/90 dark:text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight">
               Ready to Grow
-              <span className="block gradient-text">Your Business Online?</span>
+              <span className="block text-accent">Your Business Online?</span>
             </h1>
-            <p className="text-xl text-black dark:text-white max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto leading-relaxed">
               Get in touch today for a free consultation. We'll discuss your goals, answer your questions, 
               and create a custom proposal for your digital success.
             </p>
