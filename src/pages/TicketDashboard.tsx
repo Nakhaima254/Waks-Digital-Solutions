@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Ticket, Search, Filter, Plus, Clock, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
+import { TicketDashboardSkeleton } from "@/components/skeletons/PageSkeleton";
 
 interface TicketData {
   id: string;
@@ -135,11 +136,7 @@ const TicketDashboard = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen pt-20 pb-12 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
+    return <TicketDashboardSkeleton />;
   }
 
   return (
