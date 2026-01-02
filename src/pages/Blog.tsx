@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { BlogPageSkeleton } from "@/components/skeletons/BlogSkeleton";
 
 // Import blog images
 import webDesignTrendsImage from "@/assets/blog-web-design-trends.jpg";
@@ -71,9 +72,16 @@ const Blog = () => {
   const categoryFromUrl = searchParams.get("category") || "All";
   const [activeCategory, setActiveCategory] = useState(categoryFromUrl);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const blogsPerPage = 9;
 
   // Update active category when URL changes
+  // Simulate initial loading
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     setActiveCategory(categoryFromUrl);
     setCurrentPage(1);
@@ -679,6 +687,10 @@ const Blog = () => {
   const handleCategoryChange = (category: string) => {
     navigate(`/blog?category=${encodeURIComponent(category)}`);
   };
+
+  if (isLoading) {
+    return <BlogPageSkeleton />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
