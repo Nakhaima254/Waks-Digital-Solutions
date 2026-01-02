@@ -1,9 +1,11 @@
 import { ArrowLeft, Calendar, Clock, User, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import BlogSidebar from "@/components/BlogSidebar";
+import BlogPostWrapper from "@/components/BlogPostWrapper";
 
 const WebDesignTrends2025 = () => {
   return (
+    <BlogPostWrapper>
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20 font-blog">
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-16">
@@ -171,6 +173,7 @@ const WebDesignTrends2025 = () => {
         </div>
       </div>
     </div>
+    </BlogPostWrapper>
   );
 };
 
