@@ -188,14 +188,14 @@ const Navigation = () => {
   const [currentOffer, setCurrentOffer] = useState(0);
 
   const offers: { text: string; link: string; icon: LucideIcon }[] = [
-    { text: "Holiday Special: 25% off all services until Dec 31st!", link: "/pricing", icon: TreePine },
-    { text: "Free website audit - Discover your growth potential", link: "/contact", icon: Zap },
-    { text: "Launch your business online in just 7 days", link: "/services/web-development", icon: Rocket },
-    { text: "New Year Offer: Free hosting for 6 months with any website!", link: "/services/web-development", icon: Gift },
-    { text: "SME Package: Complete digital presence starting at KES 25,000", link: "/pricing", icon: Briefcase },
-    { text: "Limited Time: 50% off SEO services for new clients", link: "/services/seo-services", icon: Flame },
-    { text: "E-commerce Special: Get your online store live in 14 days", link: "/services/ecommerce-solutions", icon: Package },
-    { text: "Free mobile optimization with every website project", link: "/services/web-development", icon: Smartphone },
+    { text: "New Year 2026 Special: 25% off all services this January!", link: "/pricing", icon: Gift },
+    { text: "Free website audit - Start 2026 with a stronger online presence", link: "/contact", icon: Zap },
+    { text: "January Deal: Launch your business online in just 7 days", link: "/services/web-development", icon: Rocket },
+    { text: "2026 Kickstart: Free hosting for 6 months with any website!", link: "/services/web-development", icon: Sparkles },
+    { text: "SME New Year Package: Complete digital presence from KES 25,000", link: "/pricing", icon: Briefcase },
+    { text: "January Only: 50% off SEO services for new clients", link: "/services/seo-services", icon: Flame },
+    { text: "E-commerce 2026: Get your online store live in 14 days", link: "/services/ecommerce-solutions", icon: Package },
+    { text: "New Year Bonus: Free mobile optimization with every project", link: "/services/web-development", icon: Smartphone },
   ];
 
   useEffect(() => {
