@@ -235,36 +235,39 @@ const Navigation = () => {
             className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-accent via-primary to-accent overflow-hidden"
           >
             <div className="relative py-2 px-4">
-              <div className="max-w-7xl mx-auto flex items-center justify-center gap-4">
-                {/* Countdown Timer */}
-                <div className="hidden sm:flex items-center gap-1.5 bg-white/20 rounded-full px-3 py-1">
-                  <Clock className="h-3.5 w-3.5 text-white" />
-                  <span className="text-white text-xs font-bold">
-                    {daysLeft} {daysLeft === 1 ? 'day' : 'days'} left
-                  </span>
-                </div>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentOffer}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-2"
-                  >
-                    {(() => {
-                      const OfferIcon = offers[currentOffer].icon;
-                      return <OfferIcon className="h-4 w-4 text-white" />;
-                    })()}
-                    <Link
-                      to={offers[currentOffer].link}
-                      className="text-white text-sm font-medium hover:underline"
+              <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4">
+                {/* Mobile: Countdown + Offer in same row */}
+                <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-center">
+                  {/* Countdown Timer */}
+                  <div className="flex items-center gap-1 sm:gap-1.5 bg-white/20 rounded-full px-2 sm:px-3 py-0.5 sm:py-1 shrink-0">
+                    <Clock className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-white" />
+                    <span className="text-white text-[10px] sm:text-xs font-bold whitespace-nowrap">
+                      {daysLeft}d left
+                    </span>
+                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentOffer}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex items-center gap-1 sm:gap-2 min-w-0"
                     >
-                      {offers[currentOffer].text}
-                    </Link>
-                    <ArrowRight className="h-4 w-4 text-white" />
-                  </motion.div>
-                </AnimatePresence>
+                      {(() => {
+                        const OfferIcon = offers[currentOffer].icon;
+                        return <OfferIcon className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-white shrink-0" />;
+                      })()}
+                      <Link
+                        to={offers[currentOffer].link}
+                        className="text-white text-xs sm:text-sm font-medium hover:underline truncate"
+                      >
+                        {offers[currentOffer].text}
+                      </Link>
+                      <ArrowRight className="h-3.5 sm:h-4 w-3.5 sm:w-4 text-white shrink-0 hidden xs:block" />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
               <button
                 onClick={() => setShowBanner(false)}
