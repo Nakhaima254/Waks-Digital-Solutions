@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot } from "lucide-react";
+import { MessageCircle, X, Send, Bot, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: number;
@@ -11,12 +13,19 @@ interface Message {
   isBot: boolean;
 }
 
+interface ChatMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hi! 👋 Welcome to Waks Digital Solutions. How can I help you today?", isBot: true }
+    { id: 1, text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", isBot: true }
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const quickReplies = [
     "Tell me about your services",
@@ -25,9 +34,9 @@ const ChatBot = () => {
     "Contact support"
   ];
 
-  const handleSend = (text?: string) => {
+  const handleSend = async (text?: string) => {
     const messageText = text || inputValue.trim();
-    if (!messageText) return;
+    if (!messageText || isLoading) return;
 
     const userMessage: Message = {
       id: messages.length + 1,
@@ -37,28 +46,48 @@ const ChatBot = () => {
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
+    setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      let botResponse = "Thanks for your message! Our team will get back to you soon. For immediate assistance, you can also reach us via WhatsApp or email at hello@waksdigital.com";
+    try {
+      // Build conversation history for context
+      const chatHistory: ChatMessage[] = messages
+        .filter(m => m.id > 1) // Skip initial greeting
+        .map(m => ({
+          role: m.isBot ? "assistant" : "user",
+          content: m.text
+        }));
       
-      if (messageText.toLowerCase().includes("service")) {
-        botResponse = "We offer Web Development, WordPress Design, E-commerce Solutions, SEO Services, Copywriting, and Web Maintenance. Which service interests you?";
-      } else if (messageText.toLowerCase().includes("website")) {
-        botResponse = "Great! We'd love to help you build your website. Our packages start from KES 15,000. Would you like to schedule a free consultation?";
-      } else if (messageText.toLowerCase().includes("price")) {
-        botResponse = "Our pricing varies based on project requirements. Visit our Pricing page or contact us for a custom quote. We have flexible packages for every budget!";
-      } else if (messageText.toLowerCase().includes("contact") || messageText.toLowerCase().includes("support")) {
-        botResponse = "You can reach us at hello@waksdigital.com or +254 700 000 000. We're here to help Monday-Friday, 9 AM - 6 PM EAT.";
-      }
+      chatHistory.push({ role: "user", content: messageText });
+
+      const { data, error } = await supabase.functions.invoke("chatbot", {
+        body: { messages: chatHistory }
+      });
+
+      if (error) throw error;
 
       const botMessage: Message = {
         id: messages.length + 2,
-        text: botResponse,
+        text: data.content || "I apologize, I couldn't process that request.",
         isBot: true
       };
       setMessages(prev => [...prev, botMessage]);
-    }, 1000);
+    } catch (error) {
+      console.error("Chat error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to get response. Please try again.",
+        variant: "destructive"
+      });
+      
+      const errorMessage: Message = {
+        id: messages.length + 2,
+        text: "I'm having trouble connecting right now. Please try again or contact us directly at hello@waksdigital.com",
+        isBot: true
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -126,6 +155,19 @@ const ChatBot = () => {
                     </div>
                   </motion.div>
                 ))}
+                
+                {/* Loading indicator */}
+                {isLoading && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-muted text-muted-foreground p-3 rounded-2xl rounded-bl-sm">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    </div>
+                  </motion.div>
+                )}
               </div>
 
               {/* Quick Replies */}
