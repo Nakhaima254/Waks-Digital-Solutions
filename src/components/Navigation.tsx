@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, type LucideIcon } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, Clock, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -186,6 +186,22 @@ const Navigation = () => {
   // Offers banner state
   const [showBanner, setShowBanner] = useState(true);
   const [currentOffer, setCurrentOffer] = useState(0);
+  const [daysLeft, setDaysLeft] = useState(0);
+
+  // Calculate days left in January
+  useEffect(() => {
+    const calculateDaysLeft = () => {
+      const now = new Date();
+      const endOfJanuary = new Date(2026, 0, 31, 23, 59, 59); // January 31, 2026
+      const diffTime = endOfJanuary.getTime() - now.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      setDaysLeft(Math.max(0, diffDays));
+    };
+    
+    calculateDaysLeft();
+    const interval = setInterval(calculateDaysLeft, 1000 * 60 * 60); // Update every hour
+    return () => clearInterval(interval);
+  }, []);
 
   const offers: { text: string; link: string; icon: LucideIcon }[] = [
     { text: "New Year 2026 Special: 25% off all services this January!", link: "/pricing", icon: Gift },
@@ -220,6 +236,13 @@ const Navigation = () => {
           >
             <div className="relative py-2 px-4">
               <div className="max-w-7xl mx-auto flex items-center justify-center gap-4">
+                {/* Countdown Timer */}
+                <div className="hidden sm:flex items-center gap-1.5 bg-white/20 rounded-full px-3 py-1">
+                  <Clock className="h-3.5 w-3.5 text-white" />
+                  <span className="text-white text-xs font-bold">
+                    {daysLeft} {daysLeft === 1 ? 'day' : 'days'} left
+                  </span>
+                </div>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentOffer}
