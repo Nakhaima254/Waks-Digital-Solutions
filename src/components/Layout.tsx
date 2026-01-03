@@ -6,6 +6,7 @@ import WhatsAppFloater from "./WhatsAppFloater";
 import FloatingMenu from "./FloatingMenu";
 import ParticlesBackground from "./ParticlesBackground";
 import BackToTop from "./BackToTop";
+import ChatBot from "./ChatBot";
 import { useEffect, useState } from "react";
 
 const Layout = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
         <Outlet key={displayLocation.pathname} />
       </main>
       <Footer />
+      <ChatBot />
       <WhatsAppFloater />
       <FloatingMenu />
       <BackToTop />
