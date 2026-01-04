@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -156,15 +156,29 @@ const ChatBot = () => {
                   </motion.div>
                 ))}
                 
-                {/* Loading indicator */}
+                {/* Typing indicator with bouncing dots */}
                 {isLoading && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="flex justify-start"
                   >
-                    <div className="bg-muted text-muted-foreground p-3 rounded-2xl rounded-bl-sm">
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                    <div className="bg-muted text-muted-foreground p-3 rounded-2xl rounded-bl-sm flex items-center gap-1">
+                      <motion.span
+                        className="w-2 h-2 bg-primary rounded-full"
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                      />
+                      <motion.span
+                        className="w-2 h-2 bg-primary rounded-full"
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }}
+                      />
+                      <motion.span
+                        className="w-2 h-2 bg-primary rounded-full"
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }}
+                      />
                     </div>
                   </motion.div>
                 )}
