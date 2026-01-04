@@ -11,6 +11,7 @@ interface Message {
   id: number;
   text: string;
   isBot: boolean;
+  quickReplies?: string[];
 }
 
 interface ChatMessage {
@@ -19,7 +20,18 @@ interface ChatMessage {
 }
 
 const STORAGE_KEY = "waks-chat-history";
-const DEFAULT_MESSAGE: Message = { id: 1, text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", isBot: true };
+const DEFAULT_QUICK_REPLIES = [
+  "Tell me about your services",
+  "I need a website",
+  "What are your prices?",
+  "Contact support"
+];
+const DEFAULT_MESSAGE: Message = { 
+  id: 1, 
+  text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", 
+  isBot: true,
+  quickReplies: DEFAULT_QUICK_REPLIES
+};
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,13 +59,6 @@ const ChatBot = () => {
     setMessages([DEFAULT_MESSAGE]);
     localStorage.removeItem(STORAGE_KEY);
   };
-
-  const quickReplies = [
-    "Tell me about your services",
-    "I need a website",
-    "What are your prices?",
-    "Contact support"
-  ];
 
   const handleSend = async (text?: string) => {
     const messageText = text || inputValue.trim();
@@ -89,7 +94,8 @@ const ChatBot = () => {
       const botMessage: Message = {
         id: messages.length + 2,
         text: data.content || "I apologize, I couldn't process that request.",
-        isBot: true
+        isBot: true,
+        quickReplies: data.quickReplies || []
       };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
@@ -215,20 +221,29 @@ const ChatBot = () => {
                 )}
               </div>
 
-              {/* Quick Replies */}
-              {messages.length <= 2 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {quickReplies.map((reply, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleSend(reply)}
-                      className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
-                    >
-                      {reply}
-                    </button>
-                  ))}
-                </div>
-              )}
+              {/* Dynamic Quick Replies - show from last bot message */}
+              {!isLoading && messages.length > 0 && (() => {
+                const lastBotMessage = [...messages].reverse().find(m => m.isBot);
+                const replies = lastBotMessage?.quickReplies || [];
+                if (replies.length === 0) return null;
+                return (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-4 flex flex-wrap gap-2"
+                  >
+                    {replies.map((reply, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleSend(reply)}
+                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
+                      >
+                        {reply}
+                      </button>
+                    ))}
+                  </motion.div>
+                );
+              })()}
             </ScrollArea>
 
             {/* Input */}
