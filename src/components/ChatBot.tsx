@@ -134,7 +134,8 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-4 bottom-4 sm:left-6 sm:bottom-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-h-[70vh] sm:max-h-[500px] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed left-4 bottom-4 sm:left-6 sm:bottom-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[500px] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            onWheel={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div className="bg-primary text-primary-foreground p-4 flex items-center justify-between">
@@ -165,7 +166,7 @@ const ChatBot = () => {
             </div>
 
             {/* Messages */}
-            <ScrollArea className="flex-1 p-4">
+            <ScrollArea className="flex-1 p-4 overscroll-contain" style={{ minHeight: 0 }}>
               <div className="space-y-4">
                 {messages.map((message) => (
                   <motion.div
