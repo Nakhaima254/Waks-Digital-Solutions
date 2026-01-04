@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot } from "lucide-react";
+import { MessageCircle, X, Send, Bot, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -18,14 +18,35 @@ interface ChatMessage {
   content: string;
 }
 
+const STORAGE_KEY = "waks-chat-history";
+const DEFAULT_MESSAGE: Message = { id: 1, text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", isBot: true };
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", isBot: true }
-  ]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return [DEFAULT_MESSAGE];
+      }
+    }
+    return [DEFAULT_MESSAGE];
+  });
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  }, [messages]);
+
+  const clearHistory = () => {
+    setMessages([DEFAULT_MESSAGE]);
+    localStorage.removeItem(STORAGE_KEY);
+  };
 
   const quickReplies = [
     "Tell me about your services",
@@ -126,12 +147,21 @@ const ChatBot = () => {
                   <p className="text-xs opacity-80">Online • Usually replies instantly</p>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-1.5 hover:bg-primary-foreground/20 rounded-full transition-colors"
-              >
-                <X className="h-5 w-5" />
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={clearHistory}
+                  className="p-1.5 hover:bg-primary-foreground/20 rounded-full transition-colors"
+                  title="Clear chat history"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 hover:bg-primary-foreground/20 rounded-full transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
             </div>
 
             {/* Messages */}
