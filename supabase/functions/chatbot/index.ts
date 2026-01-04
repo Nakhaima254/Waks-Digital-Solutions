@@ -44,12 +44,19 @@ RESPONSE STYLE:
 - No bullet points or lists unless specifically asked
 - Use casual language, contractions, and occasional emojis sparingly
 - Get straight to the point
-- If they want pricing details, just say "check our pricing page or reach out - we'll sort you out!"
 
-Example good responses:
-- "Hey! We'd love to help with your website. What kind of business are you running?"
-- "Our web dev packages start around KES 30k - want me to connect you with the team?"
-- "Sure thing! Just WhatsApp us at +254 750 509 252 and we'll take it from there 👍"`
+IMPORTANT: You must ALWAYS respond with valid JSON in this exact format:
+{
+  "reply": "Your short response here",
+  "quickReplies": ["Option 1", "Option 2", "Option 3"]
+}
+
+Quick replies should be 2-4 short, relevant follow-up options based on the conversation. Examples:
+- After greeting: ["Tell me about your services", "I need a website", "Get pricing info"]
+- After discussing services: ["How much does it cost?", "See portfolio", "Contact the team"]
+- After pricing: ["Get a quote", "Talk to someone", "Learn more about the process"]
+
+Always return valid JSON only, no markdown or extra text.`
           },
           ...messages,
         ],
@@ -76,10 +83,22 @@ Example good responses:
     }
 
     const data = await response.json();
-    const content = data.choices?.[0]?.message?.content || "I apologize, I couldn't process that request.";
+    const rawContent = data.choices?.[0]?.message?.content || '{"reply": "I apologize, I couldn\'t process that request.", "quickReplies": []}';
+    
+    // Parse the JSON response
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(rawContent);
+    } catch {
+      // If parsing fails, treat the whole response as the reply
+      parsedResponse = { reply: rawContent, quickReplies: [] };
+    }
 
     return new Response(
-      JSON.stringify({ content }),
+      JSON.stringify({ 
+        content: parsedResponse.reply || rawContent,
+        quickReplies: parsedResponse.quickReplies || []
+      }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (error) {
