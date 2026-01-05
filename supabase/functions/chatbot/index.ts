@@ -33,7 +33,8 @@ serve(async (req) => {
 
 CONTACT INFO (use exactly):
 - Email: info@waksdigital.co.ke
-- Phone/WhatsApp: +254 750 509 252
+- Phone (calls): +254 718 098 165
+- WhatsApp: +254 750 509 252
 - Location: Nairobi, Kenya
 
 SERVICES: Web Development, WordPress, E-commerce, SEO, Maintenance, Copywriting

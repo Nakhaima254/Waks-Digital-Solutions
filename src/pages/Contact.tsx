@@ -143,8 +143,8 @@ ${data.message}
       icon: Phone,
       title: "Call Us",
       description: "Speak with us directly",
-      contact: "+254 750 509 252",
-      action: "tel:+254750509252"
+      contact: "+254 718 098 165",
+      action: "tel:+254718098165"
     },
     {
       icon: MessageCircle,
