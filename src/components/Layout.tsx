@@ -2,11 +2,10 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
-import WhatsAppFloater from "./WhatsAppFloater";
 import FloatingMenu from "./FloatingMenu";
 import ParticlesBackground from "./ParticlesBackground";
 import BackToTop from "./BackToTop";
-import ChatBot from "./ChatBot";
+import FloatingActions from "./FloatingActions";
 import { useEffect, useState } from "react";
 
 const Layout = () => {
@@ -39,8 +38,7 @@ const Layout = () => {
         <Outlet key={displayLocation.pathname} />
       </main>
       <Footer />
-      <ChatBot />
-      <WhatsAppFloater />
+      <FloatingActions />
       <FloatingMenu />
       <BackToTop />
     </div>
