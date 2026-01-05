@@ -20,6 +20,7 @@ interface ChatMessage {
 }
 
 const STORAGE_KEY = "waks-chat-history";
+const TOOLTIP_SHOWN_KEY = "waks-fab-tooltip-shown";
 const DEFAULT_QUICK_REPLIES = [
   "Tell me about your services",
   "I need a website",
@@ -36,6 +37,7 @@ const DEFAULT_MESSAGE: Message = {
 const FloatingActions = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const [messages, setMessages] = useState<Message[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -59,6 +61,22 @@ const FloatingActions = () => {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
   }, [messages]);
+
+  // Show tooltip on first visit
+  useEffect(() => {
+    const tooltipShown = localStorage.getItem(TOOLTIP_SHOWN_KEY);
+    if (!tooltipShown) {
+      const timer = setTimeout(() => {
+        setShowTooltip(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const dismissTooltip = () => {
+    setShowTooltip(false);
+    localStorage.setItem(TOOLTIP_SHOWN_KEY, "true");
+  };
 
   const clearHistory = () => {
     setMessages([DEFAULT_MESSAGE]);
@@ -128,10 +146,38 @@ const FloatingActions = () => {
 
   return (
     <>
+      {/* First Visit Tooltip */}
+      <AnimatePresence>
+        {showTooltip && !isChatOpen && !isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="fixed right-20 bottom-4 sm:right-24 sm:bottom-6 z-50 bg-background border border-border rounded-lg shadow-lg p-3 max-w-[200px]"
+          >
+            <button
+              onClick={dismissTooltip}
+              className="absolute -top-2 -right-2 bg-muted rounded-full p-1 hover:bg-muted/80"
+            >
+              <X className="h-3 w-3" />
+            </button>
+            <p className="text-xs text-muted-foreground">
+              Need help? Click here to chat with our bot, WhatsApp, or email us!
+            </p>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full">
+              <div className="border-8 border-transparent border-l-border" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Main Toggle Button */}
       <motion.button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 p-3 sm:p-4 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow ${isChatOpen ? 'hidden' : ''}`}
+        onClick={() => {
+          setIsExpanded(!isExpanded);
+          dismissTooltip();
+        }}
+        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 p-3 sm:p-4 rounded-full bg-accent text-accent-foreground shadow-lg hover:shadow-xl transition-shadow ${isChatOpen ? 'hidden' : ''}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0 }}
