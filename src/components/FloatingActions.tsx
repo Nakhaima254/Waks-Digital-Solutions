@@ -153,7 +153,7 @@ const FloatingActions = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            className="fixed right-20 bottom-4 sm:right-24 sm:bottom-6 z-50 bg-background border border-border rounded-lg shadow-lg p-3 max-w-[200px]"
+            className="fixed right-20 bottom-4 sm:right-24 sm:bottom-6 z-[100] bg-background border border-border rounded-lg shadow-lg p-3 max-w-[200px]"
           >
             <button
               onClick={dismissTooltip}
@@ -177,7 +177,7 @@ const FloatingActions = () => {
           setIsExpanded(!isExpanded);
           dismissTooltip();
         }}
-        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 p-3 sm:p-4 rounded-full bg-accent text-accent-foreground shadow-lg hover:shadow-xl transition-shadow ${isChatOpen ? 'hidden' : ''}`}
+        className={`fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[100] p-3 sm:p-4 rounded-full bg-accent text-accent-foreground shadow-lg hover:shadow-xl transition-shadow ${isChatOpen ? 'hidden' : ''}`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0 }}
@@ -190,7 +190,7 @@ const FloatingActions = () => {
       {/* Expanded Action Buttons */}
       <AnimatePresence>
         {isExpanded && !isChatOpen && (
-          <div className="fixed right-4 bottom-20 sm:right-6 sm:bottom-24 z-50 flex flex-col gap-3">
+          <div className="fixed right-4 bottom-20 sm:right-6 sm:bottom-24 z-[100] flex flex-col gap-3">
             {/* Waks Bot */}
             <motion.button
               initial={{ opacity: 0, scale: 0, y: 20 }}
@@ -245,7 +245,7 @@ const FloatingActions = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[500px] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-[100] w-[calc(100vw-2rem)] sm:w-[380px] h-[70vh] sm:h-[500px] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
             onWheel={(e) => e.stopPropagation()}
           >
             {/* Header */}
