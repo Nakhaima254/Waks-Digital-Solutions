@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, MessageCircle, X, Send, Bot, Trash2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,9 +29,32 @@ const DEFAULT_QUICK_REPLIES = [
 ];
 const DEFAULT_MESSAGE: Message = { 
   id: 1, 
-  text: "Hi! 👋 Welcome to Waks Technology. How can I help you today?", 
+  text: "Hi! 👋 Welcome to Waks Digital. How can I help you today?", 
   isBot: true,
   quickReplies: DEFAULT_QUICK_REPLIES
+};
+
+// Notification sound using Web Audio API
+const playNotificationSound = () => {
+  try {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+  } catch (e) {
+    console.log("Audio notification not available");
+  }
 };
 
 const FloatingActions = () => {
@@ -120,6 +143,7 @@ const FloatingActions = () => {
         quickReplies: data.quickReplies || []
       };
       setMessages(prev => [...prev, botMessage]);
+      playNotificationSound();
     } catch (error) {
       console.error("Chat error:", error);
       toast({
