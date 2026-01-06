@@ -45,19 +45,7 @@ RESPONSE STYLE:
 - No bullet points or lists unless specifically asked
 - Use casual language, contractions, and occasional emojis sparingly
 - Get straight to the point
-
-IMPORTANT: You must ALWAYS respond with valid JSON in this exact format:
-{
-  "reply": "Your short response here",
-  "quickReplies": ["Option 1", "Option 2", "Option 3"]
-}
-
-Quick replies should be 2-4 short, relevant follow-up options based on the conversation. Examples:
-- After greeting: ["Tell me about your services", "I need a website", "Get pricing info"]
-- After discussing services: ["How much does it cost?", "See portfolio", "Contact the team"]
-- After pricing: ["Get a quote", "Talk to someone", "Learn more about the process"]
-
-Always return valid JSON only, no markdown or extra text.`
+- Just respond naturally with plain text, no JSON or special formatting`
           },
           ...messages,
         ],
@@ -84,21 +72,44 @@ Always return valid JSON only, no markdown or extra text.`
     }
 
     const data = await response.json();
-    const rawContent = data.choices?.[0]?.message?.content || '{"reply": "I apologize, I couldn\'t process that request.", "quickReplies": []}';
+    let rawContent = data.choices?.[0]?.message?.content || "I apologize, I couldn't process that request.";
     
-    // Parse the JSON response
-    let parsedResponse;
-    try {
-      parsedResponse = JSON.parse(rawContent);
-    } catch {
-      // If parsing fails, treat the whole response as the reply
-      parsedResponse = { reply: rawContent, quickReplies: [] };
+    // Clean up any JSON formatting the model might have added
+    if (rawContent.includes('"reply"') || rawContent.includes('"quickReplies"')) {
+      try {
+        // Remove markdown code blocks if present
+        let cleanContent = rawContent.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+        const parsed = JSON.parse(cleanContent);
+        rawContent = parsed.reply || rawContent;
+      } catch {
+        // If parsing fails, try to extract just the reply text
+        const replyMatch = rawContent.match(/"reply"\s*:\s*"([^"]+)"/);
+        if (replyMatch) {
+          rawContent = replyMatch[1];
+        }
+      }
+    }
+
+    // Generate contextual quick replies based on the conversation
+    const lastUserMessage = messages[messages.length - 1]?.content?.toLowerCase() || '';
+    let quickReplies: string[] = [];
+    
+    if (lastUserMessage.includes('price') || lastUserMessage.includes('cost') || lastUserMessage.includes('pricing')) {
+      quickReplies = ["Get a free quote", "See our packages", "Talk to someone"];
+    } else if (lastUserMessage.includes('service') || lastUserMessage.includes('what do you')) {
+      quickReplies = ["Web Development", "E-commerce", "SEO Services", "Get pricing"];
+    } else if (lastUserMessage.includes('contact') || lastUserMessage.includes('call') || lastUserMessage.includes('email')) {
+      quickReplies = ["Send an email", "WhatsApp us", "Request callback"];
+    } else if (lastUserMessage.includes('website') || lastUserMessage.includes('web')) {
+      quickReplies = ["See our portfolio", "How much does it cost?", "Start a project"];
+    } else {
+      quickReplies = ["Tell me about services", "Get pricing", "Contact the team"];
     }
 
     return new Response(
       JSON.stringify({ 
-        content: parsedResponse.reply || rawContent,
-        quickReplies: parsedResponse.quickReplies || []
+        content: rawContent,
+        quickReplies: quickReplies
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
