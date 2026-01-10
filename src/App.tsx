@@ -94,6 +94,9 @@ import FAQ from "./pages/FAQ";
 import Auth from "./pages/Auth";
 import Ticket from "./pages/Ticket";
 import TicketDashboard from "./pages/TicketDashboard";
+import AdminDashboard from "./pages/admin/Dashboard";
+import BlogEditor from "./pages/admin/BlogEditor";
+import TicketsDashboard from "./pages/admin/TicketsDashboard";
 
 const queryClient = new QueryClient();
 
@@ -127,6 +130,10 @@ const App = () => (
             <Route path="auth" element={<Auth />} />
             <Route path="ticket" element={<Ticket />} />
             <Route path="ticket-dashboard" element={<TicketDashboard />} />
+            <Route path="admin/dashboard" element={<AdminDashboard />} />
+            <Route path="admin/blog/new" element={<BlogEditor />} />
+            <Route path="admin/blog/edit/:id" element={<BlogEditor />} />
+            <Route path="admin/tickets" element={<TicketsDashboard />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
             <Route path="blog" element={<Blog />} />
