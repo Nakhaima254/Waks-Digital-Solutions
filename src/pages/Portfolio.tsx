@@ -17,6 +17,7 @@ import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectQuietWaters from "@/assets/project-quiet-waters.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
 import projectJahaziSolutions from "@/assets/project-jahazi-solutions.jpg";
+import projectRoyalGraphics from "@/assets/project-royal-graphics.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 
@@ -183,10 +184,37 @@ const Portfolio = () => {
       client: "Jahazi Solutions Limited",
       website: "https://jahazisolutions.co.ke/",
       image: projectJahaziSolutions
+    },
+    {
+      id: 7,
+      title: "Royal Graphics Solutions",
+      category: "Digital Marketing",
+      description: "Creative digital agency website offering graphic design, SEO services, and social media management with a modern, professional interface.",
+      fullDescription: "Built a stunning digital presence for Royal Graphics Solutions, showcasing their expertise in creative design and digital marketing. The website features a modern blue and orange color scheme, highlights their 10+ years of experience, and includes a streamlined process for client consultation.",
+      technologies: ["React", "Modern UI", "Responsive Design", "SEO Optimization", "Contact Systems"],
+      features: [
+        "Service showcase (Graphic Design, SEO, Social Media)",
+        "Free consultation booking",
+        "Portfolio gallery",
+        "Client testimonials",
+        "Pricing transparency",
+        "Blog for industry insights"
+      ],
+      results: [
+        "500+ projects completed",
+        "95% client satisfaction rate",
+        "150+ happy clients",
+        "24/7 support availability"
+      ],
+      timeline: "5 weeks",
+      year: "2024",
+      client: "Royal Graphics Solutions",
+      website: "https://www.royalgraphics.co.ke/",
+      image: projectRoyalGraphics
     }
   ];
 
-  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight", "Cleaning Services"];
+  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight", "Cleaning Services", "Digital Marketing"];
 
   return (
     <div className="min-h-screen pt-16">
@@ -220,10 +248,10 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" staggerDelay={0.15}>
             {[
-              { value: "6+", label: "Projects Completed" },
+              { value: "7+", label: "Projects Completed" },
               { value: "100%", label: "Client Satisfaction" },
               { value: "300%", label: "Average Inquiry Increase" },
-              { value: "6", label: "Industries Served" }
+              { value: "7", label: "Industries Served" }
             ].map((stat, index) => (
               <StaggerItem key={index} animation="scale">
                 <motion.div 
