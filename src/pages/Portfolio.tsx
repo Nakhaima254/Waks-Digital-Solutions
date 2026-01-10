@@ -180,7 +180,7 @@ const Portfolio = () => {
         "Expanded service reach in Nairobi"
       ],
       timeline: "4 weeks",
-      year: "2024",
+      year: "2026",
       client: "Jahazi Solutions Limited",
       website: "https://jahazisolutions.co.ke/",
       image: projectJahaziSolutions
@@ -207,7 +207,7 @@ const Portfolio = () => {
         "24/7 support availability"
       ],
       timeline: "5 weeks",
-      year: "2024",
+      year: "2026",
       client: "Royal Graphics Solutions",
       website: "https://www.royalgraphics.co.ke/",
       image: projectRoyalGraphics
