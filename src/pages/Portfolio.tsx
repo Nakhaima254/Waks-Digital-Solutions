@@ -16,6 +16,7 @@ import projectJavinnaSafaris from "@/assets/project-safari-lodge.jpg";
 import projectRemicanSacco from "@/assets/project-remican-sacco.jpg";
 import projectQuietWaters from "@/assets/project-quiet-waters.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
+import projectJahaziSolutions from "@/assets/project-jahazi-solutions.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 
@@ -155,10 +156,37 @@ const Portfolio = () => {
       client: "Truechoice Merchants Limited",
       website: "https://truechoice.co.ke/",
       image: projectTruechoice
+    },
+    {
+      id: 6,
+      title: "Jahazi Solutions",
+      category: "Cleaning Services",
+      description: "Professional cleaning services website offering residential, commercial, carpet cleaning, and fumigation services with online booking capabilities.",
+      fullDescription: "Developed a modern, user-friendly website for Jahazi Solutions Limited, a professional cleaning company. The platform showcases their comprehensive range of services including residential cleaning, commercial cleaning, carpet & upholstery care, fumigation, and post-construction cleanup with eco-friendly practices.",
+      technologies: ["React", "Modern UI", "Booking System", "Responsive Design", "WhatsApp Integration"],
+      features: [
+        "Online booking system",
+        "Service-specific pages",
+        "Same-day service availability",
+        "Eco-friendly product highlights",
+        "Customer testimonials",
+        "WhatsApp direct contact"
+      ],
+      results: [
+        "500+ happy clients served",
+        "4.9 star customer rating",
+        "Same-day service capability",
+        "Expanded service reach in Nairobi"
+      ],
+      timeline: "4 weeks",
+      year: "2024",
+      client: "Jahazi Solutions Limited",
+      website: "https://jahazisolutions.co.ke/",
+      image: projectJahaziSolutions
     }
   ];
 
-  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight"];
+  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight", "Cleaning Services"];
 
   return (
     <div className="min-h-screen pt-16">
@@ -192,10 +220,10 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" staggerDelay={0.15}>
             {[
-              { value: "5+", label: "Projects Completed" },
+              { value: "6+", label: "Projects Completed" },
               { value: "100%", label: "Client Satisfaction" },
               { value: "300%", label: "Average Inquiry Increase" },
-              { value: "5", label: "Industries Served" }
+              { value: "6", label: "Industries Served" }
             ].map((stat, index) => (
               <StaggerItem key={index} animation="scale">
                 <motion.div 
