@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +8,10 @@ import {
   ArrowRight,
   Calendar,
   Users,
-  TrendingUp
+  TrendingUp,
+  ArrowUpDown,
+  Clock,
+  FolderOpen
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
@@ -21,7 +25,10 @@ import projectRoyalGraphics from "@/assets/project-royal-graphics.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 
+type SortOption = "newest" | "oldest" | "category";
+
 const Portfolio = () => {
+  const [sortBy, setSortBy] = useState<SortOption>("newest");
   const projects = [
     {
       id: 1,
@@ -45,7 +52,7 @@ const Portfolio = () => {
         "Expanded service reach across East Africa"
       ],
       timeline: "6 weeks",
-      year: "2024",
+      year: "2025",
       client: "Aimo Travel Agency",
       website: "https://aimotravelagency.com/",
       image: projectAimoTravel
@@ -72,7 +79,7 @@ const Portfolio = () => {
         "Enhanced brand visibility"
       ],
       timeline: "5 weeks",
-      year: "2024",
+      year: "2025",
       client: "Javinna Safaris",
       website: "https://javinnasafaris.com/",
       image: projectJavinnaSafaris
@@ -99,7 +106,7 @@ const Portfolio = () => {
         "Increased member engagement"
       ],
       timeline: "8 weeks",
-      year: "2024",
+      year: "2025",
       client: "Remican SACCO Society",
       website: "https://www.remicansacco.co.ke/",
       image: projectRemicanSacco
@@ -126,7 +133,7 @@ const Portfolio = () => {
         "Positive feedback from community"
       ],
       timeline: "4 weeks",
-      year: "2023",
+      year: "2025",
       client: "Quiet Waters Oasis",
       website: "https://quietwatersoasis.org/",
       image: projectQuietWaters
@@ -153,7 +160,7 @@ const Portfolio = () => {
         "Strengthened market position"
       ],
       timeline: "6 weeks",
-      year: "2024",
+      year: "2025",
       client: "Truechoice Merchants Limited",
       website: "https://truechoice.co.ke/",
       image: projectTruechoice
@@ -216,6 +223,21 @@ const Portfolio = () => {
 
   const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight", "Cleaning Services", "Digital Marketing"];
 
+  const sortedProjects = useMemo(() => {
+    const projectsCopy = [...projects];
+    
+    switch (sortBy) {
+      case "newest":
+        return projectsCopy.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+      case "oldest":
+        return projectsCopy.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+      case "category":
+        return projectsCopy.sort((a, b) => a.category.localeCompare(b.category));
+      default:
+        return projectsCopy;
+    }
+  }, [sortBy]);
+
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
@@ -271,15 +293,52 @@ const Portfolio = () => {
       {/* Portfolio Grid */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-16">
+          <AnimatedElement animation="fadeUp" className="text-center space-y-4 mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Featured Case Studies</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Each project tells a story of transformation and growth
             </p>
           </AnimatedElement>
 
+          {/* Sorting Controls */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+            <span className="text-sm text-muted-foreground flex items-center gap-1">
+              <ArrowUpDown className="h-4 w-4" />
+              Sort by:
+            </span>
+            <div className="flex gap-2">
+              <Button
+                variant={sortBy === "newest" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("newest")}
+                className="flex items-center gap-1"
+              >
+                <Clock className="h-3 w-3" />
+                Newest First
+              </Button>
+              <Button
+                variant={sortBy === "oldest" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("oldest")}
+                className="flex items-center gap-1"
+              >
+                <Clock className="h-3 w-3" />
+                Oldest First
+              </Button>
+              <Button
+                variant={sortBy === "category" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSortBy("category")}
+                className="flex items-center gap-1"
+              >
+                <FolderOpen className="h-3 w-3" />
+                By Category
+              </Button>
+            </div>
+          </div>
+
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
-            {projects.map((project) => (
+            {sortedProjects.map((project) => (
               <StaggerItem key={project.id}>
                 <HoverCard>
                   <Card className="card-elevated overflow-hidden group h-full">
