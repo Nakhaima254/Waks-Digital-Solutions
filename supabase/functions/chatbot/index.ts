@@ -1,9 +1,62 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+// Input validation constants
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_LENGTH = 2000;
+
+interface ChatMessage {
+  role: string;
+  content: string;
+}
+
+function validateMessages(messages: unknown): { valid: boolean; error?: string; messages?: ChatMessage[] } {
+  if (!Array.isArray(messages)) {
+    return { valid: false, error: "Messages must be an array" };
+  }
+
+  if (messages.length === 0 || messages.length > MAX_MESSAGES) {
+    return { valid: false, error: `Messages array must contain 1-${MAX_MESSAGES} messages` };
+  }
+
+  const validatedMessages: ChatMessage[] = [];
+  
+  for (let i = 0; i < messages.length; i++) {
+    const msg = messages[i];
+    
+    if (!msg || typeof msg !== 'object') {
+      return { valid: false, error: `Message at index ${i} is invalid` };
+    }
+    
+    if (!msg.role || typeof msg.role !== 'string') {
+      return { valid: false, error: `Message at index ${i} missing valid role` };
+    }
+    
+    if (!msg.content || typeof msg.content !== 'string') {
+      return { valid: false, error: `Message at index ${i} missing valid content` };
+    }
+    
+    if (msg.content.length > MAX_MESSAGE_LENGTH) {
+      return { valid: false, error: `Message content must be ≤ ${MAX_MESSAGE_LENGTH} characters` };
+    }
+    
+    if (!['user', 'assistant', 'system'].includes(msg.role)) {
+      return { valid: false, error: `Invalid role "${msg.role}" at index ${i}` };
+    }
+    
+    validatedMessages.push({
+      role: msg.role,
+      content: msg.content.trim()
+    });
+  }
+
+  return { valid: true, messages: validatedMessages };
+}
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -11,10 +64,65 @@ serve(async (req) => {
   }
 
   try {
-    const { messages } = await req.json();
+    // Authentication check
+    const authHeader = req.headers.get('authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      console.log("Chatbot: Missing or invalid authorization header");
+      return new Response(
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Verify the JWT token
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+      { global: { headers: { Authorization: authHeader } } }
+    );
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
+    
+    if (claimsError || !claimsData?.claims) {
+      console.log("Chatbot: Invalid token -", claimsError?.message);
+      return new Response(
+        JSON.stringify({ error: "Invalid token" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const userId = claimsData.claims.sub;
+    console.log("Chatbot: Authenticated user:", userId);
+
+    // Parse and validate input
+    let body;
+    try {
+      body = await req.json();
+    } catch {
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON body" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const { messages } = body;
+    const validation = validateMessages(messages);
+    
+    if (!validation.valid) {
+      console.log("Chatbot: Validation failed -", validation.error);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const validatedMessages = validation.messages!;
+    
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     
     if (!LOVABLE_API_KEY) {
+      console.error("Chatbot: LOVABLE_API_KEY is not configured");
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
@@ -47,7 +155,7 @@ RESPONSE STYLE:
 - Get straight to the point
 - Just respond naturally with plain text, no JSON or special formatting`
           },
-          ...messages,
+          ...validatedMessages,
         ],
         stream: false,
       }),
@@ -91,7 +199,7 @@ RESPONSE STYLE:
     }
 
     // Generate contextual quick replies based on the conversation
-    const lastUserMessage = messages[messages.length - 1]?.content?.toLowerCase() || '';
+    const lastUserMessage = validatedMessages[validatedMessages.length - 1]?.content?.toLowerCase() || '';
     let quickReplies: string[] = [];
     
     if (lastUserMessage.includes('price') || lastUserMessage.includes('cost') || lastUserMessage.includes('pricing')) {
