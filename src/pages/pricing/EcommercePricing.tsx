@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ShoppingCart, Zap, Shield, Clock, CreditCard, Package } from "lucide-react";
+import { Check, Star, ShoppingCart, Zap, Shield, Clock, CreditCard, Package, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -281,8 +281,8 @@ const EcommercePricing = () => {
                             <p className="text-sm font-semibold text-muted-foreground mb-2">Not included:</p>
                             <ul className="space-y-1 mb-4">
                               {plan.notIncluded.map((item, idx) => (
-                                <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                  <span className="w-4 h-4 flex items-center justify-center">—</span>
+                              <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                  <X className="w-4 h-4 mt-0.5 flex-shrink-0" />
                                   <span>{item}</span>
                                 </li>
                               ))}
