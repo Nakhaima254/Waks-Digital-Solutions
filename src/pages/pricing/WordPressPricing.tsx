@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft, Paintbrush, Zap, Shield, Clock, Users, Settings } from "lucide-react";
+import { Check, Star, ArrowLeft, Paintbrush, Zap, Shield, Clock, Users, Settings, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -285,7 +285,7 @@ const WordPressPricing = () => {
                             <ul className="space-y-1 mb-4">
                               {plan.notIncluded.map((item, idx) => (
                                 <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                                  <span className="w-4 h-4 flex items-center justify-center">—</span>
+                                  <X className="w-4 h-4 mt-0.5 flex-shrink-0" />
                                   <span>{item}</span>
                                 </li>
                               ))}
