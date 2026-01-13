@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -12,14 +11,14 @@ const MAX_MESSAGE_LENGTH = 2000;
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute window
-const MAX_REQUESTS_PER_WINDOW = 20; // 20 requests per minute per user
+const MAX_REQUESTS_PER_WINDOW = 20; // 20 requests per minute per identifier
 
 // In-memory rate limiting store (resets on cold start, which is acceptable for edge functions)
 const rateLimitStore = new Map<string, { count: number; windowStart: number }>();
 
-function checkRateLimit(userId: string): { allowed: boolean; retryAfter?: number } {
+function checkRateLimit(identifier: string): { allowed: boolean; retryAfter?: number } {
   const now = Date.now();
-  const userLimit = rateLimitStore.get(userId);
+  const limit = rateLimitStore.get(identifier);
 
   // Clean up expired entries periodically
   if (rateLimitStore.size > 1000) {
@@ -30,21 +29,37 @@ function checkRateLimit(userId: string): { allowed: boolean; retryAfter?: number
     }
   }
 
-  if (!userLimit || now - userLimit.windowStart > RATE_LIMIT_WINDOW_MS) {
+  if (!limit || now - limit.windowStart > RATE_LIMIT_WINDOW_MS) {
     // Start a new window
-    rateLimitStore.set(userId, { count: 1, windowStart: now });
+    rateLimitStore.set(identifier, { count: 1, windowStart: now });
     return { allowed: true };
   }
 
-  if (userLimit.count >= MAX_REQUESTS_PER_WINDOW) {
-    const retryAfter = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - userLimit.windowStart)) / 1000);
+  if (limit.count >= MAX_REQUESTS_PER_WINDOW) {
+    const retryAfter = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - limit.windowStart)) / 1000);
     return { allowed: false, retryAfter };
   }
 
   // Increment count
-  userLimit.count++;
-  rateLimitStore.set(userId, userLimit);
+  limit.count++;
+  rateLimitStore.set(identifier, limit);
   return { allowed: true };
+}
+
+// Get client identifier for rate limiting (IP-based for anonymous users)
+function getClientIdentifier(req: Request): string {
+  // Try various headers for real IP
+  const forwarded = req.headers.get('x-forwarded-for');
+  if (forwarded) {
+    return forwarded.split(',')[0].trim();
+  }
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp;
+  }
+  // Fallback to a hash of user-agent + some header combination
+  const ua = req.headers.get('user-agent') || 'unknown';
+  return `anon-${ua.slice(0, 50)}`;
 }
 
 interface ChatMessage {
@@ -101,41 +116,14 @@ serve(async (req) => {
   }
 
   try {
-    // Authentication check
-    const authHeader = req.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      console.log("Chatbot: Missing or invalid authorization header");
-      return new Response(
-        JSON.stringify({ error: "Unauthorized" }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Verify the JWT token
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-      { global: { headers: { Authorization: authHeader } } }
-    );
-
-    const token = authHeader.replace('Bearer ', '');
-    const { data: claimsData, error: claimsError } = await supabaseClient.auth.getClaims(token);
-    
-    if (claimsError || !claimsData?.claims) {
-      console.log("Chatbot: Invalid token -", claimsError?.message);
-      return new Response(
-        JSON.stringify({ error: "Invalid token" }),
-        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    const userId = claimsData.claims.sub as string;
-    console.log("Chatbot: Authenticated user:", userId);
+    // Get client identifier for rate limiting (supports anonymous users)
+    const clientId = getClientIdentifier(req);
+    console.log("Chatbot: Request from client:", clientId.slice(0, 20) + "...");
 
     // Check rate limit
-    const rateLimitResult = checkRateLimit(userId);
+    const rateLimitResult = checkRateLimit(clientId);
     if (!rateLimitResult.allowed) {
-      console.log("Chatbot: Rate limit exceeded for user:", userId);
+      console.log("Chatbot: Rate limit exceeded for client:", clientId.slice(0, 20));
       return new Response(
         JSON.stringify({ 
           error: "Too many requests. Please wait before sending another message.",
