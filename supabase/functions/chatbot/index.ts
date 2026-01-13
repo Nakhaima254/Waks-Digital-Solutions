@@ -10,6 +10,43 @@ const corsHeaders = {
 const MAX_MESSAGES = 50;
 const MAX_MESSAGE_LENGTH = 2000;
 
+// Rate limiting configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute window
+const MAX_REQUESTS_PER_WINDOW = 20; // 20 requests per minute per user
+
+// In-memory rate limiting store (resets on cold start, which is acceptable for edge functions)
+const rateLimitStore = new Map<string, { count: number; windowStart: number }>();
+
+function checkRateLimit(userId: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const userLimit = rateLimitStore.get(userId);
+
+  // Clean up expired entries periodically
+  if (rateLimitStore.size > 1000) {
+    for (const [key, value] of rateLimitStore.entries()) {
+      if (now - value.windowStart > RATE_LIMIT_WINDOW_MS) {
+        rateLimitStore.delete(key);
+      }
+    }
+  }
+
+  if (!userLimit || now - userLimit.windowStart > RATE_LIMIT_WINDOW_MS) {
+    // Start a new window
+    rateLimitStore.set(userId, { count: 1, windowStart: now });
+    return { allowed: true };
+  }
+
+  if (userLimit.count >= MAX_REQUESTS_PER_WINDOW) {
+    const retryAfter = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - userLimit.windowStart)) / 1000);
+    return { allowed: false, retryAfter };
+  }
+
+  // Increment count
+  userLimit.count++;
+  rateLimitStore.set(userId, userLimit);
+  return { allowed: true };
+}
+
 interface ChatMessage {
   role: string;
   content: string;
@@ -92,8 +129,28 @@ serve(async (req) => {
       );
     }
 
-    const userId = claimsData.claims.sub;
+    const userId = claimsData.claims.sub as string;
     console.log("Chatbot: Authenticated user:", userId);
+
+    // Check rate limit
+    const rateLimitResult = checkRateLimit(userId);
+    if (!rateLimitResult.allowed) {
+      console.log("Chatbot: Rate limit exceeded for user:", userId);
+      return new Response(
+        JSON.stringify({ 
+          error: "Too many requests. Please wait before sending another message.",
+          retryAfter: rateLimitResult.retryAfter 
+        }),
+        { 
+          status: 429, 
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": String(rateLimitResult.retryAfter)
+          } 
+        }
+      );
+    }
 
     // Parse and validate input
     let body;
