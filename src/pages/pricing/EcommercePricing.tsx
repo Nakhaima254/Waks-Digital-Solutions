@@ -32,9 +32,9 @@ const EcommercePricing = () => {
     {
       name: "Starter Store",
       price: 45000,
-      description: "Perfect for small businesses starting to sell online",
+      description: "Perfect for small businesses starting to sell online with up to 30 products",
       features: [
-        "Up to 50 products",
+        "Up to 30 products",
         "WooCommerce setup",
         "Mobile responsive design",
         "M-Pesa integration",
@@ -54,21 +54,20 @@ const EcommercePricing = () => {
       icon: ShoppingCart
     },
     {
-      name: "Business Store",
-      price: 80000,
-      description: "Complete e-commerce solution for growing businesses",
+      name: "Growth Store",
+      price: 60000,
+      description: "Ideal for growing businesses with up to 50 products",
       features: [
-        "Up to 500 products",
+        "Up to 50 products",
         "Custom store design",
         "M-Pesa + Card payments",
-        "Inventory management",
+        "Basic inventory management",
         "Discount & coupon system",
         "Shipping calculator",
         "Product reviews",
         "Wishlist functionality",
-        "3 months free support",
-        "SEO optimization",
-        "Google Analytics"
+        "2 months free support",
+        "Basic SEO setup"
       ],
       notIncluded: [
         "Multi-vendor marketplace",
@@ -79,11 +78,11 @@ const EcommercePricing = () => {
       icon: Zap
     },
     {
-      name: "Advanced Store",
-      price: 120000,
-      description: "Feature-rich store for established businesses",
+      name: "Business Store",
+      price: 80000,
+      description: "Complete solution for established businesses with up to 100 products",
       features: [
-        "Unlimited products",
+        "Up to 100 products",
         "Premium custom design",
         "Multiple payment gateways",
         "Advanced inventory",
@@ -91,10 +90,10 @@ const EcommercePricing = () => {
         "Automated tax calculation",
         "Multi-currency support",
         "Advanced shipping rules",
-        "6 months free support",
-        "Email marketing integration",
-        "Abandoned cart recovery",
-        "Advanced analytics"
+        "3 months free support",
+        "SEO optimization",
+        "Google Analytics",
+        "Email marketing integration"
       ],
       notIncluded: [
         "Multi-vendor marketplace"
@@ -104,25 +103,25 @@ const EcommercePricing = () => {
       icon: Package
     },
     {
-      name: "Enterprise Marketplace",
-      price: 200000,
-      description: "Multi-vendor marketplace with advanced features",
+      name: "Enterprise Store",
+      price: 140000,
+      description: "Large-scale e-commerce with up to 300 products",
       features: [
+        "Up to 300 products",
+        "Custom premium design",
+        "All payment gateways",
+        "Full inventory management",
+        "Product bundles & variations",
         "Multi-vendor support",
         "Vendor dashboard",
-        "Commission management",
-        "Split payments",
-        "Advanced reporting",
-        "Product approval workflow",
-        "Vendor subscriptions",
         "API integrations",
-        "12 months free support",
-        "White-label solution",
-        "Dedicated support",
-        "Custom development"
+        "6 months free support",
+        "Advanced analytics",
+        "Abandoned cart recovery",
+        "Priority support"
       ],
       notIncluded: [],
-      deliveryTime: "6-10 weeks",
+      deliveryTime: "4-6 weeks",
       popular: false,
       icon: Shield
     }
