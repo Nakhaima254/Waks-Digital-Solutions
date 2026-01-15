@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft, Palette, FileText, Wrench, Zap } from "lucide-react";
+import { Check, Star, ArrowLeft, Palette, FileText, Wrench, Zap, Code, ShoppingCart, Search, PenTool, Settings, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -508,6 +508,51 @@ const Pricing = () => {
             <Button variant="outline" size="lg" asChild>
               <Link to="/contact">Get a Free Consultation</Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Service-Specific Pricing Links */}
+      <section className="py-16 bg-card border-y">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Badge className="mb-4">Detailed Service Pricing</Badge>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              View Pricing by Service
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Explore detailed pricing, features, and packages for each of our specialized services
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: Code, name: "Web Development", path: "/pricing/web-development", price: "From KSH 25,000" },
+              { icon: Palette, name: "WordPress Design", path: "/pricing/wordpress", price: "From KSH 20,000" },
+              { icon: ShoppingCart, name: "E-commerce Solutions", path: "/pricing/ecommerce", price: "From KSH 45,000" },
+              { icon: Search, name: "SEO Services", path: "/pricing/seo", price: "From KSH 15,000/mo" },
+              { icon: PenTool, name: "Copywriting", path: "/pricing/copywriting", price: "From KSH 3,000" },
+              { icon: Settings, name: "Web Maintenance", path: "/pricing/maintenance", price: "From KSH 5,000/mo" },
+            ].map((service) => (
+              <Link 
+                key={service.name}
+                to={service.path}
+                className="group"
+              >
+                <Card className="p-4 hover:shadow-lg transition-all duration-300 border-2 hover:border-accent h-full">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <service.icon className="w-6 h-6 text-accent" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors">{service.name}</h3>
+                      <p className="text-sm text-muted-foreground">{service.price}</p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all" />
+                  </div>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
