@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code2, Monitor, Zap, Shield, Search, Users, ArrowRight, CreditCard } from "lucide-react";
+import { Code2, Monitor, Zap, Shield, Search, Users, ArrowRight, CreditCard, ShoppingCart, Building2, LayoutGrid, GraduationCap, Heart, Package, UserCog, Plane, Landmark } from "lucide-react";
 import { Link } from "react-router-dom";
 import webDevImage from "@/assets/service-web-development.jpg";
 import FloatingElements from "@/components/FloatingElements";
@@ -39,6 +39,54 @@ const WebDevelopment = () => {
       icon: Users,
       title: "User-Focused",
       description: "Designed with your customers in mind for maximum engagement and conversions"
+    }
+  ];
+
+  const businessSystems = [
+    {
+      icon: ShoppingCart,
+      title: "E-commerce Platform",
+      description: "Online shopping systems like Amazon, Shopify with product catalogs, carts, and payment integration"
+    },
+    {
+      icon: Building2,
+      title: "POS (Point of Sale) System",
+      description: "Retail, restaurant, or hotel management systems for seamless transactions and inventory tracking"
+    },
+    {
+      icon: LayoutGrid,
+      title: "Project Management System",
+      description: "Tools like Trello, Asana, or Jira for task tracking, team collaboration, and workflow management"
+    },
+    {
+      icon: GraduationCap,
+      title: "School Management System",
+      description: "Student info, grades, attendance, timetables, and learning management portals"
+    },
+    {
+      icon: Heart,
+      title: "Hospital Management System",
+      description: "Patient records, appointments, billing, pharmacy, and staff management solutions"
+    },
+    {
+      icon: Package,
+      title: "Inventory Management System",
+      description: "Tracking stock levels, orders, suppliers, and supply chain logistics in real-time"
+    },
+    {
+      icon: UserCog,
+      title: "HR Management System",
+      description: "Employee data, payroll processing, benefits administration, and performance tracking"
+    },
+    {
+      icon: Plane,
+      title: "Flight Booking System",
+      description: "Airline or travel booking platforms with search, reservations, and payment processing"
+    },
+    {
+      icon: Landmark,
+      title: "Online Banking System",
+      description: "User accounts, transactions, fund transfers, and comprehensive financial management"
     }
   ];
 
@@ -128,6 +176,55 @@ const WebDevelopment = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Business Domain Systems Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">Custom Business Solutions</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              Domain-Specific Systems We Build
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              We design and develop comprehensive systems tailored to specific business domains. 
+              From e-commerce to healthcare, we build solutions that transform how you operate.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {businessSystems.map((system, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow duration-300 group">
+                  <CardHeader className="pb-3">
+                    <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                      <system.icon className="w-7 h-7 text-accent" />
+                    </div>
+                    <CardTitle className="text-lg">{system.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-sm">{system.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground mb-6">
+              Have a specific business system in mind? We can build it for you.
+            </p>
+            <Button size="lg" asChild>
+              <Link to="/contact">Discuss Your Project</Link>
+            </Button>
           </div>
         </div>
       </section>
