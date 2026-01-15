@@ -220,11 +220,16 @@ const WebDevelopment = () => {
 
           <div className="text-center mt-12">
             <p className="text-muted-foreground mb-6">
-              Have a specific business system in mind? We can build it for you.
+              Have a specific business system in mind? View detailed case studies and pricing.
             </p>
-            <Button size="lg" asChild>
-              <Link to="/contact">Discuss Your Project</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <Link to="/services/custom-systems">View Case Studies</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/contact">Discuss Your Project</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

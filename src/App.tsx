@@ -20,6 +20,7 @@ import EcommerceSolutions from "./pages/services/EcommerceSolutions";
 import SEOServices from "./pages/services/SEOServices";
 import Copywriting from "./pages/services/Copywriting";
 import WebMaintenance from "./pages/services/WebMaintenance";
+import CustomSystems from "./pages/services/CustomSystems";
 import WebDevelopmentPricing from "./pages/pricing/WebDevelopmentPricing";
 import WordPressPricing from "./pages/pricing/WordPressPricing";
 import EcommercePricing from "./pages/pricing/EcommercePricing";
@@ -116,6 +117,7 @@ const App = () => (
             <Route path="services/seo-services" element={<SEOServices />} />
             <Route path="services/copywriting" element={<Copywriting />} />
             <Route path="services/web-maintenance" element={<WebMaintenance />} />
+            <Route path="services/custom-systems" element={<CustomSystems />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="pricing/web-development" element={<WebDevelopmentPricing />} />
             <Route path="pricing/wordpress" element={<WordPressPricing />} />
