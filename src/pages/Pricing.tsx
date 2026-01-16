@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft, Palette, FileText, Wrench, Zap, Code, ShoppingCart, Search, PenTool, Settings, ArrowRight } from "lucide-react";
+import { Check, Star, ArrowLeft, Palette, FileText, Wrench, Zap, Code, ShoppingCart, Search, PenTool, Settings, ArrowRight, Layers } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -530,6 +530,7 @@ const Pricing = () => {
               { icon: Code, name: "Web Development", path: "/pricing/web-development", price: "From KSH 25,000" },
               { icon: Palette, name: "WordPress Design", path: "/pricing/wordpress", price: "From KSH 20,000" },
               { icon: ShoppingCart, name: "E-commerce Solutions", path: "/pricing/ecommerce", price: "From KSH 45,000" },
+              { icon: Layers, name: "Custom Systems", path: "/pricing/custom-systems", price: "From KSH 150,000" },
               { icon: Search, name: "SEO Services", path: "/pricing/seo", price: "From KSH 15,000/mo" },
               { icon: PenTool, name: "Copywriting", path: "/pricing/copywriting", price: "From KSH 3,000" },
               { icon: Settings, name: "Web Maintenance", path: "/pricing/maintenance", price: "From KSH 5,000/mo" },
