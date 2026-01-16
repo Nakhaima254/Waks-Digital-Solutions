@@ -96,7 +96,7 @@ const Navigation = () => {
     {
       name: "Custom Systems",
       path: "/services/custom-systems",
-      pricingPath: "/pricing/web-development",
+      pricingPath: "/pricing/custom-systems",
       description: "Tailored business solutions for your specific needs",
       icon: Layers
     },

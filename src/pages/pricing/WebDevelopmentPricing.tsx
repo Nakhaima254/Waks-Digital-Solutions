@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, ArrowLeft, Code, Zap, Shield, Clock, Users, Rocket, X, ShoppingCart, Building2, LayoutGrid, GraduationCap, Heart, Package, UserCog, Plane, Landmark } from "lucide-react";
+import { Check, Star, ArrowLeft, Code, Zap, Shield, Clock, Users, Rocket, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
@@ -128,17 +128,6 @@ const WebDevelopmentPricing = () => {
     }
   ];
 
-  const customSystems = [
-    { icon: ShoppingCart, name: "E-commerce Platform", description: "Online shopping systems with carts & payments", startPrice: 80000 },
-    { icon: Building2, name: "POS System", description: "Retail, restaurant, or hotel management", startPrice: 120000 },
-    { icon: LayoutGrid, name: "Project Management", description: "Task tracking & team collaboration tools", startPrice: 150000 },
-    { icon: GraduationCap, name: "School Management", description: "Student info, grades & learning portals", startPrice: 180000 },
-    { icon: Heart, name: "Hospital Management", description: "Patient records, appointments & billing", startPrice: 250000 },
-    { icon: Package, name: "Inventory Management", description: "Stock tracking & supply chain logistics", startPrice: 140000 },
-    { icon: UserCog, name: "HR Management", description: "Payroll, benefits & performance tracking", startPrice: 160000 },
-    { icon: Plane, name: "Flight Booking System", description: "Travel reservations & payment processing", startPrice: 200000 },
-    { icon: Landmark, name: "Online Banking System", description: "Accounts, transactions & financial mgmt", startPrice: 300000 },
-  ];
 
   const addons = [
     { name: "Additional Pages", price: 3000, unit: "per page" },
@@ -326,95 +315,6 @@ const WebDevelopmentPricing = () => {
           </div>
         </div>
       </section>
-
-      {/* Custom System Design Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-              <Shield className="w-3 h-3 mr-1" />
-              Enterprise Solutions
-            </Badge>
-            <h2 className="text-3xl font-bold text-foreground mb-4">Custom System Design</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We build comprehensive business systems tailored to your specific domain. Each system includes full database design, 
-              user management, reporting, and ongoing support.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {customSystems.map((system, index) => {
-              const IconComponent = system.icon;
-              return (
-                <motion.div
-                  key={system.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                >
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 group border-2 hover:border-accent">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-start justify-between">
-                        <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                          <IconComponent className="w-6 h-6 text-accent" />
-                        </div>
-                        <Badge variant="outline" className="text-xs">
-                          From {convertPrice(system.startPrice)}
-                        </Badge>
-                      </div>
-                      <CardTitle className="text-lg mt-3">{system.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-sm mb-4">{system.description}</p>
-                      <Button variant="outline" size="sm" className="w-full" asChild>
-                        <Link to="/contact">Get Quote</Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="bg-card rounded-2xl p-8 border">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-xl font-bold mb-3">Need a Different System?</h3>
-                <p className="text-muted-foreground mb-4">
-                  We can build any custom business system you need. Tell us about your requirements 
-                  and we'll provide a detailed proposal with timeline and pricing.
-                </p>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
-                    Custom database architecture
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
-                    API development & integrations
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
-                    User roles & permissions
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-accent" />
-                    Reports & analytics dashboards
-                  </li>
-                </ul>
-              </div>
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground mb-2">Starting from</p>
-                <p className="text-4xl font-bold text-accent mb-4">{convertPrice(100000)}</p>
-                <Button size="lg" asChild>
-                  <Link to="/contact">Request Custom Quote</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Add-ons Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -27,6 +27,7 @@ import EcommercePricing from "./pages/pricing/EcommercePricing";
 import SEOPricing from "./pages/pricing/SEOPricing";
 import CopywritingPricing from "./pages/pricing/CopywritingPricing";
 import MaintenancePricing from "./pages/pricing/MaintenancePricing";
+import CustomSystemsPricing from "./pages/pricing/CustomSystemsPricing";
 import WebDesignTrends2025 from "./pages/blog/WebDesignTrends2025";
 import SEOGuideKenyanBusinesses from "./pages/blog/SEOGuideKenyanBusinesses";
 import EcommerceSuccessKenya from "./pages/blog/EcommerceSuccessKenya";
@@ -125,6 +126,7 @@ const App = () => (
             <Route path="pricing/seo" element={<SEOPricing />} />
             <Route path="pricing/copywriting" element={<CopywritingPricing />} />
             <Route path="pricing/maintenance" element={<MaintenancePricing />} />
+            <Route path="pricing/custom-systems" element={<CustomSystemsPricing />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
