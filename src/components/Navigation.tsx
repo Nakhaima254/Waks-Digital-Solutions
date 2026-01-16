@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, Clock, type LucideIcon } from "lucide-react";
+import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, Clock, Layers, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
@@ -92,6 +92,13 @@ const Navigation = () => {
       pricingPath: "/pricing/maintenance",
       description: "Keep your website secure, updated and running smoothly",
       icon: Wrench
+    },
+    {
+      name: "Custom Systems",
+      path: "/services/custom-systems",
+      pricingPath: "/pricing/web-development",
+      description: "Tailored business solutions for your specific needs",
+      icon: Layers
     },
   ];
 
