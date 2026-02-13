@@ -195,8 +195,8 @@ const Navigation = () => {
   const [currentOffer, setCurrentOffer] = useState(0);
 
   const offers: { text: string; link: string; icon: LucideIcon }[] = [
-    { text: "🔥 Hot Deal: E-commerce Website from KES 75,000 — M-Pesa ready!", link: "/pricing/ecommerce", icon: ShoppingCart },
-    { text: "🔥 SME Starter Website from KES 25,000 — Go online in 7 days!", link: "/pricing/web-development", icon: Rocket },
+    { text: "🔥 Hot Deal: E-commerce Website from KES 75,000, M-Pesa ready!", link: "/pricing/ecommerce", icon: ShoppingCart },
+    { text: "🔥 SME Starter Website from KES 25,000. Go online in 7 days!", link: "/pricing/web-development", icon: Rocket },
     { text: "🔥 Hot Deal: Free SEO audit with every new website project", link: "/services/seo-services", icon: Search },
     { text: "🔥 Starter Package: Complete digital presence for new businesses", link: "/pricing/web-development", icon: Zap },
     { text: "🔥 E-commerce Boost: Free 3-month maintenance with any store", link: "/pricing/ecommerce", icon: Package },
