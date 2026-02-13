@@ -193,32 +193,16 @@ const Navigation = () => {
   // Offers banner state
   const [showBanner, setShowBanner] = useState(true);
   const [currentOffer, setCurrentOffer] = useState(0);
-  const [daysLeft, setDaysLeft] = useState(0);
-
-  // Calculate days left in January
-  useEffect(() => {
-    const calculateDaysLeft = () => {
-      const now = new Date();
-      const endOfJanuary = new Date(2026, 0, 31, 23, 59, 59); // January 31, 2026
-      const diffTime = endOfJanuary.getTime() - now.getTime();
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      setDaysLeft(Math.max(0, diffDays));
-    };
-    
-    calculateDaysLeft();
-    const interval = setInterval(calculateDaysLeft, 1000 * 60 * 60); // Update every hour
-    return () => clearInterval(interval);
-  }, []);
 
   const offers: { text: string; link: string; icon: LucideIcon }[] = [
-    { text: "New Year 2026 Special: 25% off all services this January!", link: "/pricing", icon: Gift },
-    { text: "Free website audit - Start 2026 with a stronger online presence", link: "/contact", icon: Zap },
-    { text: "January Deal: Launch your business online in just 7 days", link: "/services/web-development", icon: Rocket },
-    { text: "2026 Kickstart: Free hosting for 6 months with any website!", link: "/services/web-development", icon: Sparkles },
-    { text: "SME New Year Package: Complete digital presence from KES 25,000", link: "/pricing", icon: Briefcase },
-    { text: "January Only: 50% off SEO services for new clients", link: "/services/seo-services", icon: Flame },
-    { text: "E-commerce 2026: Get your online store live in 14 days", link: "/services/ecommerce-solutions", icon: Package },
-    { text: "New Year Bonus: Free mobile optimization with every project", link: "/services/web-development", icon: Smartphone },
+    { text: "🔥 Hot Deal: E-commerce Website from KES 75,000 — M-Pesa ready!", link: "/pricing/ecommerce", icon: ShoppingCart },
+    { text: "🔥 SME Starter Website from KES 25,000 — Go online in 7 days!", link: "/pricing/web-development", icon: Rocket },
+    { text: "🔥 Hot Deal: Free SEO audit with every new website project", link: "/services/seo-services", icon: Search },
+    { text: "🔥 Starter Package: Complete digital presence for new businesses", link: "/pricing/web-development", icon: Zap },
+    { text: "🔥 E-commerce Boost: Free 3-month maintenance with any store", link: "/pricing/ecommerce", icon: Package },
+    { text: "🔥 SME Special: WordPress site + hosting from KES 30,000", link: "/pricing/wordpress", icon: Flame },
+    { text: "🔥 Hot Deal: Custom business system tailored to your needs", link: "/pricing/custom-systems", icon: Layers },
+    { text: "🔥 Mobile-first websites optimized for Kenyan shoppers", link: "/services/web-development", icon: Smartphone },
   ];
 
   useEffect(() => {
@@ -243,13 +227,11 @@ const Navigation = () => {
           >
             <div className="relative py-2 px-4">
               <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4">
-                {/* Mobile: Countdown + Offer in same row */}
                 <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-center">
-                  {/* Countdown Timer */}
                   <div className="flex items-center gap-1 sm:gap-1.5 bg-white/20 rounded-full px-2 sm:px-3 py-0.5 sm:py-1 shrink-0">
-                    <Clock className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-white" />
+                    <Flame className="h-3 sm:h-3.5 w-3 sm:w-3.5 text-white" />
                     <span className="text-white text-[10px] sm:text-xs font-bold whitespace-nowrap">
-                      {daysLeft}d left
+                      Hot Deals
                     </span>
                   </div>
                   <AnimatePresence mode="wait">
