@@ -132,9 +132,6 @@ const Services = () => {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
-            <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30">
-              Professional Web Solutions
-            </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-foreground">
               Services That Grow
               <span className="block text-accent">Your Business</span>
