@@ -141,6 +141,11 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+            <div className="flex items-center space-x-2 mt-4 pt-3 border-t border-primary-foreground/10">
+              <span className="text-primary-foreground/60 text-xs">💰 We accept crypto (BEP20):</span>
+              <span className="text-primary-foreground/80 text-xs font-medium">BTC, ETH, SOL, BNB & more</span>
+              <Link to="/pricing" className="text-accent text-xs hover:underline ml-1">Details →</Link>
+            </div>
           </div>
         </div>
 
