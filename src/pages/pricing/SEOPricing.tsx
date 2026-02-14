@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CryptoPaymentSection from "@/components/CryptoPaymentSection";
 
 const SEOPricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
@@ -342,6 +343,8 @@ const SEOPricing = () => {
           </div>
         </div>
       </section>
+
+      <CryptoPaymentSection />
 
       {/* FAQ Section */}
       <section className="py-20">
