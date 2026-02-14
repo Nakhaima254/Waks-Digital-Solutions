@@ -3,6 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Copy, Wallet } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const coins = [
   { name: "BTC", full: "Bitcoin" },
@@ -71,6 +77,63 @@ const CryptoPaymentSection = () => {
             After sending payment, please contact us with your transaction hash for confirmation.
           </p>
         </Card>
+
+        {/* Crypto FAQ */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-foreground text-center mb-8">
+            Crypto Payment FAQs
+          </h3>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="what-is-bep20">
+              <AccordionTrigger>What is BEP20 (BSC Smart Chain)?</AccordionTrigger>
+              <AccordionContent>
+                BEP20 is a token standard on the Binance Smart Chain (BSC). It allows fast, low-cost transactions compared to other networks. When sending payments, make sure you select the <strong>BEP20 / BSC network</strong> in your wallet or exchange — sending tokens on the wrong network may result in permanent loss of funds.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="supported-tokens">
+              <AccordionTrigger>Which tokens do you accept?</AccordionTrigger>
+              <AccordionContent>
+                We accept 10 major cryptocurrencies via the BEP20 network: <strong>BTC, ETH, SOL, AVAX, ADA, DOGE, BNB, XRP, MATIC,</strong> and <strong>USDT</strong>. These are the BEP20-wrapped versions of each token. If you're unsure whether your token is BEP20-compatible, check with your exchange or wallet provider.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="how-to-pay">
+              <AccordionTrigger>How do I make a crypto payment?</AccordionTrigger>
+              <AccordionContent>
+                <ol className="list-decimal list-inside space-y-2">
+                  <li>Choose a service and note the total amount in USD/KES.</li>
+                  <li>Copy our BEP20 wallet address above.</li>
+                  <li>Open your crypto wallet or exchange (e.g., Binance, Trust Wallet, MetaMask).</li>
+                  <li>Send the equivalent amount in your chosen token via the <strong>BEP20 (BSC)</strong> network.</li>
+                  <li>Save your <strong>transaction hash (TxID)</strong> and share it with us via our <a href="/contact" className="text-primary underline">Contact page</a> or email for confirmation.</li>
+                </ol>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="confirmation-time">
+              <AccordionTrigger>How long does payment confirmation take?</AccordionTrigger>
+              <AccordionContent>
+                BSC transactions typically confirm within <strong>15–30 seconds</strong>. Once you share your transaction hash with us, we'll verify the payment and confirm within <strong>1–2 business hours</strong> during working hours (Mon–Fri, 8 AM – 6 PM EAT).
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="exchange-rate">
+              <AccordionTrigger>How is the exchange rate calculated?</AccordionTrigger>
+              <AccordionContent>
+                We use the market rate at the time of payment as shown on <strong>CoinGecko</strong> or <strong>CoinMarketCap</strong>. Please send the exact equivalent or slightly more to account for minor price fluctuations during the transaction.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="wrong-network">
+              <AccordionTrigger>What if I send tokens on the wrong network?</AccordionTrigger>
+              <AccordionContent>
+                Unfortunately, tokens sent on an incompatible network (e.g., ERC20 instead of BEP20) <strong>cannot be recovered</strong>. Always double-check that you've selected the <strong>BEP20 / BSC Smart Chain</strong> network before confirming the transaction.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="refunds">
+              <AccordionTrigger>Can I get a refund for crypto payments?</AccordionTrigger>
+              <AccordionContent>
+                Refunds for crypto payments are processed in the same cryptocurrency and to the same wallet address. Please contact us within <strong>7 days</strong> of payment with your transaction hash. Refund amounts are based on the USD value at the time of the original payment.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
       </div>
     </section>
   );
