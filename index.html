@@ -69,6 +69,7 @@
         <div style="width:120px;height:3px;background:rgba(255,124,31,0.2);border-radius:4px;overflow:hidden;">
           <div style="width:40%;height:100%;background:#ff7c1f;border-radius:4px;animation:loaderBar 1.2s ease-in-out infinite;"></div>
         </div>
+        <span id="loader-text" style="font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;letter-spacing:0.05em;opacity:0.5;">Loading...</span>
       </div>
     </div>
     <style>
@@ -81,8 +82,10 @@
         if(!d){var s=localStorage.getItem('theme');d=s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);}
         var loader=document.getElementById('app-loader');
         var logo=document.getElementById('loader-logo');
+        var txt=document.getElementById('loader-text');
         loader.style.background=d?'#0a0a0a':'#ffffff';
         logo.src=d?'/Waks Tech-06.svg':'/Waks Tech-05.svg';
+        txt.style.color=d?'#ffffff':'#0a0a0a';
       })();
     </script>
     <div id="root"></div>
