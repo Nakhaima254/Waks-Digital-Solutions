@@ -63,9 +63,9 @@
   </head>
 
   <body>
-    <div id="app-loader" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#0a0a0a;transition:opacity 0.5s ease-out;">
+    <div id="app-loader" style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.5s ease-out;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-        <img src="/Waks Tech-05.svg" alt="Loading..." style="width:80px;height:80px;animation:loaderPulse 1.5s ease-in-out infinite;" />
+        <img id="loader-logo" alt="Loading..." style="width:80px;height:80px;animation:loaderPulse 1.5s ease-in-out infinite;" />
         <div style="width:120px;height:3px;background:rgba(255,124,31,0.2);border-radius:4px;overflow:hidden;">
           <div style="width:40%;height:100%;background:#ff7c1f;border-radius:4px;animation:loaderBar 1.2s ease-in-out infinite;"></div>
         </div>
@@ -75,6 +75,16 @@
       @keyframes loaderPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:0.8}}
       @keyframes loaderBar{0%{transform:translateX(-100%)}50%{transform:translateX(150%)}100%{transform:translateX(300%)}}
     </style>
+    <script>
+      (function(){
+        var d=document.documentElement.classList.contains('dark');
+        if(!d){var s=localStorage.getItem('theme');d=s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);}
+        var loader=document.getElementById('app-loader');
+        var logo=document.getElementById('loader-logo');
+        loader.style.background=d?'#0a0a0a':'#ffffff';
+        logo.src=d?'/Waks Tech-06.svg':'/Waks Tech-05.svg';
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
