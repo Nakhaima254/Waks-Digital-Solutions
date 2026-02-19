@@ -190,6 +190,18 @@ CONTACT INFO (use exactly):
 - WhatsApp: +254 750 509 252
 - Location: Nairobi, Kenya
 
+PAYMENT OPTIONS:
+1. M-Pesa & Card payments (standard)
+2. Cryptocurrency via BEP20 (BSC Smart Chain) network
+   - Accepted coins: BTC, ETH, SOL, AVAX, ADA, DOGE, BNB, XRP, MATIC, USDT
+   - Wallet address: 0x1ae2349ac387403fa068f34f9fdff71f580f0ee7
+   - IMPORTANT: Only BEP20/BSC network is accepted — wrong network = funds lost
+   - After sending, share your transaction hash (TxID) with us via email or contact page for confirmation
+   - BSC confirms in 15–30 seconds; we verify within 1–2 business hours (Mon–Fri, 8AM–6PM EAT)
+   - Exchange rates based on CoinGecko/CoinMarketCap at time of payment
+   - Refunds processed in same crypto within 7 days of payment request
+   - Full crypto payment details: https://waksdigital.co.ke/pricing (scroll to crypto section on any pricing page)
+
 WEBSITE PAGES (use these exact URLs when directing clients):
 - Home: https://waksdigital.co.ke/
 - Services overview: https://waksdigital.co.ke/services
@@ -293,7 +305,11 @@ RESPONSE STYLE:
     const lastUserMessage = validatedMessages[validatedMessages.length - 1]?.content?.toLowerCase() || '';
     let quickReplies: string[] = [];
     
-    if (lastUserMessage.includes('price') || lastUserMessage.includes('cost') || lastUserMessage.includes('pricing') || lastUserMessage.includes('package')) {
+    if (lastUserMessage.includes('crypto') || lastUserMessage.includes('bitcoin') || lastUserMessage.includes('btc') || lastUserMessage.includes('usdt') || lastUserMessage.includes('ethereum') || lastUserMessage.includes('eth') || lastUserMessage.includes('bnb') || lastUserMessage.includes('bep20') || lastUserMessage.includes('bsc') || lastUserMessage.includes('wallet') || lastUserMessage.includes('blockchain') || lastUserMessage.includes('coin') || lastUserMessage.includes('token')) {
+      quickReplies = ["See crypto payment details", "View all pricing", "Contact us", "Submit a ticket"];
+    } else if (lastUserMessage.includes('payment') || lastUserMessage.includes('pay') || lastUserMessage.includes('mpesa') || lastUserMessage.includes('m-pesa')) {
+      quickReplies = ["Crypto payment info", "View pricing", "Contact us", "WhatsApp us"];
+    } else if (lastUserMessage.includes('price') || lastUserMessage.includes('cost') || lastUserMessage.includes('pricing') || lastUserMessage.includes('package')) {
       quickReplies = ["Web Development pricing", "WordPress pricing", "E-commerce pricing", "Custom Systems pricing"];
     } else if (lastUserMessage.includes('ecommerce') || lastUserMessage.includes('e-commerce') || lastUserMessage.includes('shop') || lastUserMessage.includes('store')) {
       quickReplies = ["E-commerce pricing", "See e-commerce services", "View our portfolio", "Contact us"];
