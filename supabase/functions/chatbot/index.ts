@@ -306,15 +306,15 @@ RESPONSE STYLE:
     let quickReplies: string[] = [];
     
     if (lastUserMessage.includes('crypto') || lastUserMessage.includes('bitcoin') || lastUserMessage.includes('btc') || lastUserMessage.includes('usdt') || lastUserMessage.includes('ethereum') || lastUserMessage.includes('eth') || lastUserMessage.includes('bnb') || lastUserMessage.includes('bep20') || lastUserMessage.includes('bsc') || lastUserMessage.includes('wallet') || lastUserMessage.includes('blockchain') || lastUserMessage.includes('coin') || lastUserMessage.includes('token')) {
-      quickReplies = ["See crypto payment details", "View all pricing", "Contact us", "Submit a ticket"];
+      quickReplies = ["See crypto payment details", "Pay with Crypto", "View all pricing", "Contact us"];
     } else if (lastUserMessage.includes('payment') || lastUserMessage.includes('pay') || lastUserMessage.includes('mpesa') || lastUserMessage.includes('m-pesa')) {
-      quickReplies = ["Crypto payment info", "View pricing", "Contact us", "WhatsApp us"];
+      quickReplies = ["Pay with Crypto", "Crypto payment info", "View pricing", "Contact us"];
     } else if (lastUserMessage.includes('price') || lastUserMessage.includes('cost') || lastUserMessage.includes('pricing') || lastUserMessage.includes('package')) {
-      quickReplies = ["Web Development pricing", "WordPress pricing", "E-commerce pricing", "Custom Systems pricing"];
+      quickReplies = ["Web Development pricing", "E-commerce pricing", "Pay with Crypto", "Custom Systems pricing"];
     } else if (lastUserMessage.includes('ecommerce') || lastUserMessage.includes('e-commerce') || lastUserMessage.includes('shop') || lastUserMessage.includes('store')) {
-      quickReplies = ["E-commerce pricing", "See e-commerce services", "View our portfolio", "Contact us"];
+      quickReplies = ["E-commerce pricing", "See e-commerce services", "Pay with Crypto", "Contact us"];
     } else if (lastUserMessage.includes('wordpress') || lastUserMessage.includes('wp')) {
-      quickReplies = ["WordPress pricing", "See WordPress services", "Get started", "Contact us"];
+      quickReplies = ["WordPress pricing", "See WordPress services", "Pay with Crypto", "Contact us"];
     } else if (lastUserMessage.includes('seo') || lastUserMessage.includes('search') || lastUserMessage.includes('google')) {
       quickReplies = ["SEO pricing", "See SEO services", "Get a free quote", "Contact us"];
     } else if (lastUserMessage.includes('maintenance') || lastUserMessage.includes('support') || lastUserMessage.includes('update')) {
@@ -326,9 +326,9 @@ RESPONSE STYLE:
     } else if (lastUserMessage.includes('portfolio') || lastUserMessage.includes('work') || lastUserMessage.includes('example')) {
       quickReplies = ["View our portfolio", "Get a free quote", "Contact us", "See services"];
     } else if (lastUserMessage.includes('website') || lastUserMessage.includes('web')) {
-      quickReplies = ["Web Development pricing", "See our portfolio", "Start a project", "Contact us"];
+      quickReplies = ["Web Development pricing", "See our portfolio", "Pay with Crypto", "Contact us"];
     } else {
-      quickReplies = ["See our services", "View pricing", "Our portfolio", "Contact the team"];
+      quickReplies = ["See our services", "View pricing", "Pay with Crypto", "Our portfolio"];
     }
 
     return new Response(

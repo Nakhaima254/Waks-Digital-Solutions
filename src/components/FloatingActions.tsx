@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, MessageCircle, X, Send, Bot, Trash2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,24 @@ const DEFAULT_QUICK_REPLIES = [
   "Tell me about your services",
   "I need a website",
   "What are your prices?",
+  "Pay with Crypto",
   "Contact support"
 ];
+
+// Quick replies that are links (navigate instead of sending a message)
+const LINK_QUICK_REPLIES: Record<string, string> = {
+  "Pay with Crypto": "/pricing/web-development#crypto",
+  "See crypto payment details": "/pricing/web-development#crypto",
+  "Crypto payment info": "/pricing/web-development#crypto",
+  "View all pricing": "/pricing",
+  "View pricing": "/pricing",
+  "See our services": "/services",
+  "See all services": "/services",
+  "View our portfolio": "/portfolio",
+  "Our portfolio": "/portfolio",
+  "FAQ": "/faq",
+  "Submit a ticket": "/ticket",
+};
 const DEFAULT_MESSAGE: Message = { 
   id: 1, 
   text: "Hi! 👋 Welcome to Waks Digital. How can I help you today?", 
@@ -60,6 +77,7 @@ const playTypingSound = () => {
 };
 
 const FloatingActions = () => {
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -362,15 +380,26 @@ const FloatingActions = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-4 flex flex-wrap gap-2"
                   >
-                    {replies.map((reply, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleSend(reply)}
-                        className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors"
-                      >
-                        {reply}
-                      </button>
-                    ))}
+                    {replies.map((reply, index) => {
+                      const linkUrl = LINK_QUICK_REPLIES[reply];
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            if (linkUrl) {
+                              navigate(linkUrl);
+                              setIsChatOpen(false);
+                            } else {
+                              handleSend(reply);
+                            }
+                          }}
+                          className="text-xs px-3 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors flex items-center gap-1"
+                        >
+                          {reply}
+                          {linkUrl && <span className="text-primary/60">↗</span>}
+                        </button>
+                      );
+                    })}
                   </motion.div>
                 );
               })()}
