@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, EyeOff, FolderOpen, TicketCheck } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface BlogPost {
@@ -111,9 +111,43 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">Blog Admin Dashboard</h1>
+    <div className="container mx-auto px-4 py-8 max-w-7xl pt-24">
+      <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+
+      {/* Quick Links */}
+      <div className="grid md:grid-cols-3 gap-4 mb-10">
+        <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/admin/projects')}>
+          <CardHeader className="flex flex-row items-center gap-3">
+            <FolderOpen className="h-6 w-6 text-accent" />
+            <CardTitle className="text-lg">Manage Projects</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">Add, edit, or publish recent projects shown on the homepage.</p>
+          </CardContent>
+        </Card>
+        <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/admin/blog/new')}>
+          <CardHeader className="flex flex-row items-center gap-3">
+            <Plus className="h-6 w-6 text-accent" />
+            <CardTitle className="text-lg">New Blog Post</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">Create and publish a new blog article.</p>
+          </CardContent>
+        </Card>
+        <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/admin/tickets')}>
+          <CardHeader className="flex flex-row items-center gap-3">
+            <TicketCheck className="h-6 w-6 text-accent" />
+            <CardTitle className="text-lg">Support Tickets</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground">View and manage customer support tickets.</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Blog Posts Section */}
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-primary">Blog Posts</h2>
         <Button onClick={() => navigate('/admin/blog/new')}>
           <Plus className="w-4 h-4 mr-2" />
           New Post
