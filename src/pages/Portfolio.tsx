@@ -270,7 +270,7 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" staggerDelay={0.15}>
             {[
-              { value: "7+", label: "Projects Completed" },
+              { value: "20+", label: "Projects Completed" },
               { value: "100%", label: "Client Satisfaction" },
               { value: "300%", label: "Average Inquiry Increase" },
               { value: "7", label: "Industries Served" }

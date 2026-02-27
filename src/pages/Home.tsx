@@ -54,7 +54,7 @@ const Home = () => {
   const testimonialsReveal = useScrollReveal();
   const statsReveal = useScrollReveal({ threshold: 0.5 });
   
-  const projectsCount = useCountUp({ end: 5, duration: 2000, isActive: statsReveal.isVisible });
+  const projectsCount = useCountUp({ end: 20, duration: 2000, isActive: statsReveal.isVisible });
   const satisfactionCount = useCountUp({ end: 100, duration: 2000, isActive: statsReveal.isVisible });
   const experienceCount = useCountUp({ end: 3, duration: 2000, isActive: statsReveal.isVisible });
 
