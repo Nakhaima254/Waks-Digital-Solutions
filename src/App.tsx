@@ -99,6 +99,7 @@ import TicketDashboard from "./pages/TicketDashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import BlogEditor from "./pages/admin/BlogEditor";
 import TicketsDashboard from "./pages/admin/TicketsDashboard";
+import ProjectsManager from "./pages/admin/ProjectsManager";
 
 const queryClient = new QueryClient();
 
@@ -138,6 +139,7 @@ const App = () => (
             <Route path="admin/blog/new" element={<BlogEditor />} />
             <Route path="admin/blog/edit/:id" element={<BlogEditor />} />
             <Route path="admin/tickets" element={<TicketsDashboard />} />
+            <Route path="admin/projects" element={<ProjectsManager />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="terms" element={<Terms />} />
             <Route path="blog" element={<Blog />} />
