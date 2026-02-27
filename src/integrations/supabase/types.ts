@@ -83,6 +83,48 @@ export type Database = {
         }
         Relationships: []
       }
+      recent_projects: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string
+          display_order: number | null
+          id: string
+          image_url: string | null
+          published: boolean | null
+          technologies: string[] | null
+          title: string
+          updated_at: string | null
+          website_url: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description: string
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          published?: boolean | null
+          technologies?: string[] | null
+          title: string
+          updated_at?: string | null
+          website_url?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          published?: boolean | null
+          technologies?: string[] | null
+          title?: string
+          updated_at?: string | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       tickets: {
         Row: {
           category: string

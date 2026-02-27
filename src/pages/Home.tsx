@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -33,6 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 import FloatingElements from "@/components/FloatingElements";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -43,6 +45,20 @@ const formSchema = z.object({
 
 const Home = () => {
   const { toast } = useToast();
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const { data } = await supabase
+        .from("recent_projects")
+        .select("*")
+        .eq("published", true)
+        .order("display_order", { ascending: true })
+        .limit(6);
+      if (data && data.length > 0) setDbProjects(data);
+    };
+    fetchProjects();
+  }, []);
   const { displayedText } = useTypingEffect({ 
     text: "Grow Your Business", 
     speed: 100, 
@@ -137,6 +153,17 @@ const Home = () => {
       url: "https://truechoice.co.ke/"
     }
   ];
+
+  const displayProjects = dbProjects.length > 0 
+    ? dbProjects.map(p => ({
+        title: p.title,
+        category: p.category,
+        description: p.description,
+        image: p.image_url,
+        technologies: p.technologies || [],
+        url: p.website_url || "#",
+      }))
+    : portfolioProjects;
 
   const testimonials = [
     {
@@ -317,7 +344,7 @@ const Home = () => {
             ref={portfolioReveal.ref}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {portfolioProjects.map((project, index) => (
+            {displayProjects.map((project, index) => (
               <a 
                 key={index}
                 href={project.url}
