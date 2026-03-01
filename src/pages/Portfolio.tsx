@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +14,7 @@ import {
   FolderOpen
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectJavinnaSafaris from "@/assets/project-safari-lodge.jpg";
@@ -29,6 +30,19 @@ type SortOption = "newest" | "oldest" | "category";
 
 const Portfolio = () => {
   const [sortBy, setSortBy] = useState<SortOption>("newest");
+  const [dbProjects, setDbProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const { data } = await supabase
+        .from("recent_projects")
+        .select("*")
+        .eq("published", true)
+        .order("display_order", { ascending: true });
+      if (data) setDbProjects(data);
+    };
+    fetchProjects();
+  }, []);
   const projects = [
     {
       id: 1,
@@ -221,10 +235,36 @@ const Portfolio = () => {
     }
   ];
 
-  const categories = ["All", "Travel & Tourism", "Safari & Adventure", "Financial Services", "Counseling & Wellness", "Logistics & Freight", "Cleaning Services", "Digital Marketing"];
+  // Merge DB projects into the list (avoid duplicates by title)
+  const allProjects = useMemo(() => {
+    const hardcodedTitles = new Set(projects.map(p => p.title.toLowerCase()));
+    const dbMapped = dbProjects
+      .filter(p => !hardcodedTitles.has(p.title.toLowerCase()))
+      .map((p, i) => ({
+        id: 100 + i,
+        title: p.title,
+        category: p.category,
+        description: p.description,
+        fullDescription: p.description,
+        technologies: p.technologies || [],
+        features: [],
+        results: [],
+        timeline: "",
+        year: new Date(p.created_at).getFullYear().toString(),
+        client: p.title,
+        website: p.website_url || "#",
+        image: p.image_url || null,
+      }));
+    return [...projects, ...dbMapped];
+  }, [dbProjects]);
+
+  const categories = useMemo(() => {
+    const cats = new Set(allProjects.map(p => p.category));
+    return ["All", ...Array.from(cats)];
+  }, [allProjects]);
 
   const sortedProjects = useMemo(() => {
-    const projectsCopy = [...projects];
+    const projectsCopy = [...allProjects];
     
     switch (sortBy) {
       case "newest":
@@ -236,7 +276,7 @@ const Portfolio = () => {
       default:
         return projectsCopy;
     }
-  }, [sortBy]);
+  }, [sortBy, allProjects]);
 
   return (
     <div className="min-h-screen pt-16">
