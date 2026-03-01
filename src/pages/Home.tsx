@@ -345,11 +345,9 @@ const Home = () => {
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {displayProjects.map((project, index) => (
-              <a 
+              <Link 
                 key={index}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                to="/portfolio"
                 className="block"
               >
                 <Card 
@@ -386,7 +384,7 @@ const Home = () => {
                     </div>
                   </div>
                 </Card>
-              </a>
+              </Link>
             ))}
           </div>
 
