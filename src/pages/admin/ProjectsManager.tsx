@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Trash2, Plus, Edit2, Save, X } from "lucide-react";
+import { Trash2, Plus, Edit2, Save, X, Upload, Image } from "lucide-react";
 
 interface Project {
   id: string;
@@ -28,6 +28,9 @@ const ProjectsManager = () => {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({
     title: "",
     category: "",
@@ -58,6 +61,7 @@ const ProjectsManager = () => {
     setForm({ title: "", category: "", description: "", image_url: "", website_url: "", technologies: "", published: false, display_order: 0 });
     setEditingId(null);
     setShowForm(false);
+    setImagePreview(null);
   };
 
   const handleEdit = (project: Project) => {
@@ -72,7 +76,46 @@ const ProjectsManager = () => {
       display_order: project.display_order,
     });
     setEditingId(project.id);
+    setImagePreview(project.image_url || null);
     setShowForm(true);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast({ title: "Invalid file", description: "Please select an image file", variant: "destructive" });
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      toast({ title: "File too large", description: "Image must be under 5MB", variant: "destructive" });
+      return;
+    }
+
+    setUploading(true);
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+
+    const { error } = await supabase.storage
+      .from("project-images")
+      .upload(fileName, file);
+
+    if (error) {
+      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("project-images")
+      .getPublicUrl(fileName);
+
+    setForm({ ...form, image_url: urlData.publicUrl });
+    setImagePreview(urlData.publicUrl);
+    setUploading(false);
+    toast({ title: "Uploaded!", description: "Image uploaded successfully" });
   };
 
   const handleSubmit = async () => {
@@ -153,8 +196,47 @@ const ProjectsManager = () => {
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Image URL</Label>
-                <Input value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
+                <Label>Project Image</Label>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageUpload}
+                />
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                    className="flex-1"
+                  >
+                    {uploading ? (
+                      "Uploading..."
+                    ) : (
+                      <><Upload className="h-4 w-4 mr-2" /> Choose Image</>
+                    )}
+                  </Button>
+                </div>
+                {imagePreview && (
+                  <div className="relative mt-2 rounded-lg overflow-hidden border border-border">
+                    <img src={imagePreview} alt="Preview" className="w-full h-32 object-cover" />
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      className="absolute top-1 right-1"
+                      onClick={() => { setImagePreview(null); setForm({ ...form, image_url: "" }); }}
+                    >
+                      <X className="h-3 w-3" />
+                    </Button>
+                  </div>
+                )}
+                {!imagePreview && (
+                  <div className="mt-2 border border-dashed border-border rounded-lg p-4 flex items-center justify-center text-muted-foreground text-sm">
+                    <Image className="h-4 w-4 mr-2" /> No image selected
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <Label>Website URL</Label>
@@ -194,22 +276,27 @@ const ProjectsManager = () => {
           <div className="space-y-4">
             {projects.map(project => (
               <Card key={project.id} className="p-4 flex items-center justify-between">
-                <div className="space-y-1 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-primary">{project.title}</h3>
-                    <Badge variant={project.published ? "default" : "secondary"}>
-                      {project.published ? "Published" : "Draft"}
-                    </Badge>
-                    <Badge variant="outline">{project.category}</Badge>
-                  </div>
-                  <p className="text-sm text-muted-foreground line-clamp-1">{project.description}</p>
-                  {project.technologies.length > 0 && (
-                    <div className="flex gap-1 flex-wrap">
-                      {project.technologies.map((t, i) => (
-                        <Badge key={i} variant="outline" className="text-xs">{t}</Badge>
-                      ))}
-                    </div>
+                <div className="flex items-center gap-4 flex-1">
+                  {project.image_url && (
+                    <img src={project.image_url} alt={project.title} className="w-16 h-16 rounded-lg object-cover" />
                   )}
+                  <div className="space-y-1 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-primary">{project.title}</h3>
+                      <Badge variant={project.published ? "default" : "secondary"}>
+                        {project.published ? "Published" : "Draft"}
+                      </Badge>
+                      <Badge variant="outline">{project.category}</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground line-clamp-1">{project.description}</p>
+                    {project.technologies.length > 0 && (
+                      <div className="flex gap-1 flex-wrap">
+                        {project.technologies.map((t, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">{t}</Badge>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <div className="flex gap-2 ml-4">
                   <Button variant="outline" size="sm" onClick={() => handleEdit(project)}>
