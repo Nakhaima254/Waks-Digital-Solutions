@@ -16,3 +16,10 @@ if (loader) {
   loader.style.opacity = "0";
   setTimeout(() => loader.remove(), 500);
 }
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
