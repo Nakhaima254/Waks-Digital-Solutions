@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -18,7 +19,6 @@ const loginSchema = z.object({
 });
 
 const signupSchema = loginSchema.extend({
-  fullName: z.string().min(2, 'Full name must be at least 2 characters'),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
@@ -28,9 +28,20 @@ const signupSchema = loginSchema.extend({
 type LoginFormData = z.infer<typeof loginSchema>;
 type SignupFormData = z.infer<typeof signupSchema>;
 
+declare global {
+  interface Window {
+    google?: any;
+  }
+}
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
+
 export default function Auth() {
   const [isLoading, setIsLoading] = useState(false);
+  const [googleReady, setGoogleReady] = useState(false);
+  const googleInitialized = useRef(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
   const { signIn, signUp, signInWithGoogle, user } = useAuth();
 
   const loginForm = useForm<LoginFormData>({
@@ -43,8 +54,68 @@ export default function Auth() {
 
   // Redirect if already logged in
   if (user) {
-    navigate('/ticket-dashboard');
+    navigate('/admin/dashboard');
   }
+
+  useEffect(() => {
+    if (!GOOGLE_CLIENT_ID || googleInitialized.current) {
+      return;
+    }
+
+    const loadGoogleScript = () => {
+      const existingScript = document.querySelector('script[src="https://accounts.google.com/gsi/client"]');
+      if (existingScript) {
+        initializeGoogle();
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => initializeGoogle();
+      document.body.appendChild(script);
+    };
+
+    const initializeGoogle = () => {
+      if (!window.google?.accounts?.id) {
+        toast({
+          title: 'Google sign-in unavailable',
+          description: 'Unable to load Google authentication at this time.',
+          variant: 'destructive',
+        });
+        return;
+      }
+
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredentialResponse,
+      });
+      googleInitialized.current = true;
+      setGoogleReady(true);
+    };
+
+    loadGoogleScript();
+  }, [toast]);
+
+  const handleGoogleCredentialResponse = async (response: any) => {
+    if (!response?.credential) {
+      toast({
+        title: 'Google sign-in failed',
+        description: 'No Google credential was returned.',
+        variant: 'destructive',
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    const { error } = await signInWithGoogle(response.credential);
+    setIsLoading(false);
+
+    if (!error) {
+      navigate('/admin/dashboard');
+    }
+  };
 
   const handleLogin = async (data: LoginFormData) => {
     setIsLoading(true);
@@ -52,24 +123,41 @@ export default function Auth() {
     setIsLoading(false);
     
     if (!error) {
-      navigate('/ticket-dashboard');
+      navigate('/admin/dashboard');
     }
   };
 
   const handleSignup = async (data: SignupFormData) => {
     setIsLoading(true);
-    const { error } = await signUp(data.email, data.password, data.fullName);
+    const { error } = await signUp(data.email, data.password);
     setIsLoading(false);
     
     if (!error) {
       signupForm.reset();
+      navigate('/admin/dashboard');
     }
   };
 
   const handleGoogleSignIn = async () => {
+    if (!GOOGLE_CLIENT_ID) {
+      toast({
+        title: 'Google sign-in unavailable',
+        description: 'No Google client ID is configured.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!googleReady || !window.google?.accounts?.id) {
+      toast({
+        title: 'Please wait',
+        description: 'Google authentication is still loading.',
+      });
+      return;
+    }
+
     setIsLoading(true);
-    await signInWithGoogle();
-    setIsLoading(false);
+    window.google.accounts.id.prompt();
   };
 
   return (
@@ -85,7 +173,7 @@ export default function Auth() {
             </Button>
           </div>
           <CardTitle>Welcome to Waks Digital</CardTitle>
-          <CardDescription>Sign in to manage your tickets</CardDescription>
+          <CardDescription>Sign in to access the admin dashboard</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="login" className="w-full">
@@ -191,19 +279,6 @@ export default function Auth() {
                       Or continue with email
                     </span>
                   </div>
-                </div>
-                <div>
-                  <Label htmlFor="signup-name">Full Name</Label>
-                  <Input
-                    id="signup-name"
-                    type="text"
-                    {...signupForm.register('fullName')}
-                  />
-                  {signupForm.formState.errors.fullName && (
-                    <p className="text-sm text-destructive mt-1">
-                      {signupForm.formState.errors.fullName.message}
-                    </p>
-                  )}
                 </div>
                 
                 <div>

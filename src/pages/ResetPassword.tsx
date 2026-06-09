@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,11 +19,14 @@ const resetPasswordSchema = z.object({
 });
 
 type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.location.origin;
 
 export default function ResetPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [hasSession, setHasSession] = useState(false);
+  const [hasValidToken, setHasValidToken] = useState(false);
+  const [tokenChecked, setTokenChecked] = useState(false);
+  const [resetToken, setResetToken] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -33,30 +35,70 @@ export default function ResetPassword() {
   });
 
   useEffect(() => {
-    // Check if user has a valid session from the reset link
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setHasSession(true);
-      } else {
+    const searchParams = new URLSearchParams(window.location.search);
+    const token = searchParams.get('token');
+
+    if (!token) {
+      toast({
+        title: 'Invalid or expired link',
+        description: 'Please request a new password reset link.',
+        variant: 'destructive',
+      });
+      setTimeout(() => navigate('/forgot-password'), 2000);
+      return;
+    }
+
+    setResetToken(token);
+
+    const verifyToken = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/auth/reset-password/verify?token=${encodeURIComponent(token)}`);
+        if (!response.ok) {
+          const body = await response.json();
+          throw new Error(body.error || 'Invalid or expired reset link');
+        }
+
+        setHasValidToken(true);
+      } catch (error: any) {
         toast({
           title: 'Invalid or expired link',
-          description: 'Please request a new password reset link.',
+          description: error.message || 'Please request a new password reset link.',
           variant: 'destructive',
         });
         setTimeout(() => navigate('/forgot-password'), 2000);
+      } finally {
+        setTokenChecked(true);
       }
-    });
+    };
+
+    verifyToken();
   }, [navigate, toast]);
 
   const handleSubmit = async (data: ResetPasswordFormData) => {
+    if (!resetToken) {
+      toast({
+        title: 'Invalid reset link',
+        description: 'Please request a new password reset link.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsLoading(true);
-    
+
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: data.password,
+      const response = await fetch(`${API_BASE_URL}/api/auth/reset-password/complete`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: resetToken, password: data.password }),
       });
 
-      if (error) throw error;
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.error || 'Failed to reset password');
+      }
 
       setSuccess(true);
       toast({
@@ -64,7 +106,6 @@ export default function ResetPassword() {
         description: 'Your password has been reset successfully.',
       });
 
-      // Redirect to login after 2 seconds
       setTimeout(() => navigate('/auth'), 2000);
     } catch (error: any) {
       toast({
@@ -77,7 +118,7 @@ export default function ResetPassword() {
     }
   };
 
-  if (!hasSession) {
+  if (!tokenChecked || !hasValidToken) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <Card className="w-full max-w-md">

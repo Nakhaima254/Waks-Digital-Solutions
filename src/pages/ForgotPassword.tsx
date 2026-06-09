@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,6 +15,7 @@ const forgotPasswordSchema = z.object({
 });
 
 type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.location.origin;
 
 export default function ForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,27 +28,20 @@ export default function ForgotPassword() {
 
   const handleSubmit = async (data: ForgotPasswordFormData) => {
     setIsLoading(true);
-    
+
     try {
       const redirectUrl = `${window.location.origin}/reset-password`;
-      
-      const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
-        redirectTo: redirectUrl,
+      const response = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: data.email, redirect_url: redirectUrl }),
       });
 
-      if (error) throw error;
-
-      // Send custom email via edge function
-      try {
-        await supabase.functions.invoke('send-password-reset', {
-          body: {
-            email: data.email,
-            resetLink: redirectUrl,
-          },
-        });
-      } catch (emailError) {
-        console.error('Error sending custom email:', emailError);
-        // Continue anyway as Supabase will send its own email
+      if (!response.ok) {
+        const body = await response.json();
+        throw new Error(body.error || 'Failed to send reset email');
       }
 
       setEmailSent(true);
