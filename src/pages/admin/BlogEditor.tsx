@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,25 +11,51 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Switch } from '@/components/ui/switch';
+import { ArrowLeft, Loader2 } from 'lucide-react';
+import axios from 'axios';
+
+const API_BASE_URL = (() => {
+  const envUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  const productionFallback = 'https://api.waksdigital.co.ke';
+  if (import.meta.env.PROD) {
+    return envUrl && !/localhost|127\.0\.0\.1/i.test(envUrl)
+      ? envUrl
+      : productionFallback;
+  }
+  return envUrl || 'http://localhost:3000';
+})();
 
 const blogSchema = z.object({
   title: z.string().min(5, 'Title must be at least 5 characters'),
   slug: z.string().min(3, 'Slug must be at least 3 characters').regex(/^[a-z0-9-]+$/, 'Slug must be lowercase with hyphens'),
-  category: z.string().min(1, 'Category is required'),
+  category: z.string().optional(),
   excerpt: z.string().min(20, 'Excerpt must be at least 20 characters'),
   content: z.string().min(50, 'Content must be at least 50 characters'),
-  image: z.string().url('Must be a valid URL').optional().or(z.literal('')),
-  readTime: z.string().default('5 min read'),
-  published: z.boolean().default(false),
+  featured_image: z.string().url('Must be a valid URL').optional().or(z.literal('')),
+  author: z.string().min(2, 'Author is required'),
+  tags: z.string().optional(),
+  status: z.enum(['draft', 'published']).default('draft'),
 });
 
 type BlogFormData = z.infer<typeof blogSchema>;
 
+const CATEGORIES = [
+  'Web Development',
+  'Web Design',
+  'SEO',
+  'E-commerce',
+  'Digital Marketing',
+  'Mobile Development',
+  'Technology',
+  'Business',
+  'Other'
+];
+
 export default function BlogEditor() {
   const { id } = useParams();
-  const { isAdmin, loading, user } = useAuth();
+  const { isAdmin, loading } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFetching, setIsFetching] = useState(!!id);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -42,9 +67,18 @@ export default function BlogEditor() {
       category: '',
       excerpt: '',
       content: '',
-      image: '',
-      readTime: '5 min read',
-      published: false,
+      featured_image: '',
+      author: '',
+      tags: '',
+      status: 'draft',
+    },
+  });
+
+  const apiClient = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('waks-auth-token')}`,
     },
   });
 
@@ -55,101 +89,65 @@ export default function BlogEditor() {
   }, [isAdmin, loading, navigate]);
 
   useEffect(() => {
-    if (id && isAdmin) {
+    if (id) {
       fetchPost();
     }
-  }, [id, isAdmin]);
+  }, [id]);
 
   const fetchPost = async () => {
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-      if (error) throw error;
-
+      const response = await apiClient.get(`/api/blog_posts/${id}`);
+      const post = response.data;
       form.reset({
-        title: data.title,
-        slug: data.slug,
-        category: data.category,
-        excerpt: data.excerpt,
-        content: data.content,
-        image: data.image || '',
-        readTime: data.read_time,
-        published: data.published,
+        title: post.title,
+        slug: post.slug,
+        category: post.category || '',
+        excerpt: post.excerpt || '',
+        content: post.content,
+        featured_image: post.featured_image || '',
+        author: post.author || '',
+        tags: post.tags ? post.tags.split(',').join(', ') : '',
+        status: post.status || 'draft',
       });
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error.response?.data?.error || 'Failed to fetch post',
         variant: 'destructive',
       });
+      navigate('/admin/dashboard');
+    } finally {
+      setIsFetching(false);
     }
   };
 
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  };
-
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const title = e.target.value;
-    form.setValue('title', title);
-    if (!id) {
-      form.setValue('slug', generateSlug(title));
-    }
-  };
-
-  const handleSubmit = async (data: BlogFormData) => {
+  const onSubmit = async (data: BlogFormData) => {
     setIsSubmitting(true);
-    
     try {
       const postData = {
-        title: data.title,
-        slug: data.slug,
-        category: data.category,
-        excerpt: data.excerpt,
-        content: data.content,
-        image: data.image || null,
-        read_time: data.readTime,
-        published: data.published,
-        author_id: user?.id,
+        ...data,
+        tags: data.tags ? data.tags.split(',').map(t => t.trim()).join(',') : null,
+        published_at: data.status === 'published' ? new Date().toISOString() : null,
       };
 
       if (id) {
-        const { error } = await supabase
-          .from('blog_posts')
-          .update(postData)
-          .eq('id', id);
-
-        if (error) throw error;
-        
+        await apiClient.put(`/api/blog_posts/${id}`, postData);
         toast({
           title: 'Success',
-          description: 'Post updated successfully',
+          description: 'Blog post updated',
         });
       } else {
-        const { error } = await supabase
-          .from('blog_posts')
-          .insert([postData]);
-
-        if (error) throw error;
-        
+        await apiClient.post('/api/blog_posts', postData);
         toast({
           title: 'Success',
-          description: 'Post created successfully',
+          description: 'Blog post created',
         });
       }
-
       navigate('/admin/dashboard');
     } catch (error: any) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error.response?.data?.error || 'Failed to save post',
         variant: 'destructive',
       });
     } finally {
@@ -157,142 +155,179 @@ export default function BlogEditor() {
     }
   };
 
-  if (loading || !isAdmin) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (loading || isFetching) {
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>{id ? 'Edit Blog Post' : 'Create New Blog Post'}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-            <div>
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                {...form.register('title')}
-                onChange={handleTitleChange}
-              />
-              {form.formState.errors.title && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.title.message}
-                </p>
-              )}
-            </div>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 py-6 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" asChild>
+              <Link to="/admin/dashboard">
+                <ArrowLeft className="h-5 w-5" />
+              </Link>
+            </Button>
+            <h1 className="text-3xl font-bold">{id ? 'Edit Blog Post' : 'New Blog Post'}</h1>
+          </div>
+        </div>
+      </div>
 
-            <div>
-              <Label htmlFor="slug">Slug (URL)</Label>
-              <Input id="slug" {...form.register('slug')} />
-              {form.formState.errors.slug && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.slug.message}
-                </p>
-              )}
-            </div>
+      {/* Content */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Post Details</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              {/* Title */}
+              <div>
+                <Label htmlFor="title">Title</Label>
+                <Input
+                  id="title"
+                  {...form.register('title')}
+                  className="mt-1"
+                />
+                {form.formState.errors.title && (
+                  <p className="text-sm text-destructive mt-1">{form.formState.errors.title.message}</p>
+                )}
+              </div>
 
-            <div>
-              <Label htmlFor="category">Category</Label>
-              <Select
-                value={form.watch('category')}
-                onValueChange={(value) => form.setValue('category', value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="AI News">AI News</SelectItem>
-                  <SelectItem value="Industry News">Industry News</SelectItem>
-                  <SelectItem value="Marketing">Marketing</SelectItem>
-                  <SelectItem value="Web Development">Web Development</SelectItem>
-                  <SelectItem value="E-commerce">E-commerce</SelectItem>
-                </SelectContent>
-              </Select>
-              {form.formState.errors.category && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.category.message}
-                </p>
-              )}
-            </div>
+              {/* Slug */}
+              <div>
+                <Label htmlFor="slug">Slug</Label>
+                <Input
+                  id="slug"
+                  {...form.register('slug')}
+                  className="mt-1"
+                  placeholder="my-post-title"
+                />
+                {form.formState.errors.slug && (
+                  <p className="text-sm text-destructive mt-1">{form.formState.errors.slug.message}</p>
+                )}
+              </div>
 
-            <div>
-              <Label htmlFor="excerpt">Excerpt</Label>
-              <Textarea
-                id="excerpt"
-                rows={3}
-                {...form.register('excerpt')}
-              />
-              {form.formState.errors.excerpt && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.excerpt.message}
-                </p>
-              )}
-            </div>
+              {/* Author & Category */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="author">Author</Label>
+                  <Input
+                    id="author"
+                    {...form.register('author')}
+                    className="mt-1"
+                  />
+                  {form.formState.errors.author && (
+                    <p className="text-sm text-destructive mt-1">{form.formState.errors.author.message}</p>
+                  )}
+                </div>
+                <div>
+                  <Label htmlFor="category">Category</Label>
+                  <Select value={form.watch('category')} onValueChange={(value) => form.setValue('category', value)}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {CATEGORIES.map((cat) => (
+                        <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
 
-            <div>
-              <Label htmlFor="content">Content (Markdown supported)</Label>
-              <Textarea
-                id="content"
-                rows={15}
-                {...form.register('content')}
-              />
-              {form.formState.errors.content && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.content.message}
-                </p>
-              )}
-            </div>
+              {/* Excerpt */}
+              <div>
+                <Label htmlFor="excerpt">Excerpt</Label>
+                <Textarea
+                  id="excerpt"
+                  {...form.register('excerpt')}
+                  className="mt-1 min-h-24"
+                  placeholder="Brief summary of the post"
+                />
+                {form.formState.errors.excerpt && (
+                  <p className="text-sm text-destructive mt-1">{form.formState.errors.excerpt.message}</p>
+                )}
+              </div>
 
-            <div>
-              <Label htmlFor="image">Featured Image URL</Label>
-              <Input
-                id="image"
-                type="url"
-                placeholder="https://example.com/image.jpg"
-                {...form.register('image')}
-              />
-              {form.formState.errors.image && (
-                <p className="text-sm text-destructive mt-1">
-                  {form.formState.errors.image.message}
-                </p>
-              )}
-            </div>
+              {/* Content */}
+              <div>
+                <Label htmlFor="content">Content</Label>
+                <Textarea
+                  id="content"
+                  {...form.register('content')}
+                  className="mt-1 min-h-96 font-mono text-sm"
+                  placeholder="Write your post content here..."
+                />
+                {form.formState.errors.content && (
+                  <p className="text-sm text-destructive mt-1">{form.formState.errors.content.message}</p>
+                )}
+              </div>
 
-            <div>
-              <Label htmlFor="readTime">Read Time</Label>
-              <Input
-                id="readTime"
-                placeholder="5 min read"
-                {...form.register('readTime')}
-              />
-            </div>
+              {/* Featured Image */}
+              <div>
+                <Label htmlFor="featured_image">Featured Image URL</Label>
+                <Input
+                  id="featured_image"
+                  {...form.register('featured_image')}
+                  className="mt-1"
+                  type="url"
+                  placeholder="https://example.com/image.jpg"
+                />
+                {form.formState.errors.featured_image && (
+                  <p className="text-sm text-destructive mt-1">{form.formState.errors.featured_image.message}</p>
+                )}
+              </div>
 
-            <div className="flex items-center space-x-2">
-              <Switch
-                id="published"
-                checked={form.watch('published')}
-                onCheckedChange={(checked) => form.setValue('published', checked)}
-              />
-              <Label htmlFor="published">Publish immediately</Label>
-            </div>
+              {/* Tags */}
+              <div>
+                <Label htmlFor="tags">Tags (comma-separated)</Label>
+                <Input
+                  id="tags"
+                  {...form.register('tags')}
+                  className="mt-1"
+                  placeholder="web development, design, tutorial"
+                />
+              </div>
 
-            <div className="flex gap-4">
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : id ? 'Update Post' : 'Create Post'}
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => navigate('/admin/dashboard')}
-              >
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+              {/* Status */}
+              <div>
+                <Label htmlFor="status">Status</Label>
+                <Select value={form.watch('status')} onValueChange={(value: any) => form.setValue('status', value)}>
+                  <SelectTrigger className="mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="draft">Draft</SelectItem>
+                    <SelectItem value="published">Published</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-4">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex-1"
+                >
+                  {isSubmitting && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+                  {isSubmitting ? 'Saving...' : id ? 'Update Post' : 'Create Post'}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  asChild
+                >
+                  <Link to="/admin/dashboard">Cancel</Link>
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

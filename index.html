@@ -8,12 +8,15 @@
     <meta name="author" content="Waks Digital Solutions" />
     <meta name="keywords" content="web development Nairobi, website design Kenya, WordPress development, e-commerce Kenya, digital marketing, SME websites" />
 
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="google0043f69c142e7c2d.html" />
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Waks Digital Solutions - Your Digital Growth Partner" />
     <meta property="og:description" content="We build websites that grow your business. Professional web development for Kenyan SMEs." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://waksdigital.co.ke" />
-    <meta property="og:image" content="https://waksdigital.co.ke/og-image.jpg" />
+    <meta property="og:url" content="https://www.waksdigital.co.ke" />
+    <meta property="og:image" content="https://www.waksdigital.co.ke/og-image.jpg" />
     <meta property="og:site_name" content="Waks Digital Solutions" />
     <meta property="og:locale" content="en_KE" />
 
@@ -21,21 +24,28 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Waks Digital Solutions - Your Digital Growth Partner" />
     <meta name="twitter:description" content="We build websites that grow your business. Professional web development for Kenyan SMEs." />
-    <meta name="twitter:image" content="https://waksdigital.co.ke/og-image.jpg" />
+    <meta name="twitter:image" content="https://www.waksdigital.co.ke/og-image.jpg" />
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" />
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <!-- Favicon - Dynamic based on theme -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="android-chrome" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="android-chrome" sizes="512x512" href="/android-chrome-512x512.png" />
+    <meta name="msapplication-TileColor" content="#ff7c1f" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
     <meta name="theme-color" content="#ff7c1f" />
     <link rel="manifest" href="/manifest.json" />
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://waksdigital.co.ke" />
+    <link rel="canonical" href="https://www.waksdigital.co.ke" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -44,8 +54,8 @@
       "@type": "Organization",
       "name": "Waks Digital Solutions",
       "description": "Professional web development and design services for small to medium businesses in Nairobi, Kenya",
-      "url": "https://waksdigital.co.ke",
-      "logo": "https://waksdigital.co.ke/logo.png",
+      "url": "https://www.waksdigital.co.ke",
+      "logo": "https://www.waksdigital.co.ke/logo.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Nairobi",
@@ -63,6 +73,14 @@
         "https://linkedin.com/company/waksdigital"
       ]
     }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHNTDD7CVJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} 
+      gtag('js', new Date());
+      gtag('config', 'G-SHNTDD7CVJ');
     </script>
   </head>
 
@@ -83,17 +101,46 @@
     </style>
     <script>
       (function(){
-        var d=document.documentElement.classList.contains('dark');
-        if(!d){var s=localStorage.getItem('theme');d=s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches);}
         var loader=document.getElementById('app-loader');
         var logo=document.getElementById('loader-logo');
         var txt=document.getElementById('loader-text');
-        loader.style.background=d?'#0a0a0a':'#ffffff';
-        logo.src=d?'/Waks Tech-06.svg':'/Waks Tech-05.svg';
-        txt.style.color=d?'#ffffff':'#0a0a0a';
+        loader.style.background='#ffffff';
+        logo.src='/apple-touch-icon.png';
+        txt.style.color='#0a0a0a';
       })();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- SPA navigation tracking: ensures gtag records page_view on client-side route changes -->
+    <script>
+      (function () {
+        function sendPageView(path) {
+          if (typeof gtag === 'function') {
+            gtag('config', 'G-SHNTDD7CVJ', { page_path: path });
+          }
+        }
+
+        // initial page view
+        sendPageView(window.location.pathname + window.location.search);
+
+        // patch history.pushState and replaceState to capture SPA navigations
+        const _pushState = history.pushState;
+        history.pushState = function () {
+          _pushState.apply(this, arguments);
+          setTimeout(() => sendPageView(window.location.pathname + window.location.search), 0);
+        };
+
+        const _replaceState = history.replaceState;
+        history.replaceState = function () {
+          _replaceState.apply(this, arguments);
+          setTimeout(() => sendPageView(window.location.pathname + window.location.search), 0);
+        };
+
+        // back/forward
+        window.addEventListener('popstate', function () {
+          sendPageView(window.location.pathname + window.location.search);
+        });
+      })();
+    </script>
   </body>
 </html>

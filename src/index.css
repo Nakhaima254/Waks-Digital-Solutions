@@ -86,48 +86,7 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    /* Dark mode - Professional but not fully dark for better readability */
-    --background: 215 25% 8%;
-    --foreground: 0 0% 95%;
 
-    --card: 215 25% 12%;
-    --card-foreground: 0 0% 95%;
-    --surface-elevated: 215 25% 15%;
-
-    --popover: 215 25% 12%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 22 100% 52%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 22 100% 45%;
-
-    --secondary: 215 15% 25%;
-    --secondary-foreground: 0 0% 95%;
-    --secondary-light: 215 15% 20%;
-
-    --accent: 22 100% 52%;
-    --accent-foreground: 0 0% 100%;
-    --accent-hover: 22 100% 45%;
-    --accent-light: 22 100% 15%;
-
-    --muted: 215 15% 20%;
-    --muted-foreground: 215 15% 65%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --success: 120 60% 55%;
-    --success-foreground: 0 0% 100%;
-
-    --border: 215 15% 25%;
-    --input: 215 15% 22%;
-    --ring: 22 100% 52%;
-
-    /* Hero backgrounds - flat colors */
-    --hero-bg: 215 25% 12%;
-    --hero-bg-alt: 215 25% 18%;
-  }
 }
 
 @layer base {

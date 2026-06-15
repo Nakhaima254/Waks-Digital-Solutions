@@ -5,7 +5,7 @@ import { Plus, MessageCircle, X, Send, Bot, Trash2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/integrations/api/client";
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -150,18 +150,14 @@ const FloatingActions = () => {
         }));
       
       chatHistory.push({ role: "user", content: messageText });
-
-      const { data, error } = await supabase.functions.invoke("chatbot", {
-        body: { messages: chatHistory }
-      });
-
-      if (error) throw error;
+      
+      const response = await api.sendChat(chatHistory);
 
       const botMessage: Message = {
         id: messages.length + 2,
-        text: data.content || "I apologize, I couldn't process that request.",
+        text: response.data.content || "I apologize, I couldn't process that request.",
         isBot: true,
-        quickReplies: data.quickReplies || []
+        quickReplies: response.data.quickReplies || []
       };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {

@@ -34,7 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 import FloatingElements from "@/components/FloatingElements";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/integrations/api/client";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -49,13 +49,14 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const { data } = await supabase
-        .from("recent_projects")
-        .select("*")
-        .eq("published", true)
-        .order("display_order", { ascending: true })
-        .limit(6);
-      if (data && data.length > 0) setDbProjects(data);
+      try {
+        const response = await api.getProjects();
+        if (response.data && response.data.length > 0) {
+          setDbProjects(response.data.filter((p: any) => p.published));
+        }
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      }
     };
     fetchProjects();
   }, []);
@@ -207,7 +208,7 @@ const Home = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-primary/90 dark:bg-background/90"></div>
+          <div className="absolute inset-0 bg-primary/90"></div>
         </div>
         
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -292,7 +293,7 @@ const Home = () => {
                         whileHover={{ rotate: 360, scale: 1.1 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <service.icon className="h-8 w-8 text-white dark:text-background" />
+                        <service.icon className="h-8 w-8 text-white" />
                       </motion.div>
                       <div className="space-y-3">
                         <h3 className="text-xl font-semibold text-primary">{service.title}</h3>

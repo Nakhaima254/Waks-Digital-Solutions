@@ -14,7 +14,7 @@ import {
   FolderOpen
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/integrations/api/client";
 import portfolioHeroImage from "@/assets/portfolio-hero.jpg";
 import projectAimoTravel from "@/assets/project-aimo-travel.jpg";
 import projectJavinnaSafaris from "@/assets/project-safari-lodge.jpg";
@@ -34,12 +34,12 @@ const Portfolio = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const { data } = await supabase
-        .from("recent_projects")
-        .select("*")
-        .eq("published", true)
-        .order("display_order", { ascending: true });
-      if (data) setDbProjects(data);
+      try {
+        const response = await api.getProjects();
+        if (response.data) setDbProjects(response.data);
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      }
     };
     fetchProjects();
   }, []);

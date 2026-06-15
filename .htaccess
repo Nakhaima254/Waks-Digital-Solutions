@@ -1,0 +1,36 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home1/jahaziso/api.waksdigital.co.ke/api"
+PassengerBaseURI "/"
+PassengerNodejs "/home1/jahaziso/nodevenv/api.waksdigital.co.ke/api/20/bin/node"
+PassengerAppType node
+PassengerStartupFile server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+
+# Disable directory listing
+Options -Indexes
+
+# Passenger configuration (cPanel Node.js Selector)
+PassengerBaseEnvVar NODE_ENV production
+
+# ============ CORS HANDLING ============
+<IfModule mod_headers.c>
+  # Remove any existing CORS headers from Node.js first
+  Header always unset Access-Control-Allow-Origin
+  Header always unset Access-Control-Allow-Methods
+  Header always unset Access-Control-Allow-Headers
+  Header always unset Access-Control-Allow-Credentials
+
+  # Set CORS for both www and non-www
+  SetEnvIf Origin "^https://(www\.)?waksdigital\.co\.ke$" CORS_ORIGIN=$0
+  Header always set Access-Control-Allow-Origin "%{CORS_ORIGIN}e" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Headers "Content-Type, Authorization, Accept, Origin" env=CORS_ORIGIN
+  Header always set Access-Control-Allow-Credentials "true" env=CORS_ORIGIN
+  Header always set Access-Control-Max-Age "3600" env=CORS_ORIGIN
+</IfModule>
+
+# Handle OPTIONS preflight requests directly in Apache
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteCond %{HTTP_ORIGIN} "^https://(www\.)?waksdigital\.co\.ke$" [NC]
+RewriteRule ^ - [R=204,L]

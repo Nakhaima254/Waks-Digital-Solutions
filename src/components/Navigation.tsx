@@ -2,10 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Code, ShoppingCart, Search, PenTool, Wrench, Mail, Phone, MapPin, FileText, Briefcase, HelpCircle, Shield, Lock, Sparkles, ArrowRight, Star, Zap, Gift, ChevronLeft, ChevronRight, TreePine, Rocket, Package, Flame, Smartphone, CreditCard, Clock, Layers, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
 import LogoLight from "@/assets/Waks Tech-03.svg";
-import LogoDark from "/Waks Tech-04.png";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,7 +21,6 @@ const Navigation = () => {
   const [mobileSupportOpen, setMobileSupportOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const { theme } = useTheme();
 
   const handleClose = () => {
     setIsClosing(true);
@@ -297,7 +293,7 @@ const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src={theme === "dark" ? LogoDark : LogoLight}
+                src={LogoLight}
                 alt="Waks Digital Partner Logo"
                 className={cn(
                   "w-auto transition-all duration-300",
@@ -601,9 +597,8 @@ const Navigation = () => {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 </NavigationMenuList>
-              </NavigationMenu>
+</NavigationMenu>
 
-              <ThemeToggle />
               <Button variant="hero" size="sm" asChild className="ml-2">
                 <Link to="/contact">Get Started</Link>
               </Button>
@@ -611,8 +606,7 @@ const Navigation = () => {
 
             {/* Mobile menu button */}
             <div className="md:hidden flex items-center space-x-2">
-              <ThemeToggle />
-            <Button
+              <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => isOpen ? handleClose() : setIsOpen(true)}
@@ -645,7 +639,7 @@ const Navigation = () => {
             <div className="flex items-center justify-between px-4 py-4 border-b border-border">
               <Link to="/" onClick={handleClose}>
                 <img
-                  src={theme === "dark" ? LogoDark : LogoLight}
+                  src={LogoLight}
                   alt="Waks Digital Partner Logo"
                   className="h-10 w-auto"
                 />

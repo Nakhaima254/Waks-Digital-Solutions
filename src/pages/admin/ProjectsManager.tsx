@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { api } from "@/integrations/api/client";
 import { Trash2, Plus, Edit2, Save, X, Upload, Image } from "lucide-react";
 
 interface Project {
@@ -15,11 +15,12 @@ interface Project {
   title: string;
   category: string;
   description: string;
-  image_url: string | null;
-  website_url: string | null;
+  image: string | null;
+  link: string | null;
   technologies: string[];
   published: boolean;
-  display_order: number;
+  featured: boolean;
+  created_at: string;
 }
 
 const ProjectsManager = () => {
@@ -36,21 +37,17 @@ const ProjectsManager = () => {
     category: "",
     description: "",
     image_url: "",
-    website_url: "",
+    link_url: "",
     technologies: "",
     published: false,
-    display_order: 0,
   });
 
   const fetchProjects = async () => {
-    const { data, error } = await supabase
-      .from("recent_projects")
-      .select("*")
-      .order("display_order", { ascending: true });
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
-      setProjects(data || []);
+    try {
+      const response = await api.getProjects();
+      setProjects(response.data || []);
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Failed to fetch projects", variant: "destructive" });
     }
     setLoading(false);
   };
@@ -58,7 +55,7 @@ const ProjectsManager = () => {
   useEffect(() => { fetchProjects(); }, []);
 
   const resetForm = () => {
-    setForm({ title: "", category: "", description: "", image_url: "", website_url: "", technologies: "", published: false, display_order: 0 });
+    setForm({ title: "", category: "", description: "", image_url: "", link_url: "", technologies: "", published: false });
     setEditingId(null);
     setShowForm(false);
     setImagePreview(null);
@@ -69,14 +66,13 @@ const ProjectsManager = () => {
       title: project.title,
       category: project.category,
       description: project.description,
-      image_url: project.image_url || "",
-      website_url: project.website_url || "",
+      image_url: project.image || "",
+      link_url: project.link || "",
       technologies: project.technologies.join(", "),
       published: project.published,
-      display_order: project.display_order,
     });
     setEditingId(project.id);
-    setImagePreview(project.image_url || null);
+    setImagePreview(project.image || null);
     setShowForm(true);
   };
 
@@ -98,24 +94,15 @@ const ProjectsManager = () => {
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
 
-    const { error } = await supabase.storage
-      .from("project-images")
-      .upload(fileName, file);
-
-    if (error) {
-      toast({ title: "Upload failed", description: error.message, variant: "destructive" });
+    const reader = new FileReader();
+    reader.onload = () => {
+      const imageUrl = reader.result as string;
+      setForm({ ...form, image_url: imageUrl });
+      setImagePreview(imageUrl);
       setUploading(false);
-      return;
-    }
-
-    const { data: urlData } = supabase.storage
-      .from("project-images")
-      .getPublicUrl(fileName);
-
-    setForm({ ...form, image_url: urlData.publicUrl });
-    setImagePreview(urlData.publicUrl);
-    setUploading(false);
-    toast({ title: "Uploaded!", description: "Image uploaded successfully" });
+      toast({ title: "Uploaded!", description: "Image ready (base64)" });
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async () => {
@@ -128,40 +115,36 @@ const ProjectsManager = () => {
       title: form.title,
       category: form.category,
       description: form.description,
-      image_url: form.image_url || null,
-      website_url: form.website_url || null,
+      image: form.image_url || null,
+      link: form.link_url || null,
       technologies: form.technologies.split(",").map(t => t.trim()).filter(Boolean),
       published: form.published,
-      display_order: form.display_order,
+      featured: form.published,
     };
 
-    if (editingId) {
-      const { error } = await supabase.from("recent_projects").update(payload).eq("id", editingId);
-      if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
-        return;
+    try {
+      if (editingId) {
+        await api.updateProject(editingId, payload);
+        toast({ title: "Updated!", description: "Project updated successfully" });
+      } else {
+        await api.createProject(payload);
+        toast({ title: "Added!", description: "Project added successfully" });
       }
-      toast({ title: "Updated!", description: "Project updated successfully" });
-    } else {
-      const { error } = await supabase.from("recent_projects").insert(payload);
-      if (error) {
-        toast({ title: "Error", description: error.message, variant: "destructive" });
-        return;
-      }
-      toast({ title: "Added!", description: "Project added successfully" });
+      resetForm();
+      fetchProjects();
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Failed to save project", variant: "destructive" });
     }
-    resetForm();
-    fetchProjects();
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this project?")) return;
-    const { error } = await supabase.from("recent_projects").delete().eq("id", id);
-    if (error) {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
+    try {
+      await api.deleteProject(id);
       toast({ title: "Deleted", description: "Project removed" });
       fetchProjects();
+    } catch (err: any) {
+      toast({ title: "Error", description: err.message || "Failed to delete project", variant: "destructive" });
     }
   };
 
@@ -240,18 +223,12 @@ const ProjectsManager = () => {
               </div>
               <div className="space-y-2">
                 <Label>Website URL</Label>
-                <Input value={form.website_url} onChange={e => setForm({ ...form, website_url: e.target.value })} placeholder="https://..." />
+                <Input value={form.link_url} onChange={e => setForm({ ...form, link_url: e.target.value })} placeholder="https://..." />
               </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>Technologies (comma-separated)</Label>
-                <Input value={form.technologies} onChange={e => setForm({ ...form, technologies: e.target.value })} placeholder="WordPress, React, SEO" />
-              </div>
-              <div className="space-y-2">
-                <Label>Display Order</Label>
-                <Input type="number" value={form.display_order} onChange={e => setForm({ ...form, display_order: parseInt(e.target.value) || 0 })} />
-              </div>
+            <div className="space-y-2">
+              <Label>Technologies (comma-separated)</Label>
+              <Input value={form.technologies} onChange={e => setForm({ ...form, technologies: e.target.value })} placeholder="WordPress, React, SEO" />
             </div>
             <div className="flex items-center space-x-2">
               <Switch checked={form.published} onCheckedChange={checked => setForm({ ...form, published: checked })} />
@@ -277,8 +254,8 @@ const ProjectsManager = () => {
             {projects.map(project => (
               <Card key={project.id} className="p-4 flex items-center justify-between">
                 <div className="flex items-center gap-4 flex-1">
-                  {project.image_url && (
-                    <img src={project.image_url} alt={project.title} className="w-16 h-16 rounded-lg object-cover" />
+                  {project.image && (
+                    <img src={project.image} alt={project.title} className="w-16 h-16 rounded-lg object-cover" />
                   )}
                   <div className="space-y-1 flex-1">
                     <div className="flex items-center gap-2">

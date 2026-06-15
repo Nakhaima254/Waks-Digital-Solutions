@@ -1,0 +1,15 @@
+# Disable directory listing
+Options -Indexes
+
+# CORS headers for API - allow both www and non-www
+<IfModule mod_headers.c>
+  Header always set Access-Control-Allow-Origin "https://www.waksdigital.co.ke"
+  Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+  Header always set Access-Control-Allow-Headers "Content-Type, Authorization, Accept, Origin"
+  Header always set Access-Control-Allow-Credentials "true"
+  Header always set Access-Control-Max-Age "3600"
+</IfModule>
+
+# Passenger configuration (cPanel Node.js Selector)
+PassengerBaseEnvVar NODE_ENV production
+PassengerNodejs /usr/bin/node
