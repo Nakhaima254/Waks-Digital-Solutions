@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import servicesHeroImage from "@/assets/services-hero.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 const Services = () => {
   const mainServices = [
@@ -121,6 +122,10 @@ const Services = () => {
 
   return (
     <div className="min-h-screen pt-16">
+      <SEO
+        title="Web Development, Design & SEO Services"
+        description="Custom web development, WordPress design, e-commerce, SEO, copywriting and ongoing maintenance for businesses across Kenya and East Africa."
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-muted overflow-hidden">
         <div className="absolute inset-0">

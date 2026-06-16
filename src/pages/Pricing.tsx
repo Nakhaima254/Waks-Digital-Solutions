@@ -13,6 +13,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import SEO from "@/components/SEO";
 
 const Pricing = () => {
   const [currency, setCurrency] = useState<string>("KSH");
@@ -123,6 +124,10 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen pt-16">
+      <SEO
+        title="Transparent Pricing for Websites & Digital Services"
+        description="Simple, transparent pricing for web development, WordPress, e-commerce, SEO, copywriting and maintenance plans tailored for Kenyan SMEs."
+      />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

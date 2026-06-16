@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import aboutTeamImage from "@/assets/about-team.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 const About = () => {
   const skills = [
@@ -76,6 +77,10 @@ const About = () => {
 
   return (
     <div className="min-h-screen pt-16">
+      <SEO
+        title="About Waks Digital Solutions"
+        description="Meet the Nairobi-based team behind Waks Digital Solutions — passionate designers and developers building websites that grow Kenyan businesses."
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">

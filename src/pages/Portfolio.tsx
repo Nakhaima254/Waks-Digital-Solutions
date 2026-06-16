@@ -27,6 +27,7 @@ import projectBayaSolutions from "@/assets/project-baya-solutions.jpg";
 import projectCorey from "@/assets/project-corey.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 type SortOption = "newest" | "oldest" | "category";
 
@@ -336,6 +337,10 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen pt-16">
+      <SEO
+        title="Our Work & Recent Projects"
+        description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">

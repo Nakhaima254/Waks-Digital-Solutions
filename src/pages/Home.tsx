@@ -35,6 +35,7 @@ import FloatingElements from "@/components/FloatingElements";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 import { api } from "@/integrations/api/client";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -201,6 +202,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Web Development & Design Agency in Nairobi"
+        description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <FloatingElements density="high" color="primary" />
