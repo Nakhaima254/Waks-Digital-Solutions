@@ -536,6 +536,12 @@ const Home = () => {
               </form>
             </Form>
           </Card>
+          <div className="mt-8 flex justify-center">
+            <ShareButtons
+              title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
+              description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+            />
+          </div>
         </div>
       </section>
     </div>
