@@ -28,6 +28,7 @@ import projectCorey from "@/assets/project-corey.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
+import ShareButtons from "@/components/ShareButtons";
 
 type SortOption = "newest" | "oldest" | "category";
 
@@ -340,6 +341,7 @@ const Portfolio = () => {
       <SEO
         title="Our Work & Recent Projects"
         description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
+        image="/portfolio-hero.jpg"
       />
       {/* Hero Section */}
       <section className="relative py-20 bg-primary overflow-hidden">
@@ -562,6 +564,12 @@ const Portfolio = () => {
               <Button variant="outline" size="hero" asChild>
                 <Link to="/services">View Our Services</Link>
               </Button>
+            </div>
+            <div className="flex justify-center">
+              <ShareButtons
+                title="Our Work & Recent Projects - Waks Digital Solutions"
+                description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
+              />
             </div>
           </div>
         </div>

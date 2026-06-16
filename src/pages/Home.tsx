@@ -36,6 +36,7 @@ import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/com
 import { motion } from "framer-motion";
 import { api } from "@/integrations/api/client";
 import SEO from "@/components/SEO";
+import ShareButtons from "@/components/ShareButtons";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -205,6 +206,7 @@ const Home = () => {
       <SEO
         title="Web Development & Design Agency in Nairobi"
         description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+        image="/hero-image.jpg"
       />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -534,6 +536,12 @@ const Home = () => {
               </form>
             </Form>
           </Card>
+          <div className="mt-8 flex justify-center">
+            <ShareButtons
+              title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
+              description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+            />
+          </div>
         </div>
       </section>
     </div>
