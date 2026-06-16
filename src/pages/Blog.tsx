@@ -65,6 +65,7 @@ import aiHealthcareImage from "@/assets/blog-ai-healthcare-kenya.jpg";
 import aiEthicsImage from "@/assets/blog-ai-ethics-privacy.jpg";
 import aiMarketingImage from "@/assets/blog-ai-marketing-automation.jpg";
 import predictiveAnalyticsImage from "@/assets/blog-predictive-analytics-ecommerce.jpg";
+import SEO from "@/components/SEO";
 
 const Blog = () => {
   const [searchParams] = useSearchParams();
@@ -694,6 +695,10 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+      <SEO
+        title="Blog — Web, SEO & Digital Insights for Kenyan SMEs"
+        description="Practical guides, tutorials and insights on web development, SEO, e-commerce, AI and digital marketing for Kenyan business owners."
+      />
       {/* Hero Section */}
       <div className="bg-primary text-primary-foreground py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

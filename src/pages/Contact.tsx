@@ -48,6 +48,7 @@ import { useState, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(100, "First name must be less than 100 characters"),
@@ -199,6 +200,10 @@ ${data.message}
 
   return (
     <div className="min-h-screen pt-16">
+      <SEO
+        title="Contact Waks Digital Solutions"
+        description="Get in touch with Waks Digital Solutions for a free web project consultation. Based in Nairobi, Kenya — we respond within 1 business day."
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0">
