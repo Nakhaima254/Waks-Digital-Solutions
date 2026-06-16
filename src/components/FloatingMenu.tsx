@@ -23,7 +23,7 @@ const FloatingMenu = () => {
   };
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout: ReturnType<typeof setTimeout>;
     
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;

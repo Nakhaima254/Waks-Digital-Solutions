@@ -23,6 +23,8 @@ import projectQuietWaters from "@/assets/project-quiet-waters.jpg";
 import projectTruechoice from "@/assets/project-truechoice.jpg";
 import projectJahaziSolutions from "@/assets/project-jahazi-solutions.jpg";
 import projectRoyalGraphics from "@/assets/project-royal-graphics.jpg";
+import projectBayaSolutions from "@/assets/project-baya-solutions.jpg";
+import projectCorey from "@/assets/project-corey.jpg";
 import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/components/AnimatedElement";
 import { motion } from "framer-motion";
 
@@ -232,6 +234,60 @@ const Portfolio = () => {
       client: "Royal Graphics Solutions",
       website: "https://www.royalgraphics.co.ke/",
       image: projectRoyalGraphics
+    },
+    {
+      id: 8,
+      title: "Baya Solutions",
+      category: "Cleaning Services",
+      description: "Professional cleaning services website for a Nairobi-based company offering residential, commercial, upholstery, and mattress cleaning with eco-friendly products.",
+      fullDescription: "Designed and developed a vibrant, conversion-focused website for Baya Solutions, a licensed and insured cleaning company in Nairobi. The site highlights their eco-certified products, verified staff, and 4.9-star service quality, with clear quote and call-to-action flows that drive direct bookings.",
+      technologies: ["React", "Tailwind CSS", "Responsive Design", "SEO Optimization", "WhatsApp Integration"],
+      features: [
+        "Free quote request system",
+        "Service showcase (sofas, mattresses, chairs, fumigation)",
+        "Real-job gallery with before/after results",
+        "Customer reviews and ratings",
+        "Click-to-call and WhatsApp contact",
+        "Mobile-first responsive layout"
+      ],
+      results: [
+        "Significant uplift in qualified leads",
+        "Stronger brand trust with eco-certified messaging",
+        "Improved booking conversion rate",
+        "Wider reach across Nairobi neighborhoods"
+      ],
+      timeline: "4 weeks",
+      year: "2026",
+      client: "Baya Solutions",
+      website: "https://www.bayasolutions.co.ke/",
+      image: projectBayaSolutions
+    },
+    {
+      id: 9,
+      title: "Corey Marketplace",
+      category: "E-commerce & Marketplace",
+      description: "Multi-category online marketplace for cars, smartphones, and electronics with flash sales, hot deals, product listings, and admin-managed inventory.",
+      fullDescription: "Built a full-featured e-commerce marketplace for Corey.co.ke, enabling customers to browse and purchase vehicles, smartphones, and electronics in one place. The platform features dynamic product management, flash sale badges, category filtering, and a custom backend API for managing uploads and inventory.",
+      technologies: ["React", "Node.js API", "Custom Backend", "Image CDN", "Search & Filters"],
+      features: [
+        "Multi-category product catalog (cars, phones, electronics)",
+        "Flash sale and hot deal badges",
+        "Product detail pages with rich media",
+        "Custom admin backend for uploads",
+        "Search and badge-based filtering",
+        "Fully responsive shopping experience"
+      ],
+      results: [
+        "Unified marketplace across multiple categories",
+        "Faster product discovery for buyers",
+        "Scalable backend for growing inventory",
+        "Improved seller and admin workflow"
+      ],
+      timeline: "8 weeks",
+      year: "2026",
+      client: "Corey",
+      website: "https://www.corey.co.ke/",
+      image: projectCorey
     }
   ];
 
