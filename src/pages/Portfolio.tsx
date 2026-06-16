@@ -565,6 +565,12 @@ const Portfolio = () => {
                 <Link to="/services">View Our Services</Link>
               </Button>
             </div>
+            <div className="flex justify-center">
+              <ShareButtons
+                title="Our Work & Recent Projects - Waks Digital Solutions"
+                description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
+              />
+            </div>
           </div>
         </div>
       </section>
