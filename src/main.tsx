@@ -2,12 +2,15 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { HelmetProvider } from "react-helmet-async";
 
 const root = createRoot(document.getElementById("root")!);
 root.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+  <HelmetProvider>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </HelmetProvider>
 );
 
 // Hide loader after app mounts
