@@ -545,11 +545,12 @@ const Home = () => {
                 description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
               />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-3">
               <WhatsAppShareButton
                 title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
                 description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
               />
+              <CopyLinkButton />
             </div>
           </div>
         </div>
