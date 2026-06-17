@@ -572,6 +572,12 @@ const Portfolio = () => {
                 description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
               />
             </div>
+            <div className="flex justify-center">
+              <WhatsAppShareButton
+                title="Our Work & Recent Projects - Waks Digital Solutions"
+                description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
+              />
+            </div>
           </div>
         </div>
       </section>
