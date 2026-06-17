@@ -30,6 +30,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import CopyLinkButton from "@/components/CopyLinkButton";
 
 type SortOption = "newest" | "oldest" | "category";
 
