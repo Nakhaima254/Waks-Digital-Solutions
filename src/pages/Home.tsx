@@ -37,6 +37,7 @@ import { motion } from "framer-motion";
 import { api } from "@/integrations/api/client";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),

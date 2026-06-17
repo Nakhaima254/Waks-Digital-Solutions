@@ -29,6 +29,7 @@ import { AnimatedElement, StaggerContainer, StaggerItem, HoverCard } from "@/com
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 
 type SortOption = "newest" | "oldest" | "category";
 
