@@ -30,6 +30,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import CopyLinkButton from "@/components/CopyLinkButton";
 
 type SortOption = "newest" | "oldest" | "category";
 
@@ -572,11 +573,12 @@ const Portfolio = () => {
                 description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
               />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-3">
               <WhatsAppShareButton
                 title="Our Work & Recent Projects - Waks Digital Solutions"
                 description="Explore websites and digital products Waks Digital Solutions has launched for Kenyan SMEs across travel, finance, cleaning, e-commerce and more."
               />
+              <CopyLinkButton />
             </div>
           </div>
         </div>

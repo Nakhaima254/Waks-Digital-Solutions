@@ -38,6 +38,7 @@ import { api } from "@/integrations/api/client";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import CopyLinkButton from "@/components/CopyLinkButton";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -544,11 +545,12 @@ const Home = () => {
                 description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
               />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-3">
               <WhatsAppShareButton
                 title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
                 description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
               />
+              <CopyLinkButton />
             </div>
           </div>
         </div>
