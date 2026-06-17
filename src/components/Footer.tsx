@@ -127,6 +127,17 @@ const Footer = () => {
           <p className="text-primary-foreground/60 text-sm">
             © {currentYear} Waks Digital Solutions. All rights reserved.
           </p>
+          <p className="text-primary-foreground/60 text-sm mt-2 sm:mt-0">
+            Graphics by{" "}
+            <a
+              href="https://www.royalgraphics.co.ke/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary-foreground transition-colors underline"
+            >
+              Royal Graphics Solutions
+            </a>
+          </p>
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <Link to="/privacy" className="text-primary-foreground/60 hover:text-primary-foreground text-sm transition-colors">
               Privacy Policy
