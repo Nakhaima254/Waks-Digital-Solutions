@@ -37,6 +37,7 @@ import { motion } from "framer-motion";
 import { api } from "@/integrations/api/client";
 import SEO from "@/components/SEO";
 import ShareButtons from "@/components/ShareButtons";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -536,11 +537,19 @@ const Home = () => {
               </form>
             </Form>
           </Card>
-          <div className="mt-8 flex justify-center">
-            <ShareButtons
-              title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
-              description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
-            />
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex justify-center">
+              <ShareButtons
+                title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
+                description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+              />
+            </div>
+            <div className="flex justify-center">
+              <WhatsAppShareButton
+                title="Waks Digital Solutions - Web Development & Design Agency in Nairobi"
+                description="Waks Digital Solutions helps Kenyan SMEs grow online with custom websites, e-commerce, WordPress, SEO and digital marketing built for results."
+              />
+            </div>
           </div>
         </div>
       </section>
