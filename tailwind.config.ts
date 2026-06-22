@@ -62,6 +62,7 @@ export default {
       fontFamily: {
         sans: ['Jost', 'Futura', 'Trebuchet MS', 'system-ui', 'sans-serif'],
         blog: ['Outfit', 'system-ui', 'sans-serif'],
+        editorial: ['Fraunces', 'Georgia', 'serif'],
       },
       boxShadow: {
         'sm': 'var(--shadow-sm)',
