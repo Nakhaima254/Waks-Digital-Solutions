@@ -211,69 +211,164 @@ const Home = () => {
         image="/hero-image.jpg"
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <FloatingElements density="high" color="primary" />
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-primary/90"></div>
+      <section className="relative min-h-screen bg-background overflow-hidden">
+        {/* Top meta bar */}
+        <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-12 pt-28 lg:pt-32">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-between text-xs tracking-[0.25em] uppercase text-muted-foreground border-b border-border pb-4"
+          >
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              Issue 001 &mdash; Nairobi, Kenya
+            </span>
+            <span className="hidden md:inline">Digital Growth Partner / Est. 2022</span>
+            <span className="hidden md:inline">{new Date().getFullYear()}</span>
+          </motion.div>
         </div>
-        
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-8">
-              <div className="space-y-4 animate-fade-in">
-                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-float">
-                  Your Digital Growth Partner
-                </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  We Build Websites That 
-                  <span className="block gradient-text">
-                    {displayedText}
-                    <span className="animate-pulse">|</span>
-                  </span>
-                </h1>
-                <p className="text-xl text-white/90 leading-relaxed max-w-xl">
-                  Professional web development and design services for small to medium businesses in Nairobi. 
-                  Let's bring your business online with a website that converts visitors into customers.
-                </p>
+
+        {/* Editorial split grid */}
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pt-10 lg:pt-16 pb-20 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left: oversized editorial type */}
+          <div className="lg:col-span-7 relative">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="absolute -left-2 lg:-left-6 top-2 text-[7rem] lg:text-[11rem] font-editorial italic text-accent/15 leading-none select-none pointer-events-none"
+              aria-hidden
+            >
+              W&mdash;
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="relative text-[2.75rem] sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[0.95] tracking-tight font-semibold text-primary"
+            >
+              Websites that
+              <span className="block font-editorial italic font-medium text-accent mt-2">
+                {displayedText}
+                <span className="animate-pulse text-primary/40">|</span>
+              </span>
+              <span className="block text-primary">your business.</span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="origin-left h-px bg-foreground/20 my-8 lg:my-10"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid sm:grid-cols-12 gap-6 lg:gap-10 items-start"
+            >
+              <div className="sm:col-span-1 text-xs tracking-[0.25em] uppercase text-muted-foreground pt-1">
+                01
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <Button variant="hero" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
-                  <Link to="/contact">Start Your Project</Link>
-                </Button>
-                <Button variant="hero-outline" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
-                  <Link to="/portfolio">View Our Work</Link>
-                </Button>
+              <p className="sm:col-span-11 text-base lg:text-lg text-foreground/75 leading-relaxed max-w-xl">
+                A Nairobi-based studio crafting custom websites, e-commerce stores, and
+                digital systems for ambitious small and medium businesses ready to grow online.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-10"
+            >
+              <Button variant="hero" size="lg" className="h-12 px-7 text-sm tracking-wider uppercase hover-scale group" asChild>
+                <Link to="/contact">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+              <Button variant="ghost" size="lg" className="h-12 px-7 text-sm tracking-wider uppercase text-primary hover:text-accent hover:bg-transparent group" asChild>
+                <Link to="/portfolio">
+                  <span className="underline-grow">View Selected Work</span>
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Right: dramatic offset image + meta */}
+          <div className="lg:col-span-5 lg:pl-6 lg:pt-12 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden bg-primary">
+                <img
+                  src={heroImage}
+                  alt="Waks Digital studio team at work"
+                  className="w-full h-full object-cover scale-105 transition-transform duration-[2s] hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
+                {/* Accent corner mark */}
+                <div className="absolute top-4 left-4 flex items-center gap-2 text-[0.65rem] tracking-[0.3em] uppercase text-white/90">
+                  <span className="w-6 h-px bg-accent" />
+                  Studio
+                </div>
+                <div className="absolute bottom-4 right-4 text-[0.65rem] tracking-[0.3em] uppercase text-white/90 font-editorial italic">
+                  Plate&nbsp;/&nbsp;01
+                </div>
               </div>
 
-              <div 
-                ref={statsReveal.ref}
-                className="flex items-center space-x-8 pt-4 animate-fade-in" 
-                style={{ animationDelay: '0.4s' }}
+              {/* Floating caption card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.9 }}
+                className="absolute -left-4 lg:-left-10 -bottom-6 bg-background border border-border shadow-lg p-5 max-w-[240px]"
               >
-                <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">
-                    {projectsCount}+
-                  </div>
-                  <div className="text-sm text-white/80">Projects Completed</div>
+                <div className="text-[0.65rem] tracking-[0.25em] uppercase text-muted-foreground mb-2">
+                  In focus
                 </div>
-                <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">
-                    {satisfactionCount}%
-                  </div>
-                  <div className="text-sm text-white/80">Client Satisfaction</div>
-                </div>
-                <div className="text-center hover-scale">
-                  <div className="text-2xl font-bold text-accent">
-                    {experienceCount}+
-                  </div>
-                  <div className="text-sm text-white/80">Years Experience</div>
-                </div>
-              </div>
-            </div>
+                <p className="font-editorial italic text-primary text-lg leading-snug">
+                  &ldquo;Design with intent. Build for growth.&rdquo;
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom stats strip */}
+        <div
+          ref={statsReveal.ref}
+          className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 pb-16"
+        >
+          <div className="border-t border-border pt-8 grid grid-cols-3 gap-4 lg:gap-12">
+            {[
+              { value: `${projectsCount}+`, label: "Projects Delivered" },
+              { value: `${satisfactionCount}%`, label: "Client Satisfaction" },
+              { value: `${experienceCount}+`, label: "Years In Practice" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="flex items-baseline gap-3 lg:gap-5"
+              >
+                <span className="text-3xl lg:text-5xl font-editorial italic text-accent leading-none">
+                  {stat.value}
+                </span>
+                <span className="text-[0.7rem] lg:text-xs tracking-[0.2em] uppercase text-muted-foreground">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
