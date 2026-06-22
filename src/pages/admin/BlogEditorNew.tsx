@@ -72,8 +72,9 @@ export default function BlogEditor() {
       author: '',
       tags: '',
       status: 'draft',
-   },
-   }
+    },
+  });
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const additionalFilesInputRef = useRef<HTMLInputElement>(null);
   const [featuredImagePreview, setFeaturedImagePreview] = useState<string | null>(null);
