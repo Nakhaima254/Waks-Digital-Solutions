@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -99,11 +99,11 @@ Professional, modern, and trustworthy design for a Kenyan digital agency
   }
 
   body {
-    @apply bg-background text-foreground font-['Jost','Futura','Trebuchet_MS',system-ui,sans-serif] antialiased;
+    @apply bg-background text-foreground font-['Montserrat','Futura','Trebuchet_MS',system-ui,sans-serif] antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-bold tracking-tight;
   }
 }
 

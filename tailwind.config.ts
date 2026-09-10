@@ -60,7 +60,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Jost', 'Futura', 'Trebuchet MS', 'system-ui', 'sans-serif'],
+        sans: ['Montserrat', 'Futura', 'Trebuchet MS', 'system-ui', 'sans-serif'],
         blog: ['Outfit', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
