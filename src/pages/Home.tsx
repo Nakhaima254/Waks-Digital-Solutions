@@ -224,27 +224,28 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-4 animate-fade-in">
-                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-float">
-                  Your Digital Growth Partner
+                <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 text-xs uppercase tracking-widest">
+                  Top Rated
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1]">
-                  We Build Websites That 
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95] tracking-tight">
+                  Web Design &amp;
+                  <span className="block">Digital Agency</span>
                   <span className="block gradient-text">
                     {displayedText}
                     <span className="animate-pulse">|</span>
                   </span>
                 </h1>
-                <p className="text-lg md:text-xl font-semibold text-white/95 leading-relaxed max-w-lg">
-                  Nairobi-based web design that turns visitors into paying customers.
+                <p className="text-base md:text-lg text-white/90 leading-relaxed max-w-md">
+                  You deserve to be seen. We build websites that turn visitors into paying customers.
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <Button variant="hero" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
-                  <Link to="/contact">Start Your Project</Link>
+              <div className="flex flex-wrap gap-3 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+                <Button variant="hero" className="px-6 hover-scale" asChild>
+                  <Link to="/contact">Contact Us Today</Link>
                 </Button>
-                <Button variant="hero-outline" size="lg" className="h-10 px-4 py-2 text-sm sm:h-14 sm:px-8 sm:py-4 sm:text-lg hover-scale" asChild>
-                  <Link to="/portfolio">View Our Work</Link>
+                <Button variant="hero-outline" className="px-6 hover-scale" asChild>
+                  <Link to="/portfolio">Services Inquiry</Link>
                 </Button>
               </div>
 
@@ -273,6 +274,25 @@ const Home = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tools Strip */}
+      <section className="py-10 bg-background border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">
+            Tools We Work With
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {["WordPress", "WooCommerce", "Shopify", "React", "Figma", "Photoshop", "Elementor", "Google Analytics"].map((tool) => (
+              <span
+                key={tool}
+                className="text-sm sm:text-base font-semibold text-muted-foreground/80 hover:text-accent transition-colors"
+              >
+                {tool}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -330,7 +350,7 @@ const Home = () => {
           </StaggerContainer>
 
           <AnimatedElement animation="fadeUp" delay={0.4} className="text-center mt-12">
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" asChild>
               <Link to="/services">
                 View All Services <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -398,7 +418,7 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="hero" size="lg" asChild>
+            <Button variant="hero" asChild>
               <Link to="/portfolio">
                 View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -531,7 +551,7 @@ const Home = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" variant="hero" size="lg" className="w-full">
+                <Button type="submit" variant="hero" className="w-full sm:w-auto">
                   Send Message <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </form>
