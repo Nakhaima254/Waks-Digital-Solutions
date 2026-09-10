@@ -65,9 +65,9 @@ const Home = () => {
     fetchProjects();
   }, []);
   const { displayedText } = useTypingEffect({ 
-    text: "Grow Your Business", 
-    speed: 100, 
-    delay: 500 
+    text: "We Build Sites That Convert.", 
+    speed: 80, 
+    delay: 400 
   });
   
   const servicesReveal = useScrollReveal();
