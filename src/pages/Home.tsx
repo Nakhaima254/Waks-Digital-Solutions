@@ -65,9 +65,9 @@ const Home = () => {
     fetchProjects();
   }, []);
   const { displayedText } = useTypingEffect({ 
-    text: "Grow Your Business", 
-    speed: 100, 
-    delay: 500 
+    text: "We Build Sites That Convert.", 
+    speed: 80, 
+    delay: 400 
   });
   
   const servicesReveal = useScrollReveal();
@@ -228,8 +228,6 @@ const Home = () => {
                   Top Rated
                 </Badge>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold uppercase leading-[0.95] tracking-tight">
-                  Web Design &amp;
-                  <span className="block">Digital Agency</span>
                   <span className="block gradient-text">
                     {displayedText}
                     <span className="animate-pulse">|</span>
