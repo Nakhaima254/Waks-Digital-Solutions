@@ -227,16 +227,15 @@ const Home = () => {
                 <Badge variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/30 animate-float">
                   Your Digital Growth Partner
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-6xl font-extrabold leading-[1.1]">
                   We Build Websites That 
                   <span className="block gradient-text">
                     {displayedText}
                     <span className="animate-pulse">|</span>
                   </span>
                 </h1>
-                <p className="text-xl text-white/90 leading-relaxed max-w-xl">
-                  Professional web development and design services for small to medium businesses in Nairobi. 
-                  Let's bring your business online with a website that converts visitors into customers.
+                <p className="text-lg md:text-xl font-semibold text-white/95 leading-relaxed max-w-lg">
+                  Nairobi-based web design that turns visitors into paying customers.
                 </p>
               </div>
               
